@@ -104,8 +104,9 @@ export function ClientsMarquee() {
           <h2 id="clients-title">{t('Brendovi s kojima smo sarađivali', 'Brands we have worked with')}</h2>
           <p className="lead">{t('Od lokalnih brendova do regionalnih kompanija.', 'From local brands to regional companies.')}</p>
         </div>
-        <button type="button" className="btn btn-secondary btn-sm" onClick={() => setPaused(p => !p)} aria-pressed={paused}>
-          {paused ? <><Play size={16} /> {t('Pokreni', 'Play')}</> : <><Pause size={16} /> {t('Zaustavi kretanje', 'Stop motion')}</>}
+        <button type="button" className="mq-toggle" onClick={() => setPaused(p => !p)} aria-pressed={paused}
+          aria-label={paused ? t('Pokreni kretanje logotipa', 'Play logo motion') : t('Zaustavi kretanje logotipa', 'Stop logo motion')}>
+          {paused ? <Play size={18} /> : <Pause size={18} />}
         </button>
       </div>
       <div className={`marquee ${paused ? 'is-paused' : ''}`}>

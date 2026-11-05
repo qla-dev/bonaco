@@ -319,3 +319,8 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
   .hv.hv-orbit .hv-below h1 { font-size: clamp(34px, 9.6vw, 52px); }
 }
 @media (prefers-reduced-motion: reduce) { .hv-b i { animation: none; } }
+
+/* Klijenti: pauza samo kao ikona, gore desno uz naslov */
+.clients .section-head { flex-wrap: nowrap; align-items: flex-start; }
+.mq-toggle { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); background: transparent; color: var(--text); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.mq-toggle:hover, .mq-toggle[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
