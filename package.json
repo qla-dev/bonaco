@@ -1,0 +1,35 @@
+{
+  "name": "bonaco-media",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "import-rea": "node scripts/import-rea.mjs",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && node scripts/prerender-meta.mjs /",
+    "preview": "vite preview",
+    "build:qla": "tsc --noEmit && vite build --base=/bonaco/ && node scripts/prerender-meta.mjs /bonaco/"
+  },
+  "dependencies": {
+    "lucide-react": "^0.564.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.0",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.170.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "cheerio": "^1.0.0",
+    "sharp": "^0.34.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "sharp@0.34.5": true
+  }
+}

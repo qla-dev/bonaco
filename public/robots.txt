@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /redeploy.php
+Disallow: /contact.php
+
+Sitemap: https://bonacomedia.com/sitemap.xml

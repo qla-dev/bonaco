@@ -1,0 +1,51 @@
+Options -Indexes
+DirectoryIndex index.html dist/index.html
+
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# HTML stranice ne idu u dijeljeni cache (nginx/Engintron), hashirani fajlovi u dist/assets mogu.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(html|php)$">
+        Header set Cache-Control "private, no-store, no-cache, must-revalidate"
+    </FilesMatch>
+    <If "%{REQUEST_URI} =~ m#^/(assets|img)/#">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </If>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Jedan HTTPS origin, bez www (i iza TLS proxyja hosta).
+    RewriteCond %{HTTP_HOST} ^(?:www\.)?bonacomedia\.com$ [NC]
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+    RewriteRule ^ https://bonacomedia.com%{REQUEST_URI} [R=308,L,NE]
+
+    RewriteCond %{HTTP_HOST} ^www\.bonacomedia\.com$ [NC]
+    RewriteRule ^ https://bonacomedia.com%{REQUEST_URI} [R=308,L,NE]
+
+    # Deploy endpoint je izvan Vite builda.
+    RewriteRule ^redeploy\.php$ - [L]
+
+    # Stari WordPress URL-ovi
+    RewriteRule ^o-nama/?$ /#o-nama [R=301,NE,L]
+    RewriteRule ^nase-suluge/?$ /nase-usluge/ [R=301,L]
+    RewriteRule ^(category|tag|author)/ /vijesti/ [R=301,L]
+    RewriteRule ^wp-(admin|login\.php|content|includes) - [G,L]
+    RewriteRule ^(xmlrpc\.php|feed/?)$ - [G,L]
+
+    # Spriječi ponovno prepisivanje kad je zahtjev već u dist.
+    RewriteRule ^dist(?:/|$) - [L]
+
+    # Fajlovi i prerenderovane stranice (dist/kontakt/index.html ...) iz dist.
+    RewriteCond %{DOCUMENT_ROOT}/dist/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/dist/$1 -d
+    RewriteRule ^(.+)$ dist/$1 [L]
+
+    # Ostale klijentske rute idu na index aplikacije.
+    RewriteRule ^$ dist/index.html [L]
+    RewriteRule . dist/index.html [L]
+</IfModule>
