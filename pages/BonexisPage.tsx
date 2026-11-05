@@ -27,7 +27,7 @@ export default function BonexisPage() {
       </section>
 
       {/* Kapsule i owner agenti */}
-      <section className="section light">
+      <section className="section bx-capsules">
         <div className="container">
           <div className="section-head">
             <div>

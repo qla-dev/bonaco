@@ -1,0 +1,105 @@
+/* Bonexis je cijeli taman: chat, scenariji, dashboard i kapsule (preko starijih svijetlih stilova
+   iz v2.css, hero4.css, bonexis.css i dashboard.css). Akcent je tirkizna Bonexisa (data-brand). */
+
+/* ---------- Ben AI chat ---------- */
+.bx-chat-section { background: radial-gradient(ellipse at 50% 0%, var(--accent-deep), var(--bg) 70%); color: var(--text); }
+.bx-title, .bx-greeting, .bx-page-title { color: #fff; }
+.bx-sub { color: var(--muted); }
+.bx-tabs { background: #1c1c1c; }
+.bx-tabs button { color: var(--muted); }
+.bx-tabs button.is-on { background: #2a2a2a; color: #fff; box-shadow: none; }
+.bx-composer { background: #181c1c; border-color: rgba(255, 255, 255, 0.14); box-shadow: 0 12px 30px -14px rgba(0, 0, 0, 0.7); }
+.bx-composer:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+.bx-composer input { color: #fff; }
+.bx-composer input::placeholder { color: #8a9393; }
+.bx-icon { color: #e0e0e0; }
+.bx-icon:hover { background: #262b2b; }
+.bx-icon.is-live { color: #ff8a8a; background: rgba(255, 80, 80, 0.15); }
+.bx-menu { background: #181c1c; border-color: rgba(255, 255, 255, 0.12); box-shadow: 0 20px 50px -16px #000; }
+.bx-menu button { color: #e5e5e5; }
+.bx-menu button:hover { background: #242a2a; }
+.bx-suggestions button { background: #151919; border-color: rgba(255, 255, 255, 0.14); color: #dcdcdc; }
+.bx-suggestions button:hover { border-color: var(--accent); color: var(--accent-light); }
+.bx-msg.user .bx-bubble { background: #232828; }
+.bx-bubble p { color: #ececec; }
+.bx-bubble ul { color: #cfd4d4; }
+.bx-avatar { background: var(--accent-deep); color: var(--accent-light); }
+.bx-action { background: #151919; border-color: rgba(255, 255, 255, 0.16); color: #e5e5e5; }
+.bx-action:hover { border-color: var(--accent); color: var(--accent-light); }
+.bx-action.primary, .bx-action.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.bx-typing i { background: #6b7373; }
+
+/* ---------- Scenariji (Bonexis u praksi) ---------- */
+.sc-section { background: var(--bg); color: var(--text); border-top-color: var(--line); }
+.sc { color: var(--text); }
+.sc-intro h2 { color: #fff; }
+.sc-intro p, .sc-foot { color: var(--muted); }
+.sc-block { border-top-color: var(--line); }
+.sc-copy h3, .sc-block .sc-copy h3 { color: #fff; }
+.sc-copy p, .sc-block .sc-copy p { color: var(--muted); }
+.sc-copy .check-list li { border-color: var(--line); color: #dcdcdc; }
+.sc-agent div span { color: var(--accent-light); }
+.sc-avatar { background: var(--accent-deep); }
+.sc-block .sc-visual { background: #131818; border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 30px 60px -40px #000; }
+.sc-msg.client p { background: #262c2c; color: #fff; }
+.sc-msg.agent p { background: #1b2121; border-color: color-mix(in srgb, var(--accent) 30%, transparent); color: #e8e8e8; box-shadow: none; }
+.sc-canvas { background: #0c0f0f; border: 1px solid var(--line); }
+.sc-replay { background: #151919; border-color: rgba(255, 255, 255, 0.14); color: var(--muted); }
+.sc-picker button { background: #151919; border-color: rgba(255, 255, 255, 0.14); }
+.sc-picker button strong { color: #fff; }
+.sc-picker button span { color: var(--muted); }
+.sc-picker button.is-on strong { color: var(--accent-light); }
+
+/* ---------- Dashboard ---------- */
+.bxd-section { background: radial-gradient(ellipse at 50% 100%, var(--accent-deep), var(--bg) 65%); color: var(--text); border-top: 1px solid var(--line); }
+.bxd-section h2 { color: #fff; }
+.bxd-section .lead { color: var(--muted); }
+.bxd { background: #111515; border-color: rgba(255, 255, 255, 0.1); color: var(--text); box-shadow: 0 40px 80px -40px #000; }
+.bxd-side { background: #0d1111; border-right-color: var(--line); }
+.bxd-brand { color: #fff; }
+.bxd-demo { background: var(--accent-deep); color: var(--accent-light); }
+.bxd-new { background: #181e1e; border-color: rgba(255, 255, 255, 0.12); color: #eee; }
+.bxd-side nav button { color: #d6dada; }
+.bxd-side nav button:hover { background: #182020; }
+.bxd-side nav button.is-on { background: #1f2727; box-shadow: none; }
+.bxd-label, .bxd-nm small, .bxd-queue small, .bxd-oinfo small, .bxd-note, .bxd-week > div > span, .bxd-search { color: #8a9393; }
+.bxd-av { background: var(--accent-deep); }
+.bxd-av.light { background: #283030; color: #eee; }
+.bxd-core, .bxd-title p, .bxd-otext, .bxd-kpi span, .bxd-pipe span { color: #a3abab; }
+.bxd-user { border-top-color: var(--line); }
+.bxd-main { background: #111515; }
+.bxd-cap { color: var(--accent-light); }
+.bxd-title h3, .bxd-kpi b, .bxd-card h4, .bxd-pipe b { color: #fff; }
+.bxd-search { border-color: rgba(255, 255, 255, 0.12); }
+.bxd-skills span { background: #1b2222; color: #cfd4d4; }
+.bxd-kpi, .bxd-pipe div { background: #151a1a; border-color: rgba(255, 255, 255, 0.08); }
+.bxd-kpi.ok b, .bxd-list li.ok b { color: #9fd8b2; }
+.bxd-kpi.warn b, .bxd-list li.warn b { color: #e8c27a; }
+.bxd-kpi.bad b, .bxd-list li.bad b, .bxd-bars small { color: #f0a090; }
+.bxd-card, .bxd-ocard { background: #131818; border-color: rgba(255, 255, 255, 0.08); }
+.bxd-queue li, .bxd-list li { border-top-color: rgba(255, 255, 255, 0.07); }
+.bxd-queue strong { color: #eee; }
+.bxd-acts button { background: #1b2222; border-color: rgba(255, 255, 255, 0.12); color: #e5e5e5; }
+.bxd-acts button:first-child { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.bxd-pill { background: #1f2626; color: #cfd4d4; }
+.bxd-pill.ok { background: rgba(127, 199, 154, 0.15); color: #9fd8b2; }
+.bxd-pill.warn { background: rgba(227, 181, 90, 0.15); color: #e8c27a; }
+.bxd-pill.bad { background: rgba(224, 122, 106, 0.15); color: #f0a090; }
+.bxd-week i { background: rgba(227, 181, 90, 0.14); color: #e8c27a; }
+.bxd-week i.ok { background: rgba(127, 199, 154, 0.14); color: #9fd8b2; }
+.bxd-bars > div > div { background: #1f2626; }
+.bxd-feed p.user { background: #262c2c; color: #fff; }
+.bxd-feed p.agent { background: #1b2121; color: #e5e5e5; }
+.bxd-composer { background: #151a1a; border-color: rgba(255, 255, 255, 0.12); }
+.bxd-composer input { color: #fff; }
+@media (max-width: 900px) { .bxd-side { border-bottom-color: var(--line); } }
+
+/* ---------- Kapsule i načela na /bonexis/ ---------- */
+.bx-capsules { border-top: 1px solid var(--line); }
+.bx-capsules .capsule-card { background: #131818; border-color: rgba(255, 255, 255, 0.08); }
+.bx-capsules .capsule-card h3 { color: #fff; }
+.bx-capsules .capsule-card p { color: var(--muted); }
+.bx-capsules .capsule-owner { color: #dcdcdc; font-size: 15px; margin-bottom: 8px; }
+.bx-capsules .capsule-n { color: var(--accent-light); }
+.bx-capsules .capsule-card .check-list li { border-color: var(--line); color: #dcdcdc; }
+.bx-capsules .capsule-core { background: var(--accent-deep); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
