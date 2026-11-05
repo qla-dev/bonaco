@@ -42,7 +42,7 @@
 .hero3 h1 { font-size: clamp(34px, min(3.7vw, 6.4vh), 60px); line-height: 1.04; max-width: none; letter-spacing: -0.035em; }
 .hero3 h1 span { display: block; white-space: nowrap; }
 .hero3-lead { font-size: clamp(16px, 1.15vw, 18px); }
-@media (max-width: 960px) { .hero3 h1 span { white-space: normal; display: inline; } }
+@media (max-width: 960px) { .hero3 h1 { font-size: clamp(26px, 7.2vw, 52px); } .hero3 h1 span { display: block; white-space: nowrap; } }
 
 /* 3D kancelarija: od ivice do ivice, visina po omjeru; dugmad agenata ispod scene */
 .office { height: auto; aspect-ratio: 1.35; min-height: 0; max-height: none; }
@@ -103,3 +103,9 @@
 }
 @media (max-width: 760px) { .hero3-glow { width: 120vw; height: 120vw; right: -40vw; top: -30vw; } }
 @media (prefers-reduced-motion: reduce) { .hero3 h1 .shimmer, .hero3-glow { animation: none; } }
+
+/* Mobitel: dva dugmeta u heroju u jednom redu */
+@media (max-width: 560px) {
+  .hero3 .btn-row { flex-wrap: nowrap; gap: 8px; }
+  .hero3 .btn-row .btn { flex: 1 1 0; min-width: 0; padding: 14px 10px; font-size: 15px; white-space: nowrap; }
+}
