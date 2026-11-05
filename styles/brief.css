@@ -398,3 +398,9 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
   animation: shimmer 4.5s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) { .hv h1 .shimmer { animation: none; background-position: 100% 0; } }
+
+/* Fiksni CTA je uvijek vidljiv na telefonu; dugmad u heroju se ne dupliraju */
+@media (max-width: 760px) {
+  .mobile-cta { transform: none; }
+  .hv .hv-below .btn-row, .hv .hv-copy .btn-row { display: none; }
+}
