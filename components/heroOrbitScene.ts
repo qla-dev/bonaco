@@ -245,8 +245,11 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       if (s.userData.shown !== want) fading = true;
       s.visible = s.userData.shown > 0.01;
       (s.material as THREE.SpriteMaterial).opacity = (0.45 + 0.55 * depth) * s.userData.shown;
-      const target = s.userData.base * (s === hovered ? 1.15 : 1);
-      s.scale.setScalar(THREE.MathUtils.lerp(s.scale.x, target, 0.25));
+      // ista veličina na ekranu bez obzira na dubinu: poništi perspektivu
+      const flat = (camera.position.z - z) / camera.position.z;
+      const target = s.userData.base * (s === hovered ? 1.15 : 1) * flat;
+      s.scale.setScalar(s.scale.x === s.userData.base && !s.userData.init ? target : THREE.MathUtils.lerp(s.scale.x, target, 0.35));
+      s.userData.init = true;
     });
     renderer.render(scene, camera);
   }
