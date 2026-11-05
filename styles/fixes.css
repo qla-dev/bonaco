@@ -77,3 +77,29 @@
 @media (max-width: 560px) {
   .brain .thought { left: 50% !important; top: 4px !important; transform: translateX(-50%) !important; max-width: 86%; text-align: center; }
 }
+
+/* "agencija" u primarnoj boji sa shimmerom */
+.hero3 h1 .shimmer {
+  font-style: normal;
+  background: linear-gradient(100deg, #936149 0%, #b9805f 30%, #f6d9c4 45%, #d9a385 55%, #936149 75%, #936149 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 5s ease-in-out infinite;
+}
+@keyframes shimmer { 0% { background-position: 100% 0; } 60%, 100% { background-position: -50% 0; } }
+
+/* Svjetlo u heroju: lagano se pomjera i mijenja zamućenje */
+.hero3-glow {
+  width: min(70vw, 900px); height: min(70vw, 900px); right: -12vw; top: -18vw;
+  background: radial-gradient(circle, rgba(170, 110, 80, 0.55), rgba(147, 97, 73, 0.18) 45%, transparent 68%);
+  animation: glow-move 16s ease-in-out infinite;
+}
+@keyframes glow-move {
+  0%   { transform: translate(0, 0) scale(1);        filter: blur(18px); opacity: 0.85; }
+  25%  { transform: translate(-6vw, 6vh) scale(1.12); filter: blur(42px); opacity: 1; }
+  50%  { transform: translate(-12vw, 2vh) scale(0.95); filter: blur(24px); opacity: 0.75; }
+  75%  { transform: translate(-4vw, 10vh) scale(1.18); filter: blur(56px); opacity: 0.95; }
+  100% { transform: translate(0, 0) scale(1);        filter: blur(18px); opacity: 0.85; }
+}
+@media (max-width: 760px) { .hero3-glow { width: 120vw; height: 120vw; right: -40vw; top: -30vw; } }
+@media (prefers-reduced-motion: reduce) { .hero3 h1 .shimmer, .hero3-glow { animation: none; } }

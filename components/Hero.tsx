@@ -74,7 +74,7 @@ export default function Hero() {
       <div className="hero3-glow" aria-hidden="true" />
       <div className="container hero3-grid">
         <div className="hero3-copy">
-          <h1><span>Jedina agencija</span> <span>koja vam je potrebna</span></h1>
+          <h1><span>Jedina <em className="shimmer">agencija</em></span> <span>koja vam je potrebna</span></h1>
           <p className="hero3-lead">
             Vodimo društvene mreže, evente, foto i video, web i dizajn za brendove iz regije. Vašoj firmi nudimo i <strong>Bonexis</strong>, marketing CRM u kojem svaku od sedam AI kapsula vodi njen owner agent, a Ben ih povezuje u jedan mozak.
           </p>
