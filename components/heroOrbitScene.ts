@@ -60,38 +60,50 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   const dotGeo = track(new THREE.SphereGeometry(0.045, 12, 12));
   const dotMat = track(new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 }));
 
-  // Tri prstena: nagnuti kao kod atoma/armilarne sfere, svaki se vrti oko svoje ose
+  // Tri aktivna prstena (nose projekte) razmaknuta ~110° kao kod atoma, a između njih tri tanka
+  // neaktivna prstena. Orijentacija se zadaje normalom ravni prstena.
+  const N = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z).normalize();
+  const A1 = N(0, 0.95, 0.3), A2 = N(0.82, -0.47, 0.3), A3 = N(-0.82, -0.47, 0.3);
+  const between = (a: THREE.Vector3, b: THREE.Vector3) => a.clone().add(b).normalize();
   const RINGS = [
-    { x: Math.PI / 2.25, y: 0, speed: 0.16, color: opts.accent, opacity: 0.95 },
-    { x: Math.PI / 2.25, y: Math.PI / 3, speed: -0.12, color: '#ffffff', opacity: 0.22 },
-    { x: Math.PI / 2.25, y: -Math.PI / 3, speed: 0.09, color: '#ffffff', opacity: 0.22 },
+    { n: A1, speed: 0.16, color: opts.accent, opacity: 0.95, active: true },
+    { n: A2, speed: -0.12, color: '#ffffff', opacity: 0.4, active: true },
+    { n: A3, speed: 0.1, color: '#ffffff', opacity: 0.4, active: true },
+    { n: between(A1, A2), speed: 0.05, color: '#ffffff', opacity: 0.1, active: false },
+    { n: between(A2, A3), speed: -0.04, color: '#ffffff', opacity: 0.1, active: false },
+    { n: between(A3, A1), speed: 0.045, color: '#ffffff', opacity: 0.1, active: false },
   ];
+  const Z = new THREE.Vector3(0, 0, 1);
   const spinners: { g: THREE.Group; speed: number }[] = [];
+  const active: THREE.Group[] = [];
   const sprites: THREE.Sprite[] = [];
   let pending = items.length;
   const rerender = () => { pending--; if (!running) render(); };
 
   RINGS.forEach((r, k) => {
     const holder = new THREE.Group();
-    holder.rotation.set(r.x, r.y, 0, 'YXZ');
+    holder.quaternion.setFromUnitVectors(Z, r.n);
     const spin = new THREE.Group();
     holder.add(spin);
     root.add(holder);
     const mat = track(new THREE.LineBasicMaterial({ color: r.color, transparent: true, opacity: r.opacity, depthWrite: false }));
     spin.add(new THREE.LineLoop(ringGeo, mat));
-    // sitne tačke na prstenu
-    [0.6, 2.2, 4.1].forEach(a => {
-      const d = new THREE.Mesh(dotGeo, dotMat);
-      d.position.set(Math.cos(a + k) * R, Math.sin(a + k) * R, 0);
-      spin.add(d);
-    });
+    if (r.active) {
+      // sitne tačke na aktivnom prstenu
+      [0.6, 2.2, 4.1].forEach(a => {
+        const d = new THREE.Mesh(dotGeo, dotMat);
+        d.position.set(Math.cos(a + k) * R, Math.sin(a + k) * R, 0);
+        spin.add(d);
+      });
+      active.push(spin);
+    }
     spinners.push({ g: spin, speed: r.speed });
   });
 
-  // Projekti: po dva na svakom prstenu, nasuprot jedan drugom
+  // Projekti: po dva na svakom aktivnom prstenu, nasuprot jedan drugom
   items.forEach((it, i) => {
-    const ring = i % RINGS.length;
-    const slot = Math.floor(i / RINGS.length);
+    const ring = i % active.length;
+    const slot = Math.floor(i / active.length);
     const a = slot * Math.PI + ring * 0.9;
     const tex = track(circleTexture(it.src, rerender));
     const mat = track(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
@@ -99,7 +111,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     s.position.set(Math.cos(a) * R, Math.sin(a) * R, 0);
     s.userData = { href: it.href, label: it.label, base: 1.25 };
     s.scale.setScalar(1.25);
-    spinners[ring].g.add(s);
+    active[ring].add(s);
     sprites.push(s);
   });
 
@@ -165,8 +177,10 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     camera.updateProjectionMatrix();
     const vh = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
     const vw = vh * camera.aspect;
-    root.scale.setScalar(Math.min(1.15, (0.94 * Math.min(vw, vh)) / (2 * R)));
-    sprites.forEach(s => { s.userData.base = w < 640 ? 1.5 : 1.25; });
+    const base = w < 640 ? 1.35 : 1.25;
+    // cijela sfera zajedno s diskovima projekata mora stati u kadar
+    root.scale.setScalar(Math.min(1.15, (0.96 * Math.min(vw, vh)) / (2 * R + base)));
+    sprites.forEach(s => { s.userData.base = base; });
     render();
   };
   const ro = new ResizeObserver(fit);
