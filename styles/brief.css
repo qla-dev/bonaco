@@ -256,3 +256,24 @@ html, body { overflow-x: clip; }
   .hv .btn-row .btn { flex: 1 1 0; min-width: 0; padding: 14px 10px; font-size: 15px; white-space: nowrap; }
 }
 @media (max-width: 420px) { .hv .btn-row .btn svg { display: none; } }
+
+/* qla.dev logo slika u bedžu i footeru (zamjenjuje tekstualni znak) */
+img.qla-mark { display: inline-block; height: 1.05em; width: auto; vertical-align: -0.12em; }
+.badge img.qla-mark { margin-left: 0.4em; height: 1.1em; vertical-align: middle; position: relative; top: -0.08em; }
+.made-by img.qla-mark { height: 20px; vertical-align: middle; }
+.bxc-badges { margin-bottom: 32px; }
+.bxc-title { margin-top: 0; }
+
+/* Usluge na telefonu: jedan red s horizontalnim skrolom */
+@media (max-width: 700px) {
+  .svc-circles { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(var(--gutter) * -1) 8px; padding: 4px var(--gutter) 10px; scroll-snap-type: x proximity; scrollbar-width: none; }
+  .svc-circles::-webkit-scrollbar { display: none; }
+  .svc-circles li { flex: none; scroll-snap-align: start; }
+  .svc-circles a { white-space: nowrap; }
+}
+
+/* Mobilni meni: header ostaje fiksiran, stranica ispod se ne skrola */
+html.menu-open, html.menu-open body { overflow: hidden; overscroll-behavior: none; }
+html.menu-open body { position: fixed; inset: 0; width: 100%; }
+.site-header.is-open { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); }
+.mobile-menu { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }

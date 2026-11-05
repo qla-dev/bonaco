@@ -37,7 +37,20 @@ export default function Header() {
     addEventListener('scroll', onScroll, { passive: true });
     return () => removeEventListener('scroll', onScroll);
   }, []);
-  useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; }, [open]);
+  // Otvoren meni: zaključaj skrol stranice (i na iOS-u, gdje body overflow nije dovoljan)
+  useEffect(() => {
+    if (!open) return;
+    const y = window.scrollY;
+    const at = window.location.pathname;
+    document.body.style.top = `-${y}px`;
+    document.documentElement.classList.add('menu-open');
+    return () => {
+      document.documentElement.classList.remove('menu-open');
+      document.body.style.top = '';
+      // Vrati poziciju samo ako je meni zatvoren na istoj stranici (link vodi na vrh nove stranice)
+      if (window.location.pathname === at) window.scrollTo(0, y);
+    };
+  }, [open]);
 
   const links = NAV.map(n => (
     <NavLink key={n.to} to={to(n.to)} className={({ isActive }) => `${isActive ? 'active' : ''} ${n.to === '/kontakt/' ? 'nav-contact' : ''}`.trim() || undefined}>
@@ -58,7 +71,10 @@ export default function Header() {
         </button>
       </div>
       <div className="mobile-menu" hidden={!open}>
-        <nav aria-label={t('Mobilni meni', 'Mobile menu')}>{links}</nav>
+        <nav aria-label={t('Mobilni meni', 'Mobile menu')}>
+          <NavLink to={home} end>{t('Početna', 'Home')}</NavLink>
+          {links}
+        </nav>
         <LangSwitch />
         <div className="mobile-social">
           {SOCIAL.map(s => (

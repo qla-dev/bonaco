@@ -1,3 +1,4 @@
+import { asset } from '../lib/asset';
 // Zajednički DNK tri logotipa: isti font (Outfit 700), ista crna/bijela, iste proporcije
 // i ista veličina/položaj tačke. Mijenja se samo naziv i boja tačke (boja brenda).
 export type Brand = 'bonaco' | 'bonexis' | 'bonevents';
@@ -10,9 +11,9 @@ export const BRANDS: Record<Brand, { word: string; sub: { bs: string; en: string
   bonevents: { word: 'BONEVENTS', sub: { bs: 'EVENTS', en: 'EVENTS' }, name: 'BonEvents' },
 };
 
-/** qla.dev znak: uvijek malim slovima, Facebookov UI sans (Segoe UI / Helvetica), plavi ".dev". */
+/** qla.dev znak: originalni logo (mala slova, izvorni font, plavi ".dev"). */
 export function QlaMark({ className = '' }: { className?: string }) {
-  return <span className={`qla-mark ${className}`}>qla<span>.dev</span></span>;
+  return <img className={`qla-mark ${className}`} src={asset('/img/logo/qla-dev.webp')} alt="qla.dev" width="84" height="24" loading="lazy" />;
 }
 
 export default function BrandLogo({ brand = 'bonaco', sub = true, className = '' }: { brand?: Brand; sub?: boolean; className?: string }) {
