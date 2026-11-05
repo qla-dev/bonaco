@@ -117,3 +117,14 @@
 .bonexis-logo { display: inline-flex; align-items: baseline; font: 700 1em/1 'Outfit', var(--font-head); letter-spacing: -0.01em; white-space: nowrap; }
 .bonexis-logo i { display: inline-block; width: 0.2em; height: 0.2em; margin-left: 0.07em; border-radius: 50%; background: var(--copper); }
 .bx-title { font-size: clamp(52px, 8vw, 112px); line-height: 1; margin-bottom: 18px; }
+
+/* Mobitel/tablet: sidebar agenta kao donja ploča na 50% visine, kancelarija ostaje vidljiva iznad */
+@media (max-width: 1023px) {
+  .agent-sidebar { top: auto; height: 50dvh; border-left: 0; border-top: 1px solid rgba(217, 163, 133, 0.25); border-radius: 20px 20px 0 0; transform: translateY(100%); box-shadow: 0 -30px 60px -30px rgba(0, 0, 0, 0.8); }
+  .agent-sidebar.is-open { transform: none; }
+  .as-head { padding: 10px 14px; }
+  .as-body { padding: 14px 18px 18px; }
+  .as-body h2 { font-size: 30px; }
+  .as-foot { padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); }
+  .as-foot .btn { min-height: 46px; padding: 10px; font-size: 15px; white-space: nowrap; }
+}

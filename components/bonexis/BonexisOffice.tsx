@@ -51,6 +51,20 @@ const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({
 
   useEffect(() => { handle.current?.select(selected); }, [selected, state]);
 
+  // Kad se odabere agent, kancelarija mora biti vidljiva (PC: centrirana; mobitel: gornja polovina iznad ploče)
+  useEffect(() => {
+    const el = wrap.current;
+    if (selected < 0 || !el) return;
+    const mobile = innerWidth < 1024;
+    const r = el.getBoundingClientRect();
+    const header = 84, visibleBottom = mobile ? innerHeight * 0.5 : innerHeight;
+    if (r.top >= header - 4 && r.bottom <= visibleBottom + 4) return;
+    const target = mobile
+      ? scrollY + r.top - header + Math.max(0, (r.height - (visibleBottom - header)) / 2)
+      : scrollY + r.top - Math.max(header, (innerHeight - r.height) / 2);
+    scrollTo({ top: Math.max(0, target), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }, [selected]);
+
   useEffect(() => {
     if (selected < 0) return;
     const n = BONEXIS_AGENTS.length;

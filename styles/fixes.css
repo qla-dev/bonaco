@@ -111,3 +111,33 @@
 
 /* Mobitel: misao iznad agenta koji razmišlja */
 .brain .thought.above { transform: translate(-50%, calc(-100% - 30px)); max-width: 180px; text-align: center; }
+
+/* Svjetlo u heroju v2: tri mrlje putuju preko cijelog heroja, zamućenje se mijenja */
+.hero3-glow { top: 0; left: 0; right: 0; bottom: 0; width: auto; height: auto; border-radius: 0; background: none; filter: none; opacity: 1; animation: none; pointer-events: none; }
+.hero3-glow::before, .hero3-glow::after, .hero3 .glow-c {
+  content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+}
+.hero3-glow::before {
+  width: 62vmax; height: 62vmax; left: 40%; top: -25%;
+  background: radial-gradient(circle, rgba(176, 116, 84, 0.6), rgba(147, 97, 73, 0.18) 45%, transparent 68%);
+  animation: glow-a 11s ease-in-out infinite;
+}
+.hero3-glow::after {
+  width: 48vmax; height: 48vmax; left: -15%; top: 20%;
+  background: radial-gradient(circle, rgba(217, 163, 133, 0.38), rgba(147, 97, 73, 0.1) 50%, transparent 70%);
+  animation: glow-b 14s ease-in-out infinite;
+}
+@keyframes glow-a {
+  0%   { transform: translate(0, 0) scale(1);       filter: blur(20px); opacity: 0.9; }
+  30%  { transform: translate(-35vw, 22vh) scale(1.2); filter: blur(60px); opacity: 1; }
+  55%  { transform: translate(-50vw, -6vh) scale(0.85); filter: blur(28px); opacity: 0.7; }
+  80%  { transform: translate(-12vw, 30vh) scale(1.15); filter: blur(70px); opacity: 0.95; }
+  100% { transform: translate(0, 0) scale(1);       filter: blur(20px); opacity: 0.9; }
+}
+@keyframes glow-b {
+  0%   { transform: translate(0, 0) scale(1);        filter: blur(40px); opacity: 0.6; }
+  35%  { transform: translate(40vw, -20vh) scale(1.25); filter: blur(16px); opacity: 0.9; }
+  65%  { transform: translate(20vw, 25vh) scale(0.9);  filter: blur(60px); opacity: 0.5; }
+  100% { transform: translate(0, 0) scale(1);        filter: blur(40px); opacity: 0.6; }
+}
+@media (prefers-reduced-motion: reduce) { .hero3-glow::before, .hero3-glow::after { animation: none; } }

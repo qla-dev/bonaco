@@ -39,14 +39,18 @@ export function startBrain(canvas: HTMLCanvasElement, opts: { agents: P[]; ben: 
   const r = seeded(29);
   type N = P & { a: number; ph: number; len: number; dend: number[]; size: number };
   const outer: N[] = [];
-  const SECTORS = 22;
-  for (let tries = 0; outer.length < SECTORS && tries < 4000; tries++) {
-    // ravnomjerno po sektorima oko Bena (svaki sektor jedan neuron), uz malo odstupanje
-    const sector = outer.length, a = (sector / SECTORS) * Math.PI * 2 + (r() - 0.5) * 0.3, d = 0.16 + r() * 0.5;
-    const p = { x: Math.cos(a) * d * 1.05, y: Math.sin(a) * d * 0.82 };
-    const clash = [...outer, ...opts.agents, opts.ben].some(q => Math.hypot(q.x - p.x, q.y - p.y) < 0.11);
-    if (clash) continue;
-    outer.push({ ...p, a: a + (r() - 0.5) * 0.6, ph: r() * 6.28, len: 0.12 + r() * 0.22, dend: Array.from({ length: 1 + Math.floor(r() * 3) }, () => (r() - 0.5) * 2.6), size: 2.4 + r() * 2 });
+  // "najbolji kandidat": svaki novi neuron ide u najveću prazninu -> ravnomjerno, ali nepravilno
+  const fixed: P[] = [...opts.agents, opts.ben];
+  for (let k = 0; k < 30; k++) {
+    let best: P | null = null, bestD = -1;
+    for (let c = 0; c < 24; c++) {
+      const x = (r() * 2 - 1) * 0.62, y = (r() * 2 - 1) * 0.5;
+      if ((x / 0.62) ** 2 + (y / 0.5) ** 2 > 1) continue;
+      const d = Math.min(...[...fixed, ...outer].map(q => Math.hypot(q.x - x, q.y - y)));
+      if (d > bestD) { bestD = d; best = { x, y }; }
+    }
+    if (!best || bestD < 0.07) continue;
+    outer.push({ ...best, a: 0, ph: r() * 6.28, len: 0, dend: [], size: 2.2 + r() * 2 });
   }
 
   const edges: Edge[] = [];
@@ -55,8 +59,8 @@ export function startBrain(canvas: HTMLCanvasElement, opts: { agents: P[]; ben: 
     const ag = [...opts.agents].sort((p, q) => dist(o, p) - dist(o, q))[0];
     edges.push({ a: o, b: ag, bend: 0 });                           // prema najbližem agentu
     // do dva najbliža susjeda (svaka linija završava neuronom, bez slobodnih repova)
-    outer.map((q, j) => ({ q, j })).filter(x => x.j > i).sort((x, y) => dist(o, x.q) - dist(o, y.q)).slice(0, 2)
-      .forEach(nb => { if (dist(o, nb.q) < 0.3) edges.push({ a: o, b: nb.q, bend: 0 }); });
+    outer.map((q, j) => ({ q, j })).filter(x => x.j !== i).sort((x, y) => dist(o, x.q) - dist(o, y.q)).slice(0, 2)
+      .forEach(nb => { if (nb.j > i || !edges.some(e => e.a === nb.q && e.b === o)) if (dist(o, nb.q) < 0.3) edges.push({ a: o, b: nb.q, bend: 0 }); });
   });
   const nEdgesOuter = edges.length;
   opts.agents.forEach(ag => edges.push({ a: opts.ben, b: ag, bend: 0, strong: true })); // Ben -> agenti
