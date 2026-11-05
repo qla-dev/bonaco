@@ -2,8 +2,7 @@
 // Do januara 2027. samo kratki, odobreni opisi bez tehničkih obećanja; status "U razvoju".
 // TODO(Bonaco + QLA): potvrditi konačne opise, MVP opseg i status svake kapsule prije objave.
 
-/** false = na /bonexis/ se prikazuje samo najava; true = i dosadašnji demo (chat, scenariji, 3D tim, dashboard). */
-export const BONEXIS_DEMO_PUBLIC = false;
+// Koristi se samo za kratki Bonexis blok na početnoj; /bonexis/ ima puni sadržaj (chat, scenariji, AI tim, dashboard).
 
 export interface Capsule {
   id: string;

@@ -45,7 +45,7 @@ export default function HeroVideo() {
   const still = reduce || paused;
 
   return (
-    <section className={`hv ${still ? 'is-paused' : ''}`} aria-label="Bonaco Media">
+    <section className={`hv ${still ? 'is-paused' : ''} ${hasVideo ? '' : 'hv-art'}`} aria-label="Bonaco Media">
       <div className="hv-media" aria-hidden="true">
         {hasVideo && !reduce ? (
           <video ref={video} autoPlay muted loop playsInline preload="metadata" poster={asset(HERO_VIDEO.poster) || undefined}>
