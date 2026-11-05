@@ -8,8 +8,12 @@ import { asset } from '../lib/asset';
 import { useLang } from '../lib/i18n';
 import { useReducedMotion } from '../lib/motion';
 import { HERO_VIDEO } from '../data/site';
-import { PROJECTS } from '../data/projects';
+import { CLIENTS } from '../data/clients';
 import type { OrbitHandle } from './heroOrbitScene';
+
+// Logotipi na sferi (12 = po 4 na svakom aktivnom prstenu) i klijenti s povezanom studijom slučaja
+const ORBIT_CLIENTS = ['fk-zeljeznicar', 'medicana', 'sarajevska-pivara', 'zmaj', 'golf-klub-sarajevo', 'women-in-adria', 'beautyco', 'rooms', 'summer-lounge', 'bh-travel', 'max-media', 'flok'];
+const CLIENT_PROJECT: Record<string, string> = { beautyco: 'beautyco', rooms: 'rooms-hr', 'bh-travel': 'bh-travel', 'summer-lounge': 'summer-lounge', 'max-media': 'max-media' };
 
 function HeroSphere({ paused }: { paused: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -22,7 +26,11 @@ function HeroSphere({ paused }: { paused: boolean }) {
 
   useEffect(() => {
     let dead = false;
-    const items = PROJECTS.slice(0, 6).map(p => ({ src: asset(p.cover), href: to(`/portfolio/${p.slug}/`), label: p.client }));
+    const items = ORBIT_CLIENTS.map(id => CLIENTS.find(c => c.id === id)!).filter(Boolean).map(c => ({
+      src: asset(`/img/clients/${c.id}.webp`),
+      href: CLIENT_PROJECT[c.id] ? to(`/portfolio/${CLIENT_PROJECT[c.id]}/`) : null,
+      label: c.name,
+    }));
     import('./heroOrbitScene').then(({ startOrbit }) => {
       if (dead || !canvas.current) return;
       handle.current = startOrbit(canvas.current, items, {
@@ -87,12 +95,13 @@ export default function HeroVideo() {
       <section className="hv hv-orbit" aria-label="Bonaco Media">
         <div className="hv-stage">
           <HeroSphere paused={paused} />
-          <div className="container hv-center">{title}</div>
+          <div className="hv-center" aria-hidden="true"><span className="hv-b">B<i /></span></div>
           {pauseBtn}
         </div>
         <div className="container hv-below">
+          {title}
           {below}
-          <p className="hv-hint" aria-hidden="true">{t('Prevucite sferu da je okrenete, kliknite projekat da ga otvorite', 'Drag the sphere to turn it, click a project to open it')}</p>
+          <p className="hv-hint" aria-hidden="true">{t('Prevucite sferu da je okrenete', 'Drag the sphere to turn it')}</p>
         </div>
       </section>
     );

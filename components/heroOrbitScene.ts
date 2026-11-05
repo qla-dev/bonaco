@@ -3,13 +3,13 @@
 // Učitava se dinamički (three.js je zaseban chunk), crta samo dok je hero vidljiv.
 import * as THREE from 'three';
 
-export interface OrbitItem { src: string; href: string; label: string }
+export interface OrbitItem { src: string; href: string | null; label: string }
 export interface OrbitHandle { destroy(): void; setPaused(p: boolean): void }
 interface Opts { accent: string; reduce: boolean; onPick(href: string): void; onHover?(label: string | null): void }
 
 const R = 3.2;
 
-/** Kružna tekstura iz fotografije (cover crop) s tankim svijetlim rubom. */
+/** Kružni medaljon s logotipom klijenta (contain, bez izrezivanja) na tamnoj podlozi. */
 function circleTexture(src: string, done: () => void): THREE.CanvasTexture {
   const size = 256;
   const c = document.createElement('canvas');
@@ -20,11 +20,11 @@ function circleTexture(src: string, done: () => void): THREE.CanvasTexture {
   img.decoding = 'async';
   img.onload = () => {
     const ctx = c.getContext('2d')!;
-    const s = Math.min(img.width, img.height);
-    ctx.save();
-    ctx.beginPath(); ctx.arc(size / 2, size / 2, size / 2 - 3, 0, Math.PI * 2); ctx.clip();
-    ctx.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, size, size);
-    ctx.restore();
+    ctx.beginPath(); ctx.arc(size / 2, size / 2, size / 2 - 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#1b1b1b'; ctx.fill();
+    const box = size * 0.6, k = Math.min(box / img.width, box / img.height);
+    const w = img.width * k, h = img.height * k;
+    ctx.drawImage(img, (size - w) / 2, (size - h) / 2, w, h);
     ctx.lineWidth = 3; ctx.strokeStyle = 'rgba(255,255,255,0.35)';
     ctx.beginPath(); ctx.arc(size / 2, size / 2, size / 2 - 2, 0, Math.PI * 2); ctx.stroke();
     tex.needsUpdate = true;
@@ -100,11 +100,12 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     spinners.push({ g: spin, speed: r.speed });
   });
 
-  // Projekti: po dva na svakom aktivnom prstenu, nasuprot jedan drugom
+  // Logotipi klijenata: ravnomjerno raspoređeni po aktivnim prstenovima
+  const perRing = Math.ceil(items.length / active.length);
   items.forEach((it, i) => {
     const ring = i % active.length;
     const slot = Math.floor(i / active.length);
-    const a = slot * Math.PI + ring * 0.9;
+    const a = (slot / perRing) * Math.PI * 2 + ring * 0.7;
     const tex = track(circleTexture(it.src, rerender));
     const mat = track(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
     const s = new THREE.Sprite(mat);
@@ -151,7 +152,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     const s = pick(e);
     if (s !== hovered) {
       hovered = s;
-      canvas.style.cursor = s ? 'pointer' : '';
+      canvas.style.cursor = s?.userData.href ? 'pointer' : '';
       opts.onHover?.(s ? s.userData.label : null);
       wake();
     }
@@ -160,7 +161,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     if (!dragging) return;
     dragging = false;
     canvas.classList.remove('dragging');
-    if (moved < 8) { const s = pick(e); if (s) opts.onPick(s.userData.href); }
+    if (moved < 8) { const s = pick(e); if (s?.userData.href) opts.onPick(s.userData.href); }
   };
   canvas.addEventListener('pointerdown', onDown);
   canvas.addEventListener('pointermove', onMove);
@@ -177,7 +178,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     camera.updateProjectionMatrix();
     const vh = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
     const vw = vh * camera.aspect;
-    const base = w < 640 ? 1.35 : 1.25;
+    const base = w < 640 ? 1.05 : 1.0;
     // cijela sfera zajedno s diskovima projekata mora stati u kadar
     root.scale.setScalar(Math.min(1.15, (0.96 * Math.min(vw, vh)) / (2 * R + base)));
     sprites.forEach(s => { s.userData.base = base; });
