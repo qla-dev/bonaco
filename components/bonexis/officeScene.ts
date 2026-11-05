@@ -22,7 +22,7 @@ const C = {
   copper: 0x936149, copperLight: 0xd9a385, metal: 0x1d1714, robot: 0xece4dc, chair: 0x231b16, plant: 0x5f8f5a,
   plant2: 0x4f7d4b, fabric: 0x5a3d2d, fabricDark: 0x4d3426, rug: 0x3f2a20, cream: 0xd8cbbd,
 };
-const GREEN = '#7fc79a', RED = '#e07a6a', CU = '#d9a385', MUTED = '#8f817a', TXT = '#f4ede8';
+const GREEN = '#7fc79a', RED = '#e07a6a', AMBER = '#e3b55a', CU = '#d9a385', MUTED = '#8f817a', TXT = '#f4ede8';
 const SW = 360, SH = 230;
 
 type Ctx = CanvasRenderingContext2D;
@@ -30,9 +30,28 @@ const mark = (ctx: Ctx, x: number, y: number, ok: boolean) => {
   ctx.fillStyle = ok ? GREEN : RED; ctx.font = '700 16px Poppins, sans-serif'; ctx.fillText(ok ? '✓' : '✗', x, y);
 };
 
-// Animacije na ekranima agenata, po redu kao u data/bonexis.ts
+// Animacije na ekranima agenata, po redu kao u data/bonexis.ts (BONEXIS v3.0, 7 kapsula):
+// 0 Lana (K1), 1 Selma (K2), 2 Edin (K3), 3 Lejla (K4), 4 Sara (asistent u K4), 5 Kenan (K5), 6 Dino (K6), 7 Ada (K7)
 const DRAW: ((ctx: Ctx, t: number) => void)[] = [
-  (ctx, t) => { // Visual Audit
+  (ctx, t) => { // Lana: Social Media, kalendar objava
+    const days = ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned'], today = Math.floor(t * 0.4) % 7;
+    days.forEach((d, k) => {
+      const x = 18 + k * 47;
+      ctx.fillStyle = k === today ? 'rgba(217,163,133,0.35)' : 'rgba(244,237,232,0.07)'; ctx.fillRect(x, 46, 41, 30);
+      ctx.fillStyle = k === today ? TXT : MUTED; ctx.font = '600 11px Poppins, sans-serif'; ctx.fillText(d, x + 8, 50);
+      if (k % 2 === 0 || k === 3) { ctx.fillStyle = CU; ctx.beginPath(); ctx.arc(x + 20, 69, 3.5, 0, 7); ctx.fill(); }
+    });
+    const posts = ['Reel: iza kulisa', 'Carousel: 5 savjeta', 'Story: anketa', 'Objava: novi klijent'];
+    const st: [string, string][] = [['Predloženo', MUTED], ['Čeka odobrenje', AMBER], ['Zakazano', CU], ['Objavljeno', GREEN]];
+    const ph = (t * 0.55) % 7;
+    posts.forEach((nm, i) => {
+      const y = 90 + i * 27, k = Math.max(0, Math.min(3, Math.floor(ph - i * 0.8)));
+      ctx.fillStyle = 'rgba(244,237,232,0.05)'; ctx.fillRect(14, y - 4, 332, 23);
+      ctx.fillStyle = TXT; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(nm, 22, y);
+      ctx.fillStyle = st[k][1]; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText(st[k][0], 214, y + 1);
+    });
+  },
+  (ctx, t) => { // Selma: SEO Audit, pregled stranica
     const cols = 6, rows = 3, cw = 50, ch = 38, n = cols * rows, scan = Math.floor(t * 4) % (n + 6);
     const bad = new Set([2, 7, 11, 15]);
     for (let i = 0; i < n; i++) {
@@ -43,38 +62,68 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     }
     const done = Math.min(scan, n);
     ctx.fillStyle = MUTED; ctx.font = '500 15px Poppins, sans-serif';
-    ctx.fillText(`Pregledano ${Math.round((done / n) * 80)}/80`, 18, 196);
+    ctx.fillText(`Pročitano ${Math.round((done / n) * 80)}/80`, 18, 196);
     ctx.fillStyle = CU; ctx.fillText(`Za odobrenje: ${[...bad].filter(b => b < scan).length}`, 210, 196);
   },
-  (ctx, t) => { // Blog & SEO
-    const p = (t * 0.25) % 1;
-    ctx.fillStyle = 'rgba(244,237,232,0.16)';
-    [150, 130, 155, 90].forEach((w, i) => ctx.fillRect(18, 56 + i * 16, Math.min(w, Math.max(0, p * 600 - i * 150)), 7));
-    ctx.fillStyle = TXT; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText('„digitalni marketing“', 192, 54);
-    const pos = Math.max(3, 18 - Math.floor(p * 18));
-    ctx.fillStyle = GREEN; ctx.font = '700 30px Syne, sans-serif'; ctx.fillText(`#${pos}`, 192, 76);
-    ctx.fillStyle = MUTED; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText('na Googleu', 250, 88);
-    ctx.strokeStyle = CU; ctx.lineWidth = 3; ctx.beginPath();
-    const pts = 24;
-    for (let i = 0; i <= pts * p; i++) {
-      const x = 18 + i * (320 / pts), y = 200 - (i / pts) * 70 - Math.sin(i * 1.3) * 8;
-      if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
-    }
-    ctx.stroke();
+  (ctx, t) => { // Edin: Blog, nacrt članka
+    const p = (t * 0.18) % 1.25, title = 'Kako odabrati agenciju za društvene mreže';
+    const n = Math.min(title.length, Math.floor(p * 160));
+    ctx.fillStyle = TXT; ctx.font = '700 15px Poppins, sans-serif'; ctx.fillText(title.slice(0, n), 18, 50, 324);
+    const bars = [300, 320, 270, 0, 310, 290, 180];
+    bars.forEach((w, i) => {
+      if (!w) return;
+      const fill = Math.min(w, Math.max(0, (p - 0.25) * 1400 - i * 140));
+      ctx.fillStyle = 'rgba(244,237,232,0.08)'; ctx.fillRect(18, 82 + i * 14, w, 6);
+      ctx.fillStyle = 'rgba(217,163,133,0.6)'; ctx.fillRect(18, 82 + i * 14, fill, 6);
+    });
+    const done = p > 1.0;
+    ctx.fillStyle = done ? AMBER : MUTED; ctx.font = '600 14px Poppins, sans-serif';
+    ctx.fillText(done ? 'Nacrt čeka odobrenje' : `Pišem nacrt… ${Math.round(Math.min(1, Math.max(0, p - 0.25) / 0.75) * 900)} riječi`, 18, 196);
   },
-  (ctx, t) => { // Leads
+  (ctx, t) => { // Lejla: Leads
     const names = ['Hotel Sarajevo', 'Tech d.o.o.', 'Klinika Ilidža', 'Auto centar'];
     const scores = [0.92, 0.74, 0.58, 0.85];
     names.forEach((nm, i) => {
       const y = 54 + i * 38, prog = Math.min(1, Math.max(0, (t * 0.6 - i * 0.35) % 3));
       ctx.fillStyle = 'rgba(244,237,232,0.12)'; ctx.beginPath(); ctx.arc(32, y + 14, 12, 0, 7); ctx.fill();
       ctx.fillStyle = TXT; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(nm, 54, y + 4);
-      ctx.fillStyle = 'rgba(244,237,232,0.1)'; ctx.fillRect(190, y + 8, 100, 8);
-      const s = scores[i] * prog; ctx.fillStyle = s > 0.8 ? GREEN : CU; ctx.fillRect(190, y + 8, 100 * s, 8);
-      if (prog >= 1) { ctx.fillStyle = scores[i] > 0.8 ? GREEN : CU; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText(scores[i] > 0.8 ? 'VRUĆ' : 'TOPAO', 300, y + 4); }
+      ctx.fillStyle = 'rgba(244,237,232,0.1)'; ctx.fillRect(184, y + 8, 90, 8);
+      const s = scores[i] * prog; ctx.fillStyle = s > 0.8 ? GREEN : CU; ctx.fillRect(184, y + 8, 90 * s, 8);
+      if (prog >= 1) { ctx.fillStyle = scores[i] > 0.8 ? GREEN : CU; ctx.font = '600 11px Poppins, sans-serif'; ctx.fillText(scores[i] > 0.8 ? 'VISOKO' : 'SREDNJE', 282, y + 5); }
     });
+    ctx.fillStyle = MUTED; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText('usklađenost sa profilom klijenta', 18, 206);
   },
-  (ctx, t) => { // Capacity Planner
+  (ctx, t) => { // Sara: AI Sekretarica (asistent u Kapsuli 4)
+    const c = t % 10;
+    if (c < 2.5) {
+      const ph = (c * 2) % 1;
+      ctx.strokeStyle = `rgba(127,199,154,${1 - ph})`; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.arc(70, 125, 22 + ph * 26, 0, 7); ctx.stroke();
+      ctx.fillStyle = GREEN; ctx.beginPath(); ctx.arc(70, 125, 22, 0, 7); ctx.fill();
+      ctx.fillStyle = '#16100d'; ctx.font = '700 22px Poppins, sans-serif'; ctx.fillText('☎', 59, 112);
+      ctx.fillStyle = TXT; ctx.font = '600 18px Poppins, sans-serif'; ctx.fillText('Pozivam odobren lead', 120, 100);
+      ctx.fillStyle = MUTED; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText('Hotel Sarajevo', 120, 128);
+    } else if (c < 7) {
+      const sec = Math.floor((c - 2.5) * 6);
+      ctx.fillStyle = GREEN; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(`U razgovoru 00:${String(sec).padStart(2, '0')}`, 18, 50);
+      for (let k = 0; k < 28; k++) {
+        const h = 6 + Math.abs(Math.sin(t * 9 + k * 0.7) * Math.sin(t * 3 + k)) * 34;
+        ctx.fillStyle = CU; ctx.fillRect(18 + k * 11.5, 100 - h / 2, 6, h);
+      }
+      const lines: [string, string][] = [['Klijent', 'Koliko košta vođenje mreža?'], ['Sara', 'Zavisi od paketa, mogu vam zakazati…'], ['Klijent', 'Može utorak ujutro.']];
+      lines.forEach(([who, txt], k) => {
+        if (c - 2.5 <= k * 1.3) return;
+        ctx.fillStyle = who === 'Sara' ? CU : MUTED; ctx.font = '600 13px Poppins, sans-serif'; ctx.fillText(who + ':', 18, 132 + k * 22);
+        ctx.fillStyle = TXT; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(txt, 80, 132 + k * 22);
+      });
+    } else {
+      ctx.fillStyle = GREEN; ctx.font = '700 40px Poppins, sans-serif'; ctx.fillText('✓', 24, 70);
+      ctx.fillStyle = TXT; ctx.font = '700 22px Syne, sans-serif'; ctx.fillText('Sastanak zakazan', 76, 70);
+      ctx.fillStyle = MUTED; ctx.font = '500 15px Poppins, sans-serif'; ctx.fillText('Utorak, 10:00, Hotel Sarajevo', 76, 102);
+      ctx.fillStyle = CU; ctx.fillText('Sažetak na kartici leada', 76, 132);
+    }
+  },
+  (ctx, t) => { // Kenan: Capacity Planner
     const who = ['Ana', 'Emir', 'Lejla', 'Tarik', 'Mia'];
     ctx.strokeStyle = RED; ctx.setLineDash([6, 5]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(18, 92); ctx.lineTo(342, 92); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = RED; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText('100%', 300, 74);
@@ -86,65 +135,56 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       ctx.fillStyle = MUTED; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(nm, x, 198);
     });
   },
-  (ctx, t) => { // Delivery Control
+  (ctx, t) => { // Dino: Delivery Control
     ctx.fillStyle = MUTED; ctx.font = '600 13px Poppins, sans-serif';
-    ctx.fillText('DOGOVORENO', 18, 52); ctx.fillText('URAĐENO', 200, 52);
-    const rows = ['12 objava', '4 reelsa', 'SEO izvještaj', 'Kampanja'];
-    const state = [1, 1, 0, 2];
+    ctx.fillText('DOGOVORENO', 18, 52); ctx.fillText('STATUS', 200, 52);
+    const rows: [string, string, string][] = [
+      ['8 objava', '✓ dostavljeno', GREEN], ['2 kratka videa', '1/2 objavljen', AMBER],
+      ['Izvještaj', 'čeka slanje', MUTED], ['Prezentacija', '+ izvan obima', CU],
+    ];
     const k = Math.floor(t * 1.2) % (rows.length + 3);
-    rows.forEach((r, i) => {
+    rows.forEach(([r, st, col], i) => {
       const y = 76 + i * 30;
       ctx.fillStyle = TXT; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText(r, 18, y);
       if (i >= k) return;
-      if (state[i] === 1) { ctx.fillStyle = GREEN; ctx.fillText('✓ isporučeno', 200, y); }
-      if (state[i] === 0) { ctx.fillStyle = RED; ctx.fillText('! kasni 3 dana', 200, y); }
-      if (state[i] === 2) { ctx.fillStyle = CU; ctx.fillText('+ van ponude', 200, y); }
+      ctx.fillStyle = col; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(st, 200, y);
     });
   },
-  (ctx, t) => { // AI Sekretarica
-    const c = t % 10;
-    if (c < 2.5) {
-      const ph = (c * 2) % 1;
-      ctx.strokeStyle = `rgba(127,199,154,${1 - ph})`; ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.arc(70, 125, 22 + ph * 26, 0, 7); ctx.stroke();
-      ctx.fillStyle = GREEN; ctx.beginPath(); ctx.arc(70, 125, 22, 0, 7); ctx.fill();
-      ctx.fillStyle = '#16100d'; ctx.font = '700 22px Poppins, sans-serif'; ctx.fillText('☎', 59, 112);
-      ctx.fillStyle = TXT; ctx.font = '600 18px Poppins, sans-serif'; ctx.fillText('Pozivam: Hotel Sarajevo', 120, 100);
-      ctx.fillStyle = MUTED; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText('lead iz AI Leads', 120, 128);
-    } else if (c < 7) {
-      const sec = Math.floor((c - 2.5) * 6);
-      ctx.fillStyle = GREEN; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(`● U razgovoru 00:${String(sec).padStart(2, '0')}`, 18, 50);
-      for (let k = 0; k < 28; k++) {
-        const h = 6 + Math.abs(Math.sin(t * 9 + k * 0.7) * Math.sin(t * 3 + k)) * 34;
-        ctx.fillStyle = CU; ctx.fillRect(18 + k * 11.5, 100 - h / 2, 6, h);
-      }
-      const lines: [string, string][] = [['Klijent', 'Koliko košta vođenje mreža?'], ['AI', 'Zavisi od paketa, mogu vam zakazati…'], ['Klijent', 'Može utorak ujutro.']];
-      lines.forEach(([who, txt], k) => {
-        if (c - 2.5 <= k * 1.3) return;
-        ctx.fillStyle = who === 'AI' ? CU : MUTED; ctx.font = '600 13px Poppins, sans-serif'; ctx.fillText(who + ':', 18, 132 + k * 22);
-        ctx.fillStyle = TXT; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(txt, 80, 132 + k * 22);
-      });
-    } else {
-      ctx.fillStyle = GREEN; ctx.font = '700 40px Poppins, sans-serif'; ctx.fillText('✓', 24, 70);
-      ctx.fillStyle = TXT; ctx.font = '700 22px Syne, sans-serif'; ctx.fillText('Termin zakazan', 76, 70);
-      ctx.fillStyle = MUTED; ctx.font = '500 15px Poppins, sans-serif'; ctx.fillText('Utorak, 10:00 · Hotel Sarajevo', 76, 102);
-      ctx.fillStyle = CU; ctx.fillText('Sažetak poslan na email', 76, 132);
-    }
+  (ctx, t) => { // Ada: Work Audit
+    const items: [string, string, string][] = [
+      ['Vizual Instagram', '✓ usklađeno', GREEN], ['Blog nacrt', '✗ nedostaje logo', RED],
+      ['Ponuda PDF', '? nije moguće procijeniti', AMBER], ['Baner', '✓ usklađeno', GREEN],
+    ];
+    ctx.fillStyle = MUTED; ctx.font = '600 13px Poppins, sans-serif'; ctx.fillText('PREDATO DANAS', 18, 50);
+    const k = Math.floor(t * 0.9) % (items.length + 3), frac = (t * 0.9) % 1;
+    items.forEach(([nm, st, col], i) => {
+      const y = 74 + i * 28;
+      ctx.fillStyle = i === k ? 'rgba(217,163,133,0.16)' : 'rgba(244,237,232,0.05)'; ctx.fillRect(14, y - 5, 332, 25);
+      ctx.fillStyle = TXT; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText(nm, 22, y);
+      if (i < k) { ctx.fillStyle = col; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText(st, 160, y + 2); }
+      else if (i === k) { ctx.fillStyle = 'rgba(217,163,133,0.25)'; ctx.fillRect(160, y + 4, 170, 6); ctx.fillStyle = CU; ctx.fillRect(160, y + 4, 170 * frac, 6); }
+    });
+    ctx.fillStyle = CU; ctx.font = '600 14px Poppins, sans-serif';
+    ctx.fillText(k >= items.length ? 'Čeka ljudsku provjeru' : 'Provjera prema briefu…', 18, 196);
   },
 ];
 
-// U-raspored oko Ben jezgre (0,0): tri stola uz lijevi zid, tri uz zadnji zid.
+// U-raspored oko Ben jezgre (0,0): četiri stola uz lijevi zid, četiri uz zadnji zid.
 // Simetrično u odnosu na dijagonalu kamere, redom slijeva nadesno na ekranu.
 const DESKS = [
-  { x: -3.9, z: 3.8, ry: Math.PI / 2 },
-  { x: -3.9, z: 1.2, ry: Math.PI / 2 },
-  { x: -3.9, z: -1.4, ry: Math.PI / 2 },
-  { x: -1.4, z: -3.9, ry: 0 },
-  { x: 1.2, z: -3.9, ry: 0 },
-  { x: 3.8, z: -3.9, ry: 0 },
-];
+  { x: -3.9, z: 4.9, ry: Math.PI / 2 },
+  { x: -3.9, z: 2.6, ry: Math.PI / 2 },
+  { x: -3.9, z: 0.3, ry: Math.PI / 2 },
+  { x: -3.9, z: -2.0, ry: Math.PI / 2 },
+  { x: -2.0, z: -3.9, ry: 0 },
+  { x: 0.3, z: -3.9, ry: 0 },
+  { x: 2.6, z: -3.9, ry: 0 },
+  { x: 4.9, z: -3.9, ry: 0 },
+]
 /** Lokalna tačka na stolu gdje cijev ulazi odozdo (desno od stolice, ispod monitora). */
 const RISER = { x: 0.58, z: -0.15 };
+/** Kapsula kojoj pripada svaki sto (Sara je asistent u Kapsuli 4). */
+const CAPSULE = [1, 2, 3, 4, 4, 5, 6, 7];
 
 export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, opts: OfficeOptions): OfficeHandle {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -343,6 +383,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   const cuMat = mat(C.copper, { roughness: 0.4 });
   const lampShadeMat = mat(C.copper, { roughness: 0.4, side: THREE.DoubleSide });
   const bulbMat = basic({ color: 0xfff1dc });
+  const labelDraws: (() => void)[] = [];
   const stations = DESKS.slice(0, count).map((d, i) => {
     const g = new THREE.Group(); g.position.set(d.x, 0, d.z); g.rotation.y = d.ry; world.add(g);
     box(2.0, 0.08, 0.95, C.wood, 0, 0.78, 0, g);
@@ -364,13 +405,13 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     const sek = opts.agentNames[i] === 'AI Sekretarica';
     cyl(0.055, 0.048, 0.11, 12, i % 2 ? C.robot : C.copper, sek ? -0.78 : 0.62, 0.875, 0.22, g);
     box(0.28, 0.025, 0.2, i % 3 === 1 ? C.cream : C.copper, -0.7, 0.832, 0.08, g).rotation.y = 0.25;
-    if (i === 1 || i === 4) { // stona lampa
+    if (i % 3 === 1) { // stona lampa
       cyl(0.09, 0.1, 0.03, 12, C.metal, 0.8, 0.835, -0.3, g);
       box(0.025, 0.42, 0.025, C.metal, 0.8, 1.05, -0.3, g);
       const shade = new THREE.Mesh(G('shade', () => new THREE.CylinderGeometry(0.05, 0.13, 0.13, 14, 1, true)), lampShadeMat);
       shade.position.set(0.8, 1.26, -0.3); g.add(shade);
       const bulb = new THREE.Mesh(G('bulb', () => new THREE.SphereGeometry(0.045, 10, 8)), bulbMat); bulb.position.set(0.8, 1.21, -0.3); g.add(bulb);
-    } else if (i !== 5) { // mala biljka
+    } else { // mala biljka
       cyl(0.07, 0.06, 0.12, 10, C.copper, -0.8, 0.88, -0.28, g);
       const lf = new THREE.Mesh(leafGeos[3], leafMat); lf.scale.setScalar(0.65); lf.position.set(-0.8, 1.02, -0.28); g.add(lf);
     }
@@ -402,13 +443,31 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
       box(0.28, 0.06, 0.18, C.metal, 0.62, 0.85, 0.12, g);
       box(0.3, 0.05, 0.08, C.copper, 0.62, 0.9, 0.12, g);
     }
-    const glow = new THREE.PointLight(C.copperLight, 0, 2.5); glow.position.set(0, 1.4, 0.1); g.add(glow);
+    // pločica sa imenom na vrhu monitora: IME / KAPSULA N (vidljiva iznad glave robota)
+    const plate = canvasTex(512, 192);
+    const drawPlate = () => {
+      const c = plate.ctx as Ctx & { letterSpacing?: string };
+      c.fillStyle = '#16100d'; c.fillRect(0, 0, 512, 192);
+      c.strokeStyle = CU; c.lineWidth = 8; c.strokeRect(4, 4, 504, 184);
+      c.textAlign = 'center'; c.textBaseline = 'middle';
+      c.letterSpacing = '-1px'; c.fillStyle = TXT; c.font = '700 96px Outfit, sans-serif';
+      c.fillText((opts.personas?.[i] ?? opts.agentNames[i]).toUpperCase(), 256, 78, 470);
+      c.letterSpacing = '6px'; c.fillStyle = CU; c.font = '700 36px Outfit, sans-serif';
+      c.fillText(`KAPSULA ${CAPSULE[i] ?? i + 1}`, 256, 154, 470);
+      c.letterSpacing = '0px'; plate.tex.needsUpdate = true;
+    };
+    drawPlate(); labelDraws.push(drawPlate);
+    box(0.96, 0.38, 0.04, C.copper, 0, 1.92, -0.34, g).castShadow = false;
+    panel(0.92, 0.345, basic({ map: plate.tex }), 0, 1.92, -0.317, 0, g);
     const padMat = basic({ color: C.copper, transparent: true, opacity: 0, depthWrite: false });
     const pad = new THREE.Mesh(G('pad', () => new THREE.PlaneGeometry(2.6, 2.4)), padMat);
     pad.rotation.x = -Math.PI / 2; pad.position.set(0, 0.02, 0.4); g.add(pad);
     g.traverse(o => { o.userData.station = i; });
-    return { g, scr, robot, head, arms, eyeMat, ledMat, glow, padMat, rest: Math.PI, yaw: Math.PI, phase: Math.random() * 6 };
+    return { g, scr, robot, head, arms, eyeMat, ledMat, padMat, rest: Math.PI, yaw: Math.PI, phase: Math.random() * 6 };
   });
+  // jedno svjetlo koje prati odabrani / hover sto (štedi point lightove na telefonima)
+  const deskLight = new THREE.PointLight(C.copperLight, 0, 2.5); deskLight.position.set(0, 1.4, 0.1);
+  let deskLightAt = -1;
   const pickables: THREE.Object3D[] = [];
   stations.forEach(s => s.g.traverse(o => { if ((o as THREE.Mesh).isMesh) pickables.push(o); }));
 
@@ -660,7 +719,8 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   const resize = () => {
     const w = container.clientWidth, h = container.clientHeight, a = w / h;
     renderer.setSize(w, h, false);
-    const f = a < 0.8 ? (15 / a) * 0.92 : 14.5; // na uskom ekranu stanu svih 6 stolova
+    const VIEW_W = 17.6; // soba uvijek ispunjava širinu; visinu daje CSS omjer
+    const f = VIEW_W / a; // na uskom ekranu stanu svih 8 stolova
     camera.left = (-f * a) / 2; camera.right = (f * a) / 2; camera.top = f / 2; camera.bottom = -f / 2;
     camera.updateProjectionMatrix();
   };
@@ -715,6 +775,9 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     sHand.rotation.z = -(sec / 60) * Math.PI * 2; mHand.rotation.z = -(min / 60) * Math.PI * 2;
     hHand.rotation.z = -(((now.getHours() % 12) + min / 60) / 12) * Math.PI * 2;
 
+    const lit = selected >= 0 ? selected : hovered;
+    if (lit >= 0 && lit !== deskLightAt) { stations[lit].g.add(deskLight); deskLightAt = lit; }
+    deskLight.intensity += ((lit < 0 ? 0 : lit === selected ? 3 : 1.8) - deskLight.intensity) * 0.1;
     stations.forEach((s, i) => {
       const active = i === selected, hot = i === hovered;
       if (!active) { // kucanje: šake naprijed na tastaturi
@@ -731,7 +794,6 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
       s.robot.rotation.y = s.yaw;
       s.head.rotation.y = active ? 0 : Math.sin(t * 0.7 + s.phase) * 0.25 * motion;
       s.eyeMat.color.set(active || hot ? 0xfff3e8 : C.copperLight);
-      s.glow.intensity += ((active ? 3 : hot ? 1.8 : 0.6) - s.glow.intensity) * 0.1;
       s.padMat.opacity += ((active ? 0.38 : hot ? 0.2 : 0) - s.padMat.opacity) * 0.15;
     });
 
@@ -784,9 +846,9 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
       zoomTarget = wide ? 2.3 : 1.9;
       // detalji agenta su u desnom sidebaru, pa robot ostaje u centru scene
     } else {
-      focusTarget.set(0.3, 0.2, 0.3); zoomTarget = 1;
+      focusTarget.set(0.3, 1.1, 0.3); zoomTarget = 1;
       if (wide && opts.offsetForIntro) focusTarget.addScaledVector(camRight, -2.6);
-      if (!wide) { focusTarget.y += 1.2; zoomTarget = 1.05; }
+      
     }
     focus.lerp(focusTarget, 0.07);
     camera.zoom += (zoomTarget - camera.zoom) * 0.07; camera.updateProjectionMatrix();
@@ -796,7 +858,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   };
   drawTV(0);
   let alive = true;
-  const redrawLabels = () => { if (alive) { drawSign(); drawBen(); } };
+  const redrawLabels = () => { if (alive) { drawSign(); drawBen(); labelDraws.forEach(f => f()); } };
   document.fonts?.ready.then(redrawLabels);
   document.fonts?.load('700 150px Outfit').then(redrawLabels, () => {});
   frame();

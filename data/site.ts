@@ -39,6 +39,7 @@ export const NAV = [
   { to: '/', label: 'Početna' },
   { to: '/nase-usluge/', label: 'Usluge' },
   { to: '/bonexis/', label: 'Bonexis' },
+  { to: '/#scenariji', label: 'Scenariji' },
   { to: '/portfolio/', label: 'Portfolio' },
   { to: '/vijesti/', label: 'Vijesti' },
 ];

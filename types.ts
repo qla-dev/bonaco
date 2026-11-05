@@ -55,10 +55,16 @@ export interface ScenarioRow { label: string; value: string; tone: "ok" | "warn"
 export interface BonexisAgent {
   /** Ime agenta (Vida, Selma, Lejla, Kenan, Dino, Sara) */
   persona: string;
+  /** Broj kapsule (1–5); Sara je dio kapsule 2 */
+  capsule: number;
+  /** owner = admin kapsule; assistant = pomoćni agent unutar kapsule */
+  role: 'owner' | 'assistant';
   name: string;
   title: string;
   desc: string;
   list: string[];
+  /** Kratka "misao" agenta za mozak u heroju */
+  thought: string;
   scenario: {
     title: string;
     desc: string;

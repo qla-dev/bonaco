@@ -4,11 +4,13 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { NAV, SOCIAL } from '../data/site';
 import SocialIcon from './SocialIcon';
+import BonexisLogo from './bonexis/BonexisLogo';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  const onBonexis = pathname.startsWith('/bonexis');
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -22,14 +24,18 @@ export default function Header() {
   return (
     <header className={`site-header ${pathname === '/' ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
-        <Link to="/" className="logo" aria-label="Bonaco Media – početna">
-          <img src={asset('/img/logo/bonaco-media.webp')} alt="Bonaco Media" width="640" height="168" />
+        <Link to="/" className="logo" aria-label={onBonexis ? 'Bonexis, Bonaco Media – početna' : 'Bonaco Media – početna'}>
+          {onBonexis ? <BonexisLogo className="header-bonexis" /> : <img src={asset('/img/logo/bonaco-media.webp')} alt="Bonaco Media" width="640" height="168" />}
         </Link>
         <nav className="main-nav" aria-label="Glavni meni">
           {NAV.map(n => (
-            <NavLink key={n.to} to={n.to} end={n.to === '/'} className={({ isActive }) => (isActive ? 'active' : undefined)}>
-              {n.label}
-            </NavLink>
+            n.to.includes('#') ? (
+              <Link key={n.to} to={n.to}>{n.label}</Link>
+            ) : (
+              <NavLink key={n.to} to={n.to} end={n.to === '/'} className={({ isActive }) => (isActive && !hash ? 'active' : undefined)}>
+                {n.label}
+              </NavLink>
+            )
           ))}
         </nav>
         <div className="header-social">
@@ -44,7 +50,7 @@ export default function Header() {
       </div>
       <div className="mobile-menu" hidden={!open}>
         <nav aria-label="Mobilni meni">
-          {NAV.map(n => <NavLink key={n.to} to={n.to} end={n.to === '/'}>{n.label}</NavLink>)}
+          {NAV.map(n => (n.to.includes('#') ? <Link key={n.to} to={n.to}>{n.label}</Link> : <NavLink key={n.to} to={n.to} end={n.to === '/'}>{n.label}</NavLink>))}
           <NavLink to="/kontakt/">Kontakt</NavLink>
         </nav>
         <div className="mobile-social">

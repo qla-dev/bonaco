@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, RotateCcw, Sparkles } from 'lucide-react';
-import { BONEXIS_AGENTS } from '../../data/bonexis';
+import { BONEXIS_AGENTS, roleLabel } from '../../data/bonexis';
 
 const STEP_MS = 1100;
 const reduceMotion = () => typeof window !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -84,7 +84,7 @@ function ScenarioBlock({ agent, onShowAgent }: { agent: number; onShowAgent?: (i
       <div className="sc-copy">
         <div className="sc-agent">
           <span className="sc-avatar" aria-hidden="true">{a.persona[0]}</span>
-          <div><strong>{a.persona}</strong><span>{a.title}</span></div>
+          <div><strong>{a.persona}</strong><span>{a.role === 'owner' ? `${roleLabel(a)}: ${a.title}` : roleLabel(a)}</span></div>
         </div>
         <h3>{a.scenario.title}</h3>
         <p>{a.scenario.desc}</p>
@@ -104,7 +104,7 @@ export default function ScenarioSections({ onShowAgent }: { onShowAgent?: (i: nu
       <div className="container">
         <div className="sc-intro">
           <h2 id="scenariji-title">Bonexis u praksi</h2>
-          <p>Šest stvarnih situacija iz agencije i kako ih agenti rješavaju, od prve poruke do gotovog rezultata.</p>
+          <p>Kako bi Bonexis radio u vašoj firmi: sedam kapsula, njihovi owner agenti i tipične situacije od prve poruke do rezultata. Primjeri su ilustrativni.</p>
         </div>
         {BONEXIS_AGENTS.map((_, i) => <ScenarioBlock key={i} agent={i} onShowAgent={onShowAgent} />)}
         <p className="sc-foot">Želite ovo za svoj biznis? <Link to="/kontakt/?usluga=Bonexis">Zatražite demo</Link></p>

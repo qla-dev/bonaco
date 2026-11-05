@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-import { BONEXIS_AGENTS } from '../../data/bonexis';
+import { BONEXIS_AGENTS, roleLabel } from '../../data/bonexis';
 
 interface Props { index: number; onChange: (i: number) => void; onShowScenario?: (i: number) => void }
 
@@ -36,7 +36,7 @@ export default function AgentSidebar({ index, onChange, onShowScenario }: Props)
 
           <div className="as-body">
             <h2>{agent.persona}</h2>
-            <p className="as-role">{agent.title}</p>
+            <p className="as-role">{agent.role === 'owner' ? `${roleLabel(agent)}: ${agent.title}` : roleLabel(agent)}</p>
             <p className="as-desc">{agent.desc}</p>
 
             <h3>Šta radi</h3>

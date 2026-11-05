@@ -10,19 +10,25 @@ interface Msg { role: 'user' | 'ai'; text: string; agent?: number }
 
 const SUGGESTIONS = [
   'Trebam više klijenata',
-  'Kako da budem bolje rangiran na Googleu?',
-  'Ko će odgovarati na pozive kad nismo tu?',
-  'Stalno kasnimo s rokovima',
+  'Pripremi objave za sljedeću sedmicu',
+  'Pregledaj SEO našeg sajta',
+  'Ko će nazvati potencijalne klijente?',
+  'Možemo li preuzeti još jednog klijenta?',
+  'Kako da provjerim rad tima?',
+  'Jesmo li isporučili sve iz ponude?',
   'Imamo 80 stranica, kako ih sve provjeriti?',
 ];
 
+// Indeksi kao u BONEXIS_AGENTS: 0 Lana, 1 Selma, 2 Edin, 3 Lejla, 4 Sara, 5 Kenan, 6 Dino, 7 Ada
 const RULES: [number, RegExp][] = [
-  [5, /poziv|telefon|zov|nazov|sekretar|termin|sastan|javlja/i],
-  [2, /klijent|lead|kupc|prodaj|prilik|posao više|novih/i],
-  [1, /seo|google|blog|ključn|pretra|rangir|organsk|tekst|članak/i],
-  [0, /audit|pregled|provjer|stranic|vizual|greš|baner|dizajn/i],
-  [4, /ugovor|ponud|obeća|isporu|dogovor|van ponude|nije urađen/i],
-  [3, /kapacitet|tim|zaposlen|opterećen|raspored|zastoj|kasni|rok/i],
+  [4, /poziv|telefon|zov|nazov|nazvati|sekretar|termin|sastan/i],
+  [6, /ugovor|ponud|obeća|isporu|isporuč|dogovor|obim|van ponude/i],
+  [7, /rad tima|predaj|kvalitet|revizij|audit rada|brief|zaposlenik|provjerim rad|ocjen/i],
+  [5, /kapacitet|preuzeti|opterećen|raspored|zastoj|kasni|rok|još jednog/i],
+  [3, /klijent|lead|kupc|prodaj|prilik|novih/i],
+  [2, /blog|članak|tekst|napiši|pisanje/i],
+  [1, /seo|google|ključn|pretra|rangir|organsk|stranic|meta|audit/i],
+  [0, /društven|mrež|instagram|facebook|tiktok|objav|post|reels|sadržaj|zakaz|trend|niš/i],
 ];
 
 function answer(q: string): Msg {
@@ -30,7 +36,7 @@ function answer(q: string): Msg {
   if (!hit) {
     return {
       role: 'ai',
-      text: 'Ja sam Ben i vodim Bonexis tim od šest agenata: Vida radi audit vizuala, Selma blog i SEO, Lejla pronalazi klijente, Kenan planira kapacitete, Dino kontroliše isporuku, a Sara prima i obavlja pozive. Opišite problem svojim riječima, na primjer „trebam više klijenata“, i spojit ću vas s pravim agentom.',
+      text: 'Ja sam Ben, mozak Bonexisa. Sedam kapsula ima svoje owner agente: Lana vodi društvene mreže, Selma SEO audit, Edin blog, Lejla leadove (uz AI sekretaricu Saru), Kenan kapacitet, Dino isporuku, a Ada reviziju rada. Opišite problem svojim riječima i spojit ću vas s pravim agentom.',
     };
   }
   const a = BONEXIS_AGENTS[hit[0]];

@@ -11,7 +11,7 @@ interface Props {
   onShowScenario?: (i: number) => void;
 }
 
-const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({ height = 'min(86svh, 820px)', selected: selProp, onSelectedChange, onShowScenario }, outerRef) {
+const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({ height, selected: selProp, onSelectedChange, onShowScenario }, outerRef) {
   const wrap = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const handle = useRef<OfficeHandle | null>(null);
@@ -90,14 +90,14 @@ const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({
         <div className="office-tip" style={{ left: tip.x, top: tip.y, opacity: tip.i >= 0 && selected < 0 ? 1 : 0 }}>
           {tip.i >= 0 ? `${BONEXIS_AGENTS[tip.i].persona}, ${BONEXIS_AGENTS[tip.i].title}` : ''}
         </div>
-        <nav className="office-nav" aria-label="Bonexis AI agenti">
-          {BONEXIS_AGENTS.map((a, i) => (
-            <button key={a.name} aria-pressed={i === selected} onClick={() => setSelected(i === selected ? -1 : i)}>
-              <strong>{a.persona}</strong> <span>{a.name}</span>
-            </button>
-          ))}
-        </nav>
       </div>
+      <nav className="office-nav" aria-label="Bonexis AI agenti">
+        {BONEXIS_AGENTS.map((a, i) => (
+          <button key={a.name} aria-pressed={i === selected} onClick={() => setSelected(i === selected ? -1 : i)}>
+            <strong>{a.persona}</strong> <span>{a.name}</span>
+          </button>
+        ))}
+      </nav>
       {sidebar}
     </div>
   );

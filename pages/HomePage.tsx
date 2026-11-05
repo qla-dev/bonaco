@@ -50,7 +50,6 @@ export default function HomePage() {
               <h2>Sve za vaš brend na jednom mjestu</h2>
               <p className="lead">Kreiramo personalizirane strategije i izvodimo ih od prve objave do velikog eventa.</p>
             </div>
-            <Link to="/nase-usluge/" className="text-link">Sve usluge <ArrowRight size={16} /></Link>
           </div>
           <div className="services-grid">
             {SERVICES.map(s => (
@@ -63,7 +62,7 @@ export default function HomePage() {
             <Link to="/bonexis/" className="service-card service-card-ai">
               <span className="service-icon"><ServiceIcon slug="bonexis" size={26} /></span>
               <h3>Bonexis, marketing CRM s AI agentima</h3>
-              <p>Klijenti, kampanje, sadržaj i rokovi na jednom mjestu. Posao vodi Ben sa šest agenata.</p>
+              <p>Klijenti, kampanje, sadržaj i rokovi na jednom mjestu. Sedam AI kapsula, svaku vodi owner agent, a Ben ih povezuje.</p>
               <span className="ai-chips">{BONEXIS_AGENTS.map(a => <span key={a.persona}><strong>{a.persona}</strong> {a.name}</span>)}</span>
             </Link>
           </div>

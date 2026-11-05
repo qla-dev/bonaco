@@ -1,84 +1,82 @@
-// Početni ekran: mreža čestica (Bonexis CRM kao mreža agenata oko Bena) i Ben AI prozor
-// koji sam vodi razgovor; posjetilac može odmah upisati pitanje.
+// Početni ekran: lijevo poruka, desno "mozak" Bonexisa. Ben je središnji neuron, owner agenti
+// kapsula su istaknuti neuroni s mislima; klik na agenta otvara mali chat s njim.
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowUp, ArrowUpRight, CheckCircle2, Phone } from 'lucide-react';
-import { asset } from '../lib/asset';
+import { ArrowUp, X } from 'lucide-react';
 import { STATS } from '../data/site';
-import { BEN, BONEXIS_AGENTS } from '../data/bonexis';
-import { startParticles } from './heroParticles';
+import { BONEXIS_AGENTS, roleLabel } from '../data/bonexis';
+import { agentRing, brainMap, startBrain, type BrainHandle, type P } from './heroBrain';
 
-type Line =
-  | { from: 'user'; text: string }
-  | { from: 'ben'; text: string; card?: { image: string; title: string; text: string; to: string }; rows?: [string, string][]; chip?: string };
-
-const SCRIPT: Line[] = [
-  { from: 'user', text: 'Trebamo sadržaj za Instagram za ljetnu sezonu.' },
-  { from: 'ben', text: 'To je naš tim radio za Summer Lounge: najave nastupa, reelsi i foto s evenata.', card: { image: '/img/projects/summer-lounge/mockup.webp', title: 'Summer Lounge', text: 'Društvene mreže i eventi', to: '/portfolio/summer-lounge/' } },
-  { from: 'user', text: 'A kako da dođemo do novih klijenata?' },
-  { from: 'ben', text: 'U Bonexis CRM-u to radi Lejla. Pronašla je firme koje odgovaraju vašem profilu i pripremila poruke.', rows: [['Pronađeno firmi', '24'], ['Odlično uklapanje', '8'], ['Poruke spremne', '8']] },
-  { from: 'user', text: 'Ko će ih nazvati?' },
-  { from: 'ben', text: 'Sara zove s vašeg broja, odgovara na pitanja i zakazuje sastanke.', chip: 'Termin zakazan: utorak u 10:00' },
-];
+// Agenti na pravilnom unutrašnjem prstenu (redoslijed kao BONEXIS_AGENTS)
+const POS: P[] = agentRing(BONEXIS_AGENTS.length);
+const BEN_POS: P = { x: 0, y: 0 };
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const windowRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
+  const brain = useRef<BrainHandle | null>(null);
   const navigate = useNavigate();
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  const [thinking, setThinking] = useState(0);
+  const [open, setOpen] = useState(-1);
+  const [step, setStep] = useState(0);
+  const [ask, setAsk] = useState('');
   const reduce = typeof window !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const [step, setStep] = useState(reduce ? SCRIPT.length : 0);
-  const [typing, setTyping] = useState(false);
-  const [input, setInput] = useState('');
-  const [hold, setHold] = useState(false);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-    return startParticles(canvasRef.current, {
-      agents: BONEXIS_AGENTS.map(a => a.persona),
-      benAnchor: () => {
-        const c = canvasRef.current, win = windowRef.current;
-        if (!c || !win || win.offsetParent === null) return null;
-        const cr = c.getBoundingClientRect(), wr = win.getBoundingClientRect();
-        return { x: wr.left - cr.left + wr.width / 2, y: wr.top - cr.top + wr.height / 2, w: wr.width / 2 + 85, h: wr.height / 2 + 50 };
-      },
-    });
+    const el = boxRef.current, cv = canvasRef.current;
+    if (!el || !cv) return;
+    const ro = new ResizeObserver(() => setSize({ w: el.clientWidth, h: el.clientHeight }));
+    ro.observe(el);
+    brain.current = startBrain(cv, { agents: POS, ben: BEN_POS });
+    return () => { ro.disconnect(); brain.current?.destroy(); };
   }, []);
 
-  // Razgovor se sam odvija i ponavlja; staje dok posjetilac piše
+  // Agenti redom "razmišljaju": Ben im šalje impuls, a pored neurona se pojavi misao
   useEffect(() => {
-    if (reduce || hold) return;
-    if (step >= SCRIPT.length) {
-      const id = setTimeout(() => setStep(0), 5000);
-      return () => clearTimeout(id);
-    }
-    const next = SCRIPT[step];
-    const delay = step === 0 ? 700 : next.from === 'ben' ? 900 : 1700;
-    if (next.from === 'ben') setTyping(true);
-    const id = setTimeout(() => { setTyping(false); setStep(s => s + 1); }, delay);
+    if (open >= 0) return;
+    brain.current?.fire(thinking);
+    if (reduce) return;
+    const id = setTimeout(() => setThinking(i => (i + 1) % BONEXIS_AGENTS.length), 2800);
     return () => clearTimeout(id);
-  }, [step, hold, reduce]);
+  }, [thinking, open, reduce]);
 
-  useEffect(() => { const b = bodyRef.current; if (b) b.scrollTo({ top: b.scrollHeight, behavior: reduce ? 'auto' : 'smooth' }); }, [step, typing, reduce]);
+  // Mali chat: prve poruke iz scenarija agenta se pojavljuju jedna po jedna
+  useEffect(() => { setStep(reduce ? 2 : 0); setAsk(''); }, [open, reduce]);
+  useEffect(() => {
+    if (open < 0 || step >= 2) return;
+    const id = setTimeout(() => setStep(s => s + 1), step === 0 ? 250 : 900);
+    return () => clearTimeout(id);
+  }, [open, step]);
+  useEffect(() => {
+    if (open < 0) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(-1); };
+    addEventListener('keydown', onKey);
+    return () => removeEventListener('keydown', onKey);
+  }, [open]);
 
-  const onSubmit = (e: FormEvent) => {
+  const map = brainMap(size.w, size.h);
+  const at = (p: P) => (size.w ? map.px(p) : { x: -999, y: -999 });
+  const ben = at(BEN_POS);
+
+  const onAsk = (e: FormEvent) => {
     e.preventDefault();
-    const q = input.trim();
-    if (!q) return;
-    navigate(`/?pitanje=${encodeURIComponent(q)}#bonexis`);
+    const q = ask.trim();
+    if (q) navigate(`/bonexis/?pitanje=${encodeURIComponent(q)}`);
   };
 
-  return (
-    <section className="hero3" ref={sectionRef} aria-label="Bonaco Media">
-      <canvas ref={canvasRef} className="hero3-canvas" aria-hidden="true" />
-      <div className="hero3-glow" aria-hidden="true" />
+  const agent = open >= 0 ? BONEXIS_AGENTS[open] : null;
+  const ap = open >= 0 ? at(POS[open]) : null;
+  const chatLeft = ap ? (POS[open].x > 0 ? ap.x - 336 : ap.x + 30) : 0;
 
+  return (
+    <section className="hero3" aria-label="Bonaco Media">
+      <div className="hero3-glow" aria-hidden="true" />
       <div className="container hero3-grid">
         <div className="hero3-copy">
-          <h1>Jedina agencija koja vam je potrebna</h1>
+          <h1><span>Jedina agencija</span> <span>koja vam je potrebna</span></h1>
           <p className="hero3-lead">
-            Vodimo društvene mreže, evente, foto i video, web i dizajn za brendove iz regije. Uz to radimo i u <strong>Bonexisu</strong>, našem marketing CRM-u u kojem klijente, kampanje i rokove vode AI agenti.
+            Vodimo društvene mreže, evente, foto i video, web i dizajn za brendove iz regije. Vašoj firmi nudimo i <strong>Bonexis</strong>, marketing CRM u kojem svaku od sedam AI kapsula vodi njen owner agent, a Ben ih povezuje u jedan mozak.
           </p>
           <div className="btn-row">
             <Link to="/kontakt/" className="btn btn-primary btn-lg">Zatražite ponudu</Link>
@@ -87,45 +85,61 @@ export default function Hero() {
           <dl className="hero3-stats">
             <div><dd>{STATS.clients}</dd><dt>klijenata</dt></div>
             <div><dd>{STATS.years}</dd><dt>godina iskustva</dt></div>
-            <div><dd>{BONEXIS_AGENTS.length}</dd><dt>AI agenata u CRM-u</dt></div>
+            <div><dd>7</dd><dt>AI kapsula</dt></div>
           </dl>
         </div>
 
-        <div className="ben-window" ref={windowRef} onMouseEnter={() => setHold(false)}>
-          <div className="ben-top">
-            <span className="ben-avatar">B</span>
-            <div>
-              <strong>{BEN.name}</strong>
-              <span><i className="ben-dot" /> Bonexis CRM, online</span>
+        <div className="brain" ref={boxRef}>
+          <canvas ref={canvasRef} aria-hidden="true" />
+          <div className="brain-ben" style={{ left: ben.x, top: ben.y }} aria-hidden="true">BEN</div>
+          {BONEXIS_AGENTS.map((a, i) => {
+            const p = at(POS[i]);
+            return (
+              <button
+                key={a.persona}
+                type="button"
+                className={`neuron ${i === open ? 'is-open' : ''} ${i === thinking && open < 0 ? 'is-thinking' : ''}`}
+                style={{ left: p.x, top: p.y }}
+                onClick={() => setOpen(o => (o === i ? -1 : i))}
+                aria-expanded={i === open}
+                aria-label={`${a.persona}, ${roleLabel(a)}: otvori chat`}
+              >
+                <span className="neuron-dot" aria-hidden="true">{a.persona[0]}</span>
+                <span className="neuron-name" aria-hidden="true">{a.persona}<small>K{a.capsule}</small></span>
+              </button>
+            );
+          })}
+          {open < 0 && (
+            <div key={thinking} className={`thought ${POS[thinking].x > 0 ? 'to-right' : 'to-left'} ${POS[thinking].y > 0 ? 'to-bottom' : 'to-top'}`} style={{ left: at(POS[thinking]).x, top: at(POS[thinking]).y }} aria-live="polite">
+              {BONEXIS_AGENTS[thinking].thought}
             </div>
-          </div>
-          <div className="ben-body" ref={bodyRef} aria-live="polite">
-            {SCRIPT.slice(0, step).map((l, i) => (
-              <div key={i} className={`ben-msg ${l.from}`}>
-                <p>{l.text}</p>
-                {l.from === 'ben' && l.card && (
-                  <Link to={l.card.to} className="ben-card">
-                    <img src={asset(l.card.image)} alt="" />
-                    <span><strong>{l.card.title}</strong>{l.card.text}</span>
-                    <ArrowUpRight size={16} />
-                  </Link>
-                )}
-                {l.from === 'ben' && l.rows && (
-                  <ul className="ben-rows">{l.rows.map(([k, v]) => <li key={k}><span>{k}</span><strong>{v}</strong></li>)}</ul>
-                )}
-                {l.from === 'ben' && l.chip && (
-                  <span className="ben-chip"><CheckCircle2 size={15} /> {l.chip}</span>
-                )}
+          )}
+          {agent && ap && (
+            <div
+              className="neuron-chat"
+              style={{ left: Math.max(8, Math.min(size.w - 336, chatLeft)), top: Math.max(8, Math.min(size.h - 340, ap.y - 60)) }}
+              role="dialog"
+              aria-label={`Chat: ${agent.persona}`}
+            >
+              <div className="nc-head">
+                <span className="nc-avatar" aria-hidden="true">{agent.persona[0]}</span>
+                <div><strong>{agent.persona}</strong><span>{roleLabel(agent)}</span></div>
+                <button type="button" className="nc-close" onClick={() => setOpen(-1)} aria-label="Zatvori chat"><X size={16} /></button>
               </div>
-            ))}
-            {typing && <div className="ben-msg ben"><p className="bx-typing" aria-label="Ben piše"><i /><i /><i /></p></div>}
-          </div>
-          <form className="ben-composer" onSubmit={onSubmit}>
-            <label htmlFor="hero-ask" className="sr-only">Pitajte Bena</label>
-            <input id="hero-ask" value={input} onChange={e => setInput(e.target.value)} onFocus={() => setHold(true)} placeholder="Pitajte Bena, npr. trebam više klijenata" autoComplete="off" maxLength={300} />
-            <button type="submit" aria-label="Pošalji" disabled={!input.trim()}><ArrowUp size={18} /></button>
-          </form>
-          <a href="tel:+38733258900" className="ben-call"><Phone size={14} /> Radije razgovor s ljudima? +387 33 258 900</a>
+              <div className="nc-body">
+                {agent.scenario.messages.slice(0, step).map((m, i) => (
+                  <p key={i} className={m.from}>{m.text}</p>
+                ))}
+                {step < 2 && <p className="agent bx-typing" aria-label="piše"><i /><i /><i /></p>}
+              </div>
+              <form className="nc-ask" onSubmit={onAsk}>
+                <input value={ask} onChange={e => setAsk(e.target.value)} placeholder="Vaše pitanje…" aria-label="Vaše pitanje" maxLength={300} />
+                <button type="submit" aria-label="Pošalji" disabled={!ask.trim()}><ArrowUp size={16} /></button>
+              </form>
+              <Link to={`/#scenarij-${agent.persona.toLowerCase()}`} className="nc-more" onClick={() => setOpen(-1)}>Pogledajte cijeli scenarij</Link>
+            </div>
+          )}
+          <p className="brain-hint">Kliknite neuron agenta za kratak chat</p>
         </div>
       </div>
     </section>

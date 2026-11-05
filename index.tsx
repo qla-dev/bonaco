@@ -6,6 +6,9 @@ import './styles/v2.css';
 import './styles/hero.css';
 import './styles/bonexis.css';
 import './styles/hero4.css';
+import './styles/brain.css';
+import './styles/fixes.css';
+import './styles/dashboard.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
