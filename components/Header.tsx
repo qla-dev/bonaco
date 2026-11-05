@@ -1,16 +1,34 @@
-import { asset } from '../lib/asset';
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { NAV, SOCIAL } from '../data/site';
+import { counterpart, useLang } from '../lib/i18n';
 import SocialIcon from './SocialIcon';
-import BonexisLogo from './bonexis/BonexisLogo';
+import BrandLogo, { type Brand } from './BrandLogo';
+
+export const brandOf = (pathname: string): Brand =>
+  /^\/(en\/)?bonexis/.test(pathname) ? 'bonexis' : /^\/(en\/)?bonevents/.test(pathname) ? 'bonevents' : 'bonaco';
+
+export function LangSwitch() {
+  const { pathname, hash } = useLocation();
+  const { lang } = useLang();
+  const alt = counterpart(pathname);
+  return (
+    <div className="lang-switch" role="group" aria-label={lang === 'en' ? 'Language' : 'Jezik'}>
+      <Link to={alt.bs + (lang === 'bs' ? hash : '')} hrefLang="bs" lang="bs" aria-current={lang === 'bs' ? 'true' : undefined} aria-label="Bosanski">BS</Link>
+      <span aria-hidden="true">/</span>
+      <Link to={alt.en ?? '/en/'} hrefLang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined} aria-label="English">EN</Link>
+    </div>
+  );
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { pathname, hash } = useLocation();
-  const onBonexis = pathname.startsWith('/bonexis');
+  const { pathname } = useLocation();
+  const { t, to } = useLang();
+  const brand = brandOf(pathname);
+  const home = to('/');
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
@@ -21,44 +39,33 @@ export default function Header() {
   }, []);
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; }, [open]);
 
+  const links = NAV.map(n => (
+    <NavLink key={n.to} to={to(n.to)} className={({ isActive }) => `${isActive ? 'active' : ''} ${n.to === '/kontakt/' ? 'nav-contact' : ''}`.trim() || undefined}>
+      {t(n.bs, n.en)}
+    </NavLink>
+  ));
+
   return (
-    <header className={`site-header ${pathname === '/' ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
+    <header className={`site-header ${pathname === home ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
-        <Link to="/" className="logo" aria-label={onBonexis ? 'Bonexis, Bonaco Media – početna' : 'Bonaco Media – početna'}>
-          {onBonexis ? <BonexisLogo className="header-bonexis" /> : <img src={asset('/img/logo/bonaco-media.webp')} alt="Bonaco Media" width="640" height="168" />}
+        <Link to={brand === 'bonaco' ? home : to(`/${brand}/`)} className="logo" aria-label={t('početna', 'home')}>
+          <BrandLogo brand={brand} />
         </Link>
-        <nav className="main-nav" aria-label="Glavni meni">
-          {NAV.map(n => (
-            n.to.includes('#') ? (
-              <Link key={n.to} to={n.to}>{n.label}</Link>
-            ) : (
-              <NavLink key={n.to} to={n.to} end={n.to === '/'} className={({ isActive }) => (isActive && !hash ? 'active' : undefined)}>
-                {n.label}
-              </NavLink>
-            )
-          ))}
-        </nav>
-        <div className="header-social">
-          {SOCIAL.slice(0, 4).map(s => (
-            <a key={s.id} href={s.href} target="_blank" rel="noopener" aria-label={s.label}><SocialIcon id={s.id} /></a>
-          ))}
-        </div>
-        <Link to="/kontakt/" className="btn btn-primary btn-sm header-cta">Kontaktirajte nas</Link>
-        <button className="icon-btn menu-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-label={open ? 'Zatvori meni' : 'Otvori meni'}>
+        <nav className="main-nav" aria-label={t('Glavni meni', 'Main menu')}>{links}</nav>
+        <LangSwitch />
+        <button className="icon-btn menu-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-label={open ? t('Zatvori meni', 'Close menu') : t('Otvori meni', 'Open menu')}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
       <div className="mobile-menu" hidden={!open}>
-        <nav aria-label="Mobilni meni">
-          {NAV.map(n => (n.to.includes('#') ? <Link key={n.to} to={n.to}>{n.label}</Link> : <NavLink key={n.to} to={n.to} end={n.to === '/'}>{n.label}</NavLink>))}
-          <NavLink to="/kontakt/">Kontakt</NavLink>
-        </nav>
+        <nav aria-label={t('Mobilni meni', 'Mobile menu')}>{links}</nav>
+        <LangSwitch />
         <div className="mobile-social">
           {SOCIAL.map(s => (
             <a key={s.id} href={s.href} target="_blank" rel="noopener" aria-label={s.label}><SocialIcon id={s.id} size={22} /></a>
           ))}
         </div>
-        <Link to="/kontakt/" className="btn btn-primary">Zatražite ponudu</Link>
+        <Link to={to('/kontakt/')} className="btn btn-primary">{t('Zatražite ponudu', 'Request a quote')}</Link>
       </div>
     </header>
   );

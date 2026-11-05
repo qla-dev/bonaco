@@ -1,18 +1,23 @@
 import { asset } from '../lib/asset';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { SERVICES } from '../data/services';
 import { SITE, SOCIAL } from '../data/site';
+import { useLang } from '../lib/i18n';
 import SocialIcon from './SocialIcon';
+import BrandLogo from './BrandLogo';
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const { lang, t, to } = useLang();
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <img src={asset('/img/logo/bonaco-media.webp')} alt="Bonaco Media" width="640" height="168" loading="lazy" />
-          <p>Agencija za digitalni marketing iz Sarajeva. Društvene mreže, web, dizajn, foto i video, eventi i Bonexis, marketing CRM s AI agentima.</p>
+          <BrandLogo brand="bonaco" />
+          <p>{t(
+            'Full-service marketinška agencija iz Sarajeva: strategija, kreativa, produkcija i rezultati.',
+            'A full-service marketing agency from Sarajevo: strategy, creativity, production and results.',
+          )}</p>
           <div className="footer-social">
             {SOCIAL.map(s => (
               <a key={s.id} href={s.href} target="_blank" rel="noopener" aria-label={s.label}><SocialIcon id={s.id} size={20} /></a>
@@ -20,23 +25,24 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <h2 className="footer-title">Usluge</h2>
-          <ul>
-            {SERVICES.map(s => <li key={s.slug}><Link to={`/nase-usluge/#${s.slug}`}>{s.title}</Link></li>)}
-            <li><Link to="/bonexis/">Bonexis CRM</Link></li>
+          <h2 className="footer-title">{t('Brendovi', 'Brands')}</h2>
+          <ul className="footer-brands">
+            <li><Link to={to('/nase-usluge/')}><i className="dot dot-bonaco" aria-hidden="true" />Bonaco Media · Marketing</Link></li>
+            <li><Link to={to('/bonexis/')}><i className="dot dot-bonexis" aria-hidden="true" />Bonexis · AI Solutions</Link></li>
+            <li><Link to={to('/bonevents/')}><i className="dot dot-bonevents" aria-hidden="true" />BonEvents · Events</Link></li>
           </ul>
         </div>
         <div>
-          <h2 className="footer-title">Kompanija</h2>
+          <h2 className="footer-title">{t('Kompanija', 'Company')}</h2>
           <ul>
-            <li><Link to="/#o-nama">O nama</Link></li>
-            <li><Link to="/portfolio/">Portfolio</Link></li>
-            <li><Link to="/vijesti/">Vijesti</Link></li>
-            <li><Link to="/kontakt/">Kontakt</Link></li>
+            <li><Link to={to('/portfolio/')}>{t('Radovi', 'Work')}</Link></li>
+            <li><Link to={to('/o-nama/')}>{t('O nama', 'About')}</Link></li>
+            {lang === 'bs' && <li><Link to="/vijesti/">Vijesti</Link></li>}
+            <li><Link to={to('/kontakt/')}>{t('Kontakt', 'Contact')}</Link></li>
           </ul>
         </div>
         <div>
-          <h2 className="footer-title">Kontakt</h2>
+          <h2 className="footer-title">{t('Kontakt', 'Contact')}</h2>
           <ul className="footer-contact">
             <li><a href={SITE.phoneHref}><Phone size={16} /> {SITE.phone}</a></li>
             <li><a href={`mailto:${SITE.email}`}><Mail size={16} /> {SITE.email}</a></li>
@@ -46,8 +52,8 @@ export default function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>© {year} {SITE.legalName}{SITE.companyIds.map(c => ` · ${c.label}: ${c.value}`).join('')}</span>
-        <nav aria-label="Pravne informacije">
-          <Link to="/politika-privatnosti/">Politika privatnosti</Link>
+        <nav aria-label={t('Pravne informacije', 'Legal')}>
+          <Link to={to('/politika-privatnosti/')}>{t('Politika privatnosti', 'Privacy policy')}</Link>
           <a href="https://qla.dev" target="_blank" rel="noopener" className="made-by" aria-label="Made by qla.dev">
             <span>Made by</span>
             <img src={asset('/img/logo/qla-dev.webp')} alt="qla.dev" width="84" height="24" loading="lazy" />

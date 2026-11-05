@@ -2,23 +2,24 @@ import { asset } from '../lib/asset';
 // Manji dijeljeni blokovi: CTA, YouTube (učitava se na klik), logotipi, testimonijali, kartice.
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Star } from 'lucide-react';
-import { CLIENTS } from '../data/clients';
-import { GOOGLE_REVIEWS, STATS } from '../data/site';
+import { ArrowRight, Play } from 'lucide-react';
 import { TESTIMONIALS } from '../data/testimonials';
+import { CATEGORY_EN } from '../data/projects';
+import { tr, useLang } from '../lib/i18n';
 import type { Post, Project } from '../types';
 
-export function CTASection({ title = 'Imate projekat na umu?', text = 'Recite nam šta vam treba, a mi ćemo predložiti rješenje i okvirnu ponudu.' }: { title?: string; text?: string }) {
+export function CTASection({ title, text, inquiry }: { title?: string; text?: string; inquiry?: string }) {
+  const { t, to } = useLang();
   return (
     <section className="section cta-section">
       <div className="container cta-inner">
         <div>
-          <h2>{title}</h2>
-          <p>{text}</p>
+          <h2>{title ?? t('Imate projekat na umu?', 'Have a project in mind?')}</h2>
+          <p>{text ?? t('Recite nam šta vam treba, a mi ćemo predložiti rješenje i okvirnu ponudu.', 'Tell us what you need and we will suggest a solution and a ballpark quote.')}</p>
         </div>
         <div className="btn-row">
-          <Link to="/kontakt/" className="btn btn-primary">Zatražite ponudu</Link>
-          <Link to="/portfolio/" className="btn btn-secondary">Pogledajte radove</Link>
+          <Link to={to('/kontakt/') + (inquiry ? `?usluga=${encodeURIComponent(inquiry)}` : '')} className="btn btn-primary">{t('Zatražite ponudu', 'Request a quote')}</Link>
+          <Link to={to('/portfolio/')} className="btn btn-secondary">{t('Pogledajte radove', 'See our work')}</Link>
         </div>
       </div>
     </section>
@@ -27,6 +28,7 @@ export function CTASection({ title = 'Imate projekat na umu?', text = 'Recite na
 
 export function YouTube({ id, title }: { id: string; title: string }) {
   const [play, setPlay] = useState(false);
+  const { t } = useLang();
   return (
     <div className="video">
       {play ? (
@@ -37,46 +39,12 @@ export function YouTube({ id, title }: { id: string; title: string }) {
           allowFullScreen
         />
       ) : (
-        <button className="video-poster" onClick={() => setPlay(true)} aria-label={`Pokreni video: ${title}`}>
+        <button className="video-poster" onClick={() => setPlay(true)} aria-label={`${t('Pokreni video', 'Play video')}: ${title}`}>
           <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" />
           <span className="video-play"><Play size={28} fill="currentColor" /></span>
         </button>
       )}
     </div>
-  );
-}
-
-export function ClientLogos() {
-  const row = [...CLIENTS, ...CLIENTS];
-  return (
-    <div className="logos" aria-label="Neki od naših klijenata">
-      <div className="logos-track">
-        {row.map((c, i) => (
-          <img key={i} src={asset(`/img/clients/${c.id}.webp`)} alt={i < CLIENTS.length ? c.name : ''} aria-hidden={i >= CLIENTS.length} loading="lazy" />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export function Stats() {
-  return (
-    <dl className="stats">
-      <div><dt>Klijenata</dt><dd>{STATS.clients}</dd></div>
-      <div><dt>Godina iskustva</dt><dd>{STATS.years}</dd></div>
-      <div>
-        <dt>Google recenzije</dt>
-        <dd>
-          <a href={GOOGLE_REVIEWS.url} target="_blank" rel="noopener" className="rating">
-            {GOOGLE_REVIEWS.rating ? (
-              <>{GOOGLE_REVIEWS.rating.toFixed(1)} <Star size={20} fill="currentColor" /> <small>({GOOGLE_REVIEWS.count})</small></>
-            ) : (
-              <>Pogledajte <ArrowRight size={18} /></>
-            )}
-          </a>
-        </dd>
-      </div>
-    </dl>
   );
 }
 
@@ -118,14 +86,18 @@ export function TestimonialCarousel() {
   );
 }
 
+export const catLabel = (c: string, lang: 'bs' | 'en') => (lang === 'en' ? CATEGORY_EN[c] ?? c : c);
+
 export function ProjectCard({ p }: { p: Project }) {
+  const { lang, to } = useLang();
+  const x = tr(p, lang);
   return (
-    <Link to={`/portfolio/${p.slug}/`} className="project-card">
-      <div className="project-media"><img src={asset(p.cover)} alt={p.coverAlt} loading="lazy" /></div>
+    <Link to={to(`/portfolio/${p.slug}/`)} className="project-card">
+      <div className="project-media"><img src={asset(p.cover)} alt={x.coverAlt} loading="lazy" /></div>
       <div className="project-body">
-        <span className="project-cats">{p.categories.join(' · ')}</span>
+        <span className="project-cats">{p.categories.map(c => catLabel(c, lang)).join(' · ')}</span>
         <h3>{p.client}</h3>
-        <p>{p.summary}</p>
+        <p>{x.summary}</p>
       </div>
     </Link>
   );

@@ -35,17 +35,38 @@ export const GOOGLE_REVIEWS: { rating: number | null; count: number | null; url:
   url: 'https://maps.app.goo.gl/8dWRcFLSc5FVCYDg7',
 };
 
+// Glavni meni (BS putanje; EN se dobija preko localize()). Vijesti su u footeru.
 export const NAV = [
-  { to: '/', label: 'Početna' },
-  { to: '/nase-usluge/', label: 'Usluge' },
-  { to: '/bonexis/', label: 'Bonexis' },
-  { to: '/#scenariji', label: 'Scenariji' },
-  { to: '/portfolio/', label: 'Portfolio' },
-  { to: '/vijesti/', label: 'Vijesti' },
+  { to: '/nase-usluge/', bs: 'Marketing', en: 'Marketing' },
+  { to: '/bonexis/', bs: 'Bonexis', en: 'Bonexis' },
+  { to: '/bonevents/', bs: 'BonEvents', en: 'BonEvents' },
+  { to: '/portfolio/', bs: 'Radovi', en: 'Work' },
+  { to: '/o-nama/', bs: 'O nama', en: 'About' },
+  { to: '/kontakt/', bs: 'Kontakt', en: 'Contact' },
 ];
 
 /** Showreel i video projekti (YouTube, učitava se tek na klik). */
 export const VIDEOS = {
   showreel: '4f_v6TWBphc',
   extra: ['KAqJXO1ycBQ', 'XP9utSxdnKg'],
+};
+
+// Dva videa iz briefa (produkcija: Bonaco dizajnerski tim). Dok fajlovi ne stignu, null:
+// hero prikazuje kružnu animaciju u CSS-u, a marketing video showreel s YouTubea.
+// Fajlove staviti u public/video/ i upisati putanje ovdje.
+export const HERO_VIDEO: { desktop: string | null; mobile: string | null; poster: string | null; posterMobile: string | null } = {
+  // TODO(Bonaco): Video 2 – artistički hero, 8–12 s, tiha petlja (MP4/H.264, ~4–5 MB desktop, ~2 MB mobile)
+  desktop: null, // npr. '/video/hero-16x9.mp4'
+  mobile: null, // npr. '/video/hero-9x16.mp4'
+  poster: null, // npr. '/video/hero-poster.webp'
+  posterMobile: null,
+};
+
+export const MARKETING_VIDEO: { bs: string | null; en: string | null; captionsBs: string | null; captionsEn: string | null; poster: string | null } = {
+  // TODO(Bonaco): Video 1 – informativni marketing, 20–22 s, BS i EN verzija + titlovi (.vtt)
+  bs: null,
+  en: null,
+  captionsBs: null,
+  captionsEn: null,
+  poster: null,
 };

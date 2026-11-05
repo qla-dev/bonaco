@@ -1,6 +1,8 @@
-import { Bot, CalendarDays, Camera, MonitorSmartphone, PenTool, Search, Share2 } from 'lucide-react';
+import { Bot, CalendarDays, Camera, Megaphone, MonitorSmartphone, PenTool, Search, Share2, Target } from 'lucide-react';
 
 const ICONS = {
+  'strategija-kampanje': Target,
+  'ooh-dooh': Megaphone,
   'drustvene-mreze': Share2,
   seo: Search,
   'web-dizajn': MonitorSmartphone,

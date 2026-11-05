@@ -31,7 +31,6 @@ DirectoryIndex index.html dist/index.html
     RewriteRule ^redeploy\.php$ - [L]
 
     # Stari WordPress URL-ovi
-    RewriteRule ^o-nama/?$ /#o-nama [R=301,NE,L]
     RewriteRule ^nase-suluge/?$ /nase-usluge/ [R=301,L]
     RewriteRule ^(category|tag|author)/ /vijesti/ [R=301,L]
     RewriteRule ^wp-(admin|login\.php|content|includes) - [G,L]

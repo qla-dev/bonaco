@@ -1,183 +1,80 @@
-import { asset } from '../lib/asset';
+// Početna po web briefu v1.3: Video → Marketing i radovi → Klijenti → Bonexis (5 kapsula)
+// → BonEvents → O nama / Kontakt.
 import { Link } from 'react-router-dom';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowRight, Mail, Phone } from 'lucide-react';
 import SEO from '../components/SEO';
-import Hero from '../components/Hero';
-import ServiceIcon from '../components/ServiceIcon';
-import BonexisSection from '../components/bonexis/BonexisSection';
-import { ClientLogos, PostCard, ProjectCard, TestimonialCarousel, YouTube } from '../components/Blocks';
-import SocialIcon from '../components/SocialIcon';
-import { PROJECTS } from '../data/projects';
-import { BONEXIS_AGENTS } from '../data/bonexis';
-import { SERVICES } from '../data/services';
-import { SITE, SOCIAL, VIDEOS } from '../data/site';
-import { POSTS } from '../data/posts.generated';
-import { GALLERIES } from '../data/galleries.generated';
-
-const FOLLOW = [
-  ...(GALLERIES['summer-lounge'] ?? []).slice(1, 3),
-  ...(GALLERIES['beautyco'] ?? []).slice(1, 3),
-  ...(GALLERIES['bh-travel'] ?? []).slice(1, 2),
-  ...(GALLERIES['summer-lounge'] ?? []).slice(5, 6),
-];
-
-// Sa stare stranice "O nama" (REA export)
-const PILLARS = [
-  { title: 'Misija', text: 'Pomažemo kompanijama da se istaknu u digitalnom svijetu kroz strategije za društvene mreže, SEO, web i grafički dizajn, evente te fotografiju i video.' },
-  { title: 'Dugoročna saradnja', text: 'Strategije prilagođavamo ciljevima svakog klijenta i gradimo odnose koji traju godinama, a ne jednu kampanju.' },
-  { title: 'Nove tehnologije', text: 'Pratimo trendove prije nego postanu standard. Zato smo razvili Bonexis, vlastiti marketing CRM s AI agentima.' },
-];
+import HeroVideo from '../components/HeroVideo';
+import { BonEventsBlock, BonexisCapsules, ClientsMarquee, MarketingVideo, ServiceCircles, WorkCircles } from '../components/Circles';
+import { SITE } from '../data/site';
+import { useLang } from '../lib/i18n';
 
 export default function HomePage() {
+  const { t, to } = useLang();
   return (
     <>
       <SEO
         title={SITE.name}
-        description="Bonaco Media je agencija za digitalni marketing iz Sarajeva: društvene mreže, SEO, web i grafički dizajn, event management, foto i video te Bonexis, marketing CRM s AI agentima."
+        description={t(
+          'Bonaco Media je full-service marketinška agencija iz Sarajeva: strategija i kampanje, društvene mreže, dizajn i branding, foto i video, web i SEO, OOH. Uz Bonexis AI rješenja i BonEvents.',
+          'Bonaco Media is a full-service marketing agency from Sarajevo: strategy and campaigns, social media, design and branding, photo and video, web and SEO, OOH. Plus Bonexis AI solutions and BonEvents.',
+        )}
       />
 
-      <Hero />
+      <HeroVideo />
 
-      <section className="logos-band" aria-label="Klijenti">
-        <ClientLogos />
-      </section>
-
-      {/* 1. Usluge */}
-      <section className="section light" id="usluge">
+      {/* Marketing: usluge i radovi u krugovima */}
+      <section className="section mkt" id="marketing">
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>Sve za vaš brend na jednom mjestu</h2>
-              <p className="lead">Kreiramo personalizirane strategije i izvodimo ih od prve objave do velikog eventa.</p>
+              <span className="eyebrow">Marketing</span>
+              <h2>{t('Full-service marketing, od ideje do rezultata', 'Full-service marketing, from idea to results')}</h2>
+              <p className="lead">{t(
+                'Strategija, kreativa i produkcija pod jednim krovom. Pogledajte izbor radova za brendove iz regije.',
+                'Strategy, creative and production under one roof. Take a look at selected work for brands across the region.',
+              )}</p>
             </div>
+            <Link to={to('/portfolio/')} className="text-link">{t('Pogledajte sve radove', 'See all work')} <ArrowRight size={16} /></Link>
           </div>
-          <div className="services-grid">
-            {SERVICES.map(s => (
-              <Link key={s.slug} to={`/nase-usluge/#${s.slug}`} className="service-card">
-                <span className="service-icon"><ServiceIcon slug={s.slug} size={26} /></span>
-                <h3>{s.title}</h3>
-                <p>{s.short}</p>
-              </Link>
-            ))}
-            <Link to="/bonexis/" className="service-card service-card-ai">
-              <span className="service-icon"><ServiceIcon slug="bonexis" size={26} /></span>
-              <h3>Bonexis, marketing CRM s AI agentima</h3>
-              <p>Klijenti, kampanje, sadržaj i rokovi na jednom mjestu. Sedam AI kapsula, svaku vodi owner agent, a Ben ih povezuje.</p>
-              <span className="ai-chips">{BONEXIS_AGENTS.map(a => <span key={a.persona}><strong>{a.persona}</strong> {a.name}</span>)}</span>
-            </Link>
+          <ServiceCircles />
+          <WorkCircles limit={6} />
+          <div className="mkt-video">
+            <div>
+              <h3>{t('Bonaco u pokretu', 'Bonaco in motion')}</h3>
+              <p>{t('Kratak pregled onoga što radimo: kampanje, dizajn, produkcija, web i digital.', 'A quick look at what we do: campaigns, design, production, web and digital.')}</p>
+            </div>
+            <MarketingVideo />
           </div>
         </div>
       </section>
 
-      {/* 2. Bonexis: chat pa AI tim */}
-      <section className="bonexis-home" aria-label="Bonexis">
-        <BonexisSection />
-      </section>
+      <ClientsMarquee />
 
-      {/* 3. Radovi */}
+      <BonexisCapsules />
+
+      <BonEventsBlock />
+
+      {/* O nama i kontakt */}
       <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <h2>Odabrani radovi</h2>
-              <p className="lead">Projekti za brendove iz regije, od društvenih mreža do web stranica i evenata.</p>
-            </div>
-            <Link to="/portfolio/" className="text-link">Svi projekti <ArrowRight size={16} /></Link>
-          </div>
-          <div className="projects-grid">
-            {PROJECTS.slice(0, 4).map(p => <ProjectCard key={p.slug} p={p} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. O nama, vizija, misija */}
-      <section className="section light" id="o-nama">
-        <div className="container">
-          <div className="about-grid">
-            <div>
-              <h2>Spoj kreativnosti i strategije</h2>
-              <p className="lead">
-                Bonaco Media je agencija za digitalni marketing sa sjedištem u Sarajevu, osnovana {SITE.founded}. godine. Za nekoliko godina postali smo pouzdan partner domaćim i međunarodnim klijentima.
-              </p>
-              <p>Naš tim mladih i obrazovanih profesionalaca slaže svaki detalj vašeg marketinga kao slagalicu: svaki komadić ima svoje mjesto u strategiji.</p>
-            </div>
-            <div className="showreel">
-              <YouTube id={VIDEOS.showreel} title="Bonaco Media – pogledajte naš rad" />
-            </div>
-          </div>
-          <div className="vision">
-            <div className="vision-card">
-              <h3>Vizija</h3>
-              <p>Povezati brendove s pravom publikom i stvoriti trajne digitalne veze koje povećavaju angažman i povjerenje. Cilj nam je da postanemo vodeća agencija za digitalni marketing u regiji.</p>
-            </div>
-            <div className="pillars">
-              {PILLARS.map(p => (
-                <div key={p.title} className="pillar">
-                  <h3>{p.title}</h3>
-                  <p>{p.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Recenzije klijenata */}
-      <section className="section">
-        <div className="container">
-          <h2 className="center-title">Šta kažu naši klijenti</h2>
-          <TestimonialCarousel />
-        </div>
-      </section>
-
-      {/* 6. Pratite nas */}
-      <section className="section light">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <h2>Pratite nas</h2>
-              <p className="lead">Projekti, eventi i reelsi iza kulisa.</p>
-            </div>
-          </div>
-          <div className="follow-grid">
-            {FOLLOW.map(img => (
-              <a key={img.src} href={SOCIAL[0].href} target="_blank" rel="noopener" className="follow-tile" aria-label="Pogledajte na Instagramu">
-                <img src={asset(img.thumb)} alt="" loading="lazy" />
-              </a>
-            ))}
-          </div>
-          <div className="follow-links">
-            {SOCIAL.map(s => (
-              <a key={s.id} href={s.href} target="_blank" rel="noopener" className="btn btn-outline-dark">
-                <SocialIcon id={s.id} /> {s.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Vijesti */}
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <h2>Vijesti</h2>
-            <Link to="/vijesti/" className="text-link">Sve vijesti <ArrowRight size={16} /></Link>
-          </div>
-          <div className="posts-grid">
-            {POSTS.slice(0, 3).map(p => <PostCard key={p.slug} post={p} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Slogan sa stare stranice */}
-      <section className="section slogan">
-        <div className="container slogan-inner">
-          <h2>Ako vam je marketing onako, pozovite Bonaco!</h2>
-          <p>Zakažite besplatne konsultacije i zajedno ćemo vidjeti gdje vaš brend može rasti.</p>
-          <div className="btn-row">
-            <a href={SITE.phoneHref} className="btn btn-primary btn-lg"><Phone size={18} /> {SITE.phone}</a>
-            <Link to="/kontakt/" className="btn btn-secondary btn-lg">Pošaljite upit</Link>
-          </div>
+        <div className="container end-grid">
+          <article className="end-card">
+            <span className="eyebrow">{t('O nama', 'About us')}</span>
+            <h2>{t('Spoj kreativnosti i strategije', 'Where creativity meets strategy')}</h2>
+            <p>{t(
+              `Bonaco Media je marketinška agencija iz Sarajeva, osnovana ${SITE.founded}. godine. Radimo s domaćim i međunarodnim klijentima i svaki detalj marketinga slažemo kao dio jedne strategije.`,
+              `Bonaco Media is a marketing agency from Sarajevo, founded in ${SITE.founded}. We work with local and international clients and fit every marketing detail into one strategy.`,
+            )}</p>
+            <Link to={to('/o-nama/')} className="text-link">{t('Više o nama', 'More about us')} <ArrowRight size={16} /></Link>
+          </article>
+          <article className="end-card end-card-contact">
+            <span className="eyebrow">{t('Kontakt', 'Contact')}</span>
+            <h2>{t('Recite nam šta vam treba', 'Tell us what you need')}</h2>
+            <ul className="end-contact">
+              <li><a href={SITE.phoneHref}><Phone size={18} /> {SITE.phone}</a></li>
+              <li><a href={`mailto:${SITE.email}`}><Mail size={18} /> {SITE.email}</a></li>
+            </ul>
+            <Link to={to('/kontakt/')} className="btn btn-primary">{t('Zatražite ponudu', 'Request a quote')}</Link>
+          </article>
         </div>
       </section>
     </>

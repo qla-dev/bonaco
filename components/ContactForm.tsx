@@ -4,16 +4,27 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import { SERVICES } from '../data/services';
 import { SITE } from '../data/site';
+import { tr, useLang } from '../lib/i18n';
 
-const SERVICE_OPTIONS = [...SERVICES.map(s => s.title), 'Bonexis', 'Nešto drugo'];
-const BUDGETS = ['Do 500 KM', '500 – 1.500 KM', '1.500 – 5.000 KM', 'Više od 5.000 KM', 'Nisam siguran'];
+const AREAS = [
+  { id: 'Marketing', bs: 'Marketing', en: 'Marketing' },
+  { id: 'BonEvents', bs: 'BonEvents (događaji)', en: 'BonEvents (events)' },
+  { id: 'Bonexis', bs: 'Bonexis (AI rješenja)', en: 'Bonexis (AI solutions)' },
+] as const;
+const BUDGETS = [
+  ['Do 500 KM', 'Up to 500 KM'], ['500 – 1.500 KM', '500 – 1,500 KM'], ['1.500 – 5.000 KM', '1,500 – 5,000 KM'],
+  ['Više od 5.000 KM', 'Over 5,000 KM'], ['Nisam siguran', 'Not sure'],
+];
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 export default function ContactForm() {
   const [params] = useSearchParams();
-  const pre = params.get('usluga');
-  const [services, setServices] = useState<string[]>(pre && SERVICE_OPTIONS.includes(pre) ? [pre] : []);
+  const { lang, t, to } = useLang();
+  const pre = params.get('usluga') ?? '';
+  const preService = SERVICES.find(s => s.title === pre);
+  const [area, setArea] = useState<string>(AREAS.some(a => a.id === pre) ? pre : preService ? 'Marketing' : '');
+  const [services, setServices] = useState<string[]>(preService ? [preService.title] : []);
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
 
@@ -23,21 +34,21 @@ export default function ContactForm() {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    if (!services.length) { setError('Odaberite barem jednu uslugu.'); return; }
+    if (!area) { setError(t('Odaberite oblast upita.', 'Choose what your inquiry is about.')); return; }
     setError(''); setStatus('sending');
     try {
       const res = await fetch(asset('/contact.php'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...data, services }),
+        body: JSON.stringify({ ...data, services: [area, ...(area === 'Marketing' ? services : [])], lang }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json.ok) throw new Error(json.error || 'Slanje nije uspjelo.');
+      if (!res.ok || !json.ok) throw new Error(json.error || t('Slanje nije uspjelo.', 'Sending failed.'));
       setStatus('sent');
       form.reset();
     } catch (err) {
       setStatus('error');
-      setError(err instanceof Error ? err.message : 'Slanje nije uspjelo.');
+      setError(err instanceof Error ? err.message : t('Slanje nije uspjelo.', 'Sending failed.'));
     }
   }
 
@@ -45,9 +56,9 @@ export default function ContactForm() {
     return (
       <div className="form-success" role="status">
         <CheckCircle2 size={48} />
-        <h3>Hvala, upit je poslan!</h3>
-        <p>Javit ćemo vam se u najkraćem roku, najčešće isti ili sljedeći radni dan. Kopiju upita smo poslali i na vaš email.</p>
-        <button className="btn btn-secondary" onClick={() => setStatus('idle')}>Pošalji novi upit</button>
+        <h3>{t('Hvala, upit je poslan!', 'Thank you, your inquiry has been sent!')}</h3>
+        <p>{t('Javit ćemo vam se u najkraćem roku, najčešće isti ili sljedeći radni dan. Kopiju upita smo poslali i na vaš email.', 'We will get back to you shortly, usually the same or the next working day. A copy of your inquiry has been sent to your email.')}</p>
+        <button className="btn btn-secondary" onClick={() => setStatus('idle')}>{t('Pošalji novi upit', 'Send another inquiry')}</button>
       </div>
     );
   }
@@ -55,24 +66,38 @@ export default function ContactForm() {
   return (
     <form className="contact-form" onSubmit={onSubmit} noValidate={false}>
       <fieldset className="field">
-        <legend>Šta vam treba? <span aria-hidden="true">*</span></legend>
+        <legend>{t('Upit se odnosi na', 'Your inquiry is about')} <span aria-hidden="true">*</span></legend>
         <div className="chips">
-          {SERVICE_OPTIONS.map(s => (
-            <label key={s} className={`chip ${services.includes(s) ? 'is-on' : ''}`}>
-              <input type="checkbox" checked={services.includes(s)} onChange={() => toggle(s)} />
-              {s}
+          {AREAS.map(a => (
+            <label key={a.id} className={`chip ${area === a.id ? 'is-on' : ''}`}>
+              <input type="radio" name="area" value={a.id} checked={area === a.id} onChange={() => setArea(a.id)} required />
+              {a[lang]}
             </label>
           ))}
         </div>
       </fieldset>
 
+      {area === 'Marketing' && (
+        <fieldset className="field">
+          <legend>{t('Koje usluge?', 'Which services?')} <small>{t('(opcionalno)', '(optional)')}</small></legend>
+          <div className="chips">
+            {SERVICES.map(s => (
+              <label key={s.slug} className={`chip ${services.includes(s.title) ? 'is-on' : ''}`}>
+                <input type="checkbox" checked={services.includes(s.title)} onChange={() => toggle(s.title)} />
+                {tr(s, lang).title}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+
       <div className="field-row">
         <label className="field">
-          <span>Ime i prezime <span aria-hidden="true">*</span></span>
+          <span>{t('Ime i prezime', 'Full name')} <span aria-hidden="true">*</span></span>
           <input name="name" required autoComplete="name" maxLength={120} />
         </label>
         <label className="field">
-          <span>Firma</span>
+          <span>{t('Firma', 'Company')}</span>
           <input name="company" autoComplete="organization" maxLength={120} />
         </label>
       </div>
@@ -82,20 +107,20 @@ export default function ContactForm() {
           <input name="email" type="email" required autoComplete="email" maxLength={160} />
         </label>
         <label className="field">
-          <span>Telefon <small>(opcionalno)</small></span>
+          <span>{t('Telefon', 'Phone')} <small>{t('(opcionalno)', '(optional)')}</small></span>
           <input name="phone" type="tel" autoComplete="tel" maxLength={40} />
         </label>
       </div>
       <label className="field">
-        <span>Okvirni budžet <small>(opcionalno)</small></span>
+        <span>{t('Okvirni budžet', 'Approximate budget')} <small>{t('(opcionalno)', '(optional)')}</small></span>
         <select name="budget" defaultValue="">
-          <option value="">Odaberite…</option>
-          {BUDGETS.map(b => <option key={b}>{b}</option>)}
+          <option value="">{t('Odaberite…', 'Choose…')}</option>
+          {BUDGETS.map(b => <option key={b[0]} value={b[0]}>{lang === 'en' ? b[1] : b[0]}</option>)}
         </select>
       </label>
       <label className="field">
-        <span>Poruka <span aria-hidden="true">*</span></span>
-        <textarea name="message" required rows={5} maxLength={5000} placeholder="Ukratko opišite projekat, rok i ciljeve." />
+        <span>{t('Poruka', 'Message')} <span aria-hidden="true">*</span></span>
+        <textarea name="message" required rows={5} maxLength={5000} placeholder={t('Ukratko opišite projekat, rok i ciljeve.', 'Briefly describe the project, timeline and goals.')} />
       </label>
 
       {/* Zamka za botove: skriveno od ljudi i čitača ekrana */}
@@ -105,13 +130,13 @@ export default function ContactForm() {
 
       <label className="consent">
         <input type="checkbox" name="consent" required />
-        <span>Slažem se da Bonaco Media koristi moje podatke kako bi odgovorila na upit. <Link to="/politika-privatnosti/">Politika privatnosti</Link></span>
+        <span>{t('Slažem se da Bonaco Media koristi moje podatke kako bi odgovorila na upit.', 'I agree that Bonaco Media may use my details to respond to my inquiry.')} <Link to={to('/politika-privatnosti/')}>{t('Politika privatnosti', 'Privacy policy')}</Link></span>
       </label>
 
-      {error && <p className="form-error" role="alert">{error}{status === 'error' && <> Možete nam pisati i direktno na <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</>}</p>}
+      {error && <p className="form-error" role="alert">{error}{status === 'error' && <> {t('Možete nam pisati i direktno na', 'You can also email us directly at')} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</>}</p>}
 
       <button className="btn btn-primary btn-lg" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Šaljem…' : 'Pošaljite upit'}
+        {status === 'sending' ? t('Šaljem…', 'Sending…') : t('Pošaljite upit', 'Send inquiry')}
       </button>
     </form>
   );

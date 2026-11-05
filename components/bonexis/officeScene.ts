@@ -22,7 +22,7 @@ const C = {
   copper: 0x936149, copperLight: 0xd9a385, metal: 0x1d1714, robot: 0xece4dc, chair: 0x231b16, plant: 0x5f8f5a,
   plant2: 0x4f7d4b, fabric: 0x5a3d2d, fabricDark: 0x4d3426, rug: 0x3f2a20, cream: 0xd8cbbd,
 };
-const GREEN = '#7fc79a', RED = '#e07a6a', AMBER = '#e3b55a', CU = '#d9a385', MUTED = '#8f817a', TXT = '#f4ede8';
+const GREEN = '#7fc79a', RED = '#e07a6a', AMBER = '#e3b55a', CU = '#3cc9c5', MUTED = '#8f817a', TXT = '#f4ede8';
 const SW = 360, SH = 230;
 
 type Ctx = CanvasRenderingContext2D;
@@ -37,7 +37,7 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     const days = ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned'], today = Math.floor(t * 0.4) % 7;
     days.forEach((d, k) => {
       const x = 18 + k * 47;
-      ctx.fillStyle = k === today ? 'rgba(217,163,133,0.35)' : 'rgba(244,237,232,0.07)'; ctx.fillRect(x, 46, 41, 30);
+      ctx.fillStyle = k === today ? 'rgba(60,201,197,0.35)' : 'rgba(244,237,232,0.07)'; ctx.fillRect(x, 46, 41, 30);
       ctx.fillStyle = k === today ? TXT : MUTED; ctx.font = '600 11px Poppins, sans-serif'; ctx.fillText(d, x + 8, 50);
       if (k % 2 === 0 || k === 3) { ctx.fillStyle = CU; ctx.beginPath(); ctx.arc(x + 20, 69, 3.5, 0, 7); ctx.fill(); }
     });
@@ -56,7 +56,7 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     const bad = new Set([2, 7, 11, 15]);
     for (let i = 0; i < n; i++) {
       const x = 18 + (i % cols) * (cw + 5), y = 52 + Math.floor(i / cols) * (ch + 6);
-      ctx.fillStyle = i === scan ? 'rgba(217,163,133,0.5)' : 'rgba(244,237,232,0.1)'; ctx.fillRect(x, y, cw, ch);
+      ctx.fillStyle = i === scan ? 'rgba(60,201,197,0.5)' : 'rgba(244,237,232,0.1)'; ctx.fillRect(x, y, cw, ch);
       ctx.fillStyle = 'rgba(244,237,232,0.18)'; ctx.fillRect(x + 5, y + 6, cw - 10, 6); ctx.fillRect(x + 5, y + 16, cw - 20, 4);
       if (i < scan) mark(ctx, x + cw - 16, y + ch - 20, !bad.has(i));
     }
@@ -74,7 +74,7 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       if (!w) return;
       const fill = Math.min(w, Math.max(0, (p - 0.25) * 1400 - i * 140));
       ctx.fillStyle = 'rgba(244,237,232,0.08)'; ctx.fillRect(18, 82 + i * 14, w, 6);
-      ctx.fillStyle = 'rgba(217,163,133,0.6)'; ctx.fillRect(18, 82 + i * 14, fill, 6);
+      ctx.fillStyle = 'rgba(60,201,197,0.6)'; ctx.fillRect(18, 82 + i * 14, fill, 6);
     });
     const done = p > 1.0;
     ctx.fillStyle = done ? AMBER : MUTED; ctx.font = '600 14px Poppins, sans-serif';
@@ -159,10 +159,10 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     const k = Math.floor(t * 0.9) % (items.length + 3), frac = (t * 0.9) % 1;
     items.forEach(([nm, st, col], i) => {
       const y = 74 + i * 28;
-      ctx.fillStyle = i === k ? 'rgba(217,163,133,0.16)' : 'rgba(244,237,232,0.05)'; ctx.fillRect(14, y - 5, 332, 25);
+      ctx.fillStyle = i === k ? 'rgba(60,201,197,0.16)' : 'rgba(244,237,232,0.05)'; ctx.fillRect(14, y - 5, 332, 25);
       ctx.fillStyle = TXT; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText(nm, 22, y);
       if (i < k) { ctx.fillStyle = col; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText(st, 160, y + 2); }
-      else if (i === k) { ctx.fillStyle = 'rgba(217,163,133,0.25)'; ctx.fillRect(160, y + 4, 170, 6); ctx.fillStyle = CU; ctx.fillRect(160, y + 4, 170 * frac, 6); }
+      else if (i === k) { ctx.fillStyle = 'rgba(60,201,197,0.25)'; ctx.fillRect(160, y + 4, 170, 6); ctx.fillStyle = CU; ctx.fillRect(160, y + 4, 170 * frac, 6); }
     });
     ctx.fillStyle = CU; ctx.font = '600 14px Poppins, sans-serif';
     ctx.fillText(k >= items.length ? 'Čeka ljudsku provjeru' : 'Provjera prema briefu…', 18, 196);
@@ -293,7 +293,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     const total = tw + gap + r * 2, s = Math.min(1, 960 / total), base = 128 + cap / 2;
     ctx.save(); ctx.translate(30, 0); ctx.scale(s, 1);
     ctx.fillStyle = '#f4ede8'; ctx.fillText('BONEXIS', 0, base);
-    ctx.fillStyle = '#936149'; ctx.beginPath(); ctx.arc(tw + gap + r, base - r, r, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#009d9a'; ctx.beginPath(); ctx.arc(tw + gap + r, base - r, r, 0, Math.PI * 2); ctx.fill();
     ctx.restore(); ctx.letterSpacing = '0px'; sign.tex.needsUpdate = true;
   };
   drawSign();
@@ -494,7 +494,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   const flow = canvasTex(128, 4);
   {
     const c = flow.ctx, gr = c.createLinearGradient(0, 0, 128, 0);
-    gr.addColorStop(0, '#3a2219'); gr.addColorStop(0.4, '#4e2f22'); gr.addColorStop(0.82, '#d9a385');
+    gr.addColorStop(0, '#3a2219'); gr.addColorStop(0.4, '#4e2f22'); gr.addColorStop(0.82, '#3cc9c5');
     gr.addColorStop(0.92, '#fff3e6'); gr.addColorStop(1, '#3a2219');
     c.fillStyle = gr; c.fillRect(0, 0, 128, 4);
   }
@@ -579,7 +579,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
       c.save(); c.translate(128, 128); c.rotate((k / 12) * Math.PI * 2);
       c.fillRect(-3, -112, 6, k % 3 ? 14 : 24); c.restore();
     }
-    c.fillStyle = '#936149'; c.font = '700 20px Syne, sans-serif'; c.textAlign = 'center'; c.fillText('BONEXIS', 128, 176);
+    c.fillStyle = '#009d9a'; c.font = '700 20px Syne, sans-serif'; c.textAlign = 'center'; c.fillText('BONEXIS', 128, 176);
   }
   const clockFace = new THREE.Mesh(G('clockFace', () => new THREE.CircleGeometry(0.42, 40)), basic({ map: clockTex.tex }));
   clockFace.position.z = 0.02; clockG.add(clockFace);
@@ -605,7 +605,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     c.fillStyle = GREEN; c.font = '600 20px Poppins, sans-serif'; c.fillText('▲ 18% u odnosu na juče', 26, 210);
     for (let k = 0; k < 6; k++) {
       const h = 40 + 70 * (0.5 + 0.5 * Math.sin(t * 0.9 + k * 1.4));
-      c.fillStyle = k % 2 ? CU : 'rgba(217,163,133,0.55)'; c.fillRect(318 + k * 28, 250 - h, 18, h);
+      c.fillStyle = k % 2 ? CU : 'rgba(60,201,197,0.55)'; c.fillRect(318 + k * 28, 250 - h, 18, h);
     }
     c.fillStyle = 'rgba(244,237,232,0.2)'; c.fillRect(312, 252, 170, 2);
     tv.tex.needsUpdate = true;
@@ -617,7 +617,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     const c = wb.ctx; c.fillStyle = '#ece6df'; c.fillRect(0, 0, 512, 280);
     c.fillStyle = '#2b221c'; c.font = '700 28px Syne, sans-serif'; c.textBaseline = 'top'; c.fillText('Q4 · rast klijenata', 24, 18);
     c.strokeStyle = 'rgba(43,34,28,0.35)'; c.lineWidth = 2; c.beginPath(); c.moveTo(30, 240); c.lineTo(330, 240); c.moveTo(30, 240); c.lineTo(30, 70); c.stroke();
-    [60, 85, 78, 110, 140, 165].forEach((v, k) => { c.fillStyle = k === 5 ? '#936149' : 'rgba(147,97,73,0.45)'; c.fillRect(48 + k * 46, 240 - v, 30, v); });
+    [60, 85, 78, 110, 140, 165].forEach((v, k) => { c.fillStyle = k === 5 ? '#009d9a' : 'rgba(0,157,154,0.45)'; c.fillRect(48 + k * 46, 240 - v, 30, v); });
     c.strokeStyle = '#4f7d4b'; c.lineWidth = 4; c.beginPath();
     [70, 80, 100, 120, 150, 185].forEach((v, k) => { const x = 63 + k * 46, y = 240 - v; if (k) c.lineTo(x, y); else c.moveTo(x, y); }); c.stroke();
     const note = (x: number, y: number, col: string, r: number) => { c.save(); c.translate(x, y); c.rotate(r); c.fillStyle = col; c.fillRect(0, 0, 120, 92); c.fillStyle = 'rgba(43,34,28,0.4)'; c.fillRect(14, 24, 80, 6); c.fillRect(14, 40, 64, 6); c.fillRect(14, 56, 72, 6); c.restore(); };
@@ -633,8 +633,8 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   const art = canvasTex(256, 320);
   {
     const c = art.ctx; c.fillStyle = '#2b221c'; c.fillRect(0, 0, 256, 320);
-    c.fillStyle = '#936149'; c.beginPath(); c.arc(128, 130, 80, 0, 7); c.fill();
-    c.fillStyle = '#d9a385'; c.beginPath(); c.arc(170, 200, 50, 0, 7); c.fill();
+    c.fillStyle = '#009d9a'; c.beginPath(); c.arc(128, 130, 80, 0, 7); c.fill();
+    c.fillStyle = '#3cc9c5'; c.beginPath(); c.arc(170, 200, 50, 0, 7); c.fill();
     c.strokeStyle = '#ece4dc'; c.lineWidth = 5; c.beginPath(); c.arc(100, 210, 60, Math.PI, Math.PI * 1.9); c.stroke();
   }
   const artG = new THREE.Group(); artG.position.set(-S / 2 + 0.03, 2.35, 4.4); artG.rotation.y = Math.PI / 2; world.add(artG);
@@ -826,7 +826,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
         ctx.clearRect(0, 0, SW, SH);
         ctx.fillStyle = 'rgba(22,16,13,0.94)'; rr(ctx, 2, 2, SW - 4, SH - 4, 16);
         ctx.fill();
-        ctx.strokeStyle = on ? CU : 'rgba(217,163,133,0.45)'; ctx.lineWidth = on ? 4 : 2; ctx.stroke();
+        ctx.strokeStyle = on ? CU : 'rgba(60,201,197,0.45)'; ctx.lineWidth = on ? 4 : 2; ctx.stroke();
         const persona = opts.personas?.[i];
         ctx.fillStyle = CU; ctx.font = '700 22px Syne, sans-serif'; ctx.textBaseline = 'top'; ctx.fillText(persona ?? opts.agentNames[i], 18, 14);
         if (persona) {

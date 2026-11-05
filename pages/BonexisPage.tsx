@@ -1,17 +1,18 @@
+// /bonexis/: do januara 2027. najava (pet kapsula, U razvoju, Bonaco × QLA.dev) prema briefu v1.3.
+// Dosadašnji demo (Ben chat, scenariji, 3D AI tim, dashboard) uključuje se s BONEXIS_DEMO_PUBLIC.
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { BonexisCapsules } from '../components/Circles';
 import BonexisSection from '../components/bonexis/BonexisSection';
 import BonexisDashboard from '../components/bonexis/BonexisDashboard';
 import { BONEXIS_AGENTS, BONEXIS_TAGLINE, CAPSULES, CORE_FEATURES, PRINCIPLES } from '../data/bonexis';
+import { BONEXIS_DEMO_PUBLIC } from '../data/capsules';
+import { useLang } from '../lib/i18n';
 
-export default function BonexisPage() {
+function BonexisDemo() {
   return (
     <>
-      <SEO
-        title="Bonexis – marketing CRM s AI agentima"
-        description="Bonexis je marketing CRM sa sedam AI kapsula: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, kapacitet, kontrola isporuke i revizija rada. Svaku kapsulu vodi owner agent."
-      />
-      <BonexisSection headingLevel="h1" page />
+      <BonexisSection page />
 
       {/* Dashboard */}
       <section className="bxd-section" id="dashboard">
@@ -49,7 +50,7 @@ export default function BonexisPage() {
                   </p>
                   <p>{owner.desc}</p>
                   <ul className="check-list">{owner.list.map(l => <li key={l}>{l}</li>)}</ul>
-                  <Link to={`/#scenarij-${owner.persona.toLowerCase()}`} className="text-link">Pogledajte scenarij</Link>
+                  <Link to={`/bonexis/#scenarij-${owner.persona.toLowerCase()}`} className="text-link">Pogledajte scenarij</Link>
                 </article>
               );
             })}
@@ -77,15 +78,36 @@ export default function BonexisPage() {
           </div>
         </div>
       </section>
+    </>
+  );
+}
+
+export default function BonexisPage() {
+  const { lang, t, to } = useLang();
+  return (
+    <>
+      <SEO
+        title={t('Bonexis – AI rješenja za vaš tim (uskoro)', 'Bonexis – AI solutions for your team (coming soon)')}
+        description={t(
+          'Bonexis by Bonaco × QLA.dev: pet AI kapsula za web, sadržaj i SEO, leadove, planiranje kapaciteta, kontrolu isporuke i reviziju rada. U razvoju, predstavljanje januar 2027.',
+          'Bonexis by Bonaco × QLA.dev: five AI capsules for web, content and SEO, leads, capacity planning, delivery control and work audit. In development, launching January 2027.',
+        )}
+      />
+      <BonexisCapsules page />
+
+      {BONEXIS_DEMO_PUBLIC && lang === 'bs' && <BonexisDemo />}
 
       <section className="section cta-section">
         <div className="container cta-inner">
           <div>
-            <h2>Bonexis za vašu firmu</h2>
-            <p>Bonexis razvijamo s partnerom QLA.dev. Javite se za demo i pilot, pa ćemo zajedno odabrati kapsule koje vašoj firmi trebaju.</p>
+            <h2>{t('Budite među prvima', 'Be among the first')}</h2>
+            <p>{t(
+              'Bonexis razvijamo s partnerom QLA.dev. Ostavite kontakt i javit ćemo vam se kada krene predstavljanje i pilot za firme.',
+              'We are building Bonexis with our partner QLA.dev. Leave your details and we will get in touch when the launch and company pilot begin.',
+            )}</p>
           </div>
           <div className="btn-row">
-            <Link to="/kontakt/?usluga=Bonexis" className="btn btn-primary">Prijavite se za demo</Link>
+            <Link to={`${to('/kontakt/')}?usluga=Bonexis`} className="btn btn-primary">{t('Prijavite se', 'Sign up')}</Link>
           </div>
         </div>
       </section>

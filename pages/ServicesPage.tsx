@@ -1,52 +1,77 @@
+// Marketing: usluge full-service agencije, proces, istaknuti radovi i kontakt (URL /nase-usluge/ zadržan radi SEO).
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import { CTASection, SectionHead } from '../components/Blocks';
+import { CTASection } from '../components/Blocks';
+import { WorkCircles } from '../components/Circles';
+import ServiceIcon from '../components/ServiceIcon';
 import { SERVICES, STEPS } from '../data/services';
+import { tr, useLang } from '../lib/i18n';
 
 export default function ServicesPage() {
+  const { lang, t, to } = useLang();
   return (
     <>
-      <SEO title="Usluge" description="Vođenje društvenih mreža, SEO optimizacija, web i grafički dizajn, event management te fotografisanje i snimanje. Personalizirana strategija za vaš brend." />
+      <SEO
+        title="Marketing"
+        description={t(
+          'Strategija i kampanje, društvene mreže, grafički dizajn i branding, foto i video, web dizajn, SEO i OOH/DOOH oglašavanje. Full-service marketing za vaš brend.',
+          'Strategy and campaigns, social media, graphic design and branding, photo and video, web design, SEO and OOH/DOOH advertising. Full-service marketing for your brand.',
+        )}
+      />
       <section className="page-hero">
         <div className="container">
-          <span className="eyebrow">Usluge</span>
-          <h1>Šta radimo</h1>
-          <p className="lead">Na osnovu vaših ciljeva razvijamo strategiju koja donosi rezultate u digitalnom marketingu, i onlajn i na događajima.</p>
+          <span className="eyebrow">Marketing</span>
+          <h1>{t('Sve za vaš brend na jednom mjestu', 'Everything your brand needs in one place')}</h1>
+          <p className="lead">{t(
+            'Bonaco je full-service marketinška agencija: na osnovu vaših ciljeva gradimo strategiju i izvodimo je kroz kreativu, produkciju i digital.',
+            'Bonaco is a full-service marketing agency: we build a strategy from your goals and deliver it through creative, production and digital.',
+          )}</p>
         </div>
       </section>
       <section className="section">
         <div className="container services-list">
-          {SERVICES.map((s, i) => (
-            <article key={s.slug} id={s.slug} className="service-row">
-              <span className="service-num">{String(i + 1).padStart(2, '0')}</span>
-              <div>
-                <h2>{s.title}</h2>
-                <p>{s.text}</p>
-              </div>
-              <Link to={`/kontakt/?usluga=${encodeURIComponent(s.title)}`} className="btn btn-secondary btn-sm">Zatražite ponudu</Link>
-            </article>
-          ))}
-          <article id="bonexis" className="service-row service-row-accent">
-            <span className="service-num">AI</span>
-            <div>
-              <h2>Bonexis, marketing CRM s AI agentima</h2>
-              <p>Klijenti, kampanje i rokovi na jednom mjestu, a posao vode owner agenti sedam AI kapsula: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, kapacitet, isporuka i revizija rada.</p>
-            </div>
-            <Link to="/bonexis/" className="btn btn-primary btn-sm">Upoznajte Bonexis</Link>
-          </article>
+          {SERVICES.map(s => {
+            const x = tr(s, lang);
+            return (
+              <article key={s.slug} id={s.slug} className="service-row">
+                <span className="service-num svc-dot"><ServiceIcon slug={s.slug} size={22} /></span>
+                <div>
+                  <h2>{x.title}</h2>
+                  <p>{x.text}</p>
+                </div>
+                <Link to={`${to('/kontakt/')}?usluga=${encodeURIComponent(s.title)}`} className="btn btn-secondary btn-sm">{t('Zatražite ponudu', 'Request a quote')}</Link>
+              </article>
+            );
+          })}
         </div>
       </section>
       <section className="section light">
         <div className="container">
-          <SectionHead eyebrow="Kako radimo" title="Tri koraka do rezultata" />
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">{t('Kako radimo', 'How we work')}</span>
+              <h2>{t('Tri koraka do rezultata', 'Three steps to results')}</h2>
+            </div>
+          </div>
           <ol className="steps">
-            {STEPS.map((s, i) => (
-              <li key={s.title}><span className="step-num">{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>
-            ))}
+            {STEPS.map((s, i) => {
+              const x = tr(s, lang);
+              return <li key={s.title}><span className="step-num">{i + 1}</span><h3>{x.title}</h3><p>{x.text}</p></li>;
+            })}
           </ol>
         </div>
       </section>
-      <CTASection />
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <h2>{t('Istaknuti radovi', 'Featured work')}</h2>
+            <Link to={to('/portfolio/')} className="text-link">{t('Svi radovi', 'All work')} <ArrowRight size={16} /></Link>
+          </div>
+          <WorkCircles limit={4} />
+        </div>
+      </section>
+      <CTASection inquiry="Marketing" />
     </>
   );
 }

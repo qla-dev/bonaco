@@ -17,6 +17,7 @@ export const PROJECTS: Project[] = [
     results: [],
     mockup: '/img/projects/summer-lounge/mockup.webp',
     gallery: 'summer-lounge',
+    en: { title: 'Summer season at Plato Skenderija', coverAlt: 'DJ set and crowd at a Summer Lounge event', summary: 'Visuals announcing performances, social media management and event photography throughout the season.', task: 'Announce the summer line-up and keep a recognisable visual identity across the whole season.', work: ['Design of announcements for performances and events', 'Instagram profile management', 'Event photography'] },
   },
   {
     slug: 'beautyco',
@@ -32,6 +33,7 @@ export const PROJECTS: Project[] = [
     mockup: '/img/projects/beautyco/mockup.webp',
     gallery: 'beautyco',
     testimonial: 'beautyco',
+    en: { title: 'Online presence for a cosmetics store', coverAlt: 'BeautyCO cosmetics photographed on a wooden surface', summary: 'New web design for the retailer, social media management and product photography.', task: 'Strengthen the online presence of a cosmetics retailer.', work: ['Website design and development', 'Social media management', 'Product photography'] },
   },
   {
     slug: 'rooms-hr',
@@ -46,6 +48,7 @@ export const PROJECTS: Project[] = [
     results: [],
     url: 'https://www.rooms.hr/',
     testimonial: 'rooms',
+    en: { title: 'A brand for a tourism start-up', coverAlt: 'ROOMS.hr visuals and app screens', summary: 'Building a recognisable brand and digital marketing for a booking platform.', task: 'As a new start-up, stand out in a competitive market and build a user base.', work: ['Graphic design and visual identity', 'Digital marketing', 'Social media content'] },
   },
   {
     slug: 'bh-travel',
@@ -59,6 +62,7 @@ export const PROJECTS: Project[] = [
     work: ['Fotografisanje vozila na lokaciji', 'Obrada fotografija za web i mreže'],
     results: [],
     gallery: 'bh-travel',
+    en: { title: 'Fleet photography', coverAlt: 'Black BH Travel Mercedes vehicles in front of a hotel', summary: 'Professional vehicle photography for the website and social media.', task: 'Present a premium fleet through high-quality photography.', work: ['On-location vehicle photography', 'Photo editing for web and social media'] },
   },
   {
     slug: 'bunjo-grupacija',
@@ -72,6 +76,7 @@ export const PROJECTS: Project[] = [
     work: ['Dizajn i izrada web stranice', 'Prilagodba za mobitele i tablete'],
     results: [],
     url: 'https://bunjo.ba/',
+    en: { title: 'Group website', coverAlt: 'Bunjo Group website on a desktop, laptop and phone', summary: 'A modern website that works on every device.', task: 'Present the group and its long tradition through a modern website.', work: ['Website design and development', 'Adaptation for phones and tablets'] },
   },
   {
     slug: 'max-media',
@@ -85,7 +90,12 @@ export const PROJECTS: Project[] = [
     work: ['Dizajn i izrada web stranice', 'Prilagodba za sve uređaje'],
     results: [],
     url: 'https://maxmedia.ba/',
+    en: { title: 'Website for outdoor advertising', coverAlt: 'Max Media website on a desktop, laptop and phone', summary: 'A website that clearly presents billboards and advertising spaces.', task: 'Present the available advertising spaces in a clear, easy-to-browse way.', work: ['Website design and development', 'Adaptation for all devices'] },
   },
 ];
 
 export const CATEGORIES = ['Sve', 'Društvene mreže', 'Web dizajn', 'Grafički dizajn', 'Foto i video', 'Event'];
+
+export const CATEGORY_EN: Record<string, string> = {
+  Sve: 'All', 'Društvene mreže': 'Social media', 'Web dizajn': 'Web design', 'Grafički dizajn': 'Graphic design', 'Foto i video': 'Photo and video', Event: 'Events',
+};

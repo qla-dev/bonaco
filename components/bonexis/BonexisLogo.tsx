@@ -1,4 +1,4 @@
-// Bonexis wordmark po uzoru na BONACO logo: velika slova (Outfit 700) i okrugla bakarna tačka.
+// Bonexis wordmark (bez podnaslova) – isti DNK kao BrandLogo, tačka u boji Bonexisa.
 export default function BonexisLogo({ className = '' }: { className?: string }) {
   return (
     <span className={`bonexis-logo ${className}`}>

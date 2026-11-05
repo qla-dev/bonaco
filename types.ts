@@ -19,6 +19,7 @@ export interface Service {
   title: string;
   short: string;
   text: string;
+  en?: { title: string; short: string; text: string };
 }
 
 export interface Project {
@@ -40,6 +41,8 @@ export interface Project {
   gallery?: string;
   video?: string;
   testimonial?: string;
+  /** Engleski prijevod tekstualnih polja */
+  en?: { title: string; coverAlt: string; summary: string; task: string; work: string[]; results?: string[] };
 }
 
 export interface Testimonial {
