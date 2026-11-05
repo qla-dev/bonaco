@@ -41,11 +41,40 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
   camera.position.set(0, 0, 10);
 
+  // Kostur sfere je uvijek u istom, savršenom položaju (atom); kreću se samo logotipi po prstenovima.
   const root = new THREE.Group();
-  root.rotation.set(0.28, 0, 0);
   scene.add(root);
   const disposables: { dispose(): void }[] = [];
   const track = <T extends { dispose(): void }>(x: T) => { disposables.push(x); return x; };
+
+  // Blago lebdeće čestice u pozadini (nezavisne od sfere)
+  const P = 260;
+  const pPos = new Float32Array(P * 3), pCol = new Float32Array(P * 3), pVel = new Float32Array(P);
+  const accentCol = new THREE.Color(opts.accent);
+  for (let i = 0; i < P; i++) {
+    pPos[i * 3] = (Math.random() - 0.5) * 22;
+    pPos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+    pPos[i * 3 + 2] = -2 - Math.random() * 8;
+    pVel[i] = 0.08 + Math.random() * 0.22;
+    const c = Math.random() < 0.18 ? accentCol : new THREE.Color(0xffffff);
+    pCol.set([c.r, c.g, c.b], i * 3);
+  }
+  const pGeo = track(new THREE.BufferGeometry());
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+  const pMat = track(new THREE.PointsMaterial({ size: 0.05, vertexColors: true, transparent: true, opacity: 0.5, depthWrite: false, sizeAttenuation: true }));
+  scene.add(new THREE.Points(pGeo, pMat));
+  let pT = 0;
+  const driftParticles = (dt: number) => {
+    pT += dt;
+    for (let i = 0; i < P; i++) {
+      let y = pPos[i * 3 + 1] + pVel[i] * dt;
+      if (y > 7) y = -7;
+      pPos[i * 3 + 1] = y;
+      pPos[i * 3] += Math.sin(pT * 0.4 + i) * 0.0015;
+    }
+    pGeo.attributes.position.needsUpdate = true;
+  };
 
   // Jedva vidljiva mreža sfere
   const sphereGeo = track(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(R * 0.985, 2)));
@@ -118,7 +147,8 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
 
   // ---- Interakcija: prevlačenje okreće sferu, klik otvara projekat ----
   let paused = opts.reduce;
-  let dragging = false, moved = 0, lastX = 0, lastY = 0, vx = 0, vy = 0, idle = 0;
+  // prevlačenje lijevo/desno ubrzava ili okreće tok logotipa (boost), kostur ostaje miran
+  let dragging = false, moved = 0, lastX = 0, lastY = 0, boost = 0;
   let hovered: THREE.Sprite | null = null;
   const ray = new THREE.Raycaster();
   const ndc = new THREE.Vector2();
@@ -132,7 +162,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     return (hit?.object as THREE.Sprite) ?? null;
   };
   const onDown = (e: PointerEvent) => {
-    dragging = true; moved = 0; lastX = e.clientX; lastY = e.clientY; vx = vy = 0;
+    dragging = true; moved = 0; lastX = e.clientX; lastY = e.clientY;
     canvas.setPointerCapture(e.pointerId);
     canvas.classList.add('dragging');
     wake();
@@ -142,10 +172,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       const dx = e.clientX - lastX, dy = e.clientY - lastY;
       lastX = e.clientX; lastY = e.clientY;
       moved += Math.abs(dx) + Math.abs(dy);
-      vx = dx * 0.006; vy = dy * 0.004;
-      root.rotation.y += vx;
-      root.rotation.x = Math.max(-0.9, Math.min(0.9, root.rotation.x + vy));
-      idle = 0;
+      boost = THREE.MathUtils.clamp(boost + dx * 0.04, -6, 6);
       wake();
       return;
     }
@@ -227,18 +254,12 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   const frame = (t: number) => {
     const dt = Math.min(0.05, (t - (last || t)) / 1000);
     last = t;
-    if (!dragging) {
-      vx *= 0.94; vy *= 0.94;
-      root.rotation.y += vx;
-      root.rotation.x = Math.max(-0.9, Math.min(0.9, root.rotation.x + vy));
-      idle += dt;
-    }
-    if (!paused) {
-      spinners.forEach(s => { s.g.rotation.z += s.speed * dt; });
-      if (!dragging && idle > 1.5) root.rotation.y += 0.06 * dt;
-    }
+    if (!dragging) boost *= Math.pow(0.12, dt); // tok se nakon prevlačenja vraća na normalnu brzinu
+    const flow = paused ? 0 : 1;
+    spinners.forEach(s => { s.g.rotation.z += (s.speed * flow + Math.sign(s.speed) * boost * 0.25) * dt; });
+    if (!paused) driftParticles(dt);
     render();
-    const settled = paused && !dragging && Math.abs(vx) < 1e-4 && Math.abs(vy) < 1e-4 && !hovered;
+    const settled = paused && !dragging && Math.abs(boost) < 1e-3 && !hovered;
     if (settled && !fading && pending <= 0) { running = false; last = 0; return; }
     raf = requestAnimationFrame(frame);
   };

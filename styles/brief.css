@@ -367,3 +367,34 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
   html.menu-open .mobile-cta { display: none; }
   .site-footer { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 }
+
+/* Tačka na B.: manji, nježniji sjaj u ritmu otkucaja */
+@keyframes dot-beat {
+  0%, 55%, 100% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in srgb, var(--bonaco) 0%, transparent); }
+  12% { transform: scale(1.2); box-shadow: 0 0 0 0.05em color-mix(in srgb, var(--bonaco) 30%, transparent); }
+  36% { transform: scale(1.1); box-shadow: 0 0 0 0.08em color-mix(in srgb, var(--bonaco) 10%, transparent); }
+}
+
+/* Hero: na PC-u tekst lijevo, sfera desno; na telefonu sfera iznad teksta */
+.hv-grid { display: grid; grid-template-columns: 1fr; }
+.hv.hv-orbit .hv-stage { margin: 0 calc(var(--gutter) * -1); }
+@media (min-width: 861px) {
+  .hv.hv-orbit { display: flex; align-items: center; min-height: min(100svh, 940px); }
+  .hv-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(24px, 4vw, 64px); }
+  .hv.hv-orbit .hv-stage { order: 2; margin: 0 calc(max(0px, (100vw - var(--container)) / 2) * -1 - var(--gutter)) 0 0; height: min(76svh, 720px); }
+  .hv-below { order: 1; text-align: left; align-items: flex-start; }
+  .hv-below .hv-lead { margin-left: 0; }
+  .hv-below .btn-row { justify-content: flex-start; }
+  .hv.hv-orbit .hv-below h1 { margin-left: 0; max-width: 11ch; font-size: clamp(48px, 5.6vw, 92px); }
+  .hv-orbit .hv-pause { top: 12px; right: var(--gutter); }
+  .hv-sphere-label { bottom: 4%; }
+}
+/* naglašena riječ: narandžasta sa shimmerom */
+.hv h1 .shimmer {
+  font-style: normal;
+  background: linear-gradient(100deg, var(--bonaco) 0%, var(--bonaco) 34%, #ffd7b5 47%, #ffb27a 53%, var(--bonaco) 66%, var(--bonaco) 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 4.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .hv h1 .shimmer { animation: none; background-position: 100% 0; } }

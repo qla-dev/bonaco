@@ -57,7 +57,7 @@ function HeroSphere({ paused }: { paused: boolean }) {
 }
 
 export default function HeroVideo() {
-  const { t, to } = useLang();
+  const { lang, t, to } = useLang();
   const reduce = useReducedMotion();
   const [paused, setPaused] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
@@ -69,7 +69,10 @@ export default function HeroVideo() {
     if (paused) v.pause(); else v.play().catch(() => setPaused(true));
   }, [paused]);
 
-  const title = <h1>{t('Ideje koje pokreću brendove.', 'Ideas that move brands.')}</h1>;
+  // jedna riječ u boji brenda sa shimmerom
+  const title = lang === 'en'
+    ? <h1>Ideas that <em className="shimmer">move</em> brands.</h1>
+    : <h1>Ideje koje <em className="shimmer">pokreću</em> brendove.</h1>;
   const below = (
     <>
       <p className="hv-lead">
@@ -94,15 +97,17 @@ export default function HeroVideo() {
   if (!hasVideo) {
     return (
       <section className={`hv hv-orbit ${paused ? 'is-paused' : ''}`} aria-label="Bonaco Media">
-        <div className="hv-stage">
-          <HeroSphere paused={paused} />
-          <div className="hv-center" aria-hidden="true"><span className="hv-b">B<i /></span></div>
-          {pauseBtn}
-        </div>
-        <div className="container hv-below">
-          {title}
-          {below}
-          <p className="hv-hint" aria-hidden="true">{t('Prevucite sferu da je okrenete', 'Drag the sphere to turn it')}</p>
+        <div className="container hv-grid">
+          <div className="hv-stage">
+            <HeroSphere paused={paused} />
+            <div className="hv-center" aria-hidden="true"><span className="hv-b">B<i /></span></div>
+            {pauseBtn}
+          </div>
+          <div className="hv-below">
+            {title}
+            {below}
+            <p className="hv-hint" aria-hidden="true">{t('Prevucite lijevo ili desno da ubrzate tok', 'Drag left or right to speed up the flow')}</p>
+          </div>
         </div>
       </section>
     );
