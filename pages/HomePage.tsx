@@ -55,7 +55,7 @@ export default function HomePage() {
       <BonEventsBlock />
 
       {/* O nama i kontakt */}
-      <section className="section">
+      <section className="section end-section">
         <div className="container end-grid">
           <article className="end-card">
             <span className="eyebrow">{t('O nama', 'About us')}</span>

@@ -277,3 +277,6 @@ html.menu-open, html.menu-open body { overflow: hidden; overscroll-behavior: non
 html.menu-open body { position: fixed; inset: 0; width: 100%; }
 .site-header.is-open { position: fixed; top: 0; left: 0; right: 0; background: var(--bg); }
 .mobile-menu { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.end-section { border-top: 1px solid var(--line); }
+@media (max-width: 900px) { .bxc-orbit { scrollbar-width: none; } .bxc-orbit::-webkit-scrollbar { display: none; } }
+.marquee.is-paused .mq-row { scrollbar-width: none; }
