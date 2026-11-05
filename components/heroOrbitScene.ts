@@ -5,7 +5,7 @@ import * as THREE from 'three';
 
 export interface OrbitItem { src: string; href: string | null; label: string }
 export interface OrbitHandle { destroy(): void; setPaused(p: boolean): void }
-interface Opts { accent: string; reduce: boolean; onPick(href: string): void; onHover?(label: string | null): void }
+interface Opts { accent: string; reduce: boolean; onPick(href: string): void; onHover?(label: string | null): void; /** HTML element u sredini ("B.") preko kojeg logotipi ne smiju prelaziti */ obstacle?: HTMLElement | null }
 
 const R = 3.2;
 
@@ -127,7 +127,8 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     const r = canvas.getBoundingClientRect();
     ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
     ray.setFromCamera(ndc, camera);
-    const hit = ray.intersectObjects(sprites, false)[0];
+    // skriveni (preklopljeni) logotipi se ne mogu kliknuti
+    const hit = ray.intersectObjects(sprites, false).find(h => (h.object as THREE.Sprite).userData.shown > 0.5);
     return (hit?.object as THREE.Sprite) ?? null;
   };
   const onDown = (e: PointerEvent) => {
@@ -188,12 +189,35 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   ro.observe(canvas);
 
   // ---- Petlja: radi samo kad je hero vidljiv i tab aktivan ----
+  // Bez preklapanja: logotipi se poredaju od najbližeg prema najdaljem; onaj koji bi na ekranu
+  // prekrio bližeg (ili "B." u sredini) postepeno nestaje i vraća se kad se oslobodi mjesto.
   const tmp = new THREE.Vector3();
+  const tanHalf = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  let fading = false;
   function render() {
-    sprites.forEach(s => {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    const placed: { x: number; y: number; r: number }[] = [];
+    const ob = opts.obstacle?.getBoundingClientRect(), cr = canvas.getBoundingClientRect();
+    if (ob && ob.width) placed.push({ x: ob.left + ob.width / 2 - cr.left, y: ob.top + ob.height / 2 - cr.top, r: Math.max(ob.width, ob.height) * 0.5 });
+    const list = sprites.map(s => {
       s.getWorldPosition(tmp);
-      const depth = THREE.MathUtils.clamp((tmp.z + R) / (2 * R), 0, 1);
-      (s.material as THREE.SpriteMaterial).opacity = 0.35 + 0.65 * depth;
+      const z = tmp.z;
+      const px = (h / 2) / (tanHalf * (camera.position.z - z));
+      const rad = (s.scale.x * root.scale.x / 2) * px;
+      tmp.project(camera);
+      return { s, z, x: (tmp.x + 1) / 2 * w, y: (1 - tmp.y) / 2 * h, r: rad };
+    }).sort((a, b) => b.z - a.z);
+    fading = false;
+    list.forEach(({ s, z, x, y, r }) => {
+      const free = placed.every(p => Math.hypot(p.x - x, p.y - y) > (p.r + r) * 1.04);
+      if (free) placed.push({ x, y, r });
+      const depth = THREE.MathUtils.clamp((z + R) / (2 * R), 0, 1);
+      const want = free ? 1 : 0;
+      const shown = THREE.MathUtils.lerp(s.userData.shown ?? want, want, 0.18);
+      s.userData.shown = Math.abs(shown - want) < 0.01 ? want : shown;
+      if (s.userData.shown !== want) fading = true;
+      s.visible = s.userData.shown > 0.01;
+      (s.material as THREE.SpriteMaterial).opacity = (0.45 + 0.55 * depth) * s.userData.shown;
       const target = s.userData.base * (s === hovered ? 1.15 : 1);
       s.scale.setScalar(THREE.MathUtils.lerp(s.scale.x, target, 0.25));
     });
@@ -215,7 +239,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     }
     render();
     const settled = paused && !dragging && Math.abs(vx) < 1e-4 && Math.abs(vy) < 1e-4 && !hovered;
-    if (settled && pending <= 0) { running = false; last = 0; return; }
+    if (settled && !fading && pending <= 0) { running = false; last = 0; return; }
     raf = requestAnimationFrame(frame);
   };
   function wake() {

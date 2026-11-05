@@ -38,6 +38,7 @@ function HeroSphere({ paused }: { paused: boolean }) {
         reduce,
         onPick: href => navigate(href),
         onHover: setLabel,
+        obstacle: canvas.current.parentElement?.querySelector<HTMLElement>('.hv-b'),
       });
       setReady(true);
     }).catch(() => {});
@@ -92,7 +93,7 @@ export default function HeroVideo() {
 
   if (!hasVideo) {
     return (
-      <section className="hv hv-orbit" aria-label="Bonaco Media">
+      <section className={`hv hv-orbit ${paused ? 'is-paused' : ''}`} aria-label="Bonaco Media">
         <div className="hv-stage">
           <HeroSphere paused={paused} />
           <div className="hv-center" aria-hidden="true"><span className="hv-b">B<i /></span></div>
