@@ -20,7 +20,7 @@ export const agentRing = (n: number): P[] => {
       const a = -Math.PI / 2 + (i / n) * Math.PI * 2 + (r() - 0.5) * 0.5;
       const d = 0.26 + r() * 0.14;
       const p = { x: Math.cos(a) * d * 1.1, y: Math.sin(a) * d * 0.88 };
-      if (out.every(q => Math.hypot(q.x - p.x, q.y - p.y) > 0.17) || k === 59) { out.push(p); break; }
+      if (out.every(q => Math.hypot(q.x - p.x, q.y - p.y) > 0.2) || k === 59) { out.push(p); break; }
     }
   }
   return out;
@@ -40,8 +40,10 @@ export function startBrain(canvas: HTMLCanvasElement, opts: { agents: P[]; ben: 
   const r = seeded(29);
   type N = P & { a: number; ph: number; len: number; dend: number[]; size: number };
   const outer: N[] = [];
-  for (let tries = 0; outer.length < 20 && tries < 4000; tries++) {
-    const a = r() * Math.PI * 2, d = 0.42 + r() * 0.24;
+  const SECTORS = 22;
+  for (let tries = 0; outer.length < SECTORS && tries < 4000; tries++) {
+    // ravnomjerno po sektorima oko Bena (svaki sektor jedan neuron), uz malo odstupanje
+    const sector = outer.length, a = (sector / SECTORS) * Math.PI * 2 + (r() - 0.5) * 0.22, d = 0.44 + r() * 0.2;
     const p = { x: Math.cos(a) * d * 1.05, y: Math.sin(a) * d * 0.82 };
     const clash = [...outer, ...opts.agents, opts.ben].some(q => Math.hypot(q.x - p.x, q.y - p.y) < 0.11);
     if (clash) continue;

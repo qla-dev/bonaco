@@ -72,3 +72,8 @@
 .brain { z-index: 1; }
 .brain canvas { inset: auto; left: -48%; top: -10%; width: 156%; height: 122%; pointer-events: none; }
 @media (max-width: 960px) { .brain canvas { left: -6%; top: -12%; width: 112%; height: 120%; } }
+
+/* Mobitel: misao agenta uvijek unutar ekrana, iznad mreže */
+@media (max-width: 560px) {
+  .brain .thought { left: 50% !important; top: 4px !important; transform: translateX(-50%) !important; max-width: 86%; text-align: center; }
+}
