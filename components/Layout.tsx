@@ -2,11 +2,14 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header, { brandOf } from './Header';
 import Footer from './Footer';
+import MobileCta from './MobileCta';
 import { langOf } from '../lib/i18n';
+import { useScrollFx } from '../lib/scrollfx';
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
   const lang = langOf(pathname);
+  useScrollFx(pathname);
 
   // Na novu stranicu kreni od vrha; za /#sekcija skroluj do sekcije
   useEffect(() => {
@@ -31,6 +34,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <MobileCta />
     </>
   );
 }

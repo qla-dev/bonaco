@@ -338,3 +338,32 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
 }
 .hv-orbit.is-paused .hv-b, .hv-orbit.is-paused .hv-b i { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .hv-b, .hv-b i { animation: none; } }
+
+/* ---------- Animacije na skrol (lib/scrollfx.ts) ---------- */
+.rv { opacity: 0; transform: translate3d(var(--rv-x, 0), var(--rv-y, 44px), 0) scale(var(--rv-s, 1)); transition: opacity 0.8s cubic-bezier(.2, .7, .2, 1) var(--rv-d, 0ms), transform 0.95s cubic-bezier(.2, .7, .2, 1) var(--rv-d, 0ms); }
+.rv.rv-in { opacity: 1; transform: none; }
+.rv-left { --rv-x: -64px; --rv-y: 0; }
+.rv-right { --rv-x: 64px; --rv-y: 0; }
+.rv-zoom { --rv-s: 0.88; --rv-y: 28px; }
+.rv-fade { --rv-y: 16px; }
+@media (max-width: 760px) { .rv-left { --rv-x: -32px; } .rv-right { --rv-x: 32px; } }
+/* parallax: slike unutar krugova/kartica malo veće da pomjeranje ne otkrije ivicu */
+.px { will-change: translate; }
+.wc-circle img.px, .project-media img.px, .bev-hero img.px, .bev-ref-circle img.px { scale: 1.16; }
+.project-card:hover .project-media img.px { transform: scale(1.04); }
+
+/* ---------- Fiksni CTA na dnu (telefon) ---------- */
+.mobile-cta { display: none; }
+@media (max-width: 760px) {
+  .mobile-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: flex; gap: 10px;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+    background: rgba(12, 12, 12, 0.82); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-top: 1px solid var(--line);
+    transform: translateY(110%); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1);
+  }
+  .mobile-cta.is-on { transform: none; }
+  .mobile-cta .btn { flex: 1 1 0; min-width: 0; min-height: 50px; padding: 12px 8px; font-size: 15px; white-space: nowrap; }
+  html.menu-open .mobile-cta { display: none; }
+  .site-footer { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+}
