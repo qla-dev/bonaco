@@ -161,8 +161,8 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
           <Heading className="bxc-title"><BrandLogo brand="bonexis" /></Heading>
           <p className="lead">
             {t(
-              'Pet AI kapsula koje vašem timu skidaju ručni posao s weba, prodaje, planiranja, isporuke i kontrole kvaliteta. Svaku kapsulu firma aktivira po potrebi, a odluke uvijek ostaju na ljudima.',
-              'Five AI capsules that take manual work off your team across web, sales, planning, delivery and quality control. A company activates the capsules it needs, and decisions always stay with people.',
+              'Marketing CRM sa sedam AI kapsula: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, kapacitet, kontrola isporuke i revizija rada. Svaku kapsulu vodi njen owner agent, a odluke uvijek ostaju na vama.',
+              'A marketing CRM with seven AI capsules: social media, SEO audit, blog, leads with an AI assistant, capacity, delivery control and work audit. Each capsule is run by its owner agent, and decisions always stay with you.',
             )}
           </p>
         </div>
@@ -191,6 +191,7 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
           <div className="bxc-panel" role="tabpanel" id="kapsula-panel" aria-labelledby={`kapsula-${c.id}`} key={c.id}>
             <span className="bxc-n">{t('Kapsula', 'Capsule')} {sel + 1} / {n}</span>
             <h3>{c.name}</h3>
+            <p className="bxc-owner">Owner agent: <strong>{c.persona}</strong>{c.assistant && <>{t(', uz AI sekretaricu ', ', with AI assistant ')}<strong>{c.assistant}</strong></>}</p>
             <dl>
               <div><dt>{t('Šta radi', 'What it does')}</dt><dd>{c.does[lang]}</dd></div>
               <div><dt>{t('Šta dobijate', 'What you get')}</dt><dd>{c.gets[lang]}</dd></div>
