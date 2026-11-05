@@ -3,6 +3,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import BrandLogo, { type Brand } from './BrandLogo';
+import BrandTileArt from './BrandTileArt';
 import { useLang } from '../lib/i18n';
 
 const TILES: { brand: Brand; to: string; label: string; bs: string; en: string }[] = [
@@ -20,7 +21,7 @@ export default function BrandTiles({ heading = true }: { heading?: boolean }) {
         <div className="brand-tiles">
           {TILES.map(x => (
             <Link key={x.brand} to={to(x.to)} className={`brand-tile brand-tile-${x.brand}`}>
-              <span className="bt-art" aria-hidden="true" />
+              <BrandTileArt brand={x.brand} />
               <BrandLogo brand={x.brand} />
               <p>{x[lang]}</p>
               <span className="bt-link">{x.label} <ArrowRight size={16} /></span>

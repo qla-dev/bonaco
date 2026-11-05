@@ -473,3 +473,11 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
   .brand-tile { flex: 0 0 84%; min-height: 290px; scroll-snap-align: start; }
   .brand-tile:hover { transform: none; }
 }
+
+/* Manji vertikalni razmaci između sekcija (bilo je do 240px praznine između dvije sekcije) */
+.section { padding: clamp(44px, 5.5vw, 84px) 0; }
+.brand-tiles-section { padding-bottom: clamp(20px, 2.5vw, 36px); }
+.brand-tiles-section + .mkt { padding-top: clamp(28px, 3vw, 48px); border-top: 0; }
+.section-head { margin-bottom: clamp(24px, 3vw, 36px); }
+.mkt-video { margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(32px, 4vw, 48px); }
+.work-circles { margin-top: 28px; }
