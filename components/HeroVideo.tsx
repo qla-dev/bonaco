@@ -106,7 +106,7 @@ export default function HeroVideo() {
           <div className="hv-below">
             {title}
             {below}
-            <p className="hv-hint" aria-hidden="true">{t('Prevucite lijevo ili desno da ubrzate tok', 'Drag left or right to speed up the flow')}</p>
+            <p className="hv-hint" aria-hidden="true">{t('Prevucite da okrenete sferu', 'Drag to turn the sphere')}</p>
           </div>
         </div>
       </section>

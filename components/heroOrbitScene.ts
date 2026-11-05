@@ -65,11 +65,15 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   const pMat = track(new THREE.PointsMaterial({ size: 0.05, vertexColors: true, transparent: true, opacity: 0.5, depthWrite: false, sizeAttenuation: true }));
   scene.add(new THREE.Points(pGeo, pMat));
   let pT = 0;
+  // skrol pokreće čestice: dolje = brže, gore = unazad; kad stane, nastave normalno
+  let scrollV = 0, lastScroll = window.scrollY;
   const driftParticles = (dt: number) => {
     pT += dt;
+    const mult = 1 + scrollV;
     for (let i = 0; i < P; i++) {
-      let y = pPos[i * 3 + 1] + pVel[i] * dt;
+      let y = pPos[i * 3 + 1] + pVel[i] * mult * dt;
       if (y > 7) y = -7;
+      if (y < -7) y = 7;
       pPos[i * 3 + 1] = y;
       pPos[i * 3] += Math.sin(pT * 0.4 + i) * 0.0015;
     }
@@ -149,8 +153,8 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
 
   // ---- Interakcija: prevlačenje okreće sferu, klik otvara projekat ----
   let paused = opts.reduce;
-  // prevlačenje lijevo/desno ubrzava ili okreće tok logotipa (boost), kostur ostaje miran
-  let dragging = false, moved = 0, lastX = 0, lastY = 0, boost = 0;
+  // prevlačenje okreće sferu (rotX/rotY), a nakon puštanja se vraća u osnovni oblik
+  let dragging = false, moved = 0, lastX = 0, lastY = 0, rotX = 0, rotY = 0, held = 0;
   let hovered: THREE.Sprite | null = null;
   const ray = new THREE.Raycaster();
   const ndc = new THREE.Vector2();
@@ -174,7 +178,9 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       const dx = e.clientX - lastX, dy = e.clientY - lastY;
       lastX = e.clientX; lastY = e.clientY;
       moved += Math.abs(dx) + Math.abs(dy);
-      boost = THREE.MathUtils.clamp(boost + dx * 0.04, -6, 6);
+      // sferno okretanje cijele sfere; nakon puštanja se vraća u savršen oblik atoma
+      rotY += dx * 0.008;
+      rotX = THREE.MathUtils.clamp(rotX + dy * 0.006, -1.1, 1.1);
       wake();
       return;
     }
@@ -263,10 +269,19 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   const frame = (t: number) => {
     const dt = Math.min(0.05, (t - (last || t)) / 1000);
     last = t;
-    if (!dragging) boost *= Math.pow(0.12, dt); // tok se nakon prevlačenja vraća na normalnu brzinu
+    // okretanje prati prst; ~0,6 s nakon puštanja sfera se glatko vraća u osnovni položaj
+    if (dragging) held = 0.6; else held = Math.max(0, held - dt);
+    if (!dragging && held === 0) { const k = 1 - Math.pow(0.04, dt); rotX -= rotX * k; rotY -= rotY * k; }
+    root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, rotX, 1 - Math.pow(0.0005, dt));
+    root.rotation.y = THREE.MathUtils.lerp(root.rotation.y, rotY, 1 - Math.pow(0.0005, dt));
+    // brzina skrola za čestice (glatko opada kad skrol stane)
+    const sy = window.scrollY;
+    const v = dt > 0 ? (sy - lastScroll) / dt : 0;
+    lastScroll = sy;
+    scrollV = THREE.MathUtils.lerp(scrollV, THREE.MathUtils.clamp(v / 120, -12, 12), 1 - Math.pow(0.002, dt));
     const flow = paused ? 0 : 1;
-    spinners.forEach(s => { s.g.rotation.z += (s.speed * flow + Math.sign(s.speed) * boost * 0.25) * dt; });
-    if (!paused) driftParticles(dt);
+    spinners.forEach(s => { s.g.rotation.z += s.speed * flow * dt; });
+    if (!paused || Math.abs(scrollV) > 0.05) driftParticles(dt);
     // svakih ~4,5 s narandžasta prelazi na sljedeći aktivni prsten (glatki prelaz boje)
     if (!paused) hlT += dt;
     if (hlT > 4.5) { hlT = 0; hl = (hl + 1) % activeMats.length; }
@@ -276,7 +291,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       m.opacity = THREE.MathUtils.lerp(m.opacity, on ? 0.95 : 0.4, 1 - Math.pow(0.02, dt));
     });
     render();
-    const settled = paused && !dragging && Math.abs(boost) < 1e-3 && !hovered;
+    const settled = paused && !dragging && Math.abs(rotX) + Math.abs(rotY) + Math.abs(root.rotation.x) + Math.abs(root.rotation.y) < 1e-3 && Math.abs(scrollV) < 0.05 && !hovered;
     if (settled && !fading && pending <= 0) { running = false; last = 0; return; }
     raf = requestAnimationFrame(frame);
   };
@@ -290,6 +305,8 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     if (visible) wake(); else { cancelAnimationFrame(raf); running = false; last = 0; }
   });
   io.observe(canvas);
+  const onPageScroll = () => wake();
+  addEventListener('scroll', onPageScroll, { passive: true });
   const onVis = () => { if (document.hidden) { cancelAnimationFrame(raf); running = false; last = 0; } else wake(); };
   document.addEventListener('visibilitychange', onVis);
   fit();
@@ -301,6 +318,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       cancelAnimationFrame(raf);
       ro.disconnect(); io.disconnect();
       document.removeEventListener('visibilitychange', onVis);
+      removeEventListener('scroll', onPageScroll);
       canvas.removeEventListener('pointerdown', onDown);
       canvas.removeEventListener('pointermove', onMove);
       canvas.removeEventListener('pointerup', onUp);
