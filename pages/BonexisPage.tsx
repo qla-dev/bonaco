@@ -1,4 +1,4 @@
-// /bonexis/: do januara 2027. najava (pet kapsula, U razvoju, Bonaco × QLA.dev) prema briefu v1.3.
+// /bonexis/: do januara 2027. najava (pet kapsula, U razvoju, Bonaco × qla.dev) prema briefu v1.3.
 // Dosadašnji demo (Ben chat, scenariji, 3D AI tim, dashboard) uključuje se s BONEXIS_DEMO_PUBLIC.
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -89,8 +89,8 @@ export default function BonexisPage() {
       <SEO
         title={t('Bonexis – AI rješenja za vaš tim (uskoro)', 'Bonexis – AI solutions for your team (coming soon)')}
         description={t(
-          'Bonexis by Bonaco × QLA.dev: pet AI kapsula za web, sadržaj i SEO, leadove, planiranje kapaciteta, kontrolu isporuke i reviziju rada. U razvoju, predstavljanje januar 2027.',
-          'Bonexis by Bonaco × QLA.dev: five AI capsules for web, content and SEO, leads, capacity planning, delivery control and work audit. In development, launching January 2027.',
+          'Bonexis by Bonaco × qla.dev: pet AI kapsula za web, sadržaj i SEO, leadove, planiranje kapaciteta, kontrolu isporuke i reviziju rada. U razvoju, predstavljanje januar 2027.',
+          'Bonexis by Bonaco × qla.dev: five AI capsules for web, content and SEO, leads, capacity planning, delivery control and work audit. In development, launching January 2027.',
         )}
       />
       <BonexisCapsules page />
@@ -102,8 +102,8 @@ export default function BonexisPage() {
           <div>
             <h2>{t('Budite među prvima', 'Be among the first')}</h2>
             <p>{t(
-              'Bonexis razvijamo s partnerom QLA.dev. Ostavite kontakt i javit ćemo vam se kada krene predstavljanje i pilot za firme.',
-              'We are building Bonexis with our partner QLA.dev. Leave your details and we will get in touch when the launch and company pilot begin.',
+              'Bonexis razvijamo s partnerom qla.dev. Ostavite kontakt i javit ćemo vam se kada krene predstavljanje i pilot za firme.',
+              'We are building Bonexis with our partner qla.dev. Leave your details and we will get in touch when the launch and company pilot begin.',
             )}</p>
           </div>
           <div className="btn-row">

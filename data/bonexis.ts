@@ -1,7 +1,7 @@
 import type { BonexisAgent } from '../types';
 
 // Na osnovu internog plana BONEXIS v3.0; kapsula sadržaja je podijeljena na Social Media, SEO Audit i Blog (odluka 05.11.2026).
-// Bonaco Media nudi Bonexis drugim firmama; Bonexis je u razvoju s QLA.dev.
+// Bonaco Media nudi Bonexis drugim firmama; Bonexis je u razvoju s qla.dev.
 // Primjeri ispod su ilustrativni scenariji, ne rezultati stvarnih klijenata.
 
 /** Ben je "mozak" Bonexisa: razumije problem i usmjerava posao pravoj kapsuli. */

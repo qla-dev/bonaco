@@ -13,7 +13,7 @@ import { MARKETING_VIDEO, VIDEOS } from '../data/site';
 import { PUBLIC_CAPSULES } from '../data/capsules';
 import { EVENT_HERO_IMAGE, EVENT_REFERENCES, EVENT_SERVICES } from '../data/bonevents';
 import ServiceIcon from './ServiceIcon';
-import BrandLogo from './BrandLogo';
+import BrandLogo, { QlaMark } from './BrandLogo';
 import { YouTube } from './Blocks';
 
 /* ---------- Marketing: usluge kao mali krugovi ---------- */
@@ -156,7 +156,7 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
         <div className="bxc-head">
           <div className="bxc-badges">
             <span className="badge">{t('U razvoju', 'In development')} · Coming soon</span>
-            <span className="badge badge-ghost">Bonaco × QLA.dev</span>
+            <span className="badge badge-ghost">Bonaco × <QlaMark /></span>
           </div>
           <Heading className="bxc-title"><BrandLogo brand="bonexis" /></Heading>
           <p className="lead">
@@ -207,8 +207,8 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
         </div>
         <p className="bxc-note">
           {t(
-            'Opisi kapsula su koncept u razvoju s partnerom QLA.dev; konačne funkcije potvrđujemo prije predstavljanja.',
-            'Capsule descriptions are a concept in development with our partner QLA.dev; final features will be confirmed before launch.',
+            'Opisi kapsula su koncept u razvoju s partnerom qla.dev; konačne funkcije potvrđujemo prije predstavljanja.',
+            'Capsule descriptions are a concept in development with our partner qla.dev; final features will be confirmed before launch.',
           )}
         </p>
       </div>

@@ -25,8 +25,8 @@
   --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 :root, [data-brand='bonaco'] {
-  --accent: var(--bonaco); --accent-hover: #ff9640; --accent-ink: #141414;
-  --accent-light: #f9a15e; --accent-dark: #ad510a; --accent-deep: #3a1f0b;
+  --accent: var(--bonaco); --accent-hover: #ff9a45; --accent-ink: #141414;
+  --accent-light: #f58426; --accent-dark: #ad510a; --accent-deep: #3a1f0b;
 }
 [data-brand='bonexis'] {
   --accent: var(--bonexis); --accent-hover: #00b8b4; --accent-ink: #0c0c0c;

@@ -1,10 +1,9 @@
-import { asset } from '../lib/asset';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { SITE, SOCIAL } from '../data/site';
 import { useLang } from '../lib/i18n';
 import SocialIcon from './SocialIcon';
-import BrandLogo from './BrandLogo';
+import BrandLogo, { QlaMark } from './BrandLogo';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -56,7 +55,7 @@ export default function Footer() {
           <Link to={to('/politika-privatnosti/')}>{t('Politika privatnosti', 'Privacy policy')}</Link>
           <a href="https://qla.dev" target="_blank" rel="noopener" className="made-by" aria-label="Made by qla.dev">
             <span>Made by</span>
-            <img src={asset('/img/logo/qla-dev.webp')} alt="qla.dev" width="84" height="24" loading="lazy" />
+            <QlaMark />
           </a>
         </nav>
       </div>

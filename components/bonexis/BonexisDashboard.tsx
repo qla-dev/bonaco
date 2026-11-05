@@ -160,7 +160,7 @@ export default function BonexisDashboard() {
           <input value={input} onChange={e => setInput(e.target.value)} placeholder={agent ? `Zadatak za agenta ${agent.persona}…` : `Zadatak za ${BEN.name}…`} aria-label="Zadatak za agenta" maxLength={300} />
           <button type="submit" aria-label="Pošalji" disabled={!input.trim()}><ArrowUp size={18} /></button>
         </form>
-        <p className="bxd-note">Demo prikaz s izmišljenim podacima. Bonexis je u razvoju s partnerom QLA.dev.</p>
+        <p className="bxd-note">Demo prikaz s izmišljenim podacima. Bonexis je u razvoju s partnerom qla.dev.</p>
       </section>
     </div>
   );

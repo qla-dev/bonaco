@@ -34,8 +34,8 @@ const routes = [
     { path: '/nase-usluge/', title: `Marketing | ${NAME}`, description: 'Strategija i kampanje, društvene mreže, grafički dizajn i branding, foto i video, web dizajn, SEO i OOH/DOOH oglašavanje. Full-service marketing za vaš brend.' },
     { path: '/en/marketing/', title: `Marketing | ${NAME}`, description: 'Strategy and campaigns, social media, graphic design and branding, photo and video, web design, SEO and OOH/DOOH advertising. Full-service marketing for your brand.' }),
   ...pair(
-    { path: '/bonexis/', title: `Bonexis – AI rješenja za vaš tim (uskoro) | ${NAME}`, description: 'Bonexis by Bonaco × QLA.dev: pet AI kapsula za web, sadržaj i SEO, leadove, planiranje kapaciteta, kontrolu isporuke i reviziju rada. U razvoju, predstavljanje januar 2027.' },
-    { path: '/en/bonexis/', title: `Bonexis – AI solutions for your team (coming soon) | ${NAME}`, description: 'Bonexis by Bonaco × QLA.dev: five AI capsules for web, content and SEO, leads, capacity planning, delivery control and work audit. In development, launching January 2027.' }),
+    { path: '/bonexis/', title: `Bonexis – AI rješenja za vaš tim (uskoro) | ${NAME}`, description: 'Bonexis by Bonaco × qla.dev: pet AI kapsula za web, sadržaj i SEO, leadove, planiranje kapaciteta, kontrolu isporuke i reviziju rada. U razvoju, predstavljanje januar 2027.' },
+    { path: '/en/bonexis/', title: `Bonexis – AI solutions for your team (coming soon) | ${NAME}`, description: 'Bonexis by Bonaco × qla.dev: five AI capsules for web, content and SEO, leads, capacity planning, delivery control and work audit. In development, launching January 2027.' }),
   ...pair(
     { path: '/bonevents/', title: `BonEvents – organizacija i produkcija događaja | ${NAME}`, description: 'BonEvents planira, producira i promoviše događaje za brendove: organizacija, produkcija, hostese, foto i video. Reference: JOVS i Summer Lounge.' },
     { path: '/en/bonevents/', title: `BonEvents – event planning and production | ${NAME}`, description: 'BonEvents plans, produces and promotes events for brands: organisation, production, hosts, photo and video. References: JOVS and Summer Lounge.' }),

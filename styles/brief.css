@@ -218,3 +218,26 @@ figure.gallery-item { cursor: default; }
 .dot-bonaco { background: var(--bonaco); }
 .dot-bonexis { background: var(--bonexis); }
 .dot-bonevents { background: var(--bonevents); }
+
+/* qla.dev znak: malim slovima, Facebookov UI sans (Segoe UI na Windowsu, Helvetica na Apple uređajima) */
+.qla-mark { font-family: 'Segoe UI Historic', 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; color: #fff; }
+.qla-mark span { color: #0096f8; }
+.made-by .qla-mark { font-size: 17px; line-height: 1; }
+.made-by:hover .qla-mark { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Ništa ne smije širiti stranicu horizontalno (rotirajući prsten, trake logotipa) */
+html, body { overflow-x: clip; }
+.bev-visual { border-radius: 50%; overflow: clip; overflow-clip-margin: 0; }
+.bev-ring { inset: 1px; }
+
+/* Bonexis podnaslov je duži (MARKETING CRM SA AI AGENTIMA): manji razmak slova da ostane u širini znaka */
+.brand-logo-bonexis .bl-sub { font-size: max(0.2em, 9px); letter-spacing: 0.2em; padding-left: 0.2em; }
+@media (max-width: 560px) { .logo .brand-logo-bonexis .bl-sub { display: none; } }
+
+/* Naslovi brend sekcija centrirani */
+.bxc-head { margin: 0 auto; text-align: center; }
+.bxc-head .lead { margin-left: auto; margin-right: auto; }
+.bxc-badges { justify-content: center; }
+.bev-title { display: flex; justify-content: center; }
+.bev-copy > .lead { text-align: center; }
+.bxc-note { margin-left: auto; margin-right: auto; text-align: center; }

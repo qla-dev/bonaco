@@ -18,8 +18,8 @@ const PILLARS = [
     en: { title: 'Long-term partnership', text: 'We tailor strategies to each client’s goals and build relationships that last for years, not just one campaign.' },
   },
   {
-    bs: { title: 'Nove tehnologije', text: 'Pratimo trendove prije nego postanu standard. Zato s partnerom QLA.dev razvijamo Bonexis AI rješenja.' },
-    en: { title: 'New technology', text: 'We follow trends before they become the standard. That is why we are building Bonexis AI solutions with our partner QLA.dev.' },
+    bs: { title: 'Nove tehnologije', text: 'Pratimo trendove prije nego postanu standard. Zato s partnerom qla.dev razvijamo Bonexis AI rješenja.' },
+    en: { title: 'New technology', text: 'We follow trends before they become the standard. That is why we are building Bonexis AI solutions with our partner qla.dev.' },
   },
 ];
 
@@ -88,7 +88,7 @@ export default function AboutPage() {
             </Link>
             <Link to={to('/bonexis/')} className="trio-card" data-brand="bonexis">
               <BrandLogo brand="bonexis" />
-              <p>{t('AI kapsule za web, prodaju, planiranje, isporuku i kvalitet. U razvoju s partnerom QLA.dev.', 'AI capsules for web, sales, planning, delivery and quality. In development with our partner QLA.dev.')}</p>
+              <p>{t('AI kapsule za web, prodaju, planiranje, isporuku i kvalitet. U razvoju s partnerom qla.dev.', 'AI capsules for web, sales, planning, delivery and quality. In development with our partner qla.dev.')}</p>
               <span className="text-link">Bonexis <ArrowRight size={16} /></span>
             </Link>
             <Link to={to('/bonevents/')} className="trio-card" data-brand="bonevents">
