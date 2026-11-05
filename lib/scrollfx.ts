@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 const REVEAL: [string, string?][] = [
   ['.page-hero .container > *'],
   ['.section-head > div > *, .section-head > .text-link, .center-title'],
-  ['.svc-circles li', 'rv-zoom'],
+  ['.svc-circles', 'rv-fade'], // cijeli red (stavke unutar horizontalnog skrola bi se odsjekle)
   ['.work-circles .wc', 'rv-zoom'],
   ['.mkt-video > div:first-child', 'rv-left'],
   ['.mkt-video > .video', 'rv-right'],
@@ -42,8 +42,11 @@ const REVEAL: [string, string?][] = [
   ['.hv-below > *'],
 ];
 
-// [selektor, brzina u px po visini ekrana (negativno = suprotan smjer)]
-const PARALLAX: [string, number][] = [
+// [selektor, brzina Y u px po visini ekrana (negativno = suprotan smjer), brzina X]
+const PARALLAX: [string, number, number?][] = [
+  // radovi u krugovima lagano plove na skrol, naizmjenično lijevo/desno
+  ['.work-circles .wc:nth-child(odd)', -26, 16],
+  ['.work-circles .wc:nth-child(even)', 26, -16],
   ['.hv-sphere', -70],
   ['.hv-b', -40],
   ['.wc-circle img', 36],
@@ -95,12 +98,12 @@ export function useScrollFx(pathname: string) {
     };
 
     // ---------- Parallax ----------
-    let items: { el: HTMLElement; k: number }[] = [];
+    let items: { el: HTMLElement; k: number; kx: number }[] = [];
     const scanParallax = () => {
       items = [];
-      PARALLAX.forEach(([sel, k]) => document.querySelectorAll<HTMLElement>(sel).forEach(el => {
+      PARALLAX.forEach(([sel, k, kx = 0]) => document.querySelectorAll<HTMLElement>(sel).forEach(el => {
         el.classList.add('px');
-        items.push({ el, k });
+        items.push({ el, k, kx });
       }));
     };
     let raf = 0;
@@ -108,11 +111,11 @@ export function useScrollFx(pathname: string) {
       raf = 0;
       const vh = window.innerHeight;
       const mobile = window.innerWidth < 760 ? 0.6 : 1;
-      items.forEach(({ el, k }) => {
+      items.forEach(({ el, k, kx }) => {
         const r = el.getBoundingClientRect();
         if (r.bottom < -vh * 0.3 || r.top > vh * 1.3) return;
         const p = (r.top + r.height / 2 - vh / 2) / vh; // -1 (gore) … 1 (dolje)
-        el.style.translate = `0 ${(p * k * mobile).toFixed(1)}px`;
+        el.style.translate = `${(p * kx * mobile).toFixed(1)}px ${(p * k * mobile).toFixed(1)}px`;
       });
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
