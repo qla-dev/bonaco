@@ -443,3 +443,33 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
     linear-gradient(165deg, #6a3df0 0%, #592ada 45%, #2a1270 100%);
 }
 @media (max-width: 860px) { .brand-tiles { grid-template-columns: 1fr; } .brand-tile { min-height: 260px; } }
+
+/* ---------- Ikone i proširen BonEvents ---------- */
+.badge svg { margin-right: 6px; }
+.bxc-cap-circle svg { color: var(--accent-light); margin-bottom: 2px; }
+.bxc-cap.is-on .bxc-cap-circle svg { color: var(--accent-ink); }
+.bxc-panel dt { display: flex; align-items: center; gap: 6px; }
+.bev-services { grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+.bev-services h3 { font-size: 17px; }
+.bev-services p { font-size: 14px; }
+.bev-dot { width: 46px; height: 46px; }
+@media (max-width: 560px) { .bev-services { grid-template-columns: 1fr; } }
+.bev-more { background: var(--bg); border-top: 1px solid var(--line); }
+.ev-types { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.ev-types li { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: var(--radius-lg); border: 1px solid var(--line); background: radial-gradient(circle at 0% 50%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%), var(--bg-2); font-weight: 600; }
+.ev-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; flex: none; background: color-mix(in srgb, var(--accent) 22%, #151515); color: var(--accent-light); border: 1px solid color-mix(in srgb, var(--accent-light) 35%, transparent); }
+.ev-process { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
+.ev-process li { position: relative; padding: 26px 22px; border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--bg-2); }
+.ev-process .ev-step { position: absolute; top: 22px; right: 22px; font: 700 14px var(--font-head); color: var(--accent-light); }
+.ev-process h3 { font-size: 19px; margin: 18px 0 6px; }
+.ev-process p { margin: 0; color: var(--muted); font-size: 15px; }
+@media (max-width: 960px) { .ev-types { grid-template-columns: 1fr 1fr; } .ev-process { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .ev-types, .ev-process { grid-template-columns: 1fr; } }
+
+/* Tri brenda na telefonu: horizontalni skrol */
+@media (max-width: 860px) {
+  .brand-tiles { display: flex; grid-template-columns: none; overflow-x: auto; gap: 12px; margin: 0 calc(var(--gutter) * -1); padding: 4px var(--gutter) 12px; scroll-snap-type: x mandatory; scroll-padding: 0 var(--gutter); scrollbar-width: none; }
+  .brand-tiles::-webkit-scrollbar { display: none; }
+  .brand-tile { flex: 0 0 84%; min-height: 290px; scroll-snap-align: start; }
+  .brand-tile:hover { transform: none; }
+}

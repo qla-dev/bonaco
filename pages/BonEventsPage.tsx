@@ -3,12 +3,14 @@ import SEO from '../components/SEO';
 import { CTASection } from '../components/Blocks';
 import { BonEventsBlock } from '../components/Circles';
 import { GALLERIES } from '../data/galleries.generated';
+import { EVENT_PROCESS, EVENT_TYPES } from '../data/bonevents';
+import BrandIcon from '../components/BrandIcon';
 import { useLang } from '../lib/i18n';
 
 const GALLERY = (GALLERIES['summer-lounge'] ?? []).slice(0, 9);
 
 export default function BonEventsPage() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   return (
     <>
       <SEO
@@ -20,6 +22,46 @@ export default function BonEventsPage() {
         image={GALLERY[0]?.src}
       />
       <BonEventsBlock page />
+
+      {/* Vrste događaja */}
+      <section className="section bev-more" data-brand="bonevents">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">{t('Šta organizujemo', 'What we organise')}</span>
+              <h2>{t('Vrste događaja', 'Types of events')}</h2>
+              <p className="lead">{t('Od intimnih poslovnih okupljanja do cijelih ljetnih sezona, uvijek s jasnim ciljem za brend.', 'From intimate business gatherings to entire summer seasons, always with a clear goal for the brand.')}</p>
+            </div>
+          </div>
+          <ul className="ev-types">
+            {EVENT_TYPES.map(x => (
+              <li key={x.bs}><span className="ev-icon"><BrandIcon name={x.icon} size={24} /></span><span>{x[lang]}</span></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Proces */}
+      <section className="section bev-more" data-brand="bonevents">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">{t('Kako radimo', 'How we work')}</span>
+              <h2>{t('Od briefa do aftermovieja', 'From brief to aftermovie')}</h2>
+            </div>
+          </div>
+          <ol className="ev-process">
+            {EVENT_PROCESS.map((x, i) => (
+              <li key={x.bs.title}>
+                <span className="ev-icon"><BrandIcon name={x.icon} size={24} /></span>
+                <span className="ev-step">{String(i + 1).padStart(2, '0')}</span>
+                <h3>{x[lang].title}</h3>
+                <p>{x[lang].text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
       {GALLERY.length > 0 && (
         <section className="section light" data-brand="bonevents">
           <div className="container">

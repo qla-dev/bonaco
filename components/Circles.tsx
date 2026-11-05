@@ -3,7 +3,7 @@
 // sve radi na dodir i tastaturu, a kontinuirane animacije se mogu zaustaviti.
 import { useState, type KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Pause, Play } from 'lucide-react';
+import { ArrowRight, Clock, Gift, Pause, Play, Sparkles, Wrench } from 'lucide-react';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import { CATEGORY_EN, PROJECTS } from '../data/projects';
@@ -13,6 +13,7 @@ import { MARKETING_VIDEO, VIDEOS } from '../data/site';
 import { PUBLIC_CAPSULES } from '../data/capsules';
 import { EVENT_HERO_IMAGE, EVENT_REFERENCES, EVENT_SERVICES } from '../data/bonevents';
 import ServiceIcon from './ServiceIcon';
+import BrandIcon, { type IconName } from './BrandIcon';
 import BrandLogo, { QlaMark } from './BrandLogo';
 import { YouTube } from './Blocks';
 
@@ -156,7 +157,7 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
       <div className="container">
         <div className="bxc-head">
           <div className="bxc-badges">
-            <span className="badge">{t('U razvoju', 'In development')} · Coming soon</span>
+            <span className="badge"><Wrench size={14} aria-hidden="true" /> {t('U razvoju', 'In development')} · Coming soon</span>
             <span className="badge badge-ghost">Bonaco × <QlaMark /></span>
           </div>
           <Heading className="bxc-title"><BrandLogo brand="bonexis" /></Heading>
@@ -184,7 +185,7 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
                 style={{ ['--a' as string]: `${(360 / n) * i - 90}deg` }}
                 onClick={() => setSel(i)}
               >
-                <span className="bxc-cap-circle"><b>{String(i + 1).padStart(2, '0')}</b>{x.short}</span>
+                <span className="bxc-cap-circle"><BrandIcon name={`k${x.n}` as IconName} size={20} /><b>{String(i + 1).padStart(2, '0')}</b>{x.short}</span>
               </button>
             ))}
           </div>
@@ -194,9 +195,9 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
             <h3>{c.name}</h3>
             <p className="bxc-owner">Owner agent: <strong>{c.persona}</strong>{c.assistant && <>{t(', uz AI sekretaricu ', ', with AI assistant ')}<strong>{c.assistant}</strong></>}</p>
             <dl>
-              <div><dt>{t('Šta radi', 'What it does')}</dt><dd>{c.does[lang]}</dd></div>
-              <div><dt>{t('Šta dobijate', 'What you get')}</dt><dd>{c.gets[lang]}</dd></div>
-              <div><dt>Status</dt><dd>{t('U razvoju, predstavljanje planirano za januar 2027.', 'In development, launch planned for January 2027.')}</dd></div>
+              <div><dt><Sparkles size={14} aria-hidden="true" /> {t('Šta radi', 'What it does')}</dt><dd>{c.does[lang]}</dd></div>
+              <div><dt><Gift size={14} aria-hidden="true" /> {t('Šta dobijate', 'What you get')}</dt><dd>{c.gets[lang]}</dd></div>
+              <div><dt><Clock size={14} aria-hidden="true" /> Status</dt><dd>{t('U razvoju, predstavljanje planirano za januar 2027.', 'In development, launch planned for January 2027.')}</dd></div>
             </dl>
             <div className="btn-row">
               {page ? (
@@ -238,9 +239,9 @@ export function BonEventsBlock({ page = false }: { page?: boolean }) {
             )}
           </p>
           <ul className="bev-services">
-            {EVENT_SERVICES.map((s, i) => (
+            {EVENT_SERVICES.map(s => (
               <li key={s.id}>
-                <span className="bev-dot" aria-hidden="true">{i + 1}</span>
+                <span className="bev-dot" aria-hidden="true"><BrandIcon name={s.icon} size={20} /></span>
                 <div><h3>{s[lang].title}</h3><p>{s[lang].text}</p></div>
               </li>
             ))}
