@@ -58,6 +58,7 @@ export default function Hero() {
   const map = brainMap(size.w, size.h);
   const at = (p: P) => (size.w ? map.px(p) : { x: -999, y: -999 });
   const ben = at(BEN_POS);
+  const narrow = size.w > 0 && size.w < 560; // mobitel: misao iznad agenta
 
   const onAsk = (e: FormEvent) => {
     e.preventDefault();
@@ -110,7 +111,7 @@ export default function Hero() {
             );
           })}
           {open < 0 && (
-            <div key={thinking} className={`thought ${POS[thinking].x > 0 ? 'to-right' : 'to-left'} ${POS[thinking].y > 0 ? 'to-bottom' : 'to-top'}`} style={{ left: at(POS[thinking]).x, top: at(POS[thinking]).y }} aria-live="polite">
+            <div key={thinking} className={`thought ${narrow ? 'above' : `${POS[thinking].x > 0 ? 'to-right' : 'to-left'} ${POS[thinking].y > 0 ? 'to-bottom' : 'to-top'}`}`} style={{ left: narrow ? Math.min(Math.max(at(POS[thinking]).x, 96), size.w - 96) : at(POS[thinking]).x, top: at(POS[thinking]).y }} aria-live="polite">
               {BONEXIS_AGENTS[thinking].thought}
             </div>
           )}

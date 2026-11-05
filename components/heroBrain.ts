@@ -12,19 +12,18 @@ export const brainMap = (w: number, h: number) => {
 // deterministički "slučajni" brojevi: isti raspored pri svakom učitavanju
 const seeded = (seed: number) => () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
 
-/** Agenti oko Bena, namjerno nepravilno (različiti uglovi i udaljenosti). */
-export const agentRing = (n: number): P[] => {
-  const r = seeded(11), out: P[] = [];
-  for (let i = 0; i < n; i++) {
-    for (let k = 0; k < 60; k++) {
-      const a = -Math.PI / 2 + (i / n) * Math.PI * 2 + (r() - 0.5) * 0.5;
-      const d = 0.26 + r() * 0.14;
-      const p = { x: Math.cos(a) * d * 1.1, y: Math.sin(a) * d * 0.88 };
-      if (out.every(q => Math.hypot(q.x - p.x, q.y - p.y) > 0.2) || k === 59) { out.push(p); break; }
-    }
-  }
-  return out;
-};
+/** Agenti na namjerno različitim udaljenostima od Bena (redoslijed: Lana, Selma, Edin, Lejla, Sara, Kenan, Dino, Ada). */
+const AGENT_LAYOUT: P[] = [
+  { x: -0.07, y: -0.31 },  // Lana, gore
+  { x: 0.4, y: -0.37 },    // Selma, daleko gore desno
+  { x: 0.46, y: 0.03 },    // Edin, daleko desno
+  { x: 0.41, y: 0.33 },    // Lejla, daleko dole desno
+  { x: 0.03, y: 0.36 },    // Sara, dole
+  { x: -0.42, y: 0.4 },    // Kenan, daleko dole lijevo
+  { x: -0.46, y: -0.01 },  // Dino, daleko lijevo
+  { x: -0.4, y: -0.36 },   // Ada, daleko gore lijevo
+];
+export const agentRing = (n: number): P[] => AGENT_LAYOUT.slice(0, n);
 
 export interface BrainHandle { fire: (agent: number) => void; destroy: () => void }
 
@@ -43,7 +42,7 @@ export function startBrain(canvas: HTMLCanvasElement, opts: { agents: P[]; ben: 
   const SECTORS = 22;
   for (let tries = 0; outer.length < SECTORS && tries < 4000; tries++) {
     // ravnomjerno po sektorima oko Bena (svaki sektor jedan neuron), uz malo odstupanje
-    const sector = outer.length, a = (sector / SECTORS) * Math.PI * 2 + (r() - 0.5) * 0.22, d = 0.44 + r() * 0.2;
+    const sector = outer.length, a = (sector / SECTORS) * Math.PI * 2 + (r() - 0.5) * 0.3, d = 0.16 + r() * 0.5;
     const p = { x: Math.cos(a) * d * 1.05, y: Math.sin(a) * d * 0.82 };
     const clash = [...outer, ...opts.agents, opts.ben].some(q => Math.hypot(q.x - p.x, q.y - p.y) < 0.11);
     if (clash) continue;

@@ -75,7 +75,6 @@
 
 /* Mobitel: misao agenta uvijek unutar ekrana, iznad mreže */
 @media (max-width: 560px) {
-  .brain .thought { left: 50% !important; top: 4px !important; transform: translateX(-50%) !important; max-width: 86%; text-align: center; }
 }
 
 /* "agencija" u primarnoj boji sa shimmerom */
@@ -109,3 +108,6 @@
   .hero3 .btn-row { flex-wrap: nowrap; gap: 8px; }
   .hero3 .btn-row .btn { flex: 1 1 0; min-width: 0; padding: 14px 10px; font-size: 15px; white-space: nowrap; }
 }
+
+/* Mobitel: misao iznad agenta koji razmišlja */
+.brain .thought.above { transform: translate(-50%, calc(-100% - 30px)); max-width: 180px; text-align: center; }
