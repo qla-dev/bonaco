@@ -105,6 +105,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   const Z = new THREE.Vector3(0, 0, 1);
   const spinners: { g: THREE.Group; speed: number }[] = [];
   const active: THREE.Group[] = [];
+  const activeMats: THREE.LineBasicMaterial[] = [];
   const sprites: THREE.Sprite[] = [];
   let pending = items.length;
   const rerender = () => { pending--; if (!running) render(); };
@@ -125,6 +126,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
         spin.add(d);
       });
       active.push(spin);
+      activeMats.push(mat);
     }
     spinners.push({ g: spin, speed: r.speed });
   });
@@ -244,7 +246,9 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       s.userData.shown = Math.abs(shown - want) < 0.01 ? want : shown;
       if (s.userData.shown !== want) fading = true;
       s.visible = s.userData.shown > 0.01;
-      (s.material as THREE.SpriteMaterial).opacity = (0.45 + 0.55 * depth) * s.userData.shown;
+      // potpuno neprozirni; providnost samo kratko dok se logotip skriva/vraća zbog preklapanja
+      (s.material as THREE.SpriteMaterial).opacity = s.userData.shown;
+      void depth;
       // ista veličina na ekranu bez obzira na dubinu: poništi perspektivu
       const flat = (camera.position.z - z) / camera.position.z;
       const target = s.userData.base * (s === hovered ? 1.15 : 1) * flat;
@@ -254,6 +258,8 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     renderer.render(scene, camera);
   }
   let raf = 0, running = false, visible = true, last = 0;
+  let hl = 0, hlT = 0;
+  const orange = new THREE.Color(opts.accent), white = new THREE.Color(0xffffff);
   const frame = (t: number) => {
     const dt = Math.min(0.05, (t - (last || t)) / 1000);
     last = t;
@@ -261,6 +267,14 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     const flow = paused ? 0 : 1;
     spinners.forEach(s => { s.g.rotation.z += (s.speed * flow + Math.sign(s.speed) * boost * 0.25) * dt; });
     if (!paused) driftParticles(dt);
+    // svakih ~4,5 s narandžasta prelazi na sljedeći aktivni prsten (glatki prelaz boje)
+    if (!paused) hlT += dt;
+    if (hlT > 4.5) { hlT = 0; hl = (hl + 1) % activeMats.length; }
+    activeMats.forEach((m, i) => {
+      const on = i === hl;
+      m.color.lerp(on ? orange : white, 1 - Math.pow(0.02, dt));
+      m.opacity = THREE.MathUtils.lerp(m.opacity, on ? 0.95 : 0.4, 1 - Math.pow(0.02, dt));
+    });
     render();
     const settled = paused && !dragging && Math.abs(boost) < 1e-3 && !hovered;
     if (settled && !fading && pending <= 0) { running = false; last = 0; return; }
