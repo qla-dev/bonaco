@@ -2,9 +2,9 @@
 // Odgovori su lokalni i skriptovani: prepoznaju problem i preporuče pravog AI agenta.
 // Kad bude AI backend, zamijeniti funkciju answer() pozivom API-ja.
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowUp, Mic, Plus, Sparkles } from 'lucide-react';
-import { BONEXIS_AGENTS } from '../../data/bonexis';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ArrowUp, Mic, Plus } from 'lucide-react';
+import { BEN, BONEXIS_AGENTS } from '../../data/bonexis';
 
 interface Msg { role: 'user' | 'ai'; text: string; agent?: number }
 
@@ -30,11 +30,11 @@ function answer(q: string): Msg {
   if (!hit) {
     return {
       role: 'ai',
-      text: 'Bonexis ima šest AI agenata: Visual Audit, Blog & SEO, Leads, Capacity Planner, Delivery Control i AI Sekretaricu. Opišite problem svojim riječima, na primjer „trebam više klijenata“ ili „kasnimo s rokovima“, i preporučit ću vam pravog agenta.',
+      text: 'Ja sam Ben i vodim Bonexis tim od šest agenata: Vida radi audit vizuala, Selma blog i SEO, Lejla pronalazi klijente, Kenan planira kapacitete, Dino kontroliše isporuku, a Sara prima i obavlja pozive. Opišite problem svojim riječima, na primjer „trebam više klijenata“, i spojit ću vas s pravim agentom.',
     };
   }
   const a = BONEXIS_AGENTS[hit[0]];
-  return { role: 'ai', agent: hit[0], text: `Za to je tu ${a.title}. ${a.desc}` };
+  return { role: 'ai', agent: hit[0], text: `Za to je tu ${a.persona}, naš ${a.title} agent. ${a.desc}` };
 }
 
 type SR = { lang: string; interimResults: boolean; start: () => void; stop: () => void; onresult: (e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void; onend: () => void };
@@ -45,10 +45,10 @@ const SpeechRec = typeof window !== 'undefined'
 
 interface Props {
   onShowAgent?: (index: number) => void;
-  onShowTeam?: () => void;
+  onShowScenario?: (index: number) => void;
 }
 
-export default function BonexisChat({ onShowAgent, onShowTeam }: Props) {
+export default function BonexisChat({ onShowAgent, onShowScenario }: Props) {
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -90,6 +90,18 @@ export default function BonexisChat({ onShowAgent, onShowTeam }: Props) {
 
   const onSubmit = (e: FormEvent) => { e.preventDefault(); send(input); };
 
+  // Pitanje iz Ben prozora u heroju (/?pitanje=...#bonexis): postavi ga ovdje jednom
+  const [params] = useSearchParams();
+  const asked = params.get('pitanje');
+  const handled = useRef<string | null>(null);
+  useEffect(() => {
+    if (!asked || handled.current === asked) return;
+    handled.current = asked;
+    send(asked);
+    inputRef.current?.closest('.bx-chat')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [asked]);
+
   function toggleMic() {
     if (!SpeechRec) return;
     if (listening) return;
@@ -106,13 +118,8 @@ export default function BonexisChat({ onShowAgent, onShowTeam }: Props) {
 
   return (
     <div className={`bx-chat ${empty ? 'is-empty' : 'has-msgs'}`}>
-      <div className="bx-tabs" role="tablist" aria-label="Bonexis prikaz">
-        <button role="tab" aria-selected="true" className="is-on">Chat</button>
-        <button role="tab" aria-selected="false" onClick={onShowTeam}>AI tim</button>
-      </div>
-
       {empty ? (
-        <h2 className="bx-greeting">Koji problem da riješimo danas?</h2>
+        <h2 className="bx-greeting">Ja sam {BEN.name}. Koji problem da riješimo danas?</h2>
       ) : (
         <div className="bx-messages" ref={listRef} aria-live="polite">
           {msgs.map((m, i) => {
@@ -120,14 +127,15 @@ export default function BonexisChat({ onShowAgent, onShowTeam }: Props) {
             const text = m.role === 'ai' && isLast ? m.text.slice(0, shown) : m.text;
             return (
               <div key={i} className={`bx-msg ${m.role}`}>
-                {m.role === 'ai' && <span className="bx-avatar" aria-hidden="true"><Sparkles size={16} /></span>}
+                {m.role === 'ai' && <span className="bx-avatar" aria-hidden="true">B</span>}
                 <div className="bx-bubble">
                   <p>{text}</p>
                   {m.role === 'ai' && m.agent !== undefined && (!isLast || !streaming) && (
                     <>
                       <ul>{BONEXIS_AGENTS[m.agent].list.map(l => <li key={l}>{l}</li>)}</ul>
                       <div className="bx-actions">
-                        <button type="button" className="bx-action" onClick={() => onShowAgent?.(m.agent!)}>Pogledajte agenta u kancelariji</button>
+                        <button type="button" className="bx-action" onClick={() => onShowAgent?.(m.agent!)}>Otvori {BONEXIS_AGENTS[m.agent].persona}</button>
+                        <button type="button" className="bx-action" onClick={() => onShowScenario?.(m.agent!)}>Pogledajte scenarij</button>
                         <Link className="bx-action primary" to="/kontakt/?usluga=Bonexis">Zatražite demo</Link>
                       </div>
                     </>
@@ -138,8 +146,8 @@ export default function BonexisChat({ onShowAgent, onShowTeam }: Props) {
           })}
           {typing && (
             <div className="bx-msg ai">
-              <span className="bx-avatar" aria-hidden="true"><Sparkles size={16} /></span>
-              <div className="bx-bubble bx-typing" aria-label="Bonexis piše"><i /><i /><i /></div>
+              <span className="bx-avatar" aria-hidden="true">B</span>
+              <div className="bx-bubble bx-typing" aria-label={`${BEN.name} piše`}><i /><i /><i /></div>
             </div>
           )}
         </div>
@@ -149,13 +157,13 @@ export default function BonexisChat({ onShowAgent, onShowTeam }: Props) {
         <button type="button" className="bx-icon" aria-label="Prijedlozi pitanja" aria-expanded={menu} onClick={() => setMenu(v => !v)}>
           <Plus size={22} />
         </button>
-        <label className="sr-only" htmlFor="bx-input">Pitajte Bonexis</label>
+        <label className="sr-only" htmlFor="bx-input">Pitajte {BEN.name}</label>
         <input
           id="bx-input"
           ref={inputRef}
           value={input}
           onChange={e => setInput(e.target.value)}
-          placeholder={listening ? 'Slušam…' : 'Pitajte Bonexis'}
+          placeholder={listening ? 'Slušam…' : `Pitajte ${BEN.name}`}
           autoComplete="off"
           maxLength={300}
         />

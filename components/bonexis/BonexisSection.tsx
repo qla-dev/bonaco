@@ -1,9 +1,11 @@
-import { asset } from '../../lib/asset';
-// Bonexis blok: chat na vrhu, ispod centriran naslov i 3D kancelarija.
-// Chat može otvoriti agenta u kancelariji ("Pogledajte agenta u kancelariji").
+// Bonexis blok: Ben AI chat, scenariji agenata (zasebne sekcije), pa 3D kancelarija.
+// Odabrani agent se otvara u desnom sidebaru (AgentSidebar unutar BonexisOffice).
 import { useRef, useState } from 'react';
+import { BEN } from '../../data/bonexis';
 import BonexisChat from './BonexisChat';
+import BonexisLogo from './BonexisLogo';
 import BonexisOffice from './BonexisOffice';
+import ScenarioSections from './BonexisScenarios';
 
 interface Props { headingLevel?: 'h1' | 'h2'; officeHeight?: string }
 
@@ -14,23 +16,36 @@ export default function BonexisSection({ headingLevel = 'h2', officeHeight }: Pr
 
   const showTeam = () => officeRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   const showAgent = (i: number) => { setSelected(i); showTeam(); };
+  const showScenario = (i: number) => {
+    setSelected(-1);
+    document.getElementById(`scenarij-${['vida', 'selma', 'lejla', 'kenan', 'dino', 'sara'][i]}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   return (
     <>
-      <div className="bx-chat-section">
+      <div className="bx-chat-section" id="bonexis">
         <div className="container bx-head">
-          <img src={asset('/img/logo/bonaco-b.webp')} alt="" width="56" height="43" className="bx-mark" />
-          <Heading className="bx-title">Bonexis</Heading>
-          <p className="bx-sub">AI agenti koje smo razvili u Bonaco Media. Opišite problem, a Bonexis predlaže agenta koji ga rješava.</p>
+          <Heading className="bx-title"><BonexisLogo /></Heading>
+          <p className="bx-sub">Marketing CRM u kojem klijente, kampanje, sadržaj i rokove vode AI agenti. {BEN.name} je vaš ulaz: opišite problem, a on vas spoji s agentom koji ga rješava.</p>
         </div>
-        <div className="container"><BonexisChat onShowAgent={showAgent} onShowTeam={showTeam} /></div>
+        <div className="container">
+          <div className="bx-tabs-row">
+            <div className="bx-tabs" role="tablist" aria-label="Bonexis prikaz">
+              <button role="tab" aria-selected="true" className="is-on">{BEN.name}</button>
+              <button role="tab" aria-selected="false" onClick={() => document.getElementById('scenariji')?.scrollIntoView({ behavior: 'smooth' })}>Scenariji</button>
+              <button role="tab" aria-selected="false" onClick={showTeam}>AI tim</button>
+            </div>
+          </div>
+          <BonexisChat onShowAgent={showAgent} onShowScenario={showScenario} />
+        </div>
       </div>
+      <ScenarioSections onShowAgent={showAgent} />
       <div className="bx-team" id="ai-tim">
         <div className="container bx-team-head">
           <h2>Upoznajte AI tim</h2>
-          <p>Šest agenata radi 0–24. Prevucite da okrenete kancelariju i kliknite radno mjesto da vidite šta koji agent radi.</p>
+          <p>U sredini je Ben, koji posao šalje agentima: Vidi, Selmi, Lejli, Kenanu, Dini i Sari. Rade 0–24. Prevucite da okrenete kancelariju i kliknite radno mjesto da otvorite agenta.</p>
         </div>
-        <BonexisOffice ref={officeRef} selected={selected} onSelectedChange={setSelected} height={officeHeight} />
+        <BonexisOffice ref={officeRef} selected={selected} onSelectedChange={setSelected} onShowScenario={showScenario} height={officeHeight} />
       </div>
     </>
   );

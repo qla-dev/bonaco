@@ -2,12 +2,13 @@ import { asset } from '../lib/asset';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone } from 'lucide-react';
 import SEO from '../components/SEO';
-import HeroStage from '../components/HeroStage';
+import Hero from '../components/Hero';
 import ServiceIcon from '../components/ServiceIcon';
 import BonexisSection from '../components/bonexis/BonexisSection';
-import { ClientLogos, PostCard, ProjectCard, Stats, TestimonialCarousel, YouTube } from '../components/Blocks';
+import { ClientLogos, PostCard, ProjectCard, TestimonialCarousel, YouTube } from '../components/Blocks';
 import SocialIcon from '../components/SocialIcon';
 import { PROJECTS } from '../data/projects';
+import { BONEXIS_AGENTS } from '../data/bonexis';
 import { SERVICES } from '../data/services';
 import { SITE, SOCIAL, VIDEOS } from '../data/site';
 import { POSTS } from '../data/posts.generated';
@@ -24,7 +25,7 @@ const FOLLOW = [
 const PILLARS = [
   { title: 'Misija', text: 'Pomažemo kompanijama da se istaknu u digitalnom svijetu kroz strategije za društvene mreže, SEO, web i grafički dizajn, evente te fotografiju i video.' },
   { title: 'Dugoročna saradnja', text: 'Strategije prilagođavamo ciljevima svakog klijenta i gradimo odnose koji traju godinama, a ne jednu kampanju.' },
-  { title: 'Nove tehnologije', text: 'Pratimo trendove prije nego postanu standard. Zato smo razvili i vlastite AI alate pod imenom Bonexis.' },
+  { title: 'Nove tehnologije', text: 'Pratimo trendove prije nego postanu standard. Zato smo razvili Bonexis, vlastiti marketing CRM s AI agentima.' },
 ];
 
 export default function HomePage() {
@@ -32,26 +33,10 @@ export default function HomePage() {
     <>
       <SEO
         title={SITE.name}
-        description="Bonaco Media je agencija za digitalni marketing iz Sarajeva: društvene mreže, SEO, web i grafički dizajn, event management, foto i video te Bonexis AI alati."
+        description="Bonaco Media je agencija za digitalni marketing iz Sarajeva: društvene mreže, SEO, web i grafički dizajn, event management, foto i video te Bonexis, marketing CRM s AI agentima."
       />
 
-      <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <p className="hero-kicker">Agencija za digitalni marketing iz Sarajeva</p>
-            <h1>Jedina agencija koja vam je potrebna</h1>
-            <p className="lead">
-              Društvene mreže, web, dizajn, foto i video te eventi pod jednim krovom od {SITE.founded}. godine, a sada i uz vlastite AI agente.
-            </p>
-            <div className="btn-row">
-              <Link to="/kontakt/" className="btn btn-primary btn-lg">Zatražite ponudu</Link>
-              <Link to="/portfolio/" className="btn btn-secondary btn-lg">Pogledajte radove</Link>
-            </div>
-            <Stats />
-          </div>
-          <HeroStage />
-        </div>
-      </section>
+      <Hero />
 
       <section className="logos-band" aria-label="Klijenti">
         <ClientLogos />
@@ -77,8 +62,9 @@ export default function HomePage() {
             ))}
             <Link to="/bonexis/" className="service-card service-card-ai">
               <span className="service-icon"><ServiceIcon slug="bonexis" size={26} /></span>
-              <h3>Bonexis AI agenti</h3>
-              <p>Šest AI agenata za klijente, SEO, pozive, kapacitete i kontrolu isporuke.</p>
+              <h3>Bonexis, marketing CRM s AI agentima</h3>
+              <p>Klijenti, kampanje, sadržaj i rokovi na jednom mjestu. Posao vodi Ben sa šest agenata.</p>
+              <span className="ai-chips">{BONEXIS_AGENTS.map(a => <span key={a.persona}><strong>{a.persona}</strong> {a.name}</span>)}</span>
             </Link>
           </div>
         </div>

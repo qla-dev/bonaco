@@ -20,7 +20,7 @@ export default function Header() {
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; }, [open]);
 
   return (
-    <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
+    <header className={`site-header ${pathname === '/' ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
         <Link to="/" className="logo" aria-label="Bonaco Media – početna">
           <img src={asset('/img/logo/bonaco-media.webp')} alt="Bonaco Media" width="640" height="168" />

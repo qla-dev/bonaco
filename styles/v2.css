@@ -1,75 +1,4 @@
 /* v2: interaktivni hero, Bonexis chat, karusel, vizija, slogan */
-.hero-kicker { color: var(--copper-light); font-weight: 500; margin-bottom: 18px; }
-.hero { padding-bottom: clamp(40px, 6vw, 80px); }
-.hero-grid { grid-template-columns: 0.95fr 1.05fr; align-items: start; }
-.hero-copy { padding-top: clamp(8px, 3vw, 48px); }
-
-/* Pozornica usluga */
-.hero-stage-wrap { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.service-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.service-pill { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
-.service-pill svg { color: var(--copper-light); }
-.service-pill:hover { border-color: var(--copper-light); }
-.service-pill.is-on { background: var(--text); color: var(--bg); border-color: var(--text); }
-.service-pill.is-on svg { color: var(--copper); }
-.pill-progress { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--copper); transform-origin: left; animation: pill-progress linear forwards; }
-.hero-stage-wrap:hover .pill-progress { animation-play-state: paused; }
-@keyframes pill-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-
-.stage { --mx: 0; --my: 0; position: relative; height: min(560px, 64vh); min-height: 420px; border-radius: 28px; overflow: hidden; perspective: 1200px;
-  background: radial-gradient(circle at calc(50% + var(--mx) * 20%) calc(45% + var(--my) * 20%), #3a2a21 0%, #1d1815 55%, #171412 100%); border: 1px solid var(--line); }
-.stage-scene { position: absolute; inset: 0; animation: stage-in 0.55s cubic-bezier(.2, .8, .2, 1); }
-@keyframes stage-in { from { opacity: 0; transform: scale(0.97) translateY(10px); } }
-.stage-layer { position: absolute; transition: transform 0.25s ease-out;
-  transform: translate3d(calc(var(--mx) * var(--d) * 22px), calc(var(--my) * var(--d) * 16px), 0) rotateY(calc(var(--mx) * var(--d) * 5deg)) rotateX(calc(var(--my) * var(--d) * -4deg)); }
-.stage-layer > img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7); }
-.l-back { left: 6%; top: 8%; width: 62%; height: 52%; opacity: 0.55; filter: saturate(0.8); }
-.l-main { right: 6%; top: 20%; width: 66%; height: 56%; }
-.l-front { left: 10%; bottom: 14%; width: 38%; height: 36%; }
-.l-video .play { position: absolute; inset: 0; margin: auto; width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; background: var(--copper); color: #fff; }
-.l-chip { z-index: 3; }
-.l-chip span { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 14px; font-weight: 600; box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6); }
-.l-chip svg { color: var(--copper); }
-.chip-a { left: 6%; bottom: 18%; }
-.chip-b { right: 6%; bottom: 20%; }
-.l-glow { inset: 0; }
-.glow-orb { position: absolute; left: 50%; top: 45%; width: 340px; height: 340px; margin: -170px 0 0 -170px; border-radius: 50%; background: radial-gradient(circle, rgba(217, 163, 133, 0.45), transparent 65%); filter: blur(10px); }
-.stage-caption { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; background: rgba(21, 21, 21, 0.78); backdrop-filter: blur(10px); text-decoration: none; font-size: 14px; color: var(--muted); }
-.stage-caption strong { color: var(--copper-light); white-space: nowrap; }
-.stage-caption:hover strong { text-decoration: underline; }
-
-/* Telefon s feedom */
-.l-phone { right: 9%; top: 5%; width: 250px; height: 500px; z-index: 2; }
-.phone { width: 100%; height: 100%; border-radius: 36px; background: #0d0b0a; border: 8px solid #2b2420; box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.8); overflow: hidden; display: flex; flex-direction: column; }
-.phone-bar { display: flex; align-items: center; gap: 8px; padding: 14px 14px 10px; font-size: 13px; }
-.phone-bar img { width: 26px; height: 26px; object-fit: contain; border-radius: 50%; background: var(--copper); padding: 4px; }
-.phone-feed { flex: 1; overflow: hidden; }
-.phone-track { display: flex; flex-direction: column; gap: 6px; animation: feed 22s linear infinite; }
-.stage:hover .phone-track { animation-play-state: paused; }
-@keyframes feed { to { transform: translateY(-50%); } }
-.phone-post { position: relative; aspect-ratio: 4 / 5; }
-.phone-post img { width: 100%; height: 100%; object-fit: cover; }
-.like { position: absolute; right: 10px; bottom: 10px; width: 40px; height: 40px; border-radius: 50%; border: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.5); color: #fff; cursor: pointer; transition: transform 0.15s; }
-.like.is-on { color: #ff5a6e; transform: scale(1.15); }
-
-/* Mini chat u heroju */
-.l-chat { left: 8%; right: 8%; top: 10%; }
-.mini-chat { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 22px; background: #fafafa; color: var(--ink); box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7); }
-.mini-chat p { margin: 0; padding: 10px 14px; border-radius: 16px; font-size: 15px; max-width: 85%; }
-.b-user { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 4px; }
-.b-ai { align-self: flex-start; background: #fff; border: 1px solid #ececec; border-bottom-left-radius: 4px; }
-
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .stage { height: 460px; min-height: 0; }
-}
-@media (max-width: 560px) {
-  .service-pills { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px; scrollbar-width: none; }
-  .service-pill { flex: none; }
-  .stage { height: 420px; border-radius: 20px; }
-  .l-phone { width: 200px; height: 400px; right: 50%; margin-right: -100px; }
-  .stage-caption span { display: none; }
-}
 
 /* Logotipi: veći */
 .logos-band { padding: 36px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -88,7 +17,6 @@
 /* ---------- Bonexis chat ---------- */
 .bx-chat-section { background: #fafafa; color: #111; padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 6vw, 80px); }
 .bx-head { text-align: center; max-width: 720px; margin-bottom: 36px; }
-.bx-mark { margin: 0 auto 14px; width: 56px; height: auto; background: var(--ink); border-radius: 14px; padding: 10px; box-sizing: content-box; }
 .bx-title { font-size: clamp(44px, 6vw, 76px); margin-bottom: 10px; color: #111; }
 .bx-sub { color: #5c5c5c; font-size: 18px; margin: 0 auto; max-width: 560px; }
 .bx-chat { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; position: relative; }
@@ -181,7 +109,3 @@
 .slogan .btn-secondary { border-color: rgba(255, 255, 255, 0.6); }
 .slogan .btn-row { justify-content: center; margin-top: 12px; }
 
-@media (prefers-reduced-motion: reduce) {
-  .phone-track { animation: none; }
-  .stage-layer { transform: none !important; }
-}

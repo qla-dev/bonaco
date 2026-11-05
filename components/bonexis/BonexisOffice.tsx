@@ -1,17 +1,17 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, X } from 'lucide-react';
 import { BONEXIS_AGENTS } from '../../data/bonexis';
+import AgentSidebar from './AgentSidebar';
 import type { OfficeHandle } from './officeScene';
 
 interface Props {
   height?: string;
-  /** Kontrolisani odabir (npr. iz Bonexis chata). Bez ovoga komponenta sama čuva stanje. */
+  /** Kontrolisani odabir (npr. iz Ben AI chata). Bez ovoga komponenta sama čuva stanje. */
   selected?: number;
   onSelectedChange?: (i: number) => void;
+  onShowScenario?: (i: number) => void;
 }
 
-const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({ height = 'min(86svh, 820px)', selected: selProp, onSelectedChange }, outerRef) {
+const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({ height = 'min(86svh, 820px)', selected: selProp, onSelectedChange, onShowScenario }, outerRef) {
   const wrap = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const handle = useRef<OfficeHandle | null>(null);
@@ -36,6 +36,7 @@ const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({
         if (cancelled || !canvas.current || !wrap.current) return;
         handle.current = createOffice(canvas.current, wrap.current, {
           agentNames: BONEXIS_AGENTS.map(a => a.name),
+          personas: BONEXIS_AGENTS.map(a => a.persona),
           onHover: (i, x, y) => setTip(prev => (prev.i === i && i < 0 ? prev : { i, x, y })),
           onSelect: i => setRef.current(i),
         });
@@ -62,14 +63,21 @@ const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({
     return () => removeEventListener('keydown', onKey);
   }, [selected]);
 
-  const agent = selected >= 0 ? BONEXIS_AGENTS[selected] : null;
+  const sidebar = <AgentSidebar index={selected} onChange={setSelected} onShowScenario={onShowScenario} />;
 
   if (state === 'fallback') {
     return (
-      <div className="container agent-grid" ref={outerRef}>
-        {BONEXIS_AGENTS.map(a => (
-          <article key={a.name} className="agent-card"><h3>{a.title}</h3><p>{a.desc}</p></article>
-        ))}
+      <div className="container" ref={outerRef}>
+        <div className="agent-grid">
+          {BONEXIS_AGENTS.map((a, i) => (
+            <button key={a.name} className="agent-card agent-card-btn" onClick={() => setSelected(i)}>
+              <span className="agent-num">{a.persona}</span>
+              <h3>{a.title}</h3>
+              <p>{a.desc}</p>
+            </button>
+          ))}
+        </div>
+        {sidebar}
       </div>
     );
   }
@@ -80,29 +88,17 @@ const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({
         <canvas ref={canvas} aria-hidden="true" />
         {state === 'idle' && <div className="office-loading" aria-hidden="true" />}
         <div className="office-tip" style={{ left: tip.x, top: tip.y, opacity: tip.i >= 0 && selected < 0 ? 1 : 0 }}>
-          {tip.i >= 0 ? BONEXIS_AGENTS[tip.i].title : ''}
+          {tip.i >= 0 ? `${BONEXIS_AGENTS[tip.i].persona}, ${BONEXIS_AGENTS[tip.i].title}` : ''}
         </div>
-        {agent && (
-          <aside className="office-panel" aria-live="polite">
-            <button className="icon-btn office-close" onClick={() => setSelected(-1)} aria-label="Zatvori"><X size={18} /></button>
-            <span className="office-count">Agent {selected + 1} od {BONEXIS_AGENTS.length}</span>
-            <h3>{agent.title}</h3>
-            <p>{agent.desc}</p>
-            <ul className="check-list">{agent.list.map(l => <li key={l}>{l}</li>)}</ul>
-            <div className="btn-row">
-              <Link className="btn btn-primary" to="/kontakt/?usluga=Bonexis">Zatražite demo</Link>
-              <button className="btn btn-secondary" onClick={() => setSelected((selected + 1) % BONEXIS_AGENTS.length)}>
-                Sljedeći agent <ArrowRight size={16} />
-              </button>
-            </div>
-          </aside>
-        )}
         <nav className="office-nav" aria-label="Bonexis AI agenti">
           {BONEXIS_AGENTS.map((a, i) => (
-            <button key={a.name} aria-pressed={i === selected} onClick={() => setSelected(i === selected ? -1 : i)}>{a.name}</button>
+            <button key={a.name} aria-pressed={i === selected} onClick={() => setSelected(i === selected ? -1 : i)}>
+              <strong>{a.persona}</strong> <span>{a.name}</span>
+            </button>
           ))}
         </nav>
       </div>
+      {sidebar}
     </div>
   );
 });

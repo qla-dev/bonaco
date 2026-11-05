@@ -29,8 +29,8 @@ export default function ServicesPage() {
           <article id="bonexis" className="service-row service-row-accent">
             <span className="service-num">AI</span>
             <div>
-              <h2>Bonexis AI alati</h2>
-              <p>Šest AI agenata za audit vizuala, blog i SEO, pronalaženje klijenata, planiranje kapaciteta, kontrolu isporuke i pozive.</p>
+              <h2>Bonexis, marketing CRM s AI agentima</h2>
+              <p>Klijenti, kampanje i rokovi na jednom mjestu, a posao vodi šest AI agenata: audit vizuala, blog i SEO, pronalaženje klijenata, planiranje kapaciteta, kontrolu isporuke i pozive.</p>
             </div>
             <Link to="/bonexis/" className="btn btn-primary btn-sm">Upoznajte Bonexis</Link>
           </article>

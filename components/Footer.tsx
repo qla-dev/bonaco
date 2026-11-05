@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-brand">
           <img src={asset('/img/logo/bonaco-media.webp')} alt="Bonaco Media" width="640" height="168" loading="lazy" />
-          <p>Agencija za digitalni marketing iz Sarajeva. Društvene mreže, web, dizajn, foto i video, eventi i Bonexis AI alati.</p>
+          <p>Agencija za digitalni marketing iz Sarajeva. Društvene mreže, web, dizajn, foto i video, eventi i Bonexis, marketing CRM s AI agentima.</p>
           <div className="footer-social">
             {SOCIAL.map(s => (
               <a key={s.id} href={s.href} target="_blank" rel="noopener" aria-label={s.label}><SocialIcon id={s.id} size={20} /></a>
@@ -23,7 +23,7 @@ export default function Footer() {
           <h2 className="footer-title">Usluge</h2>
           <ul>
             {SERVICES.map(s => <li key={s.slug}><Link to={`/nase-usluge/#${s.slug}`}>{s.title}</Link></li>)}
-            <li><Link to="/bonexis/">Bonexis AI</Link></li>
+            <li><Link to="/bonexis/">Bonexis CRM</Link></li>
           </ul>
         </div>
         <div>
@@ -48,6 +48,10 @@ export default function Footer() {
         <span>© {year} {SITE.legalName}{SITE.companyIds.map(c => ` · ${c.label}: ${c.value}`).join('')}</span>
         <nav aria-label="Pravne informacije">
           <Link to="/politika-privatnosti/">Politika privatnosti</Link>
+          <a href="https://qla.dev" target="_blank" rel="noopener" className="made-by" aria-label="Made by qla.dev">
+            <span>Made by</span>
+            <img src={asset('/img/logo/qla-dev.webp')} alt="qla.dev" width="84" height="24" loading="lazy" />
+          </a>
         </nav>
       </div>
     </footer>

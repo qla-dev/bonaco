@@ -7,8 +7,8 @@ export default function BonexisPage() {
   return (
     <>
       <SEO
-        title="Bonexis – AI agenti za vaš biznis"
-        description="Bonexis: šest AI agenata za audit vizuala, blog i SEO, pronalaženje klijenata, planiranje kapaciteta, kontrolu isporuke i AI sekretaricu koja prima i obavlja pozive."
+        title="Bonexis – marketing CRM s AI agentima"
+        description="Bonexis je marketing CRM s AI agentima: šest agenata za audit vizuala, blog i SEO, pronalaženje klijenata, planiranje kapaciteta, kontrolu isporuke i AI sekretaricu koja prima i obavlja pozive."
       />
       <BonexisSection headingLevel="h1" />
 

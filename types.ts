@@ -49,9 +49,21 @@ export interface Testimonial {
   photo: string;
 }
 
+export interface ScenarioMessage { from: "client" | "agent"; text: string }
+export interface ScenarioRow { label: string; value: string; tone: "ok" | "warn" | "bad" | "info" }
+
 export interface BonexisAgent {
+  /** Ime agenta (Vida, Selma, Lejla, Kenan, Dino, Sara) */
+  persona: string;
   name: string;
   title: string;
   desc: string;
   list: string[];
+  scenario: {
+    title: string;
+    desc: string;
+    clientLabel: string;
+    messages: ScenarioMessage[];
+    result: { title: string; rows: ScenarioRow[]; status: string };
+  };
 }

@@ -22,9 +22,9 @@ const { PROJECTS, POSTS } = await import(pathToFileURL(out).href + `?t=${Date.no
 fs.rmSync(entry); fs.rmSync(out);
 
 const routes = [
-  { path: '/', title: `${NAME} – digitalna marketinška agencija, Sarajevo`, description: 'Bonaco Media je agencija za digitalni marketing iz Sarajeva: društvene mreže, SEO, web i grafički dizajn, event management, foto i video te Bonexis AI alati.' },
+  { path: '/', title: `${NAME} – digitalna marketinška agencija, Sarajevo`, description: 'Bonaco Media je agencija za digitalni marketing iz Sarajeva: društvene mreže, SEO, web i grafički dizajn, event management, foto i video te Bonexis, marketing CRM s AI agentima.' },
   { path: '/nase-usluge/', title: `Usluge | ${NAME}`, description: 'Vođenje društvenih mreža, SEO optimizacija, web i grafički dizajn, event management te fotografisanje i snimanje. Personalizirana strategija za vaš brend.' },
-  { path: '/bonexis/', title: `Bonexis – AI agenti za vaš biznis | ${NAME}`, description: 'Bonexis: šest AI agenata za audit vizuala, blog i SEO, pronalaženje klijenata, planiranje kapaciteta, kontrolu isporuke i AI sekretaricu koja prima i obavlja pozive.' },
+  { path: '/bonexis/', title: `Bonexis – marketing CRM s AI agentima | ${NAME}`, description: 'Bonexis je marketing CRM s AI agentima: šest agenata za audit vizuala, blog i SEO, pronalaženje klijenata, planiranje kapaciteta, kontrolu isporuke i AI sekretaricu koja prima i obavlja pozive.' },
   { path: '/portfolio/', title: `Portfolio | ${NAME}`, description: 'Odabrani projekti Bonaco Media: društvene mreže, web stranice, grafički dizajn, fotografija, video i eventi.' },
   { path: '/vijesti/', title: `Vijesti | ${NAME}`, description: 'Novosti, savjeti i trendovi iz digitalnog marketinga: društvene mreže, SEO, dizajn i nove tehnologije.' },
   { path: '/kontakt/', title: `Kontakt | ${NAME}`, description: 'Kontaktirajte Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Pošaljite upit i javit ćemo vam se s prijedlogom.' },
