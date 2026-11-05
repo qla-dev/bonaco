@@ -404,3 +404,42 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
   .mobile-cta { transform: none; }
   .hv .hv-below .btn-row, .hv .hv-copy .btn-row { display: none; }
 }
+
+/* ---------- Tri brenda: kartice u bojama brendova ---------- */
+.brand-tiles-section { border-top: 1px solid var(--line); }
+.brand-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.brand-tile { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px; min-height: 340px; justify-content: center; padding: 40px 28px 32px; border-radius: var(--radius-lg); color: #fff; text-decoration: none; transition: transform 0.35s cubic-bezier(.2, .8, .2, 1), box-shadow 0.35s; }
+.brand-tile:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8); }
+.brand-tile .brand-logo { font-size: clamp(34px, 3.4vw, 48px); color: #fff; }
+.brand-tile .bl-dot { background: #fff; }
+.brand-tile .bl-sub { color: rgba(255, 255, 255, 0.9); }
+.brand-tile p { margin: 0; max-width: 30ch; color: rgba(255, 255, 255, 0.9); font-size: 15px; }
+.bt-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; padding: 8px 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.22); backdrop-filter: blur(6px); }
+.brand-tile:hover .bt-link { background: rgba(0, 0, 0, 0.35); }
+.bt-art { position: absolute; inset: 0; z-index: -1; transition: transform 0.8s cubic-bezier(.2, .8, .2, 1); }
+.brand-tile:hover .bt-art { transform: scale(1.05); }
+/* BONACO: narandžasta, zakrivljena fasada s vertikalnim lamelama */
+.brand-tile-bonaco .bt-art {
+  background:
+    radial-gradient(circle at 18% 135%, transparent 52%, rgba(255, 255, 255, 0.22) 52.4%, transparent 53.6%),
+    radial-gradient(circle at 18% 135%, transparent 60%, rgba(0, 0, 0, 0.14) 60.4%, transparent 66%),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.13) 0 2px, transparent 2px 13px) right bottom / 55% 62% no-repeat,
+    linear-gradient(150deg, #ff9a45 0%, #f58426 45%, #c75a0c 100%);
+}
+/* BONEXIS: tirkizna, stakleni paneli pod uglom */
+.brand-tile-bonexis .bt-art {
+  background:
+    repeating-linear-gradient(62deg, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 1.5px 70px),
+    repeating-linear-gradient(-28deg, rgba(0, 0, 0, 0.12) 0 1.5px, transparent 1.5px 90px),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.22) 0%, transparent 38%, rgba(0, 0, 0, 0.25) 100%),
+    linear-gradient(160deg, #19c2bd 0%, #009d9a 50%, #005f5d 100%);
+}
+/* BONEVENTS: ljubičasta, rombovi i snop svjetla */
+.brand-tile-bonevents .bt-art {
+  background:
+    linear-gradient(45deg, transparent 46%, rgba(255, 255, 255, 0.1) 46% 54%, transparent 54%) 0 0 / 180px 180px,
+    linear-gradient(-45deg, transparent 46%, rgba(0, 0, 0, 0.14) 46% 54%, transparent 54%) 0 0 / 180px 180px,
+    radial-gradient(ellipse at 75% 0%, rgba(168, 139, 255, 0.55), transparent 55%),
+    linear-gradient(165deg, #6a3df0 0%, #592ada 45%, #2a1270 100%);
+}
+@media (max-width: 860px) { .brand-tiles { grid-template-columns: 1fr; } .brand-tile { min-height: 260px; } }

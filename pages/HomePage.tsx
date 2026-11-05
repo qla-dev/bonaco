@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Mail, Phone } from 'lucide-react';
 import SEO from '../components/SEO';
 import HeroVideo from '../components/HeroVideo';
+import BrandTiles from '../components/BrandTiles';
 import { BonEventsBlock, BonexisCapsules, ClientsMarquee, MarketingVideo, ServiceCircles, WorkCircles } from '../components/Circles';
 import { SITE } from '../data/site';
 import { useLang } from '../lib/i18n';
@@ -21,6 +22,8 @@ export default function HomePage() {
       />
 
       <HeroVideo />
+
+      <BrandTiles />
 
       {/* Marketing: usluge i radovi u krugovima */}
       <section className="section mkt" id="marketing">

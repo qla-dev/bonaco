@@ -1,9 +1,7 @@
 // O nama: iskustvo, način rada, vrijednosti i veza s Bonexisom i BonEventsom.
 // Bez izmišljenih fotografija tima i prostorija (brief v1.3); brojke tek nakon provjere.
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import BrandLogo from '../components/BrandLogo';
+import BrandTiles from '../components/BrandTiles';
 import { CTASection, TestimonialCarousel, YouTube } from '../components/Blocks';
 import { SITE, VIDEOS } from '../data/site';
 import { useLang } from '../lib/i18n';
@@ -24,7 +22,7 @@ const PILLARS = [
 ];
 
 export default function AboutPage() {
-  const { lang, t, to } = useLang();
+  const { lang, t } = useLang();
   return (
     <>
       <SEO
@@ -77,28 +75,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <h2 className="center-title">{t('Tri brenda, jedna ekipa', 'Three brands, one team')}</h2>
-          <div className="brand-trio">
-            <Link to={to('/nase-usluge/')} className="trio-card" data-brand="bonaco">
-              <BrandLogo brand="bonaco" />
-              <p>{t('Full-service marketing: strategija, kampanje, sadržaj, dizajn, produkcija, web i SEO.', 'Full-service marketing: strategy, campaigns, content, design, production, web and SEO.')}</p>
-              <span className="text-link">Marketing <ArrowRight size={16} /></span>
-            </Link>
-            <Link to={to('/bonexis/')} className="trio-card" data-brand="bonexis">
-              <BrandLogo brand="bonexis" />
-              <p>{t('AI kapsule za web, prodaju, planiranje, isporuku i kvalitet. U razvoju s partnerom qla.dev.', 'AI capsules for web, sales, planning, delivery and quality. In development with our partner qla.dev.')}</p>
-              <span className="text-link">Bonexis <ArrowRight size={16} /></span>
-            </Link>
-            <Link to={to('/bonevents/')} className="trio-card" data-brand="bonevents">
-              <BrandLogo brand="bonevents" />
-              <p>{t('Planiranje, produkcija i promocija događaja za brendove.', 'Planning, production and promotion of events for brands.')}</p>
-              <span className="text-link">BonEvents <ArrowRight size={16} /></span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <BrandTiles />
 
       {lang === 'bs' && (
         <section className="section">

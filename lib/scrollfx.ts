@@ -23,7 +23,7 @@ const REVEAL: [string, string?][] = [
   ['.bev-services li, .bev-refs li'],
   ['.end-card'],
   ['.services-list .service-row'],
-  ['.steps li, .pillar, .principle, .trio-card, .capsule-card', 'rv-zoom'],
+  ['.steps li, .pillar, .principle, .trio-card, .capsule-card, .brand-tile', 'rv-zoom'],
   ['.projects-grid .project-card, .posts-grid .post-card'],
   ['.about-grid > :first-child', 'rv-left'],
   ['.about-grid > :last-child', 'rv-right'],
