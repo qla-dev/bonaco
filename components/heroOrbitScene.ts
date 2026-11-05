@@ -144,6 +144,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     const tex = track(circleTexture(it.src, rerender));
     const mat = track(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
     const s = new THREE.Sprite(mat);
+    s.renderOrder = 10; // logotipi se crtaju poslije linija, pa ih puna podloga prekriva (ne vide se kroz krug)
     s.position.set(Math.cos(a) * R, Math.sin(a) * R, 0);
     s.userData = { href: it.href, label: it.label, base: 1.25 };
     s.scale.setScalar(1.25);
