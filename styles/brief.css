@@ -694,3 +694,11 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
   .mv-steps::before { top: calc(var(--row) / 2); bottom: 0; }
   .mv-media::before { top: 0; height: 50%; }
 }
+
+/* Showreel: rotirajući bedž dolje desno na videu, tamni overlay preko postera */
+.mv-media .spin-badge { top: auto; left: auto; right: -28px; bottom: -36px; }
+@media (max-width: 860px) { .mv-media .spin-badge { right: 8px; bottom: -40px; width: 92px; height: 92px; } }
+.mv-media .video-poster::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(8, 8, 8, 0.78) 0%, rgba(8, 8, 8, 0.45) 55%, rgba(8, 8, 8, 0.3) 100%), linear-gradient(0deg, rgba(8, 8, 8, 0.5), transparent 55%); }
+.mv-media .video-poster:hover::after { background: linear-gradient(90deg, rgba(8, 8, 8, 0.65) 0%, rgba(8, 8, 8, 0.3) 55%, rgba(8, 8, 8, 0.15) 100%); }
+.mv-media .video-play { z-index: 2; }
+.mv-media .video { margin-bottom: 8px; }
