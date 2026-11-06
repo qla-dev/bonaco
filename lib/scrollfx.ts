@@ -23,7 +23,7 @@ const REVEAL: [string, string?][] = [
   ['.bev-services li, .bev-refs li'],
   ['.ev-types li, .ev-process li', 'rv-zoom'],
   ['.end-card'],
-  ['.services-list .service-row'],
+  ['.service-slide .ss-inner > *'],
   ['.steps li, .pillar, .principle, .trio-card, .capsule-card', 'rv-zoom'],
   ['.brand-tiles', 'rv-fade'],
   ['.projects-grid .project-card, .posts-grid .post-card'],
