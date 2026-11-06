@@ -570,3 +570,11 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 /* "Pogledajte sve radove" (link sekcije) uvijek gore desno, u ravni s oznakom sekcije */
 .section-head:has(.eyebrow) { position: relative; }
 .section-head:has(.eyebrow) > .text-link { position: absolute; top: 0; right: 0; }
+
+/* Prelaz između stranica: nova stranica izranja (fade + slide + blur), bez krutog reza */
+.page-enter { animation: page-in 0.7s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(22px); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } }

@@ -32,7 +32,8 @@ export default function Layout() {
       <a href="#sadrzaj" className="skip-link">{lang === 'en' ? 'Skip to content' : 'Preskoči na sadržaj'}</a>
       <Header />
       <main id="sadrzaj">
-        <Outlet />
+        {/* nova stranica ulazi s blagim fade/slide/blur prelazom (key = putanja) */}
+        <div key={pathname} className="page-enter"><Outlet /></div>
       </main>
       <Footer />
       <MobileCta />
