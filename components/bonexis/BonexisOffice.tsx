@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 import { BONEXIS_AGENTS } from '../../data/bonexis';
 import AgentSidebar from './AgentSidebar';
 import type { OfficeHandle } from './officeScene';
+import { getScrollY, scrollToY } from '../../lib/scroller';
 
 interface Props {
   height?: string;
@@ -60,9 +61,9 @@ const BonexisOffice = forwardRef<HTMLDivElement, Props>(function BonexisOffice({
     const header = 84, visibleBottom = mobile ? innerHeight * 0.5 : innerHeight;
     if (r.top >= header - 4 && r.bottom <= visibleBottom + 4) return;
     const target = mobile
-      ? scrollY + r.top - header + Math.max(0, (r.height - (visibleBottom - header)) / 2)
-      : scrollY + r.top - Math.max(header, (innerHeight - r.height) / 2);
-    scrollTo({ top: Math.max(0, target), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      ? getScrollY() + r.top - header + Math.max(0, (r.height - (visibleBottom - header)) / 2)
+      : getScrollY() + r.top - Math.max(header, (innerHeight - r.height) / 2);
+    scrollToY(Math.max(0, target), matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth');
   }, [selected]);
 
   useEffect(() => {

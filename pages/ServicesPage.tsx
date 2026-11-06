@@ -9,6 +9,7 @@ import ServiceIcon from '../components/ServiceIcon';
 import { SERVICES, STEPS } from '../data/services';
 import { tr, useLang } from '../lib/i18n';
 import { hl } from '../lib/hl';
+import { getScrollY, scrollToY } from '../lib/scroller';
 
 export default function ServicesPage() {
   const { lang, t, to } = useLang();
@@ -26,7 +27,7 @@ export default function ServicesPage() {
       const el = document.getElementById(id);
       if (!el) return;
       const head = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 70;
-      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - head, behavior: 'instant' as ScrollBehavior });
+      scrollToY(el.getBoundingClientRect().top + getScrollY() - head, 'instant' as ScrollBehavior);
     };
     const raf = requestAnimationFrame(go);
     const t1 = setTimeout(go, 350), t2 = setTimeout(go, 900);

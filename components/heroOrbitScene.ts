@@ -2,6 +2,7 @@
 // Prevlačenjem se okreće cijela sfera (uz inerciju), klik na projekat otvara studiju slučaja.
 // Učitava se dinamički (three.js je zaseban chunk), crta samo dok je hero vidljiv.
 import * as THREE from 'three';
+import { getScrollY, onScroll } from '../lib/scroller';
 
 export interface OrbitItem { src: string; href: string | null; label: string }
 export interface OrbitHandle { destroy(): void; setPaused(p: boolean): void }
@@ -66,7 +67,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
   scene.add(new THREE.Points(pGeo, pMat));
   let pT = 0;
   // skrol pokreće čestice: dolje = brže, gore = unazad; kad stane, nastave normalno
-  let scrollV = 0, lastScroll = window.scrollY;
+  let scrollV = 0, lastScroll = getScrollY();
   const driftParticles = (dt: number) => {
     pT += dt;
     const mult = 1 + scrollV;
@@ -276,7 +277,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, rotX, 1 - Math.pow(0.0005, dt));
     root.rotation.y = THREE.MathUtils.lerp(root.rotation.y, rotY, 1 - Math.pow(0.0005, dt));
     // brzina skrola za čestice (glatko opada kad skrol stane)
-    const sy = window.scrollY;
+    const sy = getScrollY();
     const v = dt > 0 ? (sy - lastScroll) / dt : 0;
     lastScroll = sy;
     scrollV = THREE.MathUtils.lerp(scrollV, THREE.MathUtils.clamp(v / 120, -12, 12), 1 - Math.pow(0.002, dt));
@@ -308,8 +309,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     if (visible) wake(); else { cancelAnimationFrame(raf); running = false; last = 0; }
   });
   io.observe(canvas);
-  const onPageScroll = () => wake();
-  addEventListener('scroll', onPageScroll, { passive: true });
+  const offPageScroll = onScroll(() => wake());
   const onVis = () => { if (document.hidden) { cancelAnimationFrame(raf); running = false; last = 0; } else wake(); };
   document.addEventListener('visibilitychange', onVis);
   fit();
@@ -321,7 +321,7 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
       cancelAnimationFrame(raf);
       ro.disconnect(); io.disconnect();
       document.removeEventListener('visibilitychange', onVis);
-      removeEventListener('scroll', onPageScroll);
+      offPageScroll();
       canvas.removeEventListener('pointerdown', onDown);
       canvas.removeEventListener('pointermove', onMove);
       canvas.removeEventListener('pointerup', onUp);

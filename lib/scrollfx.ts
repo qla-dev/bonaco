@@ -4,6 +4,7 @@
 // Elementi se biraju automatski selektorima, pa nove stranice dobijaju efekte bez dodatnog koda.
 // Uz prefers-reduced-motion ništa se ne pokreće.
 import { useEffect } from 'react';
+import { onScroll as listenScroll } from './scroller';
 
 const REVEAL: [string, string?][] = [
   ['.page-hero .container > *'],
@@ -128,13 +129,13 @@ export function useScrollFx(pathname: string) {
     let t = 0;
     const mo = new MutationObserver(() => { clearTimeout(t); t = window.setTimeout(scan, 120); });
     mo.observe(document.body, { childList: true, subtree: true });
-    addEventListener('scroll', onScroll, { passive: true });
+    const offScroll = listenScroll(onScroll);
     addEventListener('resize', onScroll);
 
     return () => {
       cancelAnimationFrame(start); cancelAnimationFrame(raf); clearTimeout(t);
       io.disconnect(); mo.disconnect();
-      removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll);
+      offScroll(); removeEventListener('resize', onScroll);
     };
   }, [pathname]);
 }

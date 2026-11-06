@@ -521,3 +521,24 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
   .service-slide { min-height: calc(100dvh - var(--header-h)); }
   @media (max-width: 760px) { .service-slide { min-height: calc(100dvh - var(--header-h) - 76px - env(safe-area-inset-bottom)); } }
 }
+
+/* ---------- Telefon: skroluje se #root, ne dokument (kao qla.dev) ----------
+   Safari tada ne mijenja visinu donje adresne trake, pa ekran ostaje iste visine. */
+@media (max-width: 760px) {
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+  #root { position: fixed; inset: 0; overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
+  html.snap-y { scroll-snap-type: none; }
+  html.snap-y #root { scroll-snap-type: y mandatory; scroll-padding-top: var(--header-h); }
+  html.menu-open #root { overflow: hidden; }
+  html.menu-open body { position: static; }
+  /* visina ekrana je stabilna: slajd = ekran minus header i fiksni CTA */
+  .service-slide { min-height: calc(100% - 0px); height: calc(100dvh - var(--header-h) - 76px - env(safe-area-inset-bottom)); min-height: 0; }
+}
+
+/* Pravi BONACO logotip (slika) – visina usklađena s ostalim wordmarkovima */
+.brand-logo-img { display: inline-flex; }
+.brand-logo-img img { height: 1.62em; width: auto; display: block; }
+/* Bedževi Bonexisa uvijek u jednom redu */
+.bxc-badges { flex-wrap: nowrap; }
+.bxc-badges .badge { white-space: nowrap; }
+@media (max-width: 400px) { .bxc-badges .badge { font-size: 12px; padding: 4px 10px; } }

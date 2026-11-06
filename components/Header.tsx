@@ -5,6 +5,7 @@ import { NAV, SOCIAL } from '../data/site';
 import { counterpart, useLang } from '../lib/i18n';
 import SocialIcon from './SocialIcon';
 import BrandLogo, { type Brand } from './BrandLogo';
+import { getScrollY, onScroll, scrollToY } from '../lib/scroller';
 
 export const brandOf = (pathname: string): Brand =>
   /^\/(en\/)?bonexis/.test(pathname) ? 'bonexis' : /^\/(en\/)?bonevents/.test(pathname) ? 'bonevents' : 'bonaco';
@@ -32,15 +33,14 @@ export default function Header() {
 
   useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    addEventListener('scroll', onScroll, { passive: true });
-    return () => removeEventListener('scroll', onScroll);
+    const check = () => setScrolled(getScrollY() > 24);
+    check();
+    return onScroll(check);
   }, []);
   // Otvoren meni: zaključaj skrol stranice (i na iOS-u, gdje body overflow nije dovoljan)
   useEffect(() => {
     if (!open) return;
-    const y = window.scrollY;
+    const y = getScrollY();
     const at = window.location.pathname;
     document.body.style.top = `-${y}px`;
     document.documentElement.classList.add('menu-open');
@@ -48,7 +48,7 @@ export default function Header() {
       document.documentElement.classList.remove('menu-open');
       document.body.style.top = '';
       // Vrati poziciju samo ako je meni zatvoren na istoj stranici (link vodi na vrh nove stranice)
-      if (window.location.pathname === at) window.scrollTo(0, y);
+      if (window.location.pathname === at) scrollToY(y);
     };
   }, [open]);
 

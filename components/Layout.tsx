@@ -5,6 +5,7 @@ import Footer from './Footer';
 import MobileCta from './MobileCta';
 import { langOf } from '../lib/i18n';
 import { useScrollFx } from '../lib/scrollfx';
+import { scrollToY } from '../lib/scroller';
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
@@ -17,7 +18,7 @@ export default function Layout() {
       const el = document.getElementById(decodeURIComponent(hash.slice(1)));
       if (el) { el.scrollIntoView(); return; }
     }
-    window.scrollTo(0, 0);
+    scrollToY(0);
   }, [pathname, hash]);
 
   // Jezik dokumenta i boja brenda (Bonexis/BonEvents stranice dobijaju svoj akcent)

@@ -23,7 +23,7 @@ export default function BrandTiles({ heading = true }: { heading?: boolean }) {
           {TILES.map(x => (
             <Link key={x.brand} to={to(x.to)} className={`brand-tile brand-tile-${x.brand}`}>
               <BrandTileArt brand={x.brand} />
-              <BrandLogo brand={x.brand} />
+              <BrandLogo brand={x.brand} mono />
               <p>{x[lang]}</p>
               <span className="bt-link">{x.label} <ArrowRight size={16} /></span>
             </Link>
