@@ -11,7 +11,8 @@ const REVEAL: [string, string?][] = [
   ['.section-head > div > *, .section-head > .text-link, .center-title'],
   ['.svc-circles', 'rv-fade'], // cijeli red (stavke unutar horizontalnog skrola bi se odsjekle)
   ['.work-circles .wc', 'rv-zoom'],
-  ['.mkt-video > div:first-child', 'rv-left'],
+  ['.mv-copy > :not(.mv-steps)', 'rv-left'],
+  ['.mv-steps li', 'rv-left'],
   ['.mkt-video > .video', 'rv-right'],
   ['.mq-row', 'rv-fade'],
   ['.clients-all'],

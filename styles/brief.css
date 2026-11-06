@@ -634,3 +634,15 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .ss-num { -webkit-text-stroke: 0; color: rgba(255, 255, 255, 0.035); }
 /* Pravi BONACO logo u bedžu "Bonaco × qla.dev" */
 .badge-bonaco { height: 0.95em; width: auto; margin-right: 0.4em; vertical-align: middle; position: relative; top: -0.06em; }
+
+
+/* Koraci u Showreel bloku kao vertikalni timeline (ikona, broj, naslov, opis), bez kartica */
+.mv-steps { grid-template-columns: 1fr; gap: 0; counter-reset: mv; margin-top: 28px; }
+.mv-steps li { position: relative; counter-increment: mv; padding: 12px 0; border: 0; background: none; border-radius: 0; gap: 16px; }
+.mv-steps li > span { width: 46px; height: 46px; border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 8%, transparent); position: relative; z-index: 1; background: color-mix(in srgb, var(--accent) 16%, #121212); }
+.mv-steps li::before { content: ''; position: absolute; left: 22.5px; top: 58px; bottom: -12px; width: 1px; background: linear-gradient(var(--accent), transparent); opacity: 0.5; }
+.mv-steps li:last-child::before { display: none; }
+.mv-steps strong { font-size: 17px; }
+.mv-steps strong::before { content: counter(mv, decimal-leading-zero); margin-right: 10px; font: 700 13px var(--font-head); color: var(--accent-light); }
+.mv-steps small { font-size: 14px; margin-top: 2px; }
+.mv-steps li:hover > span { background: var(--accent); color: var(--accent-ink); }
