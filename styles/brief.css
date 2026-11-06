@@ -614,3 +614,16 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 /* "Zatražite ponudu" (glass dugme) bez obruba, na PC-u i telefonu */
 .btn-glass, .mobile-cta .btn-glass { border-color: transparent; background: rgba(255, 255, 255, 0.1); }
 .btn-glass:hover { border-color: transparent; background: rgba(255, 255, 255, 0.18); }
+
+
+/* Tri brenda: opisi iste visine (tačno 3 reda), pa su logo, tekst i dugme poravnati */
+.brand-tile p { line-height: 1.6; min-height: calc(1.6em * 3); display: flex; align-items: center; justify-content: center; }
+
+/* Horizontalni skrolovi: snap ostavlja lijevi razmak (gutter), prva stavka ne lijepi uz ivicu */
+.svc-circles, .bxc-orbit, .brand-tiles, .marquee.is-paused .mq-row { scroll-padding-inline: var(--gutter); }
+@media (max-width: 900px) {
+  .bxc-orbit { margin: 0 calc(var(--gutter) * -1); padding-left: var(--gutter); padding-right: var(--gutter); }
+}
+@media (max-width: 700px) {
+  .svc-circles li:last-child, .bxc-orbit > :last-child { margin-right: var(--gutter); }
+}
