@@ -542,3 +542,17 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .bxc-badges { flex-wrap: nowrap; }
 .bxc-badges .badge { white-space: nowrap; }
 @media (max-width: 400px) { .bxc-badges .badge { font-size: 12px; padding: 4px 10px; } }
+
+/* Fiksni CTA mijenja boju prema sekciji ispod (proporcionalno skrolu, MobileCta.tsx) */
+.mobile-cta { --cta-from: var(--accent); --cta-to: var(--accent); --cta-ink-from: var(--accent-ink); --cta-ink-to: var(--accent-ink); --cta-p: 0%; }
+.mobile-cta .btn-primary {
+  background: color-mix(in srgb, var(--cta-from) calc(100% - var(--cta-p)), var(--cta-to) var(--cta-p));
+  color: color-mix(in srgb, var(--cta-ink-from) calc(100% - var(--cta-p)), var(--cta-ink-to) var(--cta-p));
+}
+.mobile-cta .btn-glass { border-color: color-mix(in srgb, rgba(255, 255, 255, 0.35) calc(100% - var(--cta-p)), var(--cta-to) var(--cta-p)); }
+.mobile-cta { border-top-color: color-mix(in srgb, var(--line) calc(100% - var(--cta-p)), var(--cta-to) calc(var(--cta-p) * 0.6)); }
+
+/* "Preskoči na sadržaj" samo za tastaturu: potpuno van ekrana, vidi se tek uz :focus-visible */
+.skip-link { position: fixed; left: 16px; top: 12px; z-index: 200; transform: translateY(-200%); opacity: 0; pointer-events: none; transition: none; }
+.skip-link:focus { top: 12px; }
+.skip-link:focus-visible { transform: none; opacity: 1; pointer-events: auto; }
