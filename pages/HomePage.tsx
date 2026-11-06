@@ -8,6 +8,7 @@ import BrandTiles from '../components/BrandTiles';
 import { BonEventsBlock, BonexisCapsules, ClientsMarquee, MarketingVideo, ServiceCircles, WorkCircles } from '../components/Circles';
 import { SITE } from '../data/site';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 export default function HomePage() {
   const { t, to } = useLang();
@@ -31,7 +32,7 @@ export default function HomePage() {
           <div className="section-head">
             <div>
               <span className="eyebrow">Marketing</span>
-              <h2>{t('Full-service marketing, od ideje do rezultata', 'Full-service marketing, from idea to results')}</h2>
+              <h2>{hl(t('Full-service marketing, od ideje do *rezultata*', 'Full-service marketing, from idea to *results*'))}</h2>
               <p className="lead">{t(
                 'Strategija, kreativa i produkcija pod jednim krovom. Pogledajte izbor radova za brendove iz regije.',
                 'Strategy, creative and production under one roof. Take a look at selected work for brands across the region.',
@@ -62,7 +63,7 @@ export default function HomePage() {
         <div className="container end-grid">
           <article className="end-card">
             <span className="eyebrow">{t('O nama', 'About us')}</span>
-            <h2>{t('Spoj kreativnosti i strategije', 'Where creativity meets strategy')}</h2>
+            <h2>{hl(t('Spoj *kreativnosti* i strategije', 'Where *creativity* meets strategy'))}</h2>
             <p>{t(
               `Bonaco Media je marketinška agencija iz Sarajeva, osnovana ${SITE.founded}. godine. Radimo s domaćim i međunarodnim klijentima i svaki detalj marketinga slažemo kao dio jedne strategije.`,
               `Bonaco Media is a marketing agency from Sarajevo, founded in ${SITE.founded}. We work with local and international clients and fit every marketing detail into one strategy.`,
@@ -71,7 +72,7 @@ export default function HomePage() {
           </article>
           <article className="end-card end-card-contact">
             <span className="eyebrow">{t('Kontakt', 'Contact')}</span>
-            <h2>{t('Recite nam šta vam treba', 'Tell us what you need')}</h2>
+            <h2>{hl(t('Recite nam šta vam *treba*', 'Tell us what you *need*'))}</h2>
             <ul className="end-contact">
               <li><a href={SITE.phoneHref}><Phone size={18} /> {SITE.phone}</a></li>
               <li><a href={`mailto:${SITE.email}`}><Mail size={18} /> {SITE.email}</a></li>

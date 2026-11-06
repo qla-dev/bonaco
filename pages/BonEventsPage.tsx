@@ -6,6 +6,7 @@ import { GALLERIES } from '../data/galleries.generated';
 import { EVENT_PROCESS, EVENT_TYPES } from '../data/bonevents';
 import BrandIcon from '../components/BrandIcon';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 const GALLERY = (GALLERIES['summer-lounge'] ?? []).slice(0, 9);
 
@@ -29,7 +30,7 @@ export default function BonEventsPage() {
           <div className="section-head">
             <div>
               <span className="eyebrow">{t('Šta organizujemo', 'What we organise')}</span>
-              <h2>{t('Vrste događaja', 'Types of events')}</h2>
+              <h2>{hl(t('Vrste *događaja*', 'Types of *events*'))}</h2>
               <p className="lead">{t('Od intimnih poslovnih okupljanja do cijelih ljetnih sezona, uvijek s jasnim ciljem za brend.', 'From intimate business gatherings to entire summer seasons, always with a clear goal for the brand.')}</p>
             </div>
           </div>
@@ -47,7 +48,7 @@ export default function BonEventsPage() {
           <div className="section-head">
             <div>
               <span className="eyebrow">{t('Kako radimo', 'How we work')}</span>
-              <h2>{t('Od briefa do aftermovieja', 'From brief to aftermovie')}</h2>
+              <h2>{hl(t('Od briefa do *aftermovieja*', 'From brief to *aftermovie*'))}</h2>
             </div>
           </div>
           <ol className="ev-process">
@@ -65,7 +66,7 @@ export default function BonEventsPage() {
       {GALLERY.length > 0 && (
         <section className="section light" data-brand="bonevents">
           <div className="container">
-            <h2 className="gallery-title">{t('Iz naših događaja', 'From our events')}</h2>
+            <h2 className="gallery-title">{hl(t('Iz naših *događaja*', 'From our *events*'))}</h2>
             <div className="gallery">
               {GALLERY.map((g, i) => (
                 <figure key={g.src} className="gallery-item">
@@ -77,7 +78,7 @@ export default function BonEventsPage() {
         </section>
       )}
       <CTASection
-        title={t('Planirate događaj?', 'Planning an event?')}
+        title={t('Planirate *događaj*?', 'Planning an *event*?')}
         text={t('Pošaljite datum, okvirni broj gostiju i ideju, a mi ćemo predložiti koncept i ponudu.', 'Send us the date, the expected number of guests and your idea, and we will suggest a concept and a quote.')}
         inquiry="BonEvents"
       />

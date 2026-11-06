@@ -7,6 +7,7 @@ import { WorkCircles } from '../components/Circles';
 import ServiceIcon from '../components/ServiceIcon';
 import { SERVICES, STEPS } from '../data/services';
 import { tr, useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 export default function ServicesPage() {
   const { lang, t, to } = useLang();
@@ -22,7 +23,7 @@ export default function ServicesPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">Marketing</span>
-          <h1>{t('Sve za vaš brend na jednom mjestu', 'Everything your brand needs in one place')}</h1>
+          <h1>{hl(t('Sve za vaš *brend* na jednom mjestu', 'Everything your *brand* needs in one place'))}</h1>
           <p className="lead">{t(
             'Bonaco je full-service marketinška agencija: na osnovu vaših ciljeva gradimo strategiju i izvodimo je kroz kreativu, produkciju i digital.',
             'Bonaco is a full-service marketing agency: we build a strategy from your goals and deliver it through creative, production and digital.',
@@ -51,7 +52,7 @@ export default function ServicesPage() {
           <div className="section-head">
             <div>
               <span className="eyebrow">{t('Kako radimo', 'How we work')}</span>
-              <h2>{t('Tri koraka do rezultata', 'Three steps to results')}</h2>
+              <h2>{hl(t('Tri koraka do *rezultata*', 'Three steps to *results*'))}</h2>
             </div>
           </div>
           <ol className="steps">
@@ -65,7 +66,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container">
           <div className="section-head">
-            <h2>{t('Istaknuti radovi', 'Featured work')}</h2>
+            <h2>{hl(t('Istaknuti *radovi*', 'Featured *work*'))}</h2>
             <Link to={to('/portfolio/')} className="text-link">{t('Svi radovi', 'All work')} <ArrowRight size={16} /></Link>
           </div>
           <WorkCircles limit={4} />

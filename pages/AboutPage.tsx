@@ -5,6 +5,7 @@ import BrandTiles from '../components/BrandTiles';
 import { CTASection, TestimonialCarousel, YouTube } from '../components/Blocks';
 import { SITE, VIDEOS } from '../data/site';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 const PILLARS = [
   {
@@ -35,7 +36,7 @@ export default function AboutPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">{t('O nama', 'About us')}</span>
-          <h1>{t('Spoj kreativnosti i strategije', 'Where creativity meets strategy')}</h1>
+          <h1>{hl(t('Spoj *kreativnosti* i strategije', 'Where *creativity* meets strategy'))}</h1>
           <p className="lead">{t(
             `Bonaco Media je marketinška agencija sa sjedištem u Sarajevu, osnovana ${SITE.founded}. godine. Za nekoliko godina postali smo pouzdan partner domaćim i međunarodnim klijentima.`,
             `Bonaco Media is a marketing agency based in Sarajevo, founded in ${SITE.founded}. In a few years we have become a trusted partner to local and international clients.`,
@@ -46,7 +47,7 @@ export default function AboutPage() {
       <section className="section">
         <div className="container about-grid">
           <div>
-            <h2>{t('Kako radimo', 'How we work')}</h2>
+            <h2>{hl(t('Kako *radimo*', 'How we *work*'))}</h2>
             <p>{t(
               'Naš tim slaže svaki detalj vašeg marketinga kao slagalicu: strategija, sadržaj, dizajn, produkcija i mjerenje rezultata imaju svoje mjesto u istom planu.',
               'Our team fits every detail of your marketing together like a puzzle: strategy, content, design, production and measurement all have their place in one plan.',
@@ -80,7 +81,7 @@ export default function AboutPage() {
       {lang === 'bs' && (
         <section className="section">
           <div className="container">
-            <h2 className="center-title">Šta kažu naši klijenti</h2>
+            <h2 className="center-title">{hl('Šta kažu naši *klijenti*')}</h2>
             <TestimonialCarousel />
           </div>
         </section>

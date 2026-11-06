@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import { CTASection, ProjectCard, catLabel } from '../components/Blocks';
 import { CATEGORIES, PROJECTS } from '../data/projects';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 export default function PortfolioPage() {
   const { lang, t } = useLang();
@@ -15,7 +16,7 @@ export default function PortfolioPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">{t('Radovi', 'Work')}</span>
-          <h1>{t('Projekti na koje smo ponosni', 'Projects we are proud of')}</h1>
+          <h1>{hl(t('Projekti na koje smo *ponosni*', 'Projects we are *proud* of'))}</h1>
           <p className="lead">{t('Odabrani radovi za brendove iz regije. Kliknite na projekat da vidite zadatak, naš angažman i rezultate.', 'Selected work for brands across the region. Open a project to see the brief, our role and the results.')}</p>
         </div>
       </section>

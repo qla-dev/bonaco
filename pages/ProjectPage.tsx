@@ -9,6 +9,7 @@ import { GALLERIES } from '../data/galleries.generated';
 import NotFoundPage from './NotFoundPage';
 import { catLabel } from '../components/Blocks';
 import { tr, useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 export default function ProjectPage() {
   const { slug } = useParams();
@@ -77,7 +78,7 @@ export default function ProjectPage() {
         {gallery.length > 0 && (
           <section className="section light">
             <div className="container">
-              <h2 className="gallery-title">{t('Galerija', 'Gallery')}</h2>
+              <h2 className="gallery-title">{hl(t('*Galerija*', '*Gallery*'))}</h2>
               <div className="gallery">
                 {gallery.map((g, i) => (
                   <button key={g.src} className="gallery-item" onClick={() => setLightbox(i)} aria-label={`${t('Otvori fotografiju', 'Open photo')} ${i + 1}`}>
@@ -99,7 +100,7 @@ export default function ProjectPage() {
       <section className="section light">
         <div className="container">
           <div className="section-head">
-            <h2>{t('Sljedeći projekat', 'Next project')}</h2>
+            <h2>{hl(t('Sljedeći *projekat*', 'Next *project*'))}</h2>
             <Link to={to('/portfolio/')} className="text-link">{t('Svi radovi', 'All work')} <ArrowRight size={16} /></Link>
           </div>
           <div className="projects-grid single"><ProjectCard p={next} /></div>

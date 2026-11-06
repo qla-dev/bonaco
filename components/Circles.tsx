@@ -16,6 +16,7 @@ import ServiceIcon from './ServiceIcon';
 import BrandIcon, { type IconName } from './BrandIcon';
 import BrandLogo, { QlaMark } from './BrandLogo';
 import { YouTube } from './Blocks';
+import { hl } from '../lib/hl';
 
 /* ---------- Marketing: usluge kao mali krugovi ---------- */
 export function ServiceCircles() {
@@ -102,7 +103,7 @@ export function ClientsMarquee() {
     <section className="section clients" aria-labelledby="clients-title">
       <div className="container section-head">
         <div>
-          <h2 id="clients-title">{t('Brendovi s kojima smo sarađivali', 'Brands we have worked with')}</h2>
+          <h2 id="clients-title">{hl(t('Brendovi s kojima smo *sarađivali*', 'Brands we have *worked* with'))}</h2>
           <p className="lead">{t('Od lokalnih brendova do regionalnih kompanija.', 'From local brands to regional companies.')}</p>
         </div>
         <button type="button" className="mq-toggle" onClick={() => setPaused(p => !p)} aria-pressed={paused}

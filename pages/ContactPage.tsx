@@ -5,6 +5,7 @@ import ContactForm from '../components/ContactForm';
 import SocialIcon from '../components/SocialIcon';
 import { SITE, SOCIAL } from '../data/site';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 export default function ContactPage() {
   const [map, setMap] = useState(false);
@@ -15,7 +16,7 @@ export default function ContactPage() {
       <section className="page-hero">
         <div className="container">
           <span className="eyebrow">{t('Kontakt', 'Contact')}</span>
-          <h1>{t('Recite nam šta vam treba', 'Tell us what you need')}</h1>
+          <h1>{hl(t('Recite nam šta vam *treba*', 'Tell us what you *need*'))}</h1>
           <p className="lead">{t('Odgovaramo najčešće isti ili sljedeći radni dan.', 'We usually reply the same or the next working day.')}</p>
         </div>
       </section>

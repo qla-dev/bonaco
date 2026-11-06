@@ -125,7 +125,7 @@ export default function BonexisChat({ onShowAgent, onShowScenario }: Props) {
   return (
     <div className={`bx-chat ${empty ? 'is-empty' : 'has-msgs'}`}>
       {empty ? (
-        <h2 className="bx-greeting">Ja sam {BEN.name}. Koji problem da riješimo danas?</h2>
+        <h2 className="bx-greeting">Ja sam {BEN.name}. Koji <em className="shimmer hl">problem</em> da riješimo danas?</h2>
       ) : (
         <div className="bx-messages" ref={listRef} aria-live="polite">
           {msgs.map((m, i) => {

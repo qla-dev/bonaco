@@ -417,30 +417,17 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
 .bt-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; padding: 8px 16px; border-radius: 999px; background: rgba(0, 0, 0, 0.22); backdrop-filter: blur(6px); }
 .brand-tile:hover .bt-link { background: rgba(0, 0, 0, 0.35); }
 .bt-art { position: absolute; inset: 0; z-index: -1; transition: transform 0.8s cubic-bezier(.2, .8, .2, 1); }
+.bt-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.bt-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.18)); }
+.brand-tile .brand-logo, .brand-tile p { text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2); }
 .brand-tile:hover .bt-art { transform: scale(1.05); }
-/* BONACO: narandžasta, zakrivljena fasada s vertikalnim lamelama */
-.brand-tile-bonaco .bt-art {
-  background:
-    radial-gradient(circle at 18% 135%, transparent 52%, rgba(255, 255, 255, 0.22) 52.4%, transparent 53.6%),
-    radial-gradient(circle at 18% 135%, transparent 60%, rgba(0, 0, 0, 0.14) 60.4%, transparent 66%),
-    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.13) 0 2px, transparent 2px 13px) right bottom / 55% 62% no-repeat,
-    linear-gradient(150deg, #ff9a45 0%, #f58426 45%, #c75a0c 100%);
-}
-/* BONEXIS: tirkizna, stakleni paneli pod uglom */
-.brand-tile-bonexis .bt-art {
-  background:
-    repeating-linear-gradient(62deg, rgba(255, 255, 255, 0.12) 0 1.5px, transparent 1.5px 70px),
-    repeating-linear-gradient(-28deg, rgba(0, 0, 0, 0.12) 0 1.5px, transparent 1.5px 90px),
-    linear-gradient(120deg, rgba(255, 255, 255, 0.22) 0%, transparent 38%, rgba(0, 0, 0, 0.25) 100%),
-    linear-gradient(160deg, #19c2bd 0%, #009d9a 50%, #005f5d 100%);
-}
-/* BONEVENTS: ljubičasta, rombovi i snop svjetla */
-.brand-tile-bonevents .bt-art {
-  background:
-    linear-gradient(45deg, transparent 46%, rgba(255, 255, 255, 0.1) 46% 54%, transparent 54%) 0 0 / 180px 180px,
-    linear-gradient(-45deg, transparent 46%, rgba(0, 0, 0, 0.14) 46% 54%, transparent 54%) 0 0 / 180px 180px,
-    radial-gradient(ellipse at 75% 0%, rgba(168, 139, 255, 0.55), transparent 55%),
-    linear-gradient(165deg, #6a3df0 0%, #592ada 45%, #2a1270 100%);
+/* Solid brand colors remain visible while the HD backgrounds load. */
+.brand-tile-bonaco .bt-art { background: #f58426; }
+.brand-tile-bonexis .bt-art { background: #009d9a; }
+.brand-tile-bonevents .bt-art { background: #592ada; }
+@media (prefers-reduced-motion: reduce) {
+  .brand-tile, .bt-art { transition: none; }
+  .brand-tile:hover, .brand-tile:hover .bt-art { transform: none; }
 }
 @media (max-width: 860px) { .brand-tiles { grid-template-columns: 1fr; } .brand-tile { min-height: 260px; } }
 
@@ -481,3 +468,16 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
 .section-head { margin-bottom: clamp(24px, 3vw, 36px); }
 .mkt-video { margin-top: clamp(40px, 5vw, 64px); padding-top: clamp(32px, 4vw, 48px); }
 .work-circles { margin-top: 28px; }
+
+/* Naglašena riječ u svakom naslovu: boja brenda sekcije + shimmer (lib/hl.tsx) */
+.shimmer.hl {
+  font-style: normal;
+  background: linear-gradient(100deg, var(--accent) 0%, var(--accent) 34%, color-mix(in srgb, var(--accent) 35%, #fff) 47%, color-mix(in srgb, var(--accent) 60%, #fff) 53%, var(--accent) 66%, var(--accent) 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 4.5s ease-in-out infinite;
+}
+/* na tamnim podlogama tekstualna nijansa (ljubičasta je pretamna za tekst na crnom) */
+[data-brand='bonevents'] .shimmer.hl, [data-brand='bonexis'] .shimmer.hl { --accent: var(--accent-light); }
+.light .shimmer.hl { --accent: var(--accent-dark); }
+@media (prefers-reduced-motion: reduce) { .shimmer.hl { animation: none; background-position: 100% 0; } }

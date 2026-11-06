@@ -71,8 +71,8 @@ export default function HeroVideo() {
 
   // jedna riječ u boji brenda sa shimmerom
   const title = lang === 'en'
-    ? <h1>Ideas that <em className="shimmer">move</em> brands.</h1>
-    : <h1>Ideje koje <em className="shimmer">pokreću</em> brendove.</h1>;
+    ? <h1>Ideas that <em className="shimmer hl">move</em> brands.</h1>
+    : <h1>Ideje koje <em className="shimmer hl">pokreću</em> brendove.</h1>;
   const below = (
     <>
       <p className="hv-lead">

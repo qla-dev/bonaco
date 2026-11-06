@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import { CTASection, PostCard, formatDate } from '../components/Blocks';
 import { POSTS } from '../data/posts.generated';
 import NotFoundPage from './NotFoundPage';
+import { hl } from '../lib/hl';
 
 export default function PostPage() {
   const { slug } = useParams();
@@ -26,7 +27,7 @@ export default function PostPage() {
       </article>
       <section className="section light">
         <div className="container">
-          <h2 className="gallery-title">Još vijesti</h2>
+          <h2 className="gallery-title">{hl('Još *vijesti*')}</h2>
           <div className="posts-grid">{more.map(p => <PostCard key={p.slug} post={p} />)}</div>
         </div>
       </section>

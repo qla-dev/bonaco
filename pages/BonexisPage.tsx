@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import BonexisSection from '../components/bonexis/BonexisSection';
 import BonexisDashboard from '../components/bonexis/BonexisDashboard';
 import { BONEXIS_AGENTS, BONEXIS_TAGLINE, CAPSULES, CORE_FEATURES, PRINCIPLES } from '../data/bonexis';
+import { hl } from '../lib/hl';
 
 export default function BonexisPage() {
   return (
@@ -18,7 +19,7 @@ export default function BonexisPage() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>Dashboard za svaku kapsulu</h2>
+              <h2>{hl('*Dashboard* za svaku kapsulu')}</h2>
               <p className="lead">Agenti rade, ali vi upravljate. Svaka kapsula ima svoj pregled: šta čeka odobrenje, rezultate i zadatke za owner agenta. Isprobajte demo.</p>
             </div>
           </div>
@@ -31,7 +32,7 @@ export default function BonexisPage() {
         <div className="container">
           <div className="section-head">
             <div>
-              <h2>{BONEXIS_TAGLINE}</h2>
+              <h2>{hl(BONEXIS_TAGLINE.replace('Sedam', '*Sedam*'))}</h2>
               <p className="lead">Svaku kapsulu vodi njen owner agent. Firma aktivira jednu kapsulu ili kombinaciju, a sve dijele isti CORE: klijente, projekte, zadatke i dokaze.</p>
             </div>
           </div>
@@ -66,7 +67,7 @@ export default function BonexisPage() {
       {/* Načela */}
       <section className="section">
         <div className="container">
-          <h2 className="center-title">Kako Bonexis radi s vama</h2>
+          <h2 className="center-title">{hl('Kako Bonexis *radi* s vama')}</h2>
           <div className="principles">
             {PRINCIPLES.map(p => (
               <div key={p.title} className="principle">
@@ -81,7 +82,7 @@ export default function BonexisPage() {
       <section className="section cta-section">
         <div className="container cta-inner">
           <div>
-            <h2>Bonexis za vašu firmu</h2>
+            <h2>{hl('Bonexis za vašu *firmu*')}</h2>
             <p>Bonexis razvijamo s partnerom QLA.dev. Javite se za demo i pilot, pa ćemo zajedno odabrati kapsule koje vašoj firmi trebaju.</p>
           </div>
           <div className="btn-row">

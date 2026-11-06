@@ -1,6 +1,7 @@
 import SEO from '../components/SEO';
 import { SITE } from '../data/site';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 // NACRT – pravni tekst treba pregledati i odobriti Bonaco prije objave.
 export default function PrivacyPage() {
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <>
       <SEO title={t('Politika privatnosti', 'Privacy policy')} description={t('Kako Bonaco Media prikuplja i koristi lične podatke posjetilaca web stranice.', 'How Bonaco Media collects and uses the personal data of website visitors.')} />
-      <section className="page-hero"><div className="container narrow"><h1>{t('Politika privatnosti', 'Privacy policy')}</h1></div></section>
+      <section className="page-hero"><div className="container narrow"><h1>{hl(t('Politika *privatnosti*', '*Privacy* policy'))}</h1></div></section>
       <section className="section">
         {lang === 'en' ? (
           <div className="container narrow prose">

@@ -7,6 +7,7 @@ import { TESTIMONIALS } from '../data/testimonials';
 import { CATEGORY_EN } from '../data/projects';
 import { tr, useLang } from '../lib/i18n';
 import type { Post, Project } from '../types';
+import { hl } from '../lib/hl';
 
 export function CTASection({ title, text, inquiry }: { title?: string; text?: string; inquiry?: string }) {
   const { t, to } = useLang();
@@ -14,7 +15,7 @@ export function CTASection({ title, text, inquiry }: { title?: string; text?: st
     <section className="section cta-section">
       <div className="container cta-inner">
         <div>
-          <h2>{title ?? t('Imate projekat na umu?', 'Have a project in mind?')}</h2>
+          <h2>{hl(title ?? t('Imate *projekat* na umu?', 'Have a *project* in mind?'))}</h2>
           <p>{text ?? t('Recite nam šta vam treba, a mi ćemo predložiti rješenje i okvirnu ponudu.', 'Tell us what you need and we will suggest a solution and a ballpark quote.')}</p>
         </div>
         <div className="btn-row">
@@ -124,7 +125,7 @@ export function SectionHead({ eyebrow, title, text, link }: { eyebrow?: string; 
     <div className="section-head">
       <div>
         {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-        <h2>{title}</h2>
+        <h2>{hl(title)}</h2>
         {text && <p className="lead">{text}</p>}
       </div>
       {link && <Link to={link.to} className="text-link">{link.label} <ArrowRight size={16} /></Link>}

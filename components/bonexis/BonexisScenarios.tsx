@@ -103,7 +103,7 @@ export default function ScenarioSections({ onShowAgent }: { onShowAgent?: (i: nu
     <section className="sc-section" id="scenariji" aria-labelledby="scenariji-title">
       <div className="container">
         <div className="sc-intro">
-          <h2 id="scenariji-title">Bonexis u praksi</h2>
+          <h2 id="scenariji-title">Bonexis u <em className="shimmer hl">praksi</em></h2>
           <p>Kako bi Bonexis radio u vašoj firmi: sedam kapsula, njihovi owner agenti i tipične situacije od prve poruke do rezultata. Primjeri su ilustrativni.</p>
         </div>
         {BONEXIS_AGENTS.map((_, i) => <ScenarioBlock key={i} agent={i} onShowAgent={onShowAgent} />)}

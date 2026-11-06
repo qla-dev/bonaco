@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import BrandLogo, { type Brand } from './BrandLogo';
 import BrandTileArt from './BrandTileArt';
 import { useLang } from '../lib/i18n';
+import { hl } from '../lib/hl';
 
 const TILES: { brand: Brand; to: string; label: string; bs: string; en: string }[] = [
   { brand: 'bonaco', to: '/nase-usluge/', label: 'Marketing', bs: 'Full-service marketing: strategija, kampanje, sadržaj, dizajn, produkcija, web i SEO.', en: 'Full-service marketing: strategy, campaigns, content, design, production, web and SEO.' },
@@ -17,7 +18,7 @@ export default function BrandTiles({ heading = true }: { heading?: boolean }) {
   return (
     <section className="section brand-tiles-section">
       <div className="container">
-        {heading && <h2 className="center-title">{t('Tri brenda, jedna ekipa', 'Three brands, one team')}</h2>}
+        {heading && <h2 className="center-title">{hl(t('Tri *brenda*, jedna ekipa', 'Three *brands*, one team'))}</h2>}
         <div className="brand-tiles">
           {TILES.map(x => (
             <Link key={x.brand} to={to(x.to)} className={`brand-tile brand-tile-${x.brand}`}>
