@@ -578,3 +578,6 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
   to { opacity: 1; transform: none; filter: none; }
 }
 @media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } }
+
+/* Pravi BONACO logotip iste optičke veličine kao BONEXIS/BONEVENTS wordmark (bio je ~30% veći) */
+.brand-logo-img img { height: 1.24em; }
