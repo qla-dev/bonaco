@@ -662,3 +662,10 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .mv-steps strong { font-size: 16px; line-height: 1.3; }
 .mv-steps strong::before { display: block; margin: 0 0 2px; }
 @media (max-width: 560px) { .mv-steps li { gap: 10px; } .mv-steps strong { font-size: 15px; } .mv-steps small { font-size: 13px; } }
+
+/* Telefon: red kapsula preko cijele širine ekrana (full-bleed), ne odsijeca se desno */
+@media (max-width: 900px) {
+  .bxc-orbit { width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw); margin-right: 0; box-sizing: border-box; padding-left: var(--gutter); padding-right: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .bxc-grid { min-width: 0; }
+  .bxc-grid > * { min-width: 0; }
+}
