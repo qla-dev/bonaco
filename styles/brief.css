@@ -681,3 +681,16 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
   .mv-steps::before { bottom: -40px; background: color-mix(in srgb, var(--accent) 60%, transparent); }
   .mv-media::before { content: ''; position: absolute; z-index: 2; left: 50%; translate: -0.5px 0; top: -40px; height: calc(50% + 40px); width: 1px; background: color-mix(in srgb, var(--accent) 60%, transparent); pointer-events: none; }
 }
+
+/* Play pozicioniran marginom (transform ostaje slobodan za ulaznu animaciju kao kod koraka) */
+.mv-media .video-play { left: 50%; top: 50%; margin: -23px 0 0 -23px; transform: none; }
+.mv-media .video-poster:hover .video-play { transform: scale(1.08); }
+
+/* Telefon: svi krugovi timelinea (01–04 i play) na istom razmaku = visina reda = pola visine videa x2 */
+@media (max-width: 860px) {
+  .mkt-video { --row: calc((100vw - 2 * var(--gutter)) * 9 / 16); gap: 0; }
+  .mv-steps { margin-bottom: 0; }
+  .mv-steps li { height: var(--row); padding: 0; }
+  .mv-steps::before { top: calc(var(--row) / 2); bottom: 0; }
+  .mv-media::before { top: 0; height: 50%; }
+}

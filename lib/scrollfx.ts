@@ -13,6 +13,8 @@ const REVEAL: [string, string?][] = [
   ['.work-circles .wc', 'rv-zoom'],
   ['.mv-copy > :not(.mv-steps)', 'rv-left'],
   ['.mv-steps li', 'rv-left'],
+  ['.mv-play-label', 'rv-left'],
+  ['.mv-media .video-play', 'rv-zoom'],
   ['.mkt-video > .video', 'rv-right'],
   ['.mq-row', 'rv-fade'],
   ['.clients-all'],
