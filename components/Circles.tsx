@@ -104,7 +104,7 @@ export function ClientsMarquee() {
       <div className="container section-head">
         <div>
           <h2 id="clients-title">{hl(t('Brendovi s kojima smo *sarađivali*', 'Brands we have *worked* with'))}</h2>
-          <p className="lead">{t('Od lokalnih brendova do regionalnih kompanija.', 'From local brands to regional companies.')}</p>
+          <p className="lead">{hl(t('Od **lokalnih brendova** do **regionalnih kompanija**.', 'From **local brands** to **regional companies**.'))}</p>
         </div>
         <button type="button" className="mq-toggle" onClick={() => setPaused(p => !p)} aria-pressed={paused}
           aria-label={paused ? t('Pokreni kretanje logotipa', 'Play logo motion') : t('Zaustavi kretanje logotipa', 'Stop logo motion')}>
@@ -163,10 +163,10 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
           </div>
           <Heading className="bxc-title"><BrandLogo brand="bonexis" /></Heading>
           <p className="lead">
-            {t(
-              'Marketing CRM sa sedam AI kapsula: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, kapacitet, kontrola isporuke i revizija rada. Svaku kapsulu vodi njen owner agent, a odluke uvijek ostaju na vama.',
-              'A marketing CRM with seven AI capsules: social media, SEO audit, blog, leads with an AI assistant, capacity, delivery control and work audit. Each capsule is run by its owner agent, and decisions always stay with you.',
-            )}
+            {hl(t(
+              'Marketing CRM sa **sedam AI kapsula**: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, kapacitet, kontrola isporuke i revizija rada. Svaku kapsulu vodi njen **owner agent**, a **odluke uvijek ostaju na vama**.',
+              'A marketing CRM with **seven AI capsules**: social media, SEO audit, blog, leads with an AI assistant, capacity, delivery control and work audit. Each capsule is run by its **owner agent**, and **decisions always stay with you**.',
+            ))}
           </p>
         </div>
 
@@ -234,10 +234,10 @@ export function BonEventsBlock({ page = false }: { page?: boolean }) {
         <div className="bev-copy">
           <Heading className="bev-title"><BrandLogo brand="bonevents" /></Heading>
           <p className="lead">
-            {t(
-              'Događaji koje ljudi pamte: planiramo, produciramo i promovišemo evente za brendove, od poslovnih okupljanja do ljetnih sezona.',
-              'Events people remember: we plan, produce and promote events for brands, from business gatherings to summer seasons.',
-            )}
+            {hl(t(
+              'Događaji koje ljudi **pamte**: **planiramo, produciramo i promovišemo** evente za brendove, od **poslovnih okupljanja** do **ljetnih sezona**.',
+              'Events people **remember**: we **plan, produce and promote** events for brands, from **business gatherings** to **summer seasons**.',
+            ))}
           </p>
           <ul className="bev-services">
             {EVENT_SERVICES.map(s => (

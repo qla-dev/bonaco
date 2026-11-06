@@ -36,10 +36,16 @@ export default function MobileCta() {
       }
       bar.style.setProperty('--cta-p', `${Math.round(p * 100)}%`);
     };
+    // stvarna visina trake -> --cta-h (slajdovi pune visine završavaju tačno na traci)
+    const ro = new ResizeObserver(() => {
+      const h = ref.current?.offsetHeight ?? 0;
+      document.documentElement.style.setProperty('--cta-h', `${h}px`);
+    });
+    if (ref.current) ro.observe(ref.current);
     const onS = () => { if (!raf) raf = requestAnimationFrame(update); };
     const off = onScroll(onS);
     const t0 = setTimeout(update, 300);
-    return () => { off(); cancelAnimationFrame(raf); clearTimeout(t0); };
+    return () => { off(); ro.disconnect(); cancelAnimationFrame(raf); clearTimeout(t0); document.documentElement.style.removeProperty('--cta-h'); };
   }, [pathname]);
 
   if (pathname.startsWith(to('/kontakt/'))) return null;

@@ -33,10 +33,10 @@ export default function HomePage() {
             <div>
               <span className="eyebrow">Marketing</span>
               <h2>{hl(t('Full-service marketing, od ideje do *rezultata*', 'Full-service marketing, from idea to *results*'))}</h2>
-              <p className="lead">{t(
-                'Strategija, kreativa i produkcija pod jednim krovom. Pogledajte izbor radova za brendove iz regije.',
-                'Strategy, creative and production under one roof. Take a look at selected work for brands across the region.',
-              )}</p>
+              <p className="lead">{hl(t(
+                'Strategija, kreativa i produkcija **pod jednim krovom**. Pogledajte izbor radova za **brendove iz regije**.',
+                'Strategy, creative and production **under one roof**. Take a look at selected work for **brands across the region**.',
+              ))}</p>
             </div>
             <Link to={to('/portfolio/')} className="text-link">{t('Pogledajte sve radove', 'See all work')} <ArrowRight size={16} /></Link>
           </div>
@@ -45,7 +45,7 @@ export default function HomePage() {
           <div className="mkt-video">
             <div>
               <h3>{t('Bonaco u pokretu', 'Bonaco in motion')}</h3>
-              <p>{t('Kratak pregled onoga što radimo: kampanje, dizajn, produkcija, web i digital.', 'A quick look at what we do: campaigns, design, production, web and digital.')}</p>
+              <p>{hl(t('Kratak pregled onoga što radimo: **kampanje, dizajn, produkcija, web i digital**.', 'A quick look at what we do: **campaigns, design, production, web and digital**.'))}</p>
             </div>
             <MarketingVideo />
           </div>
@@ -64,10 +64,10 @@ export default function HomePage() {
           <article className="end-card">
             <span className="eyebrow">{t('O nama', 'About us')}</span>
             <h2>{hl(t('Spoj *kreativnosti* i strategije', 'Where *creativity* meets strategy'))}</h2>
-            <p>{t(
-              `Bonaco Media je marketinška agencija iz Sarajeva, osnovana ${SITE.founded}. godine. Radimo s domaćim i međunarodnim klijentima i svaki detalj marketinga slažemo kao dio jedne strategije.`,
-              `Bonaco Media is a marketing agency from Sarajevo, founded in ${SITE.founded}. We work with local and international clients and fit every marketing detail into one strategy.`,
-            )}</p>
+            <p>{hl(t(
+              `Bonaco Media je marketinška agencija iz **Sarajeva**, osnovana **${SITE.founded}. godine**. Radimo s **domaćim i međunarodnim klijentima** i svaki detalj marketinga slažemo kao dio **jedne strategije**.`,
+              `Bonaco Media is a marketing agency from **Sarajevo**, founded in **${SITE.founded}**. We work with **local and international clients** and fit every marketing detail into **one strategy**.`,
+            ))}</p>
             <Link to={to('/o-nama/')} className="text-link">{t('Više o nama', 'More about us')} <ArrowRight size={16} /></Link>
           </article>
           <article className="end-card end-card-contact">

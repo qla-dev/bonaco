@@ -10,6 +10,7 @@ import { useReducedMotion } from '../lib/motion';
 import { HERO_VIDEO } from '../data/site';
 import { CLIENTS } from '../data/clients';
 import type { OrbitHandle } from './heroOrbitScene';
+import { hl } from '../lib/hl';
 
 // Logotipi na sferi (12 = po 4 na svakom aktivnom prstenu) i klijenti s povezanom studijom slučaja
 const ORBIT_CLIENTS = ['fk-zeljeznicar', 'medicana', 'sarajevska-pivara', 'zmaj', 'golf-klub-sarajevo', 'women-in-adria', 'beautyco', 'rooms', 'summer-lounge', 'bh-travel', 'max-media', 'flok'];
@@ -76,10 +77,10 @@ export default function HeroVideo() {
   const below = (
     <>
       <p className="hv-lead">
-        {t(
-          'Bonaco je full-service marketinška agencija koja spaja strategiju, kreativnost, produkciju i rezultate.',
-          'Bonaco is a full-service marketing agency that brings together strategy, creativity, production and results.',
-        )}
+        {hl(t(
+          'Bonaco je **full-service marketinška agencija** koja spaja **strategiju, kreativnost, produkciju i rezultate**.',
+          'Bonaco is a **full-service marketing agency** that brings together **strategy, creativity, production and results**.',
+        ))}
       </p>
       <div className="btn-row">
         <Link to={to('/portfolio/')} className="btn btn-primary btn-lg">{t('Pogledajte radove', 'See our work')} <ArrowRight size={18} /></Link>

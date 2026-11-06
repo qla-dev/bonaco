@@ -37,10 +37,10 @@ export default function AboutPage() {
         <div className="container">
           <span className="eyebrow">{t('O nama', 'About us')}</span>
           <h1>{hl(t('Spoj *kreativnosti* i strategije', 'Where *creativity* meets strategy'))}</h1>
-          <p className="lead">{t(
-            `Bonaco Media je marketinška agencija sa sjedištem u Sarajevu, osnovana ${SITE.founded}. godine. Za nekoliko godina postali smo pouzdan partner domaćim i međunarodnim klijentima.`,
-            `Bonaco Media is a marketing agency based in Sarajevo, founded in ${SITE.founded}. In a few years we have become a trusted partner to local and international clients.`,
-          )}</p>
+          <p className="lead">{hl(t(
+            `Bonaco Media je marketinška agencija sa sjedištem u **Sarajevu**, osnovana **${SITE.founded}. godine**. Za nekoliko godina postali smo **pouzdan partner** domaćim i međunarodnim klijentima.`,
+            `Bonaco Media is a marketing agency based in **Sarajevo**, founded in **${SITE.founded}**. In a few years we have become a **trusted partner** to local and international clients.`,
+          ))}</p>
         </div>
       </section>
 
@@ -48,14 +48,14 @@ export default function AboutPage() {
         <div className="container about-grid">
           <div>
             <h2>{hl(t('Kako *radimo*', 'How we *work*'))}</h2>
-            <p>{t(
-              'Naš tim slaže svaki detalj vašeg marketinga kao slagalicu: strategija, sadržaj, dizajn, produkcija i mjerenje rezultata imaju svoje mjesto u istom planu.',
-              'Our team fits every detail of your marketing together like a puzzle: strategy, content, design, production and measurement all have their place in one plan.',
-            )}</p>
-            <p>{t(
-              'Vizija nam je povezati brendove s pravom publikom i stvoriti trajne digitalne veze koje povećavaju angažman i povjerenje.',
-              'Our vision is to connect brands with the right audience and build lasting digital relationships that grow engagement and trust.',
-            )}</p>
+            <p>{hl(t(
+              'Naš tim slaže svaki detalj vašeg marketinga kao **slagalicu**: strategija, sadržaj, dizajn, produkcija i mjerenje rezultata imaju svoje mjesto u **istom planu**.',
+              'Our team fits every detail of your marketing together like a **puzzle**: strategy, content, design, production and measurement all have their place in **one plan**.',
+            ))}</p>
+            <p>{hl(t(
+              'Vizija nam je povezati brendove s **pravom publikom** i stvoriti **trajne digitalne veze** koje povećavaju angažman i povjerenje.',
+              'Our vision is to connect brands with **the right audience** and build **lasting digital relationships** that grow engagement and trust.',
+            ))}</p>
           </div>
           <div className="showreel">
             <YouTube id={VIDEOS.showreel} title={t('Bonaco Media – pogledajte naš rad', 'Bonaco Media – see our work')} />

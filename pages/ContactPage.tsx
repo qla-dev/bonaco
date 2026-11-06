@@ -17,7 +17,7 @@ export default function ContactPage() {
         <div className="container">
           <span className="eyebrow">{t('Kontakt', 'Contact')}</span>
           <h1>{hl(t('Recite nam šta vam *treba*', 'Tell us what you *need*'))}</h1>
-          <p className="lead">{t('Odgovaramo najčešće isti ili sljedeći radni dan.', 'We usually reply the same or the next working day.')}</p>
+          <p className="lead">{hl(t('Odgovaramo najčešće **isti ili sljedeći radni dan**.', 'We usually reply **the same or the next working day**.'))}</p>
         </div>
       </section>
       <section className="section">

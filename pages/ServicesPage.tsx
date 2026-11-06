@@ -59,10 +59,10 @@ export default function ServicesPage() {
         <div className="container">
           <span className="eyebrow">Marketing</span>
           <h1>{hl(t('Sve za vaš *brend* na jednom mjestu', 'Everything your *brand* needs in one place'))}</h1>
-          <p className="lead">{t(
-            'Bonaco je full-service marketinška agencija: na osnovu vaših ciljeva gradimo strategiju i izvodimo je kroz kreativu, produkciju i digital.',
-            'Bonaco is a full-service marketing agency: we build a strategy from your goals and deliver it through creative, production and digital.',
-          )}</p>
+          <p className="lead">{hl(t(
+            'Bonaco je **full-service marketinška agencija**: na osnovu **vaših ciljeva** gradimo strategiju i izvodimo je kroz **kreativu, produkciju i digital**.',
+            'Bonaco is a **full-service marketing agency**: we build a strategy from **your goals** and deliver it through **creative, production and digital**.',
+          ))}</p>
         </div>
       </section>
       <section className="svc-slides" ref={listRef} aria-label={t('Usluge', 'Services')}>

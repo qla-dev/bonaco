@@ -556,3 +556,17 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .skip-link { position: fixed; left: 16px; top: 12px; z-index: 200; transform: translateY(-200%); opacity: 0; pointer-events: none; transition: none; }
 .skip-link:focus { top: 12px; }
 .skip-link:focus-visible { transform: none; opacity: 1; pointer-events: auto; }
+
+/* Bold u tekstu (**fraza**): bijelo i deblje, da se ističe iz sivog teksta */
+.lead strong, .hv-lead strong, .end-card p strong, .about-grid p strong, .mkt-video p strong, .bxc-head .lead strong { color: #fff; font-weight: 600; }
+.brand-tile p strong { color: #fff; font-weight: 700; }
+.light .lead strong { color: var(--ink); }
+
+/* Telefon: slajd usluge tačno do fiksne trake (stvarna visina --cta-h), jedna linija između */
+@media (max-width: 760px) {
+  .service-slide { height: calc(100dvh - var(--header-h) - var(--cta-h, 76px)); border-bottom: 0; }
+  .service-slide + .service-slide { border-top: 1px solid var(--line); }
+}
+/* "Pogledajte sve radove" (link sekcije) uvijek gore desno, u ravni s oznakom sekcije */
+.section-head:has(.eyebrow) { position: relative; }
+.section-head:has(.eyebrow) > .text-link { position: absolute; top: 0; right: 0; }
