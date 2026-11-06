@@ -646,3 +646,6 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .mv-steps strong::before { content: counter(mv, decimal-leading-zero); margin-right: 10px; font: 700 13px var(--font-head); color: var(--accent-light); }
 .mv-steps small { font-size: 14px; margin-top: 2px; }
 .mv-steps li:hover > span { background: var(--accent); color: var(--accent-ink); }
+
+/* Opis u brend karticama: običan tekst (flex je razbijao rečenicu na kolone kod bolda), fiksno 3 reda */
+.brand-tile p { display: block; line-height: 1.6; min-height: calc(1.6em * 3); text-align: center; }
