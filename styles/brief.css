@@ -627,3 +627,10 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 @media (max-width: 700px) {
   .svc-circles li:last-child, .bxc-orbit > :last-child { margin-right: var(--gutter); }
 }
+
+
+/* iOS crta unutrašnje konture kod -webkit-text-stroke (dupla linija): obrisna slova -> blaga ispuna */
+.kw-track span.kw-outline { -webkit-text-stroke: 0; color: rgba(255, 255, 255, 0.2); }
+.ss-num { -webkit-text-stroke: 0; color: rgba(255, 255, 255, 0.035); }
+/* Pravi BONACO logo u bedžu "Bonaco × qla.dev" */
+.badge-bonaco { height: 0.95em; width: auto; margin-right: 0.4em; vertical-align: middle; position: relative; top: -0.06em; }

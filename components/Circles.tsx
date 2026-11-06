@@ -159,7 +159,7 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
         <div className="bxc-head">
           <div className="bxc-badges">
             <span className="badge"><Wrench size={14} aria-hidden="true" /> {t('U razvoju', 'In development')}</span>
-            <span className="badge badge-ghost">Bonaco × <QlaMark /></span>
+            <span className="badge badge-ghost"><img className="badge-bonaco" src={asset('/img/logo/bonaco-word.webp')} alt="Bonaco" width="639" height="99" /> × <QlaMark /></span>
           </div>
           <Heading className="bxc-title"><BrandLogo brand="bonexis" /></Heading>
           <p className="lead">
