@@ -514,3 +514,10 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
   .section-head:has(.eyebrow) { position: relative; }
   .section-head:has(.eyebrow) > .text-link { position: absolute; top: 0; right: 0; font-size: 15px; }
 }
+
+/* iOS: visina slajda prati stvarni ekran (adresna traka se skuplja/širi) – dvh umjesto svh */
+.service-slide { min-height: calc(100svh - var(--header-h)); }
+@supports (height: 100dvh) {
+  .service-slide { min-height: calc(100dvh - var(--header-h)); }
+  @media (max-width: 760px) { .service-slide { min-height: calc(100dvh - var(--header-h) - 76px - env(safe-area-inset-bottom)); } }
+}
