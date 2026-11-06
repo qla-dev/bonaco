@@ -581,3 +581,36 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 
 /* Pravi BONACO logotip iste optičke veličine kao BONEXIS/BONEVENTS wordmark (bio je ~30% veći) */
 .brand-logo-img img { height: 1.24em; }
+
+
+/* ---------- Bonaco u pokretu: bogatiji blok ---------- */
+.mv-copy h3 { font-size: clamp(30px, 3.4vw, 46px); margin: 0 0 14px; }
+.mv-copy p { font-size: 17px; }
+.mv-copy p strong { color: #fff; font-weight: 600; }
+.mv-steps { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mv-steps li { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; background: rgba(255, 255, 255, 0.035); border: 1px solid var(--line); }
+.mv-steps li > span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; flex: none; background: color-mix(in srgb, var(--accent) 18%, #161616); color: var(--accent-light); }
+.mv-steps strong { display: block; font-size: 15px; }
+.mv-steps small { display: block; font-size: 13px; color: var(--muted); }
+.mv-media { position: relative; }
+.mv-media .video { box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--line); }
+@media (max-width: 560px) { .mv-steps { grid-template-columns: 1fr; } }
+
+/* Rotirajući bedž */
+.spin-badge { position: absolute; left: -38px; top: -38px; z-index: 3; width: 120px; height: 120px; border-radius: 50%; background: rgba(12, 12, 12, 0.85); backdrop-filter: blur(8px); border: 1px solid var(--line); display: grid; place-items: center; pointer-events: none; }
+.spin-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: hm-spin 14s linear infinite; }
+.spin-badge text { font: 700 10.5px var(--font-body); letter-spacing: 2.4px; fill: #fff; }
+.spin-badge i { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 20%, transparent); }
+@media (max-width: 860px) { .spin-badge { left: auto; right: 8px; top: -44px; width: 96px; height: 96px; } }
+
+/* Velika traka ključnih riječi */
+.kw-ticker { overflow: hidden; padding: clamp(18px, 3vw, 32px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #0d0d0d; }
+.kw-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+.kw-track span { display: inline-flex; align-items: center; gap: clamp(18px, 3vw, 40px); padding-right: clamp(18px, 3vw, 40px); font: 800 clamp(40px, 7vw, 104px)/1 'Outfit', var(--font-head); letter-spacing: -0.02em; color: #f5f5f4; white-space: nowrap; }
+.kw-track span.kw-outline { color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.45); }
+.kw-track i { width: 0.22em; height: 0.22em; border-radius: 50%; background: var(--accent); flex: none; }
+.kw-ticker:hover .kw-track { animation-play-state: paused; }
+
+/* "Zatražite ponudu" (glass dugme) bez obruba, na PC-u i telefonu */
+.btn-glass, .mobile-cta .btn-glass { border-color: transparent; background: rgba(255, 255, 255, 0.1); }
+.btn-glass:hover { border-color: transparent; background: rgba(255, 255, 255, 0.18); }

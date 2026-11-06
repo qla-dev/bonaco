@@ -1,10 +1,11 @@
 // Početna po web briefu v1.3: Video → Marketing i radovi → Klijenti → Bonexis (5 kapsula)
 // → BonEvents → O nama / Kontakt.
 import { Link } from 'react-router-dom';
-import { ArrowRight, Mail, Phone } from 'lucide-react';
+import { ArrowRight, Clapperboard, Lightbulb, Mail, Phone, Sparkles, TrendingUp } from 'lucide-react';
 import SEO from '../components/SEO';
 import HeroVideo from '../components/HeroVideo';
 import BrandTiles from '../components/BrandTiles';
+import { KeywordTicker, SpinBadge } from '../components/Showcase';
 import { BonEventsBlock, BonexisCapsules, ClientsMarquee, MarketingVideo, ServiceCircles, WorkCircles } from '../components/Circles';
 import { SITE } from '../data/site';
 import { useLang } from '../lib/i18n';
@@ -43,14 +44,29 @@ export default function HomePage() {
           <ServiceCircles />
           <WorkCircles limit={6} />
           <div className="mkt-video">
-            <div>
-              <h3>{t('Bonaco u pokretu', 'Bonaco in motion')}</h3>
-              <p>{hl(t('Kratak pregled onoga što radimo: **kampanje, dizajn, produkcija, web i digital**.', 'A quick look at what we do: **campaigns, design, production, web and digital**.'))}</p>
+            <div className="mv-copy">
+              <span className="eyebrow">Showreel</span>
+              <h3>{hl(t('Bonaco u *pokretu*', 'Bonaco in *motion*'))}</h3>
+              <p>{hl(t(
+                'Od prve ideje do kampanje koja se vidi: ovako izgleda naš rad na terenu i na ekranu. **Kampanje, dizajn, produkcija, web i digital** u jednom kadru, za brendove koji žele da ih ljudi zapamte.',
+                'From the first idea to a campaign people notice: this is what our work looks like on set and on screen. **Campaigns, design, production, web and digital** in one frame, for brands that want to be remembered.',
+              ))}</p>
+              <ol className="mv-steps">
+                <li><span><Lightbulb size={18} /></span><div><strong>{t('Ideja i strategija', 'Idea and strategy')}</strong><small>{t('Cilj, publika, poruka', 'Goal, audience, message')}</small></div></li>
+                <li><span><Clapperboard size={18} /></span><div><strong>{t('Snimanje i montaža', 'Filming and editing')}</strong><small>{t('Foto, video, reels', 'Photo, video, reels')}</small></div></li>
+                <li><span><Sparkles size={18} /></span><div><strong>{t('Dizajn i animacija', 'Design and animation')}</strong><small>{t('Vizuali koji se pamte', 'Visuals that stick')}</small></div></li>
+                <li><span><TrendingUp size={18} /></span><div><strong>{t('Objava i rezultati', 'Publishing and results')}</strong><small>{t('Mjerenje i optimizacija', 'Measurement and optimisation')}</small></div></li>
+              </ol>
             </div>
-            <MarketingVideo />
+            <div className="mv-media">
+              <MarketingVideo />
+              <SpinBadge text="BONACO • SHOWREEL • KREATIVA • PRODUKCIJA • " />
+            </div>
           </div>
         </div>
       </section>
+
+      <KeywordTicker />
 
       <ClientsMarquee />
 
