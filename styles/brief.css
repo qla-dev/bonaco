@@ -702,3 +702,10 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .mv-media .video-poster:hover::after { background: linear-gradient(90deg, rgba(8, 8, 8, 0.65) 0%, rgba(8, 8, 8, 0.3) 55%, rgba(8, 8, 8, 0.15) 100%); }
 .mv-media .video-play { z-index: 2; }
 .mv-media .video { margin-bottom: 8px; }
+
+/* Telefon: zbijeniji timeline (manji razmak između krugova) */
+@media (max-width: 860px) {
+  .mkt-video { --row: 116px; gap: 28px; }
+  .mv-steps li { height: auto; min-height: var(--row); padding: 6px 0; }
+  .mv-steps::before { top: calc(var(--row) / 2); bottom: -28px; }
+}
