@@ -281,7 +281,9 @@ export function startOrbit(canvas: HTMLCanvasElement, items: OrbitItem[], opts: 
     lastScroll = sy;
     scrollV = THREE.MathUtils.lerp(scrollV, THREE.MathUtils.clamp(v / 120, -12, 12), 1 - Math.pow(0.002, dt));
     const flow = paused ? 0 : 1;
-    spinners.forEach(s => { s.g.rotation.z += s.speed * flow * dt; });
+    // skrol upravlja i tokom logotipa po prstenovima: dolje = brže, gore = unazad, bez skrola = normalno
+    const scrollFlow = 1 + scrollV * 0.9;
+    spinners.forEach(s => { s.g.rotation.z += s.speed * (paused ? scrollV * 0.9 : flow * scrollFlow) * dt; });
     if (!paused || Math.abs(scrollV) > 0.05) driftParticles(dt);
     // svakih ~4,5 s narandžasta prelazi na sljedeći aktivni prsten (glatki prelaz boje)
     if (!paused) hlT += dt;
