@@ -60,6 +60,11 @@ export default function HomePage() {
             </div>
             <div className="mv-media">
               <MarketingVideo />
+              <div className="mv-play-label" aria-hidden="true">
+                <b>05</b>
+                <strong>{t('Pogledajte showreel', 'Watch the showreel')}</strong>
+                <small>{t('Kampanje, eventi, produkcija', 'Campaigns, events, production')}</small>
+              </div>
               <SpinBadge text="BONACO • SHOWREEL • KREATIVA • PRODUKCIJA • " />
             </div>
           </div>
