@@ -1,6 +1,6 @@
 // Marketing: usluge full-service agencije, proces, istaknuti radovi i kontakt (URL /nase-usluge/ zadržan radi SEO).
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import { CTASection } from '../components/Blocks';
@@ -15,6 +15,23 @@ export default function ServicesPage() {
   const listRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [inView, setInView] = useState(false);
+  const { hash } = useLocation();
+
+  // Link na uslugu (/nase-usluge/#seo): poravnaj slajd i nakon što se stranica/iOS adresna traka smiri,
+  // inače snap na iPhoneu zna završiti na susjednom slajdu.
+  useEffect(() => {
+    const id = decodeURIComponent(hash.slice(1));
+    if (!id) return;
+    const go = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const head = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 70;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - head, behavior: 'instant' as ScrollBehavior });
+    };
+    const raf = requestAnimationFrame(go);
+    const t1 = setTimeout(go, 350), t2 = setTimeout(go, 900);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t1); clearTimeout(t2); };
+  }, [hash]);
 
   // TikTok stil: svaka usluga je slajd pune visine sa snapom; stepper desno prati aktivni slajd
   useEffect(() => {
