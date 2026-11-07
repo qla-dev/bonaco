@@ -142,11 +142,9 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
         ctx.fillStyle = g;
         ctx.beginPath(); ctx.arc(x, y, sz * 1.6, 0, Math.PI * 2); ctx.fill();
       } else {
-        // blizu: puna, s blagim 3D sjajem
-        ctx.globalAlpha = 0.7 + d.z * 0.3;
-        const g = ctx.createRadialGradient(x - sz * 0.35, y - sz * 0.35, sz * 0.1, x, y, sz);
-        g.addColorStop(0, 'rgba(255,255,255,0.55)'); g.addColorStop(0.35, d.color); g.addColorStop(1, d.color);
-        ctx.fillStyle = g;
+        // blizu: puna, čista boja (dubina samo kroz veličinu, oštrinu i pomak)
+        ctx.globalAlpha = 0.75 + d.z * 0.25;
+        ctx.fillStyle = d.color;
         ctx.beginPath(); ctx.arc(x, y, sz, 0, Math.PI * 2); ctx.fill();
       }
     }
