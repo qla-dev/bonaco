@@ -1,8 +1,8 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ROUTER_BASENAME } from './lib/asset';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
+import MarketingRedirect from './components/MarketingRedirect';
 import BonexisPage from './pages/BonexisPage';
 import BonEventsPage from './pages/BonEventsPage';
 import AboutPage from './pages/AboutPage';
@@ -22,9 +22,9 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="nase-usluge" element={<ServicesPage />} />
-          <Route path="nase-suluge" element={<Navigate to="/nase-usluge/" replace />} />
-          <Route path="marketing" element={<Navigate to="/nase-usluge/" replace />} />
+          <Route path="nase-usluge" element={<MarketingRedirect />} />
+          <Route path="nase-suluge" element={<MarketingRedirect />} />
+          <Route path="marketing" element={<MarketingRedirect />} />
           <Route path="bonexis" element={<BonexisPage />} />
           <Route path="bonevents" element={<BonEventsPage />} />
           <Route path="portfolio" element={<PortfolioPage />} />
@@ -36,7 +36,7 @@ export default function App() {
 
           <Route path="en">
             <Route index element={<HomePage />} />
-            <Route path="marketing" element={<ServicesPage />} />
+            <Route path="marketing" element={<MarketingRedirect />} />
             <Route path="bonexis" element={<BonexisPage />} />
             <Route path="bonevents" element={<BonEventsPage />} />
             <Route path="work" element={<PortfolioPage />} />

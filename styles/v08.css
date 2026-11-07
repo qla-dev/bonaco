@@ -1,0 +1,112 @@
+/* =================== DORADE v08 =================== */
+
+/* 1. Navigacija: manja, lijevo poravnata; desno samo BS/EN toggle */
+:root { --header-h: 68px; }
+@media (max-width: 900px) { :root { --header-h: 62px; } }
+.header-inner { gap: 6px; justify-content: flex-start; height: var(--header-h); }
+.logo { margin-right: clamp(12px, 2vw, 28px); }
+.logo .brand-logo { font-size: 24px; }
+.main-nav { margin-left: 0; gap: 2px; }
+.main-nav a { font-size: 15px; padding: 8px 12px; border-radius: 9999px; min-height: 40px; display: inline-flex; align-items: center; border: 0; }
+.main-nav a.active { background: rgba(255, 255, 255, 0.07); color: var(--text); }
+.header-inner > .lang-switch { margin-left: auto; }
+.lang-switch { gap: 0; padding: 3px; border-radius: 9999px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line); font-size: 13px; }
+.lang-switch span { display: none; }
+.lang-switch a { min-width: 40px; min-height: 34px; border-radius: 9999px; }
+.lang-switch a[aria-current] { background: var(--accent); color: var(--accent-ink); }
+@media (max-width: 1040px) { .menu-toggle { margin-left: 8px; } .logo .brand-logo { font-size: 22px; } }
+
+/* 3. Hero preko cijele vidljive visine, navigacija preko njega, znak za skrol */
+.hv.hv-orbit { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; position: relative; }
+@supports (height: 100dvh) { .hv.hv-orbit { min-height: 100dvh; } }
+@media (max-width: 760px) {
+  .hv.hv-orbit { min-height: calc(100dvh - var(--cta-h, 76px)); padding-bottom: 64px; }
+  .hv.hv-orbit .hv-stage { height: min(96vw, 46dvh); min-height: 0; }
+}
+.hv-scroll { position: absolute; left: 50%; bottom: 18px; translate: -50% 0; z-index: 3; display: grid; place-items: center; width: 30px; height: 48px; border-radius: 9999px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
+.hv-scroll::after { content: ''; width: 4px; height: 9px; border-radius: 9999px; background: var(--accent); animation: hv-scroll 1.8s ease-in-out infinite; }
+@keyframes hv-scroll { 0% { transform: translateY(-8px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .hv-scroll::after { animation: none; } }
+
+/* 4. Marketing: tabovi, tekst lijevo (sticky), primjeri desno */
+.mkt2 { border-top: 1px solid var(--line); }
+.mkt2-top h2 { margin: 0 0 22px; max-width: 18ch; }
+.mkt2-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); }
+.mkt2-tabs button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px; border-radius: 9999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03); color: var(--text); font: 500 15px var(--font-body); cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+.mkt2-tabs button svg { color: var(--accent-light); }
+.mkt2-tabs button:hover { border-color: var(--accent); }
+.mkt2-tabs button.is-on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.mkt2-tabs button.is-on svg { color: inherit; }
+.mkt2-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 80px); align-items: start; animation: stage-in 0.4s ease-out; }
+.mkt2-text { position: sticky; top: calc(var(--header-h) + 32px); display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.mkt2-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, #161616); color: var(--accent-light); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
+.mkt2-text h3 { font-size: clamp(28px, 3vw, 42px); margin: 0; }
+.mkt2-text p { color: var(--muted); font-size: 18px; margin: 0 0 6px; max-width: 46ch; }
+.mkt2-examples { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 48px); }
+.mkt2-ex a { display: flex; flex-direction: column; gap: 14px; text-decoration: none; }
+.mkt2-ex:nth-child(odd) a { align-items: flex-start; }
+.mkt2-ex:nth-child(even) a { align-items: flex-end; text-align: right; }
+.mkt2-blob { display: block; width: min(100%, 440px); aspect-ratio: 1; overflow: hidden; background: var(--bg-2); border-radius: 50%; animation: lava 14s ease-in-out infinite; }
+.mkt2-ex:nth-child(2) .mkt2-blob { animation-delay: -5s; width: min(85%, 380px); }
+.mkt2-ex:nth-child(3) .mkt2-blob { animation-delay: -9s; width: min(78%, 340px); }
+.mkt2-blob img { width: 100%; height: 100%; object-fit: cover; }
+.mkt2-cap strong { display: block; font: 700 19px var(--font-head); }
+.mkt2-cap small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+.mkt2-ex a:hover .mkt2-cap strong { color: var(--accent-light); }
+.mkt2-ex-video .video { border-radius: 28px; }
+.mkt2-ex-video .mkt2-cap { display: block; margin-top: 12px; }
+/* 5. Lava-lamp: krug se meko deformiše u bubble i vraća (samo oblik slike, nikad tekst) */
+@keyframes lava {
+  0%, 100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+  20% { border-radius: 58% 42% 55% 45% / 46% 56% 44% 54%; }
+  45% { border-radius: 44% 56% 42% 58% / 57% 43% 57% 43%; }
+  70% { border-radius: 53% 47% 60% 40% / 42% 58% 46% 54%; }
+}
+@media (prefers-reduced-motion: reduce) { .mkt2-blob { animation: none; } }
+@media (max-width: 860px) {
+  .mkt2-tabs { flex-wrap: nowrap; overflow-x: auto; margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); padding: 2px var(--gutter) 8px; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
+  .mkt2-tabs::-webkit-scrollbar { display: none; }
+  .mkt2-tabs button { flex: none; white-space: nowrap; }
+  .mkt2-body { grid-template-columns: 1fr; }
+  .mkt2-text { position: static; }
+  .mkt2-examples { flex-direction: row; overflow-x: auto; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 6px; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
+  .mkt2-examples::-webkit-scrollbar { display: none; }
+  .mkt2-ex { flex: 0 0 72%; scroll-snap-align: start; }
+  .mkt2-ex a, .mkt2-ex:nth-child(even) a { align-items: flex-start; text-align: left; }
+  .mkt2-blob, .mkt2-ex:nth-child(2) .mkt2-blob, .mkt2-ex:nth-child(3) .mkt2-blob { width: 100%; animation-duration: 20s; }
+  .mkt2-ex-video { flex-basis: 86%; }
+}
+/* klijenti kompaktno, dio marketing cjeline */
+.mkt2-clients { margin-top: clamp(40px, 5vw, 64px); padding-top: 24px; border-top: 1px solid var(--line); }
+.mkt2-clients-label { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.mkt2-clients .mq-track { animation-duration: 70s; gap: 14px; }
+.mkt2-clients .mq-row:hover .mq-track { animation-play-state: paused; }
+.medallion.sm2 { width: 72px; height: 72px; padding: 13px; }
+
+/* 6. Bez bijelih sekcija: zajednička tamna osnova */
+.light { --light: #121212; --light-2: rgba(255, 255, 255, 0.1); --ink: #f5f5f4; --ink-muted: #b4b4b0; --accent: var(--bonaco); --accent-ink: #141414; background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
+[data-brand='bonexis'] .light, .light[data-brand='bonexis'] { --accent: var(--bonexis); --accent-ink: #0c0c0c; }
+[data-brand='bonevents'] .light, .light[data-brand='bonevents'] { --accent: var(--bonevents); --accent-ink: #fff; }
+.light .steps li, .light .pillar, .light .project-card, .light .post-card, .light .service-card, .light .agent-card, .light .capsule-card { background: var(--bg-2); border-color: var(--line); }
+.light .gallery-item { background: var(--bg-2); }
+.light .btn-secondary { border-color: rgba(255, 255, 255, 0.35); color: var(--text); }
+.light .shimmer.hl { --accent: var(--accent-light); }
+
+/* 7. Potpuno zaobljene kontrole, meki uglovi blokova i polja */
+.btn, .chip, .icon-btn, .bx-action, .bx-tabs button, .sc-replay, .office-nav button, .t-picker button, .badge, .bx-suggestions button { border-radius: 9999px; }
+.field input, .field select { border-radius: 18px; }
+.field textarea { border-radius: 22px; }
+.contact-item, .contact-form-wrap, .video, .end-card, .case-facts dl, .project-card, .post-card { border-radius: 28px; }
+
+/* 10. Kontakt: lijevo tekst, desno podaci, forma u zasebnom panelu ispod */
+.contact2 { border-top: 1px solid var(--line); }
+.contact2-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start; margin-bottom: clamp(24px, 3vw, 40px); }
+.contact2-top h2 { margin: 0 0 12px; }
+.contact2-data { display: flex; flex-direction: column; gap: 10px; }
+.contact2-form { padding: clamp(22px, 4vw, 44px); border-radius: 32px; background: var(--bg-2); border: 1px solid var(--line); }
+@media (max-width: 860px) { .contact2-top { grid-template-columns: 1fr; } }
+.page-hero + .contact2 { border-top: 0; padding-top: 8px; }
+
+/* Footer kompaktniji */
+.site-footer { padding-top: 48px; }
+.footer-bottom { margin-top: 32px; }

@@ -10,6 +10,7 @@ import './styles/fixes.css';
 import './styles/dashboard.css';
 import './styles/brief.css';
 import './styles/bonexis-dark.css';
+import './styles/v08.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

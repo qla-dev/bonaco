@@ -26,7 +26,7 @@ export default function Footer() {
         <div>
           <h2 className="footer-title">{t('Brendovi', 'Brands')}</h2>
           <ul className="footer-brands">
-            <li><Link to={to('/nase-usluge/')}><i className="dot dot-bonaco" aria-hidden="true" />Bonaco Media · Marketing</Link></li>
+            <li><Link to={to('/#marketing')}><i className="dot dot-bonaco" aria-hidden="true" />Bonaco Media · Marketing</Link></li>
             <li><Link to={to('/bonexis/')}><i className="dot dot-bonexis" aria-hidden="true" />Bonexis · AI Solutions</Link></li>
             <li><Link to={to('/bonevents/')}><i className="dot dot-bonevents" aria-hidden="true" />BonEvents · Events</Link></li>
           </ul>

@@ -110,6 +110,7 @@ export default function HeroVideo() {
             <p className="hv-hint" aria-hidden="true">{t('Prevucite da okrenete sferu', 'Drag to turn the sphere')}</p>
           </div>
         </div>
+        <a href="#marketing" className="hv-scroll" aria-label={t('Skrolajte dalje', 'Scroll down')} onClick={e => { e.preventDefault(); document.getElementById('marketing')?.scrollIntoView({ behavior: 'smooth' }); }} />
       </section>
     );
   }

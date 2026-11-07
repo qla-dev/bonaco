@@ -52,11 +52,13 @@ export default function Header() {
     };
   }, [open]);
 
-  const links = NAV.map(n => (
-    <NavLink key={n.to} to={to(n.to)} className={({ isActive }) => `${isActive ? 'active' : ''} ${n.to === '/kontakt/' ? 'nav-contact' : ''}`.trim() || undefined}>
+  const links = NAV.map(n => (n.to.includes('#') ? (
+    <Link key={n.to} to={to(n.to)}>{t(n.bs, n.en)}</Link>
+  ) : (
+    <NavLink key={n.to} to={to(n.to)} className={({ isActive }) => (isActive ? 'active' : undefined)}>
       {t(n.bs, n.en)}
     </NavLink>
-  ));
+  )));
 
   return (
     <header className={`site-header ${pathname === home ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>

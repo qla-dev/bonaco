@@ -27,7 +27,7 @@ export function ServiceCircles() {
         const x = tr(s, lang);
         return (
           <li key={s.slug}>
-            <Link to={to(`/nase-usluge/#${s.slug}`)}>
+            <Link to={to(`/?usluga=${s.slug}#marketing`)}>
               <span className="svc-dot"><ServiceIcon slug={s.slug} size={22} /></span>
               <span>{x.title}</span>
             </Link>

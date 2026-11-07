@@ -23,7 +23,7 @@ export default function BrandLogo({ brand = 'bonaco', sub = true, mono = false, 
   if (brand === 'bonaco') {
     return (
       <span className={`brand-logo brand-logo-bonaco brand-logo-img ${className}`}>
-        <img src={asset(mono ? '/img/logo/bonaco-logo-white.webp' : '/img/logo/bonaco-logo.webp')} alt="Bonaco Media" width="639" height="168" />
+        <img src={asset(mono ? '/img/logo/bonaco-logo-white.webp' : '/img/logo/bonaco-logo-hd.webp')} alt="Bonaco Media" width="639" height="168" />
       </span>
     );
   }
