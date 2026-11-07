@@ -77,7 +77,6 @@ export default function Header() {
           <NavLink to={home} end>{t('Početna', 'Home')}</NavLink>
           {links}
         </nav>
-        <LangSwitch />
         <div className="mobile-social">
           {SOCIAL.map(s => (
             <a key={s.id} href={s.href} target="_blank" rel="noopener" aria-label={s.label}><SocialIcon id={s.id} size={22} /></a>

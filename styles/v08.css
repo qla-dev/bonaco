@@ -118,3 +118,7 @@
 /* Dugmad u marketing tabu uvijek u jednom redu (i na telefonu) */
 .mkt2-text .btn-row { flex-wrap: nowrap; width: 100%; }
 @media (max-width: 560px) { .mkt2-text .btn-row .btn { flex: 1 1 0; min-width: 0; padding: 14px 10px; font-size: 15px; white-space: nowrap; } }
+
+/* Tamna traka uz dno ekrana: iOS Safari ne boji adresnu traku narandžasto (npr. kad je meni otvoren) */
+.tint-sentinel { position: fixed; left: 0; right: 0; bottom: 0; height: 4px; background: var(--bg); pointer-events: none; z-index: 2147483647; }
+.mobile-menu { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }

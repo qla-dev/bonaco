@@ -37,6 +37,8 @@ export default function Layout() {
       </main>
       <Footer />
       <MobileCta />
+      {/* Safari (iOS) boji donju adresnu traku prema elementu uz dno: tanka tamna traka drži je tamnom */}
+      <div className="tint-sentinel" aria-hidden="true" />
     </>
   );
 }
