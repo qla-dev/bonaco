@@ -127,7 +127,7 @@ export default function HeroVideo() {
           <div className="hv-below">
             {title}
             {below}
-            <p className="hv-hint" aria-hidden="true">{t('Prevucite da okrenete sferu', 'Drag to turn the sphere')}</p>
+            <p className="hv-hint" aria-hidden="true">{HERO_STYLE === 'dots' ? t('Pomjerite miš preko tačkica', 'Move your mouse over the dots') : t('Prevucite da okrenete sferu', 'Drag to turn the sphere')}</p>
           </div>
         </div>
         <a href="#marketing" className="hv-scroll" aria-label={t('Skrolajte dalje', 'Scroll down')} onClick={e => { e.preventDefault(); document.getElementById('marketing')?.scrollIntoView({ behavior: 'smooth' }); }} />
