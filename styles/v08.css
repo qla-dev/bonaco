@@ -131,3 +131,8 @@
 /* Hero 'dots': B. znak s tačkicama; bez vinjete iza B. kao kod sfere */
 .hv-dots { cursor: default; touch-action: auto; }
 .hv-orbit .hv-stage:has(.hv-dots) .hv-center::before { background: radial-gradient(circle, rgba(18, 18, 18, 0.55) 0%, transparent 62%); }
+
+
+/* Hero 'dots': pozadinske tačkice po cijelom heroju, zamućene i prigušene (kao u daljini) */
+.hv-dots-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; filter: blur(7px); opacity: 0.55; }
+.hv.hv-orbit > .container { position: relative; z-index: 1; }

@@ -27,7 +27,7 @@ function HeroDots({ paused }: { paused: boolean }) {
     let dead = false;
     import('./heroDots').then(({ startDots }) => {
       if (dead || !canvas.current) return;
-      handle.current = startDots(canvas.current, { reduce });
+      handle.current = startDots(canvas.current, { reduce, bg: canvas.current.closest('section')?.querySelector<HTMLCanvasElement>('.hv-dots-bg') });
       setReady(true);
     }).catch(() => {});
     return () => { dead = true; handle.current?.destroy(); handle.current = null; };
@@ -118,6 +118,7 @@ export default function HeroVideo() {
   if (!hasVideo) {
     return (
       <section className={`hv hv-orbit ${paused ? 'is-paused' : ''}`} aria-label="Bonaco Media">
+        {HERO_STYLE === 'dots' && <canvas className="hv-dots-bg" aria-hidden="true" />}
         <div className="container hv-grid">
           <div className="hv-stage">
             {HERO_STYLE === 'dots' ? <HeroDots paused={paused} /> : <HeroSphere paused={paused} />}
