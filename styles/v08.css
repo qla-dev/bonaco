@@ -183,3 +183,6 @@
   50% { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 12%, transparent), 0 0 60px color-mix(in srgb, var(--accent) 25%, transparent); scale: 1.025; }
 }
 @media (prefers-reduced-motion: reduce) { .bxc-core { animation: none; } }
+
+/* Marketing: isti meki blur boje u pozadini kao Bonexis/BonEvents, u narandžastoj */
+.mkt2 { background: radial-gradient(ellipse at 22% 55%, var(--accent-deep), var(--bg) 62%); }
