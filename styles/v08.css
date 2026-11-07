@@ -191,3 +191,7 @@
 .mkt2-head { display: flex; align-items: center; gap: 16px; }
 .mkt2-head .mkt2-icon { flex: none; }
 @media (max-width: 560px) { .mkt2-head .mkt2-icon { width: 54px; height: 54px; } .mkt2-head h3 { font-size: 26px; } }
+
+
+/* B. optički centriran: slovo B na sredini kruga, tačka visi desno */
+.hv-orbit .hv-b { margin-left: -0.26em; }

@@ -31,6 +31,10 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
       wob: (i * 1.7) % 6.283, ox: 0, oy: 0, vx: 0, vy: 0,
     });
   }
+  // nekoliko mekih, zamućenih tačkica u sredini, iza B.
+  for (let i = 0; i < 12; i++) {
+    dots.push({ a: i * 2.399963 + 1, r: 0.06 + ((i * 0.37) % 1) * 0.26, z: 0.05 + ((i * 0.53) % 1) * 0.25, size: 4 + ((i * 0.71) % 1) * 6, color: COLORS[(i + 2) % COLORS.length], wob: i, ox: 0, oy: 0, vx: 0, vy: 0 });
+  }
   dots.sort((p, q) => p.z - q.z); // daleke prve, bliže preko njih
   let theta = 0;
   const bgDots: BgDot[] = [];
@@ -53,46 +57,41 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
   };
 
   let mx = -9999, my = -9999, px = 0, py = 0, tpx = 0, tpy = 0;
+  // Dodir: horizontalni potez preko tačkica daje mali "trzaj" lijevo/desno koji se sam vraća na sredinu.
+  // Vertikalno prevlačenje (skrol) ne pomjera oblak u stranu.
+  let kick = 0, lastTX = 0, lastTY = 0, touching = false;
+  const onDown = (e: PointerEvent) => { if (e.pointerType !== 'mouse') { touching = true; lastTX = e.clientX; lastTY = e.clientY; } };
   const onMove = (e: PointerEvent) => {
     const r = canvas.getBoundingClientRect();
     mx = e.clientX - r.left; my = e.clientY - r.top;
-    // parallax samo mišem; na dodir (prevlačenje/skrol) oblak ostaje horizontalno centriran
     if (e.pointerType === 'mouse') {
       tpx = Math.max(-1, Math.min(1, -((e.clientX - (r.left + r.width / 2)) / (r.width / 2))));
       tpy = Math.max(-1, Math.min(1, -((e.clientY - (r.top + r.height / 2)) / (r.height / 2))));
-    } else { tpx = 0; tpy = 0; }
+    } else if (touching) {
+      const dx = e.clientX - lastTX, dy = e.clientY - lastTY;
+      lastTX = e.clientX; lastTY = e.clientY;
+      if (Math.abs(dx) > Math.abs(dy)) kick = Math.max(-1, Math.min(1, kick + dx / (r.width * 0.5)));
+      tpx = 0; tpy = 0;
+    }
     wake();
   };
   const onLeave = () => { mx = my = -9999; tpx = tpy = 0; };
   // na dodir: kad se prst podigne, tačkice se vraćaju (nema trajne "rupe")
-  const onUp = (e: PointerEvent) => { if (e.pointerType !== 'mouse') { mx = my = -9999; } };
+  const onUp = (e: PointerEvent) => { if (e.pointerType !== 'mouse') { mx = my = -9999; touching = false; } };
+  window.addEventListener('pointerdown', onDown, { passive: true });
   window.addEventListener('pointermove', onMove, { passive: true });
   window.addEventListener('pointerup', onUp, { passive: true });
   window.addEventListener('pointercancel', onUp, { passive: true });
   document.addEventListener('pointerleave', onLeave);
-
-  // Nagib telefona lijevo/desno: blagi pomak oblaka (iOS traži dozvolu na prvi dodir)
-  let tilt = 0, tiltOn = false;
-  const onOrient = (e: DeviceOrientationEvent) => {
-    if (e.gamma == null) return;
-    tiltOn = true;
-    tilt = Math.max(-1, Math.min(1, e.gamma / 30));
-    wake();
-  };
-  window.addEventListener('deviceorientation', onOrient);
-  const askTilt = () => {
-    const DOE = window.DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> };
-    if (DOE && typeof DOE.requestPermission === 'function') DOE.requestPermission().catch(() => {});
-    window.removeEventListener('touchend', askTilt);
-  };
-  window.addEventListener('touchend', askTilt, { passive: true });
 
   let paused = opts.reduce, scrollV = 0, lastScroll = getScrollY();
 
   function draw(dt: number) {
     // dok se skrola, uvijek se vraća na sredinu (nagib/miš ne pomjeraju oblak u stranu)
     const scrolling = Math.abs(scrollV) > 0.08;
-    const targetX = scrolling ? 0 : tiltOn && mx < -999 ? -tilt * 0.8 : tpx;
+    kick *= Math.pow(0.04, dt); // trzaj od prevlačenja se sam vraća na sredinu
+    if (scrolling) kick *= Math.pow(0.0005, dt);
+    const targetX = scrolling ? 0 : tpx + kick;
     px += (targetX - px) * Math.min(1, dt * 3);
     py += (tpy - py) * Math.min(1, dt * 3);
     const flow = (paused ? 0 : 0.06) + scrollV * 0.5;
@@ -186,8 +185,7 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
       window.removeEventListener('pointercancel', onUp);
-      window.removeEventListener('deviceorientation', onOrient);
-      window.removeEventListener('touchend', askTilt);
+      window.removeEventListener('pointerdown', onDown);
       document.removeEventListener('pointerleave', onLeave);
     },
   };
