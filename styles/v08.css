@@ -194,4 +194,12 @@
 
 
 /* B. optički centriran: slovo B na sredini kruga, tačka visi desno */
-.hv-orbit .hv-b { margin-left: 0.05em; }
+.hv-orbit .hv-b { margin-left: -0.05em; }
+
+/* "pokreću": mekan prelaz boja bez skoka (gradijent ide naprijed-nazad, ravnomjerni prelazi) */
+.hv h1 .shimmer, .hv h1 .shimmer.hl {
+  background: linear-gradient(90deg, #F58426 0%, #f9a15e 16%, #3cc9c5 33%, #009D9A 45%, #8f6cff 62%, #592ADA 75%, #c66fb0 88%, #F58426 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  animation: hero-hue 10s ease-in-out infinite alternate;
+}
