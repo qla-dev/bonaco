@@ -170,3 +170,16 @@
 .brand-logo-vec.is-mono .bl-dot { background: #fff; }
 .brand-logo-vec.is-mono .bl-sub { color: #fff; }
 .logo .brand-logo-vec { font-size: 26px; }
+
+
+/* Bonexis: krug kapsula se okreće na skrol (--spin), sredina lagano pulsira */
+@media (min-width: 901px) {
+  .bxc-cap { transform: rotate(calc(var(--a) + var(--spin, 0deg))) translate(36cqw) rotate(calc((var(--a) + var(--spin, 0deg)) * -1)); transition: transform 0.25s ease-out; }
+  .bxc-orbit::before { transform: rotate(var(--spin, 0deg)); }
+  .bxc-core { animation: core-pulse 3.6s ease-in-out infinite; }
+}
+@keyframes core-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); scale: 1; }
+  50% { box-shadow: 0 0 0 14px color-mix(in srgb, var(--accent) 12%, transparent), 0 0 60px color-mix(in srgb, var(--accent) 25%, transparent); scale: 1.025; }
+}
+@media (prefers-reduced-motion: reduce) { .bxc-core { animation: none; } }

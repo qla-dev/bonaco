@@ -1,7 +1,7 @@
 // Kružni sistem iz briefa v1.3: krug iz znaka "B." nosi marketing radove, logotipe klijenata,
 // pet Bonexis kapsula i BonEvents. Tekst je uvijek uz krug (ne zaključan u malom krugu),
 // sve radi na dodir i tastaturu, a kontinuirane animacije se mogu zaustaviti.
-import { useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Gift, Pause, Play, Sparkles, Wrench } from 'lucide-react';
 import { asset } from '../lib/asset';
@@ -17,6 +17,7 @@ import BrandIcon, { type IconName } from './BrandIcon';
 import BrandLogo, { QlaMark } from './BrandLogo';
 import { YouTube } from './Blocks';
 import { hl } from '../lib/hl';
+import { onScroll } from '../lib/scroller';
 
 /* ---------- Marketing: usluge kao mali krugovi ---------- */
 export function ServiceCircles() {
@@ -141,6 +142,26 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
   const { lang, t, to } = useLang();
   const [sel, setSel] = useState(0);
   const c = PUBLIC_CAPSULES[sel];
+  const orbitRef = useRef<HTMLDivElement>(null);
+
+  // Krug kapsula se okreće sa skrolom (pozicija sekcije na ekranu -> ugao), samo na desktopu
+  useEffect(() => {
+    const el = orbitRef.current;
+    if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (innerWidth <= 900) { el.style.removeProperty('--spin'); return; }
+      const r = el.getBoundingClientRect();
+      const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight; // -1..1 dok prolazi ekranom
+      el.style.setProperty('--spin', `${(p * 140).toFixed(2)}deg`);
+    };
+    const onS = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const off = onScroll(onS);
+    addEventListener('resize', onS);
+    update();
+    return () => { off(); removeEventListener('resize', onS); cancelAnimationFrame(raf); };
+  }, []);
   const n = PUBLIC_CAPSULES.length;
   const Heading = page ? 'h1' : 'h2';
 
@@ -171,7 +192,7 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
         </div>
 
         <div className="bxc-grid">
-          <div className="bxc-orbit" role="tablist" aria-label={t('Bonexis kapsule', 'Bonexis capsules')} onKeyDown={onKey}>
+          <div className="bxc-orbit" ref={orbitRef} role="tablist" aria-label={t('Bonexis kapsule', 'Bonexis capsules')} onKeyDown={onKey}>
             <span className="bxc-core" aria-hidden="true">BONEXIS<i /></span>
             {PUBLIC_CAPSULES.map((x, i) => (
               <button
