@@ -53,6 +53,10 @@ export const VIDEOS = {
 // Dva videa iz briefa (produkcija: Bonaco dizajnerski tim). Dok fajlovi ne stignu, null:
 // hero prikazuje kružnu animaciju u CSS-u, a marketing video showreel s YouTubea.
 // Fajlove staviti u public/video/ i upisati putanje ovdje.
+// Izgled prvog ekrana dok nema videa: 'dots' = B. s tačkicama (bježe od miša, skrol tok),
+// 'sphere' = 3D sfera s logotipima klijenata (prethodna verzija). Vraćanje = promijeniti ovu vrijednost.
+export const HERO_STYLE: 'dots' | 'sphere' = 'dots';
+
 export const HERO_VIDEO: { desktop: string | null; mobile: string | null; poster: string | null; posterMobile: string | null } = {
   // TODO(Bonaco): Video 2 – artistički hero, 8–12 s, tiha petlja (MP4/H.264, ~4–5 MB desktop, ~2 MB mobile)
   desktop: null, // npr. '/video/hero-16x9.mp4'

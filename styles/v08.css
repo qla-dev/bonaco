@@ -126,3 +126,8 @@
 /* Marketing tab: kratki uvod istaknut, ispod puni opis usluge */
 .mkt2-text p.mkt2-short { color: var(--text); font-weight: 500; font-size: 19px; margin: 0; }
 .mkt2-text p { font-size: 17px; line-height: 1.65; }
+
+
+/* Hero 'dots': B. znak s tačkicama; bez vinjete iza B. kao kod sfere */
+.hv-dots { cursor: default; touch-action: auto; }
+.hv-orbit .hv-stage:has(.hv-dots) .hv-center::before { background: radial-gradient(circle, rgba(18, 18, 18, 0.55) 0%, transparent 62%); }

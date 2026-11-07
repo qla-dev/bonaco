@@ -7,7 +7,8 @@ import { ArrowRight, Pause, Play } from 'lucide-react';
 import { asset } from '../lib/asset';
 import { useLang } from '../lib/i18n';
 import { useReducedMotion } from '../lib/motion';
-import { HERO_VIDEO } from '../data/site';
+import { HERO_STYLE, HERO_VIDEO } from '../data/site';
+import type { DotsHandle } from './heroDots';
 import { CLIENTS } from '../data/clients';
 import type { OrbitHandle } from './heroOrbitScene';
 import { hl } from '../lib/hl';
@@ -15,6 +16,25 @@ import { hl } from '../lib/hl';
 // Logotipi na sferi (12 = po 4 na svakom aktivnom prstenu) i klijenti s povezanom studijom slučaja
 const ORBIT_CLIENTS = ['fk-zeljeznicar', 'medicana', 'sarajevska-pivara', 'zmaj', 'golf-klub-sarajevo', 'women-in-adria', 'beautyco', 'rooms', 'summer-lounge', 'bh-travel', 'max-media', 'flok'];
 const CLIENT_PROJECT: Record<string, string> = { beautyco: 'beautyco', rooms: 'rooms-hr', 'bh-travel': 'bh-travel', 'summer-lounge': 'summer-lounge', 'max-media': 'max-media' };
+
+// Tačkice oko B. (HERO_STYLE = 'dots'): bježe od miša, skrol upravlja tokom
+function HeroDots({ paused }: { paused: boolean }) {
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const handle = useRef<DotsHandle | null>(null);
+  const reduce = useReducedMotion();
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let dead = false;
+    import('./heroDots').then(({ startDots }) => {
+      if (dead || !canvas.current) return;
+      handle.current = startDots(canvas.current, { reduce });
+      setReady(true);
+    }).catch(() => {});
+    return () => { dead = true; handle.current?.destroy(); handle.current = null; };
+  }, [reduce]);
+  useEffect(() => { handle.current?.setPaused(paused); }, [paused, ready]);
+  return <canvas ref={canvas} className={`hv-sphere hv-dots ${ready ? 'is-ready' : ''}`} aria-hidden="true" />;
+}
 
 function HeroSphere({ paused }: { paused: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -100,7 +120,7 @@ export default function HeroVideo() {
       <section className={`hv hv-orbit ${paused ? 'is-paused' : ''}`} aria-label="Bonaco Media">
         <div className="container hv-grid">
           <div className="hv-stage">
-            <HeroSphere paused={paused} />
+            {HERO_STYLE === 'dots' ? <HeroDots paused={paused} /> : <HeroSphere paused={paused} />}
             <div className="hv-center" aria-hidden="true"><span className="hv-b">B<i /></span></div>
             {pauseBtn}
           </div>
