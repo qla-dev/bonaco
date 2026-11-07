@@ -150,3 +150,23 @@
 }
 @keyframes hero-hue { from { background-position: 0% 0; } to { background-position: 100% 0; } }
 @media (prefers-reduced-motion: reduce) { .hv h1 .shimmer, .hv h1 .shimmer.hl { animation: none; } }
+
+/* Vektorski BONEXIS / BONEVENT logotip (font Outfit 700 + "E" od tri crte) */
+.brand-logo-vec { display: inline-flex; flex-direction: column; align-items: center; color: #fff; line-height: 1; }
+.brand-logo-vec .bl-word { display: inline-flex; align-items: baseline; font: 700 1em/1 'Outfit', var(--font-head); letter-spacing: 0.01em; }
+.brand-logo-vec .bl-e {
+  display: inline-block; width: 0.5em; height: 0.7em; margin: 0 0.045em;
+  background:
+    linear-gradient(currentColor, currentColor) top / 100% 0.15em no-repeat,
+    linear-gradient(currentColor, currentColor) center / 100% 0.15em no-repeat,
+    linear-gradient(currentColor, currentColor) bottom / 100% 0.15em no-repeat;
+}
+.brand-logo-vec .bl-dot { width: 0.2em; height: 0.2em; margin-left: 0.07em; border-radius: 50%; }
+.brand-logo-bonexis .bl-dot, .brand-logo-bonexis.brand-logo-vec .bl-sub { color: var(--bonexis); }
+.brand-logo-bonevents .bl-dot, .brand-logo-bonevents.brand-logo-vec .bl-sub { color: #7a4cff; }
+.brand-logo-bonexis .bl-dot { background: var(--bonexis); }
+.brand-logo-bonevents .bl-dot { background: #6a3df0; }
+.brand-logo-vec .bl-sub { margin-top: 0.34em; padding-left: 0.5em; font: 600 0.26em/1 var(--font-body); letter-spacing: 0.5em; }
+.brand-logo-vec.is-mono .bl-dot { background: #fff; }
+.brand-logo-vec.is-mono .bl-sub { color: #fff; }
+.logo .brand-logo-vec { font-size: 26px; }
