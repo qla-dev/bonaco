@@ -55,8 +55,10 @@ export default function MarketingTabs() {
 
         <div className="mkt2-body" role="tabpanel" id="mkt2-panel" aria-labelledby={`tab-${s.slug}`} key={s.slug}>
           <div className="mkt2-text">
-            <span className="mkt2-icon"><ServiceIcon slug={s.slug} size={28} /></span>
-            <h3>{x.title}</h3>
+            <div className="mkt2-head">
+              <span className="mkt2-icon"><ServiceIcon slug={s.slug} size={28} /></span>
+              <h3>{x.title}</h3>
+            </div>
             <p className="mkt2-short">{x.short}</p>
             <p>{x.text}</p>
             <div className="btn-row">
