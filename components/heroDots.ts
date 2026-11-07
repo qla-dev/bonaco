@@ -19,16 +19,20 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
   const bctx = bg?.getContext('2d') ?? null;
   let W = 0, H = 0, dpr = 1, cx = 0, cy = 0, R = 0, BW = 0, BH = 0;
 
+  // Ravnomjeran disk (zlatni ugao): svi kruže ISTOM brzinom pa oblik ostaje pravilan krug bez rupa.
+  const N = 72;
   const dots: Dot[] = [];
-  for (let i = 0; i < 70; i++) {
-    const z = Math.random();
+  for (let i = 0; i < N; i++) {
+    const z = (i * 0.618034) % 1; // dubina 0 (daleko) .. 1 (blizu), ravnomjerno izmiješana
     dots.push({
-      a: Math.random() * Math.PI * 2,
-      r: 0.34 + Math.sqrt(Math.random()) * 0.62, // ravnomjerno po disku, ostavlja prostor oko B.
-      z, size: 2.5 + z * 6, color: COLORS[i % COLORS.length],
-      wob: Math.random() * Math.PI * 2, ox: 0, oy: 0, vx: 0, vy: 0,
+      a: i * 2.399963,
+      r: 0.36 + Math.sqrt((i + 0.5) / N) * 0.6,
+      z, size: 1.8 + z * 7.5, color: COLORS[i % COLORS.length],
+      wob: (i * 1.7) % 6.283, ox: 0, oy: 0, vx: 0, vy: 0,
     });
   }
+  dots.sort((p, q) => p.z - q.z); // daleke prve, bliže preko njih
+  let theta = 0;
   const bgDots: BgDot[] = [];
   for (let i = 0; i < 90; i++) {
     bgDots.push({ x: Math.random(), y: Math.random(), z: Math.random(), size: 3 + Math.random() * 9, color: COLORS[i % COLORS.length], vy: 0.004 + Math.random() * 0.01, ph: Math.random() * 6.3 });
@@ -57,13 +61,34 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
     wake();
   };
   const onLeave = () => { mx = my = -9999; tpx = tpy = 0; };
+  // na dodir: kad se prst podigne, tačkice se vraćaju (nema trajne "rupe")
+  const onUp = (e: PointerEvent) => { if (e.pointerType !== 'mouse') { mx = my = -9999; } };
   window.addEventListener('pointermove', onMove, { passive: true });
+  window.addEventListener('pointerup', onUp, { passive: true });
+  window.addEventListener('pointercancel', onUp, { passive: true });
   document.addEventListener('pointerleave', onLeave);
+
+  // Nagib telefona lijevo/desno: blagi pomak oblaka (iOS traži dozvolu na prvi dodir)
+  let tilt = 0, tiltOn = false;
+  const onOrient = (e: DeviceOrientationEvent) => {
+    if (e.gamma == null) return;
+    tiltOn = true;
+    tilt = Math.max(-1, Math.min(1, e.gamma / 30));
+    wake();
+  };
+  window.addEventListener('deviceorientation', onOrient);
+  const askTilt = () => {
+    const DOE = window.DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<string> };
+    if (DOE && typeof DOE.requestPermission === 'function') DOE.requestPermission().catch(() => {});
+    window.removeEventListener('touchend', askTilt);
+  };
+  window.addEventListener('touchend', askTilt, { passive: true });
 
   let paused = opts.reduce, scrollV = 0, lastScroll = getScrollY();
 
   function draw(dt: number) {
-    px += (tpx - px) * Math.min(1, dt * 3);
+    const targetX = tiltOn && mx < -999 ? -tilt * 0.8 : tpx;
+    px += (targetX - px) * Math.min(1, dt * 3);
     py += (tpy - py) * Math.min(1, dt * 3);
     const flow = (paused ? 0 : 0.06) + scrollV * 0.5;
 
@@ -87,30 +112,43 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
     // ---- prednji krug oko B. ----
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    const shiftX = px * 14, shiftY = py * 10; // cijeli krug se pomjera zajedno: ostaje okrugao
+    theta += flow * dt;
     for (const d of dots) {
-      d.a += flow * (0.4 + d.z) * dt;
       d.wob += dt * (0.5 + d.z * 0.6);
-      const rr = d.r * R * (1 + Math.sin(d.wob) * 0.03); // blago disanje
-      let x = cx + shiftX + Math.cos(d.a) * rr;
-      let y = cy + shiftY + Math.sin(d.a) * rr;
-      // bježanje od kursora + opruga nazad
+      const rr = d.r * R * (1 + Math.sin(d.wob) * 0.025);
+      // dubina: bliže tačke se više pomjeraju (parallax), dalje manje
+      const par = 6 + d.z * 26;
+      const ccx = cx + px * par, ccy = cy + py * par * 0.7;
+      let x = ccx + Math.cos(d.a + theta) * rr;
+      let y = ccy + Math.sin(d.a + theta) * rr;
       const dx = x + d.ox - mx, dy = y + d.oy - my;
-      const dist = Math.hypot(dx, dy), rad = 130;
+      const dist = Math.hypot(dx, dy), rad = 120;
       if (dist < rad && dist > 0.1) {
-        const f = (1 - dist / rad) * 650 * (0.5 + d.z);
+        const f = (1 - dist / rad) * 600 * (0.4 + d.z);
         d.vx += (dx / dist) * f * dt; d.vy += (dy / dist) * f * dt;
       }
-      d.vx += -d.ox * 10 * dt; d.vy += -d.oy * 10 * dt;
-      d.vx *= Math.pow(0.015, dt); d.vy *= Math.pow(0.015, dt);
+      d.vx += -d.ox * 11 * dt; d.vy += -d.oy * 11 * dt;
+      d.vx *= Math.pow(0.012, dt); d.vy *= Math.pow(0.012, dt);
       d.ox += d.vx * dt; d.oy += d.vy * dt;
       x += d.ox; y += d.oy;
-      // ostani u krugu: najviše malo preko ruba (meka granica)
-      const ex = x - (cx + shiftX), ey = y - (cy + shiftY), er = Math.hypot(ex, ey), max = R * 1.06;
-      if (er > max) { x = cx + shiftX + (ex / er) * max; y = cy + shiftY + (ey / er) * max; }
-      ctx.globalAlpha = 0.55 + d.z * 0.45;
-      ctx.fillStyle = d.color;
-      ctx.beginPath(); ctx.arc(x, y, d.size, 0, Math.PI * 2); ctx.fill();
+      const ex = x - ccx, ey = y - ccy, er = Math.hypot(ex, ey), max = R * 1.05;
+      if (er > max) { x = ccx + (ex / er) * max; y = ccy + (ey / er) * max; }
+      const sz = d.size;
+      if (d.z < 0.38) {
+        // daleko: manje, prigušeno, meke ivice
+        const g = ctx.createRadialGradient(x, y, 0, x, y, sz * 1.6);
+        g.addColorStop(0, d.color); g.addColorStop(0.55, d.color); g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.globalAlpha = 0.3 + d.z * 0.8;
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(x, y, sz * 1.6, 0, Math.PI * 2); ctx.fill();
+      } else {
+        // blizu: puna, s blagim 3D sjajem
+        ctx.globalAlpha = 0.7 + d.z * 0.3;
+        const g = ctx.createRadialGradient(x - sz * 0.35, y - sz * 0.35, sz * 0.1, x, y, sz);
+        g.addColorStop(0, 'rgba(255,255,255,0.55)'); g.addColorStop(0.35, d.color); g.addColorStop(1, d.color);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(x, y, sz, 0, Math.PI * 2); ctx.fill();
+      }
     }
     ctx.globalAlpha = 1;
   }
@@ -143,6 +181,10 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
     destroy() {
       cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); offScroll();
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
+      window.removeEventListener('deviceorientation', onOrient);
+      window.removeEventListener('touchend', askTilt);
       document.removeEventListener('pointerleave', onLeave);
     },
   };
