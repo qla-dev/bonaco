@@ -23,7 +23,7 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
   const N = 72;
   const dots: Dot[] = [];
   for (let i = 0; i < N; i++) {
-    const z = (i * 0.618034) % 1; // dubina 0 (daleko) .. 1 (blizu), ravnomjerno izmiješana
+    const h = Math.sin(i * 12.9898 + 78.233) * 43758.5453; const z = h - Math.floor(h); // dubina nezavisna od položaja
     dots.push({
       a: i * 2.399963,
       r: 0.36 + Math.sqrt((i + 0.5) / N) * 0.6,
