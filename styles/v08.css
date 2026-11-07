@@ -122,3 +122,7 @@
 /* Tamna traka uz dno ekrana: iOS Safari ne boji adresnu traku narandžasto (npr. kad je meni otvoren) */
 .tint-sentinel { position: fixed; left: 0; right: 0; bottom: 0; height: 4px; background: var(--bg); pointer-events: none; z-index: 2147483647; }
 .mobile-menu { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
+
+/* Marketing tab: kratki uvod istaknut, ispod puni opis usluge */
+.mkt2-text p.mkt2-short { color: var(--text); font-weight: 500; font-size: 19px; margin: 0; }
+.mkt2-text p { font-size: 17px; line-height: 1.65; }

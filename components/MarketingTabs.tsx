@@ -57,7 +57,8 @@ export default function MarketingTabs() {
           <div className="mkt2-text">
             <span className="mkt2-icon"><ServiceIcon slug={s.slug} size={28} /></span>
             <h3>{x.title}</h3>
-            <p>{x.short}</p>
+            <p className="mkt2-short">{x.short}</p>
+            <p>{x.text}</p>
             <div className="btn-row">
               <Link to={`${to('/kontakt/')}?usluga=${encodeURIComponent(s.title)}`} className="btn btn-primary">{t('Zatražite ponudu', 'Request a quote')}</Link>
               <Link to={`${to('/nase-usluge/')}#${s.slug}`} className="btn btn-glass">{t('Više o usluzi', 'More')} <ArrowRight size={16} /></Link>
