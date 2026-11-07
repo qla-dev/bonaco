@@ -56,8 +56,11 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
   const onMove = (e: PointerEvent) => {
     const r = canvas.getBoundingClientRect();
     mx = e.clientX - r.left; my = e.clientY - r.top;
-    tpx = Math.max(-1, Math.min(1, -((e.clientX - (r.left + r.width / 2)) / (r.width / 2))));
-    tpy = Math.max(-1, Math.min(1, -((e.clientY - (r.top + r.height / 2)) / (r.height / 2))));
+    // parallax samo mišem; na dodir (prevlačenje/skrol) oblak ostaje horizontalno centriran
+    if (e.pointerType === 'mouse') {
+      tpx = Math.max(-1, Math.min(1, -((e.clientX - (r.left + r.width / 2)) / (r.width / 2))));
+      tpy = Math.max(-1, Math.min(1, -((e.clientY - (r.top + r.height / 2)) / (r.height / 2))));
+    } else { tpx = 0; tpy = 0; }
     wake();
   };
   const onLeave = () => { mx = my = -9999; tpx = tpy = 0; };
@@ -87,7 +90,9 @@ export function startDots(canvas: HTMLCanvasElement, opts: { reduce: boolean; bg
   let paused = opts.reduce, scrollV = 0, lastScroll = getScrollY();
 
   function draw(dt: number) {
-    const targetX = tiltOn && mx < -999 ? -tilt * 0.8 : tpx;
+    // dok se skrola, uvijek se vraća na sredinu (nagib/miš ne pomjeraju oblak u stranu)
+    const scrolling = Math.abs(scrollV) > 0.08;
+    const targetX = scrolling ? 0 : tiltOn && mx < -999 ? -tilt * 0.8 : tpx;
     px += (targetX - px) * Math.min(1, dt * 3);
     py += (tpy - py) * Math.min(1, dt * 3);
     const flow = (paused ? 0 : 0.06) + scrollV * 0.5;
