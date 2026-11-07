@@ -136,3 +136,17 @@
 /* Hero 'dots': pozadinske tačkice po cijelom heroju, zamućene i prigušene (kao u daljini) */
 .hv-dots-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; filter: blur(7px); opacity: 0.55; }
 .hv.hv-orbit > .container { position: relative; z-index: 1; }
+
+/* Hero naglašena riječ: polako prelazi kroz boje tačkica (narandžasta, tirkizna, ljubičasta) uz shimmer.
+   inline-block + text-fill-color: iOS Safari inače zna sakriti tekst s background-clip kad roditelj animira transform. */
+.hv h1 .shimmer, .hv h1 .shimmer.hl {
+  display: inline-block;
+  background: linear-gradient(100deg, #F58426 0%, #f9a15e 12%, #3cc9c5 25%, #009D9A 37%, #a88bff 50%, #592ADA 62%, #f9a15e 75%, #F58426 87%, #F58426 100%);
+  background-size: 400% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  animation: hero-hue 9s linear infinite;
+  transform: translateZ(0);
+}
+@keyframes hero-hue { from { background-position: 0% 0; } to { background-position: 100% 0; } }
+@media (prefers-reduced-motion: reduce) { .hv h1 .shimmer, .hv h1 .shimmer.hl { animation: none; } }
