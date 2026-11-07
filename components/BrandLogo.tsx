@@ -3,7 +3,6 @@ import { asset } from '../lib/asset';
 // i ista veličina/položaj tačke. Mijenja se samo naziv i boja tačke (boja brenda).
 export type Brand = 'bonaco' | 'bonexis' | 'bonevents';
 
-import { useLang } from '../lib/i18n';
 
 export const BRANDS: Record<Brand, { word: string; sub: { bs: string; en: string }; name: string }> = {
   bonaco: { word: 'BONACO', sub: { bs: 'MEDIA', en: 'MEDIA' }, name: 'Bonaco Media' },
@@ -16,9 +15,8 @@ export function QlaMark({ className = '' }: { className?: string }) {
   return <img className={`qla-mark ${className}`} src={asset('/img/logo/qla-dev.webp')} alt="qla.dev" width="84" height="24" loading="lazy" />;
 }
 
-export default function BrandLogo({ brand = 'bonaco', sub = true, mono = false, className = '' }: { brand?: Brand; sub?: boolean; /** sve bijelo (npr. na narandžastoj podlozi) */ mono?: boolean; className?: string }) {
+export default function BrandLogo({ brand = 'bonaco', mono = false, className = '' }: { brand?: Brand; /** prikaz bez podnaslova se više ne koristi */ sub?: boolean; /** sve bijelo (npr. na narandžastoj podlozi) */ mono?: boolean; className?: string }) {
   const b = BRANDS[brand];
-  const { lang } = useLang();
   // BONACO koristi pravi logotip (originalni znak, prebojan na novu narandžastu tačku)
   if (brand === 'bonaco') {
     return (
@@ -27,11 +25,14 @@ export default function BrandLogo({ brand = 'bonaco', sub = true, mono = false, 
       </span>
     );
   }
-  return (
-    <span className={`brand-logo brand-logo-${brand} ${className}`}>
-      <span className="sr-only">{b.name}</span>
-      <span className="bl-word" aria-hidden="true">{b.word}<i className="bl-dot" /></span>
-      {sub && <span className="bl-sub" aria-hidden="true">{b.sub[lang]}</span>}
-    </span>
-  );
+  // BONEXIS i BONEVENT: novi isporučeni logotipi (crni dio bijel za tamnu podlogu, boje netaknute)
+  {
+    const file = brand === 'bonexis' ? 'bonexis' : 'bonevent';
+    const [w, h] = brand === 'bonexis' ? [296, 74] : [365, 74];
+    return (
+      <span className={`brand-logo brand-logo-${brand} brand-logo-img brand-logo-new ${className}`}>
+        <img src={asset(`/img/logo/${file}-logo-${mono ? 'white' : 'dark'}.png`)} alt={b.name} width={w} height={h} />
+      </span>
+    );
+  }
 }

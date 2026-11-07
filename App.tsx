@@ -3,6 +3,7 @@ import { ROUTER_BASENAME } from './lib/asset';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import MarketingRedirect from './components/MarketingRedirect';
+import ServicesPage from './pages/ServicesPage';
 import BonexisPage from './pages/BonexisPage';
 import BonEventsPage from './pages/BonEventsPage';
 import AboutPage from './pages/AboutPage';
@@ -22,7 +23,7 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="nase-usluge" element={<MarketingRedirect />} />
+          <Route path="nase-usluge" element={<ServicesPage />} />
           <Route path="nase-suluge" element={<MarketingRedirect />} />
           <Route path="marketing" element={<MarketingRedirect />} />
           <Route path="bonexis" element={<BonexisPage />} />
@@ -36,7 +37,7 @@ export default function App() {
 
           <Route path="en">
             <Route index element={<HomePage />} />
-            <Route path="marketing" element={<MarketingRedirect />} />
+            <Route path="marketing" element={<ServicesPage />} />
             <Route path="bonexis" element={<BonexisPage />} />
             <Route path="bonevents" element={<BonEventsPage />} />
             <Route path="work" element={<PortfolioPage />} />

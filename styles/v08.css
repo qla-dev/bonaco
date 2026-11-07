@@ -110,3 +110,11 @@
 /* Footer kompaktniji */
 .site-footer { padding-top: 48px; }
 .footer-bottom { margin-top: 32px; }
+
+/* Novi BONEXIS/BONEVENT logotipi (isporučeni PNG 74px visine): ne uvećavati preko izvorne veličine */
+.brand-logo-new img { height: 1.24em; max-height: 74px; width: auto; }
+.bxc-title .brand-logo-new img, .bev-title .brand-logo-new img { height: auto; max-height: 74px; width: min(100%, 370px); }
+
+/* Dugmad u marketing tabu uvijek u jednom redu (i na telefonu) */
+.mkt2-text .btn-row { flex-wrap: nowrap; width: 100%; }
+@media (max-width: 560px) { .mkt2-text .btn-row .btn { flex: 1 1 0; min-width: 0; padding: 14px 10px; font-size: 15px; white-space: nowrap; } }

@@ -37,7 +37,7 @@ export const GOOGLE_REVIEWS: { rating: number | null; count: number | null; url:
 
 // Glavni meni (BS putanje; EN se dobija preko localize()). Vijesti su u footeru.
 export const NAV = [
-  { to: '/#marketing', bs: 'Marketing', en: 'Marketing' },
+  { to: '/nase-usluge/', bs: 'Marketing', en: 'Marketing' },
   { to: '/bonexis/', bs: 'Bonexis', en: 'Bonexis' },
   { to: '/bonevents/', bs: 'BonEvents', en: 'BonEvents' },
   { to: '/portfolio/', bs: 'Radovi', en: 'Work' },

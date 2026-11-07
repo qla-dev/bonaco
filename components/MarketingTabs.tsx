@@ -60,7 +60,7 @@ export default function MarketingTabs() {
             <p>{x.short}</p>
             <div className="btn-row">
               <Link to={`${to('/kontakt/')}?usluga=${encodeURIComponent(s.title)}`} className="btn btn-primary">{t('Zatražite ponudu', 'Request a quote')}</Link>
-              <Link to={to('/portfolio/')} className="btn btn-glass">{t('Svi radovi', 'All work')} <ArrowRight size={16} /></Link>
+              <Link to={`${to('/nase-usluge/')}#${s.slug}`} className="btn btn-glass">{t('Više o usluzi', 'More')} <ArrowRight size={16} /></Link>
             </div>
           </div>
           <ul className="mkt2-examples">
