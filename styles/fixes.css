@@ -25,7 +25,7 @@
 .capsule-card .text-link { margin-top: auto; }
 .capsule-n { font-size: 14px; font-weight: 600; color: var(--accent); }
 .light .capsule-owner { color: var(--ink); font-size: 15px; margin-bottom: 8px; }
-.capsule-owner strong { font-family: Outfit, var(--font-head); }
+.capsule-owner strong { font-family: var(--font-head); }
 .capsule-core { background: var(--ink); border-color: var(--ink); }
 .light .capsule-core h3 { color: #fff; }
 .light .capsule-core p, .light .capsule-core li { color: #d8cfc9; }

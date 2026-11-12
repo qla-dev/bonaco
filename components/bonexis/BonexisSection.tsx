@@ -42,7 +42,7 @@ export default function BonexisSection({ headingLevel = 'h2', officeHeight, page
       <div className="bx-team" id="ai-tim">
         <div className="container bx-team-head">
           <h2>Upoznajte <em className="shimmer hl">AI tim</em></h2>
-          <p>U sredini je Ben, koji posao šalje owner agentima sedam kapsula: Lani, Selmi, Edinu, Lejli (uz Saru), Kenanu, Dini i Adi. Prevucite da okrenete kancelariju i kliknite radno mjesto da otvorite agenta.</p>
+          <p>U sredini je Ben, koji posao šalje owner agentima pet kapsula: Lani, Lejli (uz Saru), Kenanu, Dini i Adi. Prevucite da okrenete kancelariju i kliknite radno mjesto da otvorite agenta.</p>
         </div>
         <BonexisOffice ref={officeRef} selected={selected} onSelectedChange={setSelected} onShowScenario={showScenario} height={officeHeight} />
       </div>

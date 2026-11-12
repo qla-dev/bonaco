@@ -6,6 +6,7 @@ import MarketingRedirect from './components/MarketingRedirect';
 import ServicesPage from './pages/ServicesPage';
 import BonexisPage from './pages/BonexisPage';
 import BonEventsPage from './pages/BonEventsPage';
+import PoslovniOglasiPage from './pages/PoslovniOglasiPage';
 import AboutPage from './pages/AboutPage';
 import PortfolioPage from './pages/PortfolioPage';
 import ProjectPage from './pages/ProjectPage';
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="marketing" element={<MarketingRedirect />} />
           <Route path="bonexis" element={<BonexisPage />} />
           <Route path="bonevents" element={<BonEventsPage />} />
+          <Route path="poslovni-oglasi" element={<PoslovniOglasiPage />} />
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="portfolio/:slug" element={<ProjectPage />} />
           <Route path="o-nama" element={<AboutPage />} />
@@ -40,6 +42,7 @@ export default function App() {
             <Route path="marketing" element={<ServicesPage />} />
             <Route path="bonexis" element={<BonexisPage />} />
             <Route path="bonevents" element={<BonEventsPage />} />
+            <Route path="poslovni-oglasi" element={<PoslovniOglasiPage />} />
             <Route path="work" element={<PortfolioPage />} />
             <Route path="work/:slug" element={<ProjectPage />} />
             <Route path="about" element={<AboutPage />} />

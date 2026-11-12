@@ -114,7 +114,7 @@
 }
 
 /* Bonexis wordmark (kao BONACO logo) */
-.bonexis-logo { display: inline-flex; align-items: baseline; font: 700 1em/1 'Outfit', var(--font-head); letter-spacing: -0.01em; white-space: nowrap; }
+.bonexis-logo { display: inline-flex; align-items: baseline; font: 700 1em/1 var(--font-head); letter-spacing: -0.01em; white-space: nowrap; }
 .bonexis-logo i { display: inline-block; width: 0.2em; height: 0.2em; margin-left: 0.07em; border-radius: 50%; background: var(--accent); }
 .bx-title { font-size: clamp(52px, 8vw, 112px); line-height: 1; margin-bottom: 18px; }
 

@@ -9,6 +9,7 @@ export const PATHS: [string, string][] = [
   ['/nase-usluge/', '/en/marketing/'],
   ['/bonexis/', '/en/bonexis/'],
   ['/bonevents/', '/en/bonevents/'],
+  ['/poslovni-oglasi/', '/en/poslovni-oglasi/'],
   ['/portfolio/', '/en/work/'],
   ['/o-nama/', '/en/about/'],
   ['/kontakt/', '/en/contact/'],

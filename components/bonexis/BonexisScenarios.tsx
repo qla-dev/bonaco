@@ -104,7 +104,7 @@ export default function ScenarioSections({ onShowAgent }: { onShowAgent?: (i: nu
       <div className="container">
         <div className="sc-intro">
           <h2 id="scenariji-title">Bonexis u <em className="shimmer hl">praksi</em></h2>
-          <p>Kako bi Bonexis radio u vašoj firmi: sedam kapsula, njihovi owner agenti i tipične situacije od prve poruke do rezultata. Primjeri su ilustrativni.</p>
+          <p>Kako bi Bonexis radio u vašoj firmi: pet kapsula, njihovi owner agenti i tipične situacije od prve poruke do rezultata. Primjeri su ilustrativni.</p>
         </div>
         {BONEXIS_AGENTS.map((_, i) => <ScenarioBlock key={i} agent={i} onShowAgent={onShowAgent} />)}
         <p className="sc-foot">Želite ovo za svoj biznis? <Link to="/kontakt/?usluga=Bonexis">Zatražite demo</Link></p>

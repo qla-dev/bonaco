@@ -10,7 +10,7 @@ export default function BonexisPage() {
     <>
       <SEO
         title="Bonexis – marketing CRM s AI agentima"
-        description="Bonexis je marketing CRM sa sedam AI kapsula: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, kapacitet, kontrola isporuke i revizija rada. Svaku kapsulu vodi owner agent."
+        description="Bonexis je marketing CRM sa pet AI kapsula: web, sadržaj i SEO, leadovi s AI sekretaricom, kapacitet, kontrola isporuke i ocjena kvaliteta rada. Svaku kapsulu vodi owner agent."
       />
       <BonexisSection headingLevel="h1" page />
 

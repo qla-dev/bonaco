@@ -8,11 +8,11 @@ export const SERVICES: Service[] = [
     slug: 'strategija-kampanje',
     title: 'Strategija i kampanje',
     short: 'Koncept, plan i vođenje kampanja s jasnim ciljem i porukom.',
-    text: 'Polazimo od ciljeva vašeg brenda: definišemo publiku, poruku i kanale, a zatim osmišljavamo i vodimo kampanje od prve ideje do izvještaja. Strategija povezuje sve ostale usluge u jednu cjelinu.',
+    text: 'Svaka uspješna kampanja počinje pitanjem „zašto" — zato strategiju gradimo od ciljeva vašeg brenda, ne od kanala. Definišemo ciljnu publiku, poruku koja rezonira i kanale koji donose rezultate, a tek onda osmišljavamo kreativu i plan distribucije. Društvene mreže, dizajn, foto i video, web, SEO i OOH — sve radimo in-house, a strategija ih veže u jednu cjelinu u kojoj svaki kanal pojačava ostale. Planiramo budžet po kanalu, postavljamo KPI-jeve i pratimo performanse u realnom vremenu: CTR, konverzije, engagement, ROI. Kampanje optimizujemo u hodu — testiramo kreative, prilagođavamo targeting i redistribuiramo budžet tamo gdje donosi najviše. Na kraju svakog ciklusa dobijate jasan izvještaj s brojevima, zaključcima i preporukama za sljedeći korak. Marketing bez mjerenja je trošak — s nama je investicija.',
     en: {
       title: 'Strategy and campaigns',
       short: 'Concept, plan and campaign management with a clear goal and message.',
-      text: 'We start from your brand goals: we define the audience, the message and the channels, then design and run campaigns from the first idea to the report. Strategy ties all our other services together.',
+      text: 'Every successful campaign starts with "why" — so we build strategy from your brand goals, not from channels. We define the target audience, a message that resonates and the channels that deliver results, and only then design the creative and distribution plan. Social media, design, photo and video, web, SEO and OOH — we do it all in-house, and strategy ties them into a single system where every channel amplifies the others. We plan budgets per channel, set KPIs and track performance in real time: CTR, conversions, engagement, ROI. We optimise campaigns on the fly — testing creatives, adjusting targeting and redistributing budget where it performs best. At the end of each cycle you get a clear report with numbers, conclusions and recommendations for the next step. Marketing without measurement is a cost — with us it is an investment.',
     },
   },
   {

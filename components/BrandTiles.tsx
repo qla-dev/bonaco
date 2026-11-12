@@ -9,8 +9,8 @@ import { hl } from '../lib/hl';
 
 const TILES: { brand: Brand; to: string; label: string; bs: string; en: string }[] = [
   { brand: 'bonaco', to: '/#marketing', label: 'Marketing', bs: '**Full-service marketing**: strategija, kampanje, dizajn, produkcija i web.', en: '**Full-service marketing**: strategy, campaigns, design, production and web.' },
-  { brand: 'bonexis', to: '/bonexis/', label: 'Bonexis', bs: 'Marketing CRM sa **sedam AI kapsula**, razvijen s partnerom **qla.dev**.', en: 'A marketing CRM with **seven AI capsules**, built with **qla.dev**.' },
-  { brand: 'bonevents', to: '/bonevents/', label: 'BonEvents', bs: '**Planiranje, produkcija i promocija** događaja koje ljudi pamte.', en: '**Planning, production and promotion** of events people remember.' },
+  { brand: 'bonexis', to: '/bonexis/', label: 'Bonexis', bs: 'Marketing CRM sa **pet AI kapsula**, razvijen s partnerom **qla.dev**.', en: 'A marketing CRM with **five AI capsules**, built with **qla.dev**.' },
+  { brand: 'bonevents', to: '/bonevents/', label: 'Bonevent', bs: '**Planiranje, produkcija i promocija** događaja koje ljudi pamte.', en: '**Planning, production and promotion** of events people remember.' },
 ];
 
 export default function BrandTiles({ heading = true }: { heading?: boolean }) {

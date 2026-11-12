@@ -5,7 +5,7 @@
 @media (max-width: 900px) { :root { --header-h: 62px; } }
 .header-inner { gap: 6px; justify-content: flex-start; height: var(--header-h); }
 .logo { margin-right: clamp(12px, 2vw, 28px); }
-.logo .brand-logo { font-size: 24px; }
+.logo .brand-logo-img img { height: 26px; }
 .main-nav { margin-left: 0; gap: 2px; }
 .main-nav a { font-size: 15px; padding: 8px 12px; border-radius: 9999px; min-height: 40px; display: inline-flex; align-items: center; border: 0; }
 .main-nav a.active { background: rgba(255, 255, 255, 0.07); color: var(--text); }
@@ -15,6 +15,26 @@
 .lang-switch a { min-width: 40px; min-height: 34px; border-radius: 9999px; }
 .lang-switch a[aria-current] { background: var(--accent); color: var(--accent-ink); }
 @media (max-width: 1040px) { .menu-toggle { margin-left: 8px; } .logo .brand-logo { font-size: 22px; } }
+
+/* Dropdown "Šta nudimo" */
+.nav-dd { position: relative; }
+.nav-dd-trigger { display: inline-flex; align-items: center; gap: 4px; font-size: 15px; padding: 8px 12px; border-radius: 9999px; min-height: 40px; border: 0; background: none; color: var(--muted); font: 500 15px var(--font-body); cursor: pointer; transition: color 0.2s; }
+.nav-dd-trigger:hover, .nav-dd-trigger.active { color: var(--text); }
+.nav-dd-trigger svg { transition: transform 0.2s; }
+.nav-dd:hover .nav-dd-trigger svg, .nav-dd-trigger[aria-expanded='true'] svg { transform: rotate(180deg); }
+.nav-dd-panel { position: absolute; top: 100%; left: 50%; translate: -50% 0; min-width: 200px; padding: 8px; border-radius: 18px; background: var(--bg-2); border: 1px solid var(--line); box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; gap: 2px; opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.2s, transform 0.2s; z-index: 100; }
+.nav-dd-panel.is-open { opacity: 1; pointer-events: auto; transform: translateY(4px); }
+.nav-dd-panel a { display: block; padding: 10px 16px; border-radius: 12px; font: 500 15px var(--font-body); color: var(--muted); text-decoration: none; transition: background 0.15s, color 0.15s; }
+.nav-dd-panel a:hover { background: rgba(255, 255, 255, 0.06); color: var(--text); }
+.nav-dd-panel a.active { color: var(--accent-light); background: rgba(255, 255, 255, 0.04); }
+
+/* Mobile dropdown */
+.mobile-dd-trigger { display: flex; align-items: center; gap: 6px; width: 100%; padding: 14px 0; font: 500 18px var(--font-body); color: var(--text); background: none; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; text-align: left; }
+.mobile-dd-trigger svg { transition: transform 0.2s; }
+.mobile-dd-trigger svg.rot180 { transform: rotate(180deg); }
+.mobile-dd-panel { display: flex; flex-direction: column; padding-left: 18px; }
+.mobile-dd-panel a { padding: 12px 0; font-size: 17px; color: var(--muted); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.mobile-dd-panel a.active { color: var(--accent-light); }
 
 /* 3. Hero preko cijele vidljive visine, navigacija preko njega, znak za skrol */
 .hv.hv-orbit { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; position: relative; }
@@ -28,27 +48,45 @@
 @keyframes hv-scroll { 0% { transform: translateY(-8px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .hv-scroll::after { animation: none; } }
 
+/* 3b. Brand ecosystem: Bonaco = krovno, tri podružnice */
+.eco { border-top: 1px solid var(--line); background: radial-gradient(ellipse at 50% 20%, color-mix(in srgb, var(--bonaco) 8%, transparent), var(--bg) 60%); text-align: center; }
+.eco-core { max-width: 640px; margin: 0 auto clamp(32px, 5vw, 56px); }
+.eco-logo { height: clamp(32px, 4vw, 48px); width: auto; margin: 0 auto 24px; }
+.eco-title { font-size: clamp(28px, 3.6vw, 52px); margin: 0 0 16px; }
+.eco-lead { color: var(--muted); font-size: 18px; margin: 0 auto; max-width: 50ch; }
+.eco-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.eco-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: clamp(24px, 3vw, 36px); border-radius: 32px; border: 1px solid var(--line); background: var(--bg-2); text-decoration: none; transition: border-color 0.2s, transform 0.2s; text-align: center; }
+.eco-card:hover { border-color: var(--card-accent); transform: translateY(-2px); }
+.eco-card-brand { min-height: 36px; display: flex; align-items: center; }
+.eco-card-brand .brand-logo-img img { height: 28px; }
+.eco-card-name { font: 700 22px/1.2 var(--font-head); }
+.eco-card-tag { display: inline-block; padding: 3px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: color-mix(in srgb, var(--card-accent) 15%, transparent); color: var(--card-accent); border: 1px solid color-mix(in srgb, var(--card-accent) 30%, transparent); }
+.eco-card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
+.eco-card-link { font-size: 14px; font-weight: 600; color: var(--card-accent); display: inline-flex; align-items: center; gap: 6px; margin-top: auto; }
+@media (max-width: 800px) { .eco-branches { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
 /* 4. Marketing: tabovi, tekst lijevo (sticky), primjeri desno */
 .mkt2 { border-top: 1px solid var(--line); }
-.mkt2-top h2 { margin: 0 0 22px; max-width: 18ch; }
-.mkt2-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); }
+.mkt2-top { text-align: center; }
+.mkt2-top h2 { margin: 0 auto 22px; max-width: 22ch; }
+.mkt2-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); justify-content: center; }
 .mkt2-tabs button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px; border-radius: 9999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03); color: var(--text); font: 500 15px var(--font-body); cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
 .mkt2-tabs button svg { color: var(--accent-light); }
 .mkt2-tabs button:hover { border-color: var(--accent); }
 .mkt2-tabs button.is-on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .mkt2-tabs button.is-on svg { color: inherit; }
-.mkt2-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 80px); align-items: start; animation: stage-in 0.4s ease-out; }
-.mkt2-text { position: sticky; top: calc(var(--header-h) + 32px); display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.mkt2-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: start; animation: stage-in 0.4s ease-out; }
+.mkt2-text { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
 .mkt2-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, #161616); color: var(--accent-light); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
 .mkt2-text h3 { font-size: clamp(28px, 3vw, 42px); margin: 0; }
-.mkt2-text p { color: var(--muted); font-size: 18px; margin: 0 0 6px; max-width: 46ch; }
-.mkt2-examples { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(24px, 4vw, 48px); }
+.mkt2-text p { color: var(--muted); font-size: 18px; margin: 0 0 6px; }
+.mkt2-examples { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(16px, 2.5vw, 28px); }
 .mkt2-ex a { display: flex; flex-direction: column; gap: 14px; text-decoration: none; }
 .mkt2-ex:nth-child(odd) a { align-items: flex-start; }
 .mkt2-ex:nth-child(even) a { align-items: flex-end; text-align: right; }
-.mkt2-blob { display: block; width: min(100%, 440px); aspect-ratio: 1; overflow: hidden; background: var(--bg-2); border-radius: 50%; animation: lava 14s ease-in-out infinite; }
-.mkt2-ex:nth-child(2) .mkt2-blob { animation-delay: -5s; width: min(85%, 380px); }
-.mkt2-ex:nth-child(3) .mkt2-blob { animation-delay: -9s; width: min(78%, 340px); }
+.mkt2-blob { display: block; width: min(100%, 280px); aspect-ratio: 1; overflow: hidden; background: var(--bg-2); border-radius: 50%; animation: lava 14s ease-in-out infinite; }
+.mkt2-ex:nth-child(2) .mkt2-blob { animation-delay: -5s; width: min(85%, 240px); }
+.mkt2-ex:nth-child(3) .mkt2-blob { animation-delay: -9s; width: min(78%, 220px); }
 .mkt2-blob img { width: 100%; height: 100%; object-fit: cover; }
 .mkt2-cap strong { display: block; font: 700 19px var(--font-head); }
 .mkt2-cap small { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
@@ -68,7 +106,6 @@
   .mkt2-tabs::-webkit-scrollbar { display: none; }
   .mkt2-tabs button { flex: none; white-space: nowrap; }
   .mkt2-body { grid-template-columns: 1fr; }
-  .mkt2-text { position: static; }
   .mkt2-examples { flex-direction: row; overflow-x: auto; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 6px; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
   .mkt2-examples::-webkit-scrollbar { display: none; }
   .mkt2-ex { flex: 0 0 72%; scroll-snap-align: start; }
@@ -87,6 +124,7 @@
 .light { --light: #121212; --light-2: rgba(255, 255, 255, 0.1); --ink: #f5f5f4; --ink-muted: #b4b4b0; --accent: var(--bonaco); --accent-ink: #141414; background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
 [data-brand='bonexis'] .light, .light[data-brand='bonexis'] { --accent: var(--bonexis); --accent-ink: #0c0c0c; }
 [data-brand='bonevents'] .light, .light[data-brand='bonevents'] { --accent: var(--bonevents); --accent-ink: #fff; }
+[data-brand='poslovnioglasi'] .light, .light[data-brand='poslovnioglasi'] { --accent: var(--poslovnioglasi); --accent-ink: #fff; }
 .light .steps li, .light .pillar, .light .project-card, .light .post-card, .light .service-card, .light .agent-card, .light .capsule-card { background: var(--bg-2); border-color: var(--line); }
 .light .gallery-item { background: var(--bg-2); }
 .light .btn-secondary { border-color: rgba(255, 255, 255, 0.35); color: var(--text); }
@@ -94,9 +132,9 @@
 
 /* 7. Potpuno zaobljene kontrole, meki uglovi blokova i polja */
 .btn, .chip, .icon-btn, .bx-action, .bx-tabs button, .sc-replay, .office-nav button, .t-picker button, .badge, .bx-suggestions button { border-radius: 9999px; }
-.field input, .field select { border-radius: 18px; }
-.field textarea { border-radius: 22px; }
-.contact-item, .contact-form-wrap, .video, .end-card, .case-facts dl, .project-card, .post-card { border-radius: 28px; }
+.field input, .field select { border-radius: 9999px; }
+.field textarea { border-radius: 24px; }
+.contact-item, .contact-form-wrap, .video, .end-card, .case-facts dl, .project-card, .post-card { border-radius: 32px; }
 
 /* 10. Kontakt: lijevo tekst, desno podaci, forma u zasebnom panelu ispod */
 .contact2 { border-top: 1px solid var(--line); }
@@ -111,12 +149,11 @@
 .site-footer { padding-top: 48px; }
 .footer-bottom { margin-top: 32px; }
 
-/* Novi BONEXIS/BONEVENT logotipi (isporučeni PNG 74px visine): ne uvećavati preko izvorne veličine */
-.brand-logo-new img { height: 1.24em; max-height: 74px; width: auto; }
-.bxc-title .brand-logo-new img, .bev-title .brand-logo-new img { height: auto; max-height: 74px; width: min(100%, 370px); }
+/* Logotipi u sekcijskim naslovima (Bonexis, Bonevent): ne uvećavati preko izvorne veličine */
+.bxc-title .brand-logo-img img, .bev-title .brand-logo-img img { height: auto; max-height: 74px; width: min(100%, 370px); }
 
 /* Dugmad u marketing tabu uvijek u jednom redu (i na telefonu) */
-.mkt2-text .btn-row { flex-wrap: nowrap; width: 100%; }
+.mkt2-text .btn-row { flex-wrap: nowrap; justify-content: center; }
 @media (max-width: 560px) { .mkt2-text .btn-row .btn { flex: 1 1 0; min-width: 0; padding: 14px 10px; font-size: 15px; white-space: nowrap; } }
 
 /* Tamna traka uz dno ekrana: iOS Safari ne boji adresnu traku narandžasto (npr. kad je meni otvoren) */
@@ -151,25 +188,14 @@
 @keyframes hero-hue { from { background-position: 0% 0; } to { background-position: 100% 0; } }
 @media (prefers-reduced-motion: reduce) { .hv h1 .shimmer, .hv h1 .shimmer.hl { animation: none; } }
 
-/* Vektorski BONEXIS / BONEVENT logotip (font Outfit 700 + "E" od tri crte) */
-.brand-logo-vec { display: inline-flex; flex-direction: column; align-items: center; color: #fff; line-height: 1; }
-.brand-logo-vec .bl-word { display: inline-flex; align-items: baseline; font: 700 1em/1 'Outfit', var(--font-head); letter-spacing: 0.01em; }
-.brand-logo-vec .bl-e {
-  display: inline-block; width: 0.5em; height: 0.7em; margin: 0 0.045em;
-  background:
-    linear-gradient(currentColor, currentColor) top / 100% 0.15em no-repeat,
-    linear-gradient(currentColor, currentColor) center / 100% 0.15em no-repeat,
-    linear-gradient(currentColor, currentColor) bottom / 100% 0.15em no-repeat;
-}
-.brand-logo-vec .bl-dot { width: 0.2em; height: 0.2em; margin-left: 0.07em; border-radius: 50%; }
-.brand-logo-bonexis .bl-dot, .brand-logo-bonexis.brand-logo-vec .bl-sub { color: var(--bonexis); }
-.brand-logo-bonevents .bl-dot, .brand-logo-bonevents.brand-logo-vec .bl-sub { color: #7a4cff; }
-.brand-logo-bonexis .bl-dot { background: var(--bonexis); }
-.brand-logo-bonevents .bl-dot { background: #6a3df0; }
-.brand-logo-vec .bl-sub { margin-top: 0.34em; padding-left: 0.5em; font: 600 0.26em/1 var(--font-body); letter-spacing: 0.5em; }
-.brand-logo-vec.is-mono .bl-dot { background: #fff; }
-.brand-logo-vec.is-mono .bl-sub { color: #fff; }
-.logo .brand-logo-vec { font-size: 26px; }
+/* Logotipi brendova (originalne slike) */
+.brand-logo-img img { height: 1.24em; width: auto; }
+.logo .brand-logo-img img { height: 30px; }
+.brand-logo-img .bl-light { display: none; }
+.light .brand-logo-img .bl-dark { display: none; }
+.light .brand-logo-img .bl-light { display: block; }
+.brand-logo-img.is-mono .bl-light { display: none; }
+.brand-logo-img.is-mono .bl-dark { display: block; }
 
 
 /* Bonexis: krug kapsula se okreće na skrol (--spin), sredina lagano pulsira */
@@ -188,7 +214,7 @@
 .mkt2 { background: radial-gradient(ellipse at 22% 55%, var(--accent-deep), var(--bg) 62%); }
 
 /* Marketing tab: naslov usluge pored ikone */
-.mkt2-head { display: flex; align-items: center; gap: 16px; }
+.mkt2-head { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .mkt2-head .mkt2-icon { flex: none; }
 @media (max-width: 560px) { .mkt2-head .mkt2-icon { width: 54px; height: 54px; } .mkt2-head h3 { font-size: 26px; } }
 

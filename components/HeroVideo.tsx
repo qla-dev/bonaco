@@ -151,7 +151,6 @@ export default function HeroVideo() {
           </picture>
         ) : null}
       </div>
-      <div className="container hv-copy">{title}{below}</div>
       {pauseBtn}
     </section>
   );

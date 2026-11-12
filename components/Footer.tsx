@@ -28,7 +28,8 @@ export default function Footer() {
           <ul className="footer-brands">
             <li><Link to={to('/#marketing')}><i className="dot dot-bonaco" aria-hidden="true" />Bonaco Media · Marketing</Link></li>
             <li><Link to={to('/bonexis/')}><i className="dot dot-bonexis" aria-hidden="true" />Bonexis · AI Solutions</Link></li>
-            <li><Link to={to('/bonevents/')}><i className="dot dot-bonevents" aria-hidden="true" />BonEvents · Events</Link></li>
+            <li><Link to={to('/bonevents/')}><i className="dot dot-bonevents" aria-hidden="true" />Bonevent · Events</Link></li>
+            <li><Link to={to('/poslovni-oglasi/')}><i className="dot dot-po" aria-hidden="true" />Poslovni Oglasi · Jobs</Link></li>
           </ul>
         </div>
         <div>

@@ -1,13 +1,14 @@
 import type { BonexisAgent } from '../types';
 
-// Na osnovu internog plana BONEXIS v3.0; kapsula sadržaja je podijeljena na Social Media, SEO Audit i Blog (odluka 05.11.2026).
+// Na osnovu internog plana BONEXIS v4.0; kapsule 1–3 (Social, SEO, Blog) spojene u jednu integrisanu kapsulu (odluka 11.2026).
+// Nova kapsula 5: AI Work Quality Review za direktora. Ukupno 5 kapsula.
 // Bonaco Media nudi Bonexis drugim firmama; Bonexis je u razvoju s qla.dev.
 // Primjeri ispod su ilustrativni scenariji, ne rezultati stvarnih klijenata.
 
 /** Ben je "mozak" Bonexisa: razumije problem i usmjerava posao pravoj kapsuli. */
 export const BEN = { name: 'Ben AI' };
 
-export const BONEXIS_TAGLINE = 'Jedna platforma. Sedam AI kapsula.';
+export const BONEXIS_TAGLINE = 'Jedna platforma. Pet AI kapsula.';
 
 /** Zajednički CORE (nije posebna kapsula). */
 export const CORE_FEATURES = [
@@ -29,95 +30,41 @@ export const PRINCIPLES = [
 // Redoslijed = redoslijed radnih mjesta i ekrana u 3D kancelariji.
 export const BONEXIS_AGENTS: BonexisAgent[] = [
   {
-    persona: 'Lana', capsule: 1, role: 'owner', name: 'Social Media', title: 'AI Social Media Manager',
-    desc: 'Istražuje šta je aktuelno u vašoj niši, priprema objave prema vašim željama, javlja vam se kad je sadržaj spreman i nakon vašeg odobrenja zakazuje i objavljuje na mreže i blog.',
+    persona: 'Lana', capsule: 1, role: 'owner', name: 'Web, Content & SEO', title: 'AI Web, Content & SEO Manager',
+    desc: 'Objedinjuje pregled do 80 web stranica i vizuala, analizu i prijedloge poboljšanja, automatsku pripremu blogova i SEO optimizaciju, analizu ključnih riječi i organske vidljivosti. Sve izmjene idu tek nakon vašeg odobrenja.',
     list: [
-      'Istraživanje interneta: relevantne teme i trendovi u odabranoj niši',
-      'Obrada sadržaja prema vašim željama i trenutnoj situaciji u niši',
-      'Obavijest na vaš privatni cloud ili račun kad je sadržaj spreman',
-      'Prihvatanje, uređivanje i odobravanje prije objave',
-      'Zakazivanje i objava na društvene mreže i blog',
+      'AI pregled do 80 web stranica i njihovih vizuala',
+      'Analiza i prijedlozi poboljšanja vizuala',
+      'Automatska priprema blogova i SEO optimizacija',
+      'Analiza ključnih riječi i organske vidljivosti',
+      'Korisničko odobravanje prije objavljivanja',
     ],
-    thought: 'Istražujem šta je danas aktuelno u vašoj niši…',
+    thought: 'Pregledam 80 stranica sajta i analiziram vizuale…',
     scenario: {
-      title: 'Od istraživanja niše do zakazanih objava',
-      desc: 'Lana istraži relevantne teme, pripremi sadržaj, pošalje vam obavijest i tek nakon vašeg odobrenja i izmjena zakaže objave na mreže i blog.',
+      title: 'Od pregleda sajta do optimiziranog sadržaja',
+      desc: 'Lana pregleda web stranice, analizira vizuale i SEO, pripremi blogove i predloži poboljšanja. Sve čeka vaše odobrenje prije objave.',
       clientLabel: 'Vi',
       messages: [
-        { from: 'client', text: 'Pripremi objave za sljedeću sedmicu o ljetnoj sezoni.' },
-        { from: 'agent', text: 'Istražila sam nišu: ove sedmice se najviše govori o otvaranju bazena i ljetnim festivalima. Pripremila sam 5 objava i 2 reelsa i poslala vam obavijest.' },
-        { from: 'client', text: 'Promijeni naslov druge objave i zakaži sve.' },
-        { from: 'agent', text: 'Naslov je izmijenjen. Objave su zakazane od ponedjeljka do petka u 18:00, a jedna ide i na blog.' },
+        { from: 'client', text: 'Pregledaj naš sajt i predloži poboljšanja.' },
+        { from: 'agent', text: 'Pročitala sam 78 od 80 stranica. Na 6 nedostaje meta opis, vizuali na 4 stranice su ispod standarda, i pripremila sam 3 blog članka za teme koje kupci traže.' },
+        { from: 'client', text: 'Šta prvo?' },
+        { from: 'agent', text: 'Meta opisi su spremni za odobrenje, vizuali su predloženi za zamjenu, a prvi blog ide u utorak ako potvrdite.' },
       ],
       result: {
-        title: 'Plan objava',
-        rows: [
-          { label: 'Istražene teme', value: '12', tone: 'info' },
-          { label: 'Pripremljeno', value: '5 objava i 2 reelsa', tone: 'ok' },
-          { label: 'Izmijenjeno prije objave', value: '1', tone: 'warn' },
-          { label: 'Zakazano', value: '7 objava', tone: 'ok' },
-        ],
-        status: 'Objava tek nakon vašeg odobrenja',
-      },
-    },
-  },
-  {
-    persona: 'Selma', capsule: 2, role: 'owner', name: 'SEO Audit', title: 'AI SEO Auditor',
-    desc: 'Pregleda odabrane stranice sajta, pokaže šta je stvarno pročitala i pronađe tehničke i sadržajne SEO nedostatke s prijedlogom ispravke.',
-    list: ['Pregled odabranih URL-ova, npr. do 80 stranica', 'Svaki nalaz ima stranicu i dokaz', 'Bez obećavanja pozicija na Googleu'],
-    thought: 'Čitam 80 stranica i tražim nedostatke…',
-    scenario: {
-      title: 'SEO pregled sajta s dokazom za svaki nalaz',
-      desc: 'Selma pročita odabrane stranice, pokaže šta je stvarno pročitala i šta nije mogla, pa predloži ispravke po prioritetu. Teme koje nedostaju šalje Edinu.',
-      clientLabel: 'Vi',
-      messages: [
-        { from: 'client', text: 'Pregledaj 80 stranica našeg sajta.' },
-        { from: 'agent', text: 'Pročitala sam 78 od 80 stranica; dvije su blokirane. Na 6 nedostaje meta opis, a 3 teme koje kupci traže nemate obrađene.' },
-        { from: 'client', text: 'Šta prvo da popravimo?' },
-        { from: 'agent', text: 'Prvo meta opise, ispravke su spremne za odobrenje. Tri teme sam poslala Edinu za blog.' },
-      ],
-      result: {
-        title: 'SEO audit',
+        title: 'Web & SEO pregled',
         rows: [
           { label: 'Pročitano stranica', value: '78 / 80', tone: 'ok' },
-          { label: 'Blokiran pristup', value: '2 stranice', tone: 'warn' },
-          { label: 'Bez meta opisa', value: '6 stranica', tone: 'bad' },
-          { label: 'Teme za blog', value: '3, poslano Edinu', tone: 'info' },
+          { label: 'SEO ispravke', value: '6 meta opisa', tone: 'warn' },
+          { label: 'Vizuali za poboljšanje', value: '4 stranice', tone: 'warn' },
+          { label: 'Blogovi pripremljeni', value: '3 članka', tone: 'ok' },
         ],
-        status: 'Ispravke čekaju vaše odobrenje',
+        status: 'Sve čeka vaše odobrenje',
       },
     },
   },
   {
-    persona: 'Edin', capsule: 3, role: 'owner', name: 'Blog', title: 'AI Blog Writer',
-    desc: 'Od odobrene teme pravi nacrt članka sa SEO poljima, izvorima i vizualom. Vi uređujete i odobravate, a on objavljuje na blog tek kad potvrdite.',
-    list: ['Nacrt članka sa strukturom, naslovom i opisom', 'Izvori i označene tvrdnje koje treba potvrditi', 'Objava na blog tek nakon odobrenja'],
-    thought: 'Pišem nacrt članka o temi koju je našla Selma…',
-    scenario: {
-      title: 'Od teme do objavljenog članka',
-      desc: 'Edin napiše nacrt, označi tvrdnje koje treba provjeriti, primi vaše izmjene i zakaže objavu, a Lana članak podijeli na mrežama.',
-      clientLabel: 'Vi',
-      messages: [
-        { from: 'client', text: 'Napiši članak o cijeni vođenja društvenih mreža.' },
-        { from: 'agent', text: 'Nacrt je spreman: oko 1.200 riječi, naslov, meta opis i jedan vizual. Označio sam dvije tvrdnje koje treba potvrditi.' },
-        { from: 'client', text: 'Skrati uvod i objavi u utorak.' },
-        { from: 'agent', text: 'Uvod je skraćen, a članak zakazan za utorak u 9:00. Lana će ga podijeliti na mrežama.' },
-      ],
-      result: {
-        title: 'Članak',
-        rows: [
-          { label: 'Dužina', value: 'oko 1.200 riječi', tone: 'info' },
-          { label: 'SEO polja i vizual', value: 'spremni', tone: 'ok' },
-          { label: 'Tvrdnje za provjeru', value: '2', tone: 'warn' },
-          { label: 'Objava', value: 'utorak, 9:00', tone: 'ok' },
-        ],
-        status: 'Zakazano nakon vašeg odobrenja',
-      },
-    },
-  },
-  {
-    persona: 'Lejla', capsule: 4, role: 'owner', name: 'Leads', title: 'AI Leads',
-    desc: 'Pronalazi relevantne firme uz provjerljiv razlog za kontakt, procjenjuje prioritet i priprema kontakt. Ne izmišlja kontakte ni namjeru kupovine.',
+    persona: 'Lejla', capsule: 2, role: 'owner', name: 'Leads', title: 'AI Leads',
+    desc: 'Pronalazi i kvalificira potencijalne klijente, prepoznaje poslovne prilike i podržava prodajne aktivnosti. Ne izmišlja kontakte ni namjeru kupovine.',
     list: ['Profil idealnog kupca i odobreni izvori', 'Svaki lead ima izvor i datum provjere', 'Plan kontakta i predaja Sari za pozive'],
     thought: 'Provjeravam izvore za 24 nove firme…',
     scenario: {
@@ -143,7 +90,7 @@ export const BONEXIS_AGENTS: BonexisAgent[] = [
     },
   },
   {
-    persona: 'Sara', capsule: 4, role: 'assistant', name: 'AI Sekretarica', title: 'AI sekretarica',
+    persona: 'Sara', capsule: 2, role: 'assistant', name: 'AI Sekretarica', title: 'AI sekretarica',
     desc: 'Dio kapsule AI Leads. Uz vaše odobrenje zove potencijalne klijente, jasno se predstavlja kao AI asistentica, kvalifikuje interes i zakazuje sastanke.',
     list: ['Poziva samo odobrene kontakte i poštuje listu zabrane', 'Koristi samo odobrenu skriptu, bez izmišljanja cijena', 'Ishod i sažetak razgovora na kartici leada'],
     thought: 'Pripremam odobrenu skriptu za poziv…',
@@ -170,12 +117,12 @@ export const BONEXIS_AGENTS: BonexisAgent[] = [
     },
   },
   {
-    persona: 'Kenan', capsule: 5, role: 'owner', name: 'Capacity Planner', title: 'AI Capacity Planner',
-    desc: 'Odgovara možete li preuzeti novi posao: simulira opterećenje po ljudima, vještinama i sedmicama i predlaže preraspodjelu. Plan se ne mijenja bez vaše potvrde.',
-    list: ['Pregled opterećenja po sedmici i mjesecu', 'Scenarij „novi projekat“ prije nego kažete da', 'Isti ulazi uvijek daju isti izračun'],
+    persona: 'Kenan', capsule: 3, role: 'owner', name: 'Capacity Planner', title: 'AI Capacity Planner',
+    desc: 'Pametno planiranje poslovnih kapaciteta, raspodjela zadataka, analiza opterećenja zaposlenika i predviđanje zastoja. Plan se ne mijenja bez vaše potvrde.',
+    list: ['Pregled opterećenja po sedmici i mjesecu', 'Scenarij „novi projekat” prije nego kažete da', 'Isti ulazi uvijek daju isti izračun'],
     thought: 'Računam kapacitet za treću sedmicu…',
     scenario: {
-      title: 'Prije nego kažete „da“ novom klijentu',
+      title: 'Prije nego kažete „da” novom klijentu',
       desc: 'Kenan iz planiranih sati, odsustava i rokova izračuna gdje će zapeti i ponudi opcije. Ništa ne mijenja dok vi ne potvrdite.',
       clientLabel: 'Vi',
       messages: [
@@ -197,8 +144,8 @@ export const BONEXIS_AGENTS: BonexisAgent[] = [
     },
   },
   {
-    persona: 'Dino', capsule: 6, role: 'owner', name: 'Delivery Control', title: 'AI Delivery Control',
-    desc: 'Pretvara odobrenu ponudu u jasne obaveze i povezuje ih s dokazima isporuke. Razlikuje urađeno, dostavljeno i prihvaćeno od klijenta.',
+    persona: 'Dino', capsule: 4, role: 'owner', name: 'Delivery Control', title: 'AI Delivery Control',
+    desc: 'Kontrola dogovorenog i izvršenog posla, praćenje obaveza prema klijentima, otkrivanje kašnjenja i dodatnog rada izvan dogovorenog obima.',
     list: ['Obaveze iz ponude, ugovora ili radnog naloga', 'Dokaz isporuke za svaku obavezu', 'Rad izvan obima označen za vašu odluku'],
     thought: 'Upoređujem ponudu s isporukom…',
     scenario: {
@@ -224,42 +171,40 @@ export const BONEXIS_AGENTS: BonexisAgent[] = [
     },
   },
   {
-    persona: 'Ada', capsule: 7, role: 'owner', name: 'Work Audit', title: 'AI Work Audit',
-    desc: 'Zaposlenici predaju dnevni rad s dokazom, Ada provjerava usklađenost s briefom i kriterijima, a voditelj odlučuje o prihvatu ili doradi.',
-    list: ['Dnevna predaja za oko tri minute', 'Provjera prema briefu i rubrici, uz tačno mjesto nalaza', 'Mjesečni pregled za direktora, bez tajnog praćenja'],
-    thought: 'Pregledam današnje predaje tima…',
+    persona: 'Ada', capsule: 5, role: 'owner', name: 'Work Quality Review', title: 'AI Work Quality Review',
+    desc: 'Radnici uploadaju šta su uradili za taj dan, AI ocjeni kvalitet rada na osnovu briefa i kriterija. Na kraju mjeseca kapsula daje procentualni report kvaliteta rada svakog zaposlenog, a HR interno daje svoj izvještaj — dva nezavisna izvještaja za direktora.',
+    list: ['Dnevni upload rada s dokazom za oko tri minute', 'AI ocjena kvaliteta prema briefu i rubrici', 'Mjesečni procentualni report kvaliteta za direktora', 'HR daje nezavisan interni izvještaj za isti period', 'Direktor dobija dva izvještaja: AI i HR'],
+    thought: 'Pregledam današnje predaje i ocjenjujem kvalitet…',
     scenario: {
-      title: 'Dnevna predaja i revizija rada',
-      desc: 'Ada provjeri predani rad prema briefu i rubrici. Nečitljiv dokument nije nula nego „nije moguće procijeniti“, a konačnu odluku donosi voditelj.',
-      clientLabel: 'Voditelj',
+      title: 'Dnevna ocjena i mjesečni izvještaj',
+      desc: 'Ada pregleda predani rad, ocijeni kvalitet prema briefu i na kraju mjeseca generiše izvještaj za direktora. HR zasebno daje svoj izvještaj — direktor upoređuje oba.',
+      clientLabel: 'Direktor',
       messages: [
         { from: 'client', text: 'Kako izgleda današnja predaja tima?' },
-        { from: 'agent', text: 'Predato je 7 zadataka. 5 je usklađeno s briefom, na jednom vizualu nedostaje logo, a jedan dokument nije čitljiv, pa ga ne ocjenjujem.' },
-        { from: 'client', text: 'Vrati vizual na doradu.' },
-        { from: 'agent', text: 'Vraćeno s tačnim mjestom nalaza. Prihvat i dalje potvrđujete vi, a mjesečni pregled spremam za direktora.' },
+        { from: 'agent', text: 'Predato je 7 zadataka. Kvalitet: 5 odlično (90%+), 1 potrebna dorada (vizual bez loga, 60%), 1 nečitljiv dokument — ne ocjenjujem ga.' },
+        { from: 'client', text: 'Daj mi mjesečni izvještaj za Emira.' },
+        { from: 'agent', text: 'Emir, novembar: prosječan kvalitet 87%. 18 od 21 zadatka ocijenjeno odlično, 2 dorade, 1 nije moguće procijeniti. HR izvještaj za isti period čeka unos od HR tima.' },
       ],
       result: {
-        title: 'Današnje predaje',
+        title: 'Mjesečni izvještaj — Emir',
         rows: [
-          { label: 'Predato zadataka', value: '7', tone: 'info' },
-          { label: 'Usklađeno s briefom', value: '5', tone: 'ok' },
-          { label: 'Dorada: nedostaje logo', value: '1', tone: 'bad' },
-          { label: 'Nije moguće procijeniti', value: '1', tone: 'warn' },
+          { label: 'Prosječan kvalitet (AI)', value: '87%', tone: 'ok' },
+          { label: 'Odlično', value: '18 zadataka', tone: 'ok' },
+          { label: 'Dorade', value: '2 zadatka', tone: 'warn' },
+          { label: 'HR izvještaj', value: 'čeka unos', tone: 'info' },
         ],
-        status: 'Čeka ljudsku provjeru',
+        status: 'Direktor dobija oba izvještaja za usporedbu',
       },
     },
   },
 ];
 
 export const CAPSULES = [
-  { n: 1, title: 'AI Social Media Manager' },
-  { n: 2, title: 'AI SEO Auditor' },
-  { n: 3, title: 'AI Blog Writer' },
-  { n: 4, title: 'AI Leads + AI sekretarica' },
-  { n: 5, title: 'AI Capacity Planner' },
-  { n: 6, title: 'AI Delivery Control' },
-  { n: 7, title: 'AI Work Audit' },
+  { n: 1, title: 'AI Web, Content & SEO Manager' },
+  { n: 2, title: 'AI Leads + AI sekretarica' },
+  { n: 3, title: 'AI Capacity Planner' },
+  { n: 4, title: 'AI Delivery Control' },
+  { n: 5, title: 'AI Work Quality Review' },
 ];
 
 /** Kratka oznaka uloge agenta, npr. "Owner kapsule 1" ili "AI sekretarica, kapsula 2". */

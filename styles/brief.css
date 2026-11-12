@@ -1,14 +1,13 @@
 /* Web brief v1.3: logotipi tri brenda, video hero, kružni sistem (radovi, klijenti, Bonexis, BonEvents), BS/EN.
    Crna/tamna baza dominira; boja brenda (--accent) samo za detalje, aktivna stanja, CTA i kružne akcente. */
 
-/* ---------- Logotipi (zajednički DNK) ---------- */
-.brand-logo { display: inline-flex; flex-direction: column; align-items: center; color: #fff; line-height: 1; }
-.bl-word { display: inline-flex; align-items: baseline; font: 700 1em/1 'Outfit', var(--font-head); letter-spacing: -0.01em; white-space: nowrap; }
-.bl-dot, .bonexis-logo i { display: inline-block; width: 0.2em; height: 0.2em; margin-left: 0.07em; border-radius: 50%; background: var(--bonaco); }
-.brand-logo-bonexis .bl-dot, .bonexis-logo i { background: var(--bonexis); }
-.brand-logo-bonevents .bl-dot { background: var(--bonevents); }
-.bl-sub { margin-top: 0.42em; padding-left: 0.42em; font: 500 0.3em/1 var(--font-body); letter-spacing: 0.42em; color: var(--muted); white-space: nowrap; }
-.light .brand-logo { color: var(--ink); }
+/* ---------- Logotipi (slike, originalni dizajn) ---------- */
+.brand-logo { display: inline-flex; line-height: 1; }
+.brand-logo-img { display: inline-flex; }
+.brand-logo-img img { height: 1.62em; width: auto; display: block; }
+.brand-logo-img .bl-light { display: none; }
+.light .brand-logo-img .bl-dark { display: none; }
+.light .brand-logo-img .bl-light { display: block; }
 
 /* ---------- Header ---------- */
 .logo { text-decoration: none; display: inline-flex; }
@@ -54,7 +53,7 @@
 .hm-shot-1 { width: 34%; aspect-ratio: 1; left: 2%; top: 8%; animation-delay: 0.5s, 1.9s; }
 .hm-shot-2 { width: 26%; aspect-ratio: 1; right: 0; top: 30%; animation-delay: 0.9s, 2.3s; animation-duration: 1.4s, 11s; }
 .hm-shot-3 { width: 22%; aspect-ratio: 1; left: 28%; bottom: 2%; animation-delay: 1.3s, 2.7s; animation-duration: 1.4s, 10s; }
-.hm-b { position: absolute; z-index: 1; left: 50%; top: 50%; translate: -50% -54%; display: flex; align-items: baseline; font: 700 calc(var(--s) * 0.46)/1 'Outfit', var(--font-head); color: #f5f5f4; letter-spacing: -0.02em; animation: hm-in 1s 0.2s cubic-bezier(.2, .8, .2, 1) both; }
+.hm-b { position: absolute; z-index: 1; left: 50%; top: 50%; translate: -50% -54%; display: flex; align-items: baseline; font: 700 calc(var(--s) * 0.46)/1 var(--font-head); color: #f5f5f4; letter-spacing: -0.02em; animation: hm-in 1s 0.2s cubic-bezier(.2, .8, .2, 1) both; }
 .hm-b i { width: 0.2em; height: 0.2em; margin-left: 0.06em; border-radius: 50%; background: var(--accent); animation: hm-pulse 3.2s ease-in-out infinite; }
 .hv.is-paused .hm, .hv.is-paused .hm * { animation-play-state: paused; }
 @keyframes hm-in { from { opacity: 0; scale: 0.6; } }
@@ -134,7 +133,7 @@ button.text-link { background: none; border: 0; padding: 0; font: inherit; font-
 .bxc-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; margin-top: clamp(32px, 5vw, 56px); }
 .bxc-orbit { position: relative; width: 100%; max-width: 540px; aspect-ratio: 1; margin: 0 auto; container-type: inline-size; }
 .bxc-orbit::before { content: ''; position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed color-mix(in srgb, var(--accent-light) 40%, transparent); }
-.bxc-core { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: flex; align-items: baseline; justify-content: center; width: 38cqw; aspect-ratio: 1; padding-top: 16.5cqw; border-radius: 50%; background: var(--accent-deep); border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent); font: 700 6.2cqw/1 'Outfit', var(--font-head); color: #fff; }
+.bxc-core { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: flex; align-items: baseline; justify-content: center; width: 38cqw; aspect-ratio: 1; padding-top: 16.5cqw; border-radius: 50%; background: var(--accent-deep); border: 1px solid color-mix(in srgb, var(--accent) 70%, transparent); font: 700 6.2cqw/1 var(--font-head); color: #fff; }
 .bxc-core i { width: 0.2em; height: 0.2em; margin-left: 0.07em; border-radius: 50%; background: var(--accent); }
 .bxc-cap { position: absolute; left: 50%; top: 50%; width: 25cqw; aspect-ratio: 1; margin: -12.5cqw 0 0 -12.5cqw; padding: 0; border: 0; background: none; cursor: pointer; color: var(--text); transform: rotate(var(--a)) translate(36cqw) rotate(calc(var(--a) * -1)); }
 .bxc-cap-circle { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 100%; height: 100%; border-radius: 50%; background: #151515; border: 1px solid var(--line); font: 600 clamp(12px, 3.1cqw, 16px)/1.15 var(--font-body); text-align: center; padding: 8px; transition: background 0.25s, border-color 0.25s, transform 0.3s cubic-bezier(.2, .8, .2, 1), color 0.25s; }
@@ -181,13 +180,30 @@ button.text-link { background: none; border: 0; padding: 0; font: inherit; font-
 a.bev-ref:hover { border-color: var(--accent-light); }
 .bev-ref-circle { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; overflow: hidden; background: var(--accent-deep); border: 1px solid color-mix(in srgb, var(--accent-light) 40%, transparent); flex: none; }
 .bev-ref-circle img { width: 100%; height: 100%; object-fit: cover; }
-.bev-ref-circle b { font: 700 15px 'Outfit', var(--font-head); color: var(--accent-light); }
+.bev-ref-circle b { font: 700 15px var(--font-head); color: var(--accent-light); }
 .bev-ref strong { display: block; font-size: 17px; }
 .bev-ref small { display: block; color: var(--accent-light); font-size: 13px; font-weight: 600; margin: 2px 0 4px; }
 .bev-ref span > span { display: block; color: var(--muted); font-size: 14px; line-height: 1.45; }
 @media (max-width: 900px) { .bev-grid { grid-template-columns: 1fr; } .bev-visual { max-width: 420px; } }
 @media (max-width: 560px) { .bev-refs { grid-template-columns: 1fr; } }
 figure.gallery-item { cursor: default; }
+
+/* ---------- Poslovni Oglasi: partnerska sekcija ---------- */
+.po { background: radial-gradient(ellipse at 80% 40%, var(--accent-deep), var(--bg) 60%); border-top: 1px solid var(--line); }
+.po.is-page { padding-top: clamp(40px, 6vw, 80px); }
+.po-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.po-visual { position: relative; aspect-ratio: 1; width: 100%; max-width: 560px; margin: 0 auto; display: grid; place-items: center; }
+.po-hero-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid transparent; border-top-color: var(--accent-light); border-right-color: color-mix(in srgb, var(--accent-light) 30%, transparent); animation: hm-spin 20s linear infinite; }
+.po-logo-circle { display: grid; place-items: center; width: 60%; height: 60%; border-radius: 50%; background: var(--accent-deep); border: 2px solid color-mix(in srgb, var(--accent-light) 40%, transparent); }
+.po-logo-text { font: 700 clamp(48px, 8vw, 96px)/1 var(--font-head); color: var(--accent-light); letter-spacing: 0.04em; }
+.po-title { font: 700 clamp(32px, 4.4vw, 60px)/1.1 var(--font-head); margin-bottom: 20px; }
+.po-services { list-style: none; padding: 0; margin: 28px 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+.po-services li { display: flex; gap: 16px; align-items: flex-start; }
+.po-dot { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); flex: none; }
+.po-services h3 { font-size: 17px; margin: 2px 0 4px; }
+.po-services p { color: var(--muted); font-size: 14px; margin: 0; }
+@media (max-width: 900px) { .po-grid { grid-template-columns: 1fr; } .po-visual { max-width: 420px; } }
+@media (max-width: 560px) { .po-services { grid-template-columns: 1fr; } }
 
 /* ---------- O nama / kontakt na početnoj, tri brenda ---------- */
 .end-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -218,6 +234,7 @@ figure.gallery-item { cursor: default; }
 .dot-bonaco { background: var(--bonaco); }
 .dot-bonexis { background: var(--bonexis); }
 .dot-bonevents { background: var(--bonevents); }
+.dot-po { background: var(--poslovnioglasi); }
 
 /* qla.dev znak: malim slovima, Facebookov UI sans (Segoe UI na Windowsu, Helvetica na Apple uređajima) */
 .qla-mark { font-family: 'Segoe UI Historic', 'Segoe UI', Helvetica, Arial, sans-serif; font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; color: #fff; }
@@ -280,7 +297,7 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
 .end-section { border-top: 1px solid var(--line); }
 @media (max-width: 900px) { .bxc-orbit { scrollbar-width: none; } .bxc-orbit::-webkit-scrollbar { display: none; } }
 .marquee.is-paused .mq-row { scrollbar-width: none; }
-.bxc-owner { color: var(--muted); font-size: 15px; margin: -10px 0 20px; } .bxc-owner strong { color: var(--text); font-family: Outfit, var(--font-head); }
+.bxc-owner { color: var(--muted); font-size: 15px; margin: -10px 0 20px; } .bxc-owner strong { color: var(--text); font-family: var(--font-head); }
 
 /* ---------- Hero: 3D sfera s projektima, naslov u sredini ---------- */
 .hv.hv-orbit { display: block; min-height: 0; padding: var(--header-h) 0 clamp(40px, 6vw, 72px); background: radial-gradient(ellipse at 50% 42%, #191919 0%, #0a0a0a 62%); }
@@ -308,7 +325,7 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
 }
 
 /* Sfera s logotipima klijenata, "B." u sredini, naslov ispod */
-.hv-b { position: relative; display: flex; align-items: baseline; font: 700 clamp(120px, 22vmin, 230px)/1 'Outfit', var(--font-head); color: #f5f5f4; letter-spacing: -0.02em; text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); }
+.hv-b { position: relative; display: flex; align-items: baseline; font: 700 clamp(120px, 22vmin, 230px)/1 var(--font-head); color: #f5f5f4; letter-spacing: -0.02em; text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); }
 .hv-b i { width: 0.2em; height: 0.2em; margin-left: 0.06em; border-radius: 50%; background: var(--bonaco); animation: hm-pulse 3.2s ease-in-out infinite; }
 .hv-center::before { width: min(46vw, 380px); }
 .hv.hv-orbit .hv-below h1 { max-width: 14ch; margin: 0 auto 18px; font-size: clamp(40px, 5.4vw, 80px); text-shadow: none; }
@@ -488,7 +505,7 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 .svc-slides { position: relative; border-top: 1px solid var(--line); }
 .service-slide { position: relative; overflow: hidden; display: flex; align-items: center; min-height: calc(100svh - var(--header-h)); scroll-snap-align: start; scroll-snap-stop: always; border-bottom: 1px solid var(--line); background: radial-gradient(ellipse at 80% 50%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%); }
 .service-slide:nth-child(even) { background: radial-gradient(ellipse at 20% 50%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 60%); }
-.ss-num { position: absolute; right: -0.04em; bottom: -0.18em; font: 800 clamp(200px, 38vw, 520px)/1 'Outfit', var(--font-head); color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08); pointer-events: none; user-select: none; }
+.ss-num { position: absolute; right: -0.04em; bottom: -0.18em; font: 800 clamp(200px, 38vw, 520px)/1 var(--font-head); color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08); pointer-events: none; user-select: none; }
 .ss-inner { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding-top: 40px; padding-bottom: 40px; max-width: 900px; margin-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); }
 .ss-icon { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, #161616); color: var(--accent-light); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
 .ss-count { font: 700 14px var(--font-head); color: var(--accent-light); letter-spacing: 0.08em; }
@@ -535,9 +552,6 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
   .service-slide { min-height: calc(100% - 0px); height: calc(100dvh - var(--header-h) - 76px - env(safe-area-inset-bottom)); min-height: 0; }
 }
 
-/* Pravi BONACO logotip (slika) – visina usklađena s ostalim wordmarkovima */
-.brand-logo-img { display: inline-flex; }
-.brand-logo-img img { height: 1.62em; width: auto; display: block; }
 /* Bedževi Bonexisa uvijek u jednom redu */
 .bxc-badges { flex-wrap: nowrap; }
 .bxc-badges .badge { white-space: nowrap; }
@@ -579,8 +593,6 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 }
 @media (prefers-reduced-motion: reduce) { .page-enter { animation: none; } }
 
-/* Pravi BONACO logotip iste optičke veličine kao BONEXIS/BONEVENTS wordmark (bio je ~30% veći) */
-.brand-logo-img img { height: 1.24em; }
 
 
 /* ---------- Bonaco u pokretu: bogatiji blok ---------- */
@@ -606,7 +618,7 @@ html.snap-y main > section, html.snap-y .site-footer { scroll-snap-align: start;
 /* Velika traka ključnih riječi */
 .kw-ticker { overflow: hidden; padding: clamp(18px, 3vw, 32px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #0d0d0d; }
 .kw-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
-.kw-track span { display: inline-flex; align-items: center; gap: clamp(18px, 3vw, 40px); padding-right: clamp(18px, 3vw, 40px); font: 800 clamp(40px, 7vw, 104px)/1 'Outfit', var(--font-head); letter-spacing: -0.02em; color: #f5f5f4; white-space: nowrap; }
+.kw-track span { display: inline-flex; align-items: center; gap: clamp(18px, 3vw, 40px); padding-right: clamp(18px, 3vw, 40px); font: 800 clamp(40px, 7vw, 104px)/1 var(--font-head); letter-spacing: -0.02em; color: #f5f5f4; white-space: nowrap; }
 .kw-track span.kw-outline { color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.45); }
 .kw-track i { width: 0.22em; height: 0.22em; border-radius: 50%; background: var(--accent); flex: none; }
 .kw-ticker:hover .kw-track { animation-play-state: paused; }

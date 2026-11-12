@@ -34,11 +34,14 @@ const routes = [
     { path: '/nase-usluge/', title: `Marketing | ${NAME}`, description: 'Strategija i kampanje, društvene mreže, grafički dizajn i branding, foto i video, web dizajn, SEO i OOH/DOOH oglašavanje. Full-service marketing za vaš brend.' },
     { path: '/en/marketing/', title: `Marketing | ${NAME}`, description: 'Strategy and campaigns, social media, graphic design and branding, photo and video, web design, SEO and OOH/DOOH advertising. Full-service marketing for your brand.' }),
   ...pair(
-    { path: '/bonexis/', title: `Bonexis – marketing CRM s AI agentima | ${NAME}`, description: 'Bonexis je marketing CRM sa sedam AI kapsula i owner agentima: društvene mreže, SEO audit, blog, leadovi s AI sekretaricom, planiranje kapaciteta, kontrola isporuke i revizija rada.' },
-    { path: '/en/bonexis/', title: `Bonexis – marketing CRM with AI agents | ${NAME}`, description: 'Bonexis is a marketing CRM with seven AI capsules run by owner agents: social media, SEO audit, blog, leads with an AI assistant, capacity planning, delivery control and work audit.' }),
+    { path: '/bonexis/', title: `Bonexis – marketing CRM s AI agentima | ${NAME}`, description: 'Bonexis je marketing CRM sa pet AI kapsula i owner agentima: web, sadržaj i SEO, leadovi s AI sekretaricom, planiranje kapaciteta, kontrola isporuke i ocjena kvaliteta rada.' },
+    { path: '/en/bonexis/', title: `Bonexis – marketing CRM with AI agents | ${NAME}`, description: 'Bonexis is a marketing CRM with five AI capsules run by owner agents: web, content and SEO, leads with an AI assistant, capacity planning, delivery control and work quality review.' }),
   ...pair(
     { path: '/bonevents/', title: `BonEvents – organizacija i produkcija događaja | ${NAME}`, description: 'BonEvents planira, producira i promoviše događaje za brendove: organizacija, produkcija, hostese, foto i video. Reference: JOVS i Summer Lounge.' },
     { path: '/en/bonevents/', title: `BonEvents – event planning and production | ${NAME}`, description: 'BonEvents plans, produces and promotes events for brands: organisation, production, hosts, photo and video. References: JOVS and Summer Lounge.' }),
+  ...pair(
+    { path: '/poslovni-oglasi/', title: `Poslovni Oglasi – pronađite posao ili radnike u BiH | ${NAME}`, description: 'Poslovni Oglasi je platforma za oglašavanje poslova u Bosni i Hercegovini. U partnerstvu s Bonaco Media, povežite se s pravim kandidatima brže i efikasnije.' },
+    { path: '/en/poslovni-oglasi/', title: `Poslovni Oglasi – find a job or workers in BiH | ${NAME}`, description: 'Poslovni Oglasi is a job advertising platform in Bosnia and Herzegovina. In partnership with Bonaco Media, connect with the right candidates faster and more efficiently.' }),
   ...pair(
     { path: '/portfolio/', title: `Radovi | ${NAME}`, description: 'Odabrani radovi Bonaco Media: društvene mreže, web stranice, grafički dizajn, fotografija, video i eventi.' },
     { path: '/en/work/', title: `Work | ${NAME}`, description: 'Selected work by Bonaco Media: social media, websites, graphic design, photography, video and events.' }),

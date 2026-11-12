@@ -27,7 +27,7 @@ const SW = 360, SH = 230;
 
 type Ctx = CanvasRenderingContext2D;
 const mark = (ctx: Ctx, x: number, y: number, ok: boolean) => {
-  ctx.fillStyle = ok ? GREEN : RED; ctx.font = '700 16px Poppins, sans-serif'; ctx.fillText(ok ? '✓' : '✗', x, y);
+  ctx.fillStyle = ok ? GREEN : RED; ctx.font = '700 16px Montserrat, sans-serif'; ctx.fillText(ok ? '✓' : '✗', x, y);
 };
 
 // Animacije na ekranima agenata, po redu kao u data/bonexis.ts (BONEXIS v3.0, 7 kapsula):
@@ -38,7 +38,7 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     days.forEach((d, k) => {
       const x = 18 + k * 47;
       ctx.fillStyle = k === today ? 'rgba(60,201,197,0.35)' : 'rgba(244,237,232,0.07)'; ctx.fillRect(x, 46, 41, 30);
-      ctx.fillStyle = k === today ? TXT : MUTED; ctx.font = '600 11px Poppins, sans-serif'; ctx.fillText(d, x + 8, 50);
+      ctx.fillStyle = k === today ? TXT : MUTED; ctx.font = '600 11px Montserrat, sans-serif'; ctx.fillText(d, x + 8, 50);
       if (k % 2 === 0 || k === 3) { ctx.fillStyle = CU; ctx.beginPath(); ctx.arc(x + 20, 69, 3.5, 0, 7); ctx.fill(); }
     });
     const posts = ['Reel: iza kulisa', 'Carousel: 5 savjeta', 'Story: anketa', 'Objava: novi klijent'];
@@ -47,8 +47,8 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     posts.forEach((nm, i) => {
       const y = 90 + i * 27, k = Math.max(0, Math.min(3, Math.floor(ph - i * 0.8)));
       ctx.fillStyle = 'rgba(244,237,232,0.05)'; ctx.fillRect(14, y - 4, 332, 23);
-      ctx.fillStyle = TXT; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(nm, 22, y);
-      ctx.fillStyle = st[k][1]; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText(st[k][0], 214, y + 1);
+      ctx.fillStyle = TXT; ctx.font = '500 13px Montserrat, sans-serif'; ctx.fillText(nm, 22, y);
+      ctx.fillStyle = st[k][1]; ctx.font = '600 12px Montserrat, sans-serif'; ctx.fillText(st[k][0], 214, y + 1);
     });
   },
   (ctx, t) => { // Selma: SEO Audit, pregled stranica
@@ -61,14 +61,14 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       if (i < scan) mark(ctx, x + cw - 16, y + ch - 20, !bad.has(i));
     }
     const done = Math.min(scan, n);
-    ctx.fillStyle = MUTED; ctx.font = '500 15px Poppins, sans-serif';
+    ctx.fillStyle = MUTED; ctx.font = '500 15px Montserrat, sans-serif';
     ctx.fillText(`Pročitano ${Math.round((done / n) * 80)}/80`, 18, 196);
     ctx.fillStyle = CU; ctx.fillText(`Za odobrenje: ${[...bad].filter(b => b < scan).length}`, 210, 196);
   },
   (ctx, t) => { // Edin: Blog, nacrt članka
     const p = (t * 0.18) % 1.25, title = 'Kako odabrati agenciju za društvene mreže';
     const n = Math.min(title.length, Math.floor(p * 160));
-    ctx.fillStyle = TXT; ctx.font = '700 15px Poppins, sans-serif'; ctx.fillText(title.slice(0, n), 18, 50, 324);
+    ctx.fillStyle = TXT; ctx.font = '700 15px Montserrat, sans-serif'; ctx.fillText(title.slice(0, n), 18, 50, 324);
     const bars = [300, 320, 270, 0, 310, 290, 180];
     bars.forEach((w, i) => {
       if (!w) return;
@@ -77,7 +77,7 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       ctx.fillStyle = 'rgba(60,201,197,0.6)'; ctx.fillRect(18, 82 + i * 14, fill, 6);
     });
     const done = p > 1.0;
-    ctx.fillStyle = done ? AMBER : MUTED; ctx.font = '600 14px Poppins, sans-serif';
+    ctx.fillStyle = done ? AMBER : MUTED; ctx.font = '600 14px Montserrat, sans-serif';
     ctx.fillText(done ? 'Nacrt čeka odobrenje' : `Pišem nacrt… ${Math.round(Math.min(1, Math.max(0, p - 0.25) / 0.75) * 900)} riječi`, 18, 196);
   },
   (ctx, t) => { // Lejla: Leads
@@ -86,12 +86,12 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     names.forEach((nm, i) => {
       const y = 54 + i * 38, prog = Math.min(1, Math.max(0, (t * 0.6 - i * 0.35) % 3));
       ctx.fillStyle = 'rgba(244,237,232,0.12)'; ctx.beginPath(); ctx.arc(32, y + 14, 12, 0, 7); ctx.fill();
-      ctx.fillStyle = TXT; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(nm, 54, y + 4);
+      ctx.fillStyle = TXT; ctx.font = '600 14px Montserrat, sans-serif'; ctx.fillText(nm, 54, y + 4);
       ctx.fillStyle = 'rgba(244,237,232,0.1)'; ctx.fillRect(184, y + 8, 90, 8);
       const s = scores[i] * prog; ctx.fillStyle = s > 0.8 ? GREEN : CU; ctx.fillRect(184, y + 8, 90 * s, 8);
-      if (prog >= 1) { ctx.fillStyle = scores[i] > 0.8 ? GREEN : CU; ctx.font = '600 11px Poppins, sans-serif'; ctx.fillText(scores[i] > 0.8 ? 'VISOKO' : 'SREDNJE', 282, y + 5); }
+      if (prog >= 1) { ctx.fillStyle = scores[i] > 0.8 ? GREEN : CU; ctx.font = '600 11px Montserrat, sans-serif'; ctx.fillText(scores[i] > 0.8 ? 'VISOKO' : 'SREDNJE', 282, y + 5); }
     });
-    ctx.fillStyle = MUTED; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText('usklađenost sa profilom klijenta', 18, 206);
+    ctx.fillStyle = MUTED; ctx.font = '500 13px Montserrat, sans-serif'; ctx.fillText('usklađenost sa profilom klijenta', 18, 206);
   },
   (ctx, t) => { // Sara: AI Sekretarica (asistent u Kapsuli 4)
     const c = t % 10;
@@ -100,12 +100,12 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       ctx.strokeStyle = `rgba(127,199,154,${1 - ph})`; ctx.lineWidth = 3;
       ctx.beginPath(); ctx.arc(70, 125, 22 + ph * 26, 0, 7); ctx.stroke();
       ctx.fillStyle = GREEN; ctx.beginPath(); ctx.arc(70, 125, 22, 0, 7); ctx.fill();
-      ctx.fillStyle = '#16100d'; ctx.font = '700 22px Poppins, sans-serif'; ctx.fillText('☎', 59, 112);
-      ctx.fillStyle = TXT; ctx.font = '600 18px Poppins, sans-serif'; ctx.fillText('Pozivam odobren lead', 120, 100);
-      ctx.fillStyle = MUTED; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText('Hotel Sarajevo', 120, 128);
+      ctx.fillStyle = '#16100d'; ctx.font = '700 22px Montserrat, sans-serif'; ctx.fillText('☎', 59, 112);
+      ctx.fillStyle = TXT; ctx.font = '600 18px Montserrat, sans-serif'; ctx.fillText('Pozivam odobren lead', 120, 100);
+      ctx.fillStyle = MUTED; ctx.font = '500 14px Montserrat, sans-serif'; ctx.fillText('Hotel Sarajevo', 120, 128);
     } else if (c < 7) {
       const sec = Math.floor((c - 2.5) * 6);
-      ctx.fillStyle = GREEN; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(`U razgovoru 00:${String(sec).padStart(2, '0')}`, 18, 50);
+      ctx.fillStyle = GREEN; ctx.font = '600 14px Montserrat, sans-serif'; ctx.fillText(`U razgovoru 00:${String(sec).padStart(2, '0')}`, 18, 50);
       for (let k = 0; k < 28; k++) {
         const h = 6 + Math.abs(Math.sin(t * 9 + k * 0.7) * Math.sin(t * 3 + k)) * 34;
         ctx.fillStyle = CU; ctx.fillRect(18 + k * 11.5, 100 - h / 2, 6, h);
@@ -113,30 +113,30 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       const lines: [string, string][] = [['Klijent', 'Koliko košta vođenje mreža?'], ['Sara', 'Zavisi od paketa, mogu vam zakazati…'], ['Klijent', 'Može utorak ujutro.']];
       lines.forEach(([who, txt], k) => {
         if (c - 2.5 <= k * 1.3) return;
-        ctx.fillStyle = who === 'Sara' ? CU : MUTED; ctx.font = '600 13px Poppins, sans-serif'; ctx.fillText(who + ':', 18, 132 + k * 22);
-        ctx.fillStyle = TXT; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(txt, 80, 132 + k * 22);
+        ctx.fillStyle = who === 'Sara' ? CU : MUTED; ctx.font = '600 13px Montserrat, sans-serif'; ctx.fillText(who + ':', 18, 132 + k * 22);
+        ctx.fillStyle = TXT; ctx.font = '500 13px Montserrat, sans-serif'; ctx.fillText(txt, 80, 132 + k * 22);
       });
     } else {
-      ctx.fillStyle = GREEN; ctx.font = '700 40px Poppins, sans-serif'; ctx.fillText('✓', 24, 70);
-      ctx.fillStyle = TXT; ctx.font = '700 22px Syne, sans-serif'; ctx.fillText('Sastanak zakazan', 76, 70);
-      ctx.fillStyle = MUTED; ctx.font = '500 15px Poppins, sans-serif'; ctx.fillText('Utorak, 10:00, Hotel Sarajevo', 76, 102);
+      ctx.fillStyle = GREEN; ctx.font = '700 40px Montserrat, sans-serif'; ctx.fillText('✓', 24, 70);
+      ctx.fillStyle = TXT; ctx.font = '700 22px Montserrat, sans-serif'; ctx.fillText('Sastanak zakazan', 76, 70);
+      ctx.fillStyle = MUTED; ctx.font = '500 15px Montserrat, sans-serif'; ctx.fillText('Utorak, 10:00, Hotel Sarajevo', 76, 102);
       ctx.fillStyle = CU; ctx.fillText('Sažetak na kartici leada', 76, 132);
     }
   },
   (ctx, t) => { // Kenan: Capacity Planner
     const who = ['Ana', 'Emir', 'Lejla', 'Tarik', 'Mia'];
     ctx.strokeStyle = RED; ctx.setLineDash([6, 5]); ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(18, 92); ctx.lineTo(342, 92); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = RED; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText('100%', 300, 74);
+    ctx.fillStyle = RED; ctx.font = '600 12px Montserrat, sans-serif'; ctx.fillText('100%', 300, 74);
     who.forEach((nm, i) => {
       const base = [0.55, 0.7, 0.45, 0.62, 0.5][i];
       const v = i === 1 ? 0.75 + Math.max(0, Math.sin(t * 0.9)) * 0.45 : base + Math.sin(t * 1.3 + i) * 0.08;
       const h = v * 100, x = 30 + i * 62;
       ctx.fillStyle = v > 1 ? RED : CU; ctx.fillRect(x, 192 - h, 34, h);
-      ctx.fillStyle = MUTED; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(nm, x, 198);
+      ctx.fillStyle = MUTED; ctx.font = '500 13px Montserrat, sans-serif'; ctx.fillText(nm, x, 198);
     });
   },
   (ctx, t) => { // Dino: Delivery Control
-    ctx.fillStyle = MUTED; ctx.font = '600 13px Poppins, sans-serif';
+    ctx.fillStyle = MUTED; ctx.font = '600 13px Montserrat, sans-serif';
     ctx.fillText('DOGOVORENO', 18, 52); ctx.fillText('STATUS', 200, 52);
     const rows: [string, string, string][] = [
       ['8 objava', '✓ dostavljeno', GREEN], ['2 kratka videa', '1/2 objavljen', AMBER],
@@ -145,9 +145,9 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
     const k = Math.floor(t * 1.2) % (rows.length + 3);
     rows.forEach(([r, st, col], i) => {
       const y = 76 + i * 30;
-      ctx.fillStyle = TXT; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText(r, 18, y);
+      ctx.fillStyle = TXT; ctx.font = '500 14px Montserrat, sans-serif'; ctx.fillText(r, 18, y);
       if (i >= k) return;
-      ctx.fillStyle = col; ctx.font = '600 14px Poppins, sans-serif'; ctx.fillText(st, 200, y);
+      ctx.fillStyle = col; ctx.font = '600 14px Montserrat, sans-serif'; ctx.fillText(st, 200, y);
     });
   },
   (ctx, t) => { // Ada: Work Audit
@@ -155,16 +155,16 @@ const DRAW: ((ctx: Ctx, t: number) => void)[] = [
       ['Vizual Instagram', '✓ usklađeno', GREEN], ['Blog nacrt', '✗ nedostaje logo', RED],
       ['Ponuda PDF', '? nije moguće procijeniti', AMBER], ['Baner', '✓ usklađeno', GREEN],
     ];
-    ctx.fillStyle = MUTED; ctx.font = '600 13px Poppins, sans-serif'; ctx.fillText('PREDATO DANAS', 18, 50);
+    ctx.fillStyle = MUTED; ctx.font = '600 13px Montserrat, sans-serif'; ctx.fillText('PREDATO DANAS', 18, 50);
     const k = Math.floor(t * 0.9) % (items.length + 3), frac = (t * 0.9) % 1;
     items.forEach(([nm, st, col], i) => {
       const y = 74 + i * 28;
       ctx.fillStyle = i === k ? 'rgba(60,201,197,0.16)' : 'rgba(244,237,232,0.05)'; ctx.fillRect(14, y - 5, 332, 25);
-      ctx.fillStyle = TXT; ctx.font = '500 14px Poppins, sans-serif'; ctx.fillText(nm, 22, y);
-      if (i < k) { ctx.fillStyle = col; ctx.font = '600 12px Poppins, sans-serif'; ctx.fillText(st, 160, y + 2); }
+      ctx.fillStyle = TXT; ctx.font = '500 14px Montserrat, sans-serif'; ctx.fillText(nm, 22, y);
+      if (i < k) { ctx.fillStyle = col; ctx.font = '600 12px Montserrat, sans-serif'; ctx.fillText(st, 160, y + 2); }
       else if (i === k) { ctx.fillStyle = 'rgba(60,201,197,0.25)'; ctx.fillRect(160, y + 4, 170, 6); ctx.fillStyle = CU; ctx.fillRect(160, y + 4, 170 * frac, 6); }
     });
-    ctx.fillStyle = CU; ctx.font = '600 14px Poppins, sans-serif';
+    ctx.fillStyle = CU; ctx.font = '600 14px Montserrat, sans-serif';
     ctx.fillText(k >= items.length ? 'Čeka ljudsku provjeru' : 'Provjera prema briefu…', 18, 196);
   },
 ];
@@ -282,11 +282,11 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   box(0.08, 0.06, 3.6, C.woodDark, -S / 2 + 0.05, 2.2, 1.2);
   box(0.3, 0.06, 3.8, C.woodDark, -S / 2 + 0.15, 1.28, 1.2);
 
-  // Natpis BONEXIS (wordmark u stilu BONACO loga: Outfit 700, uski razmak, okrugla bakarna tačka na bazi)
+  // Natpis BONEXIS (wordmark: Montserrat 700, uski razmak, okrugla bakarna tačka na bazi)
   const sign = canvasTex(1024, 256);
   const drawSign = () => {
     const ctx = sign.ctx as Ctx & { letterSpacing?: string }; ctx.clearRect(0, 0, 1024, 256);
-    ctx.font = '700 150px Outfit, sans-serif'; ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
+    ctx.font = '700 150px Montserrat, sans-serif'; ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
     ctx.letterSpacing = '-1.5px';
     const m = ctx.measureText('BONEXIS'), tw = m.width;
     const cap = m.actualBoundingBoxAscent || 108, r = cap * 0.13, gap = cap * 0.12;
@@ -337,8 +337,8 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     c.strokeStyle = CU; c.lineWidth = 6; c.stroke();
     c.textAlign = 'center'; c.textBaseline = 'middle';
     const cc = c as Ctx & { letterSpacing?: string };
-    cc.letterSpacing = '-2px'; c.fillStyle = TXT; c.font = '700 172px Outfit, sans-serif'; c.fillText('BEN', 256, 116);
-    cc.letterSpacing = '6px'; c.fillStyle = CU; c.font = '700 38px Outfit, sans-serif'; c.fillText('AI', 256, 228);
+    cc.letterSpacing = '-2px'; c.fillStyle = TXT; c.font = '700 172px Montserrat, sans-serif'; c.fillText('BEN', 256, 116);
+    cc.letterSpacing = '6px'; c.fillStyle = CU; c.font = '700 38px Montserrat, sans-serif'; c.fillText('AI', 256, 228);
     cc.letterSpacing = '0px';
     benTex.tex.needsUpdate = true;
   };
@@ -450,9 +450,9 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
       c.fillStyle = '#16100d'; c.fillRect(0, 0, 512, 192);
       c.strokeStyle = CU; c.lineWidth = 8; c.strokeRect(4, 4, 504, 184);
       c.textAlign = 'center'; c.textBaseline = 'middle';
-      c.letterSpacing = '-1px'; c.fillStyle = TXT; c.font = '700 96px Outfit, sans-serif';
+      c.letterSpacing = '-1px'; c.fillStyle = TXT; c.font = '700 96px Montserrat, sans-serif';
       c.fillText((opts.personas?.[i] ?? opts.agentNames[i]).toUpperCase(), 256, 78, 470);
-      c.letterSpacing = '6px'; c.fillStyle = CU; c.font = '700 36px Outfit, sans-serif';
+      c.letterSpacing = '6px'; c.fillStyle = CU; c.font = '700 36px Montserrat, sans-serif';
       c.fillText(`KAPSULA ${CAPSULE[i] ?? i + 1}`, 256, 154, 470);
       c.letterSpacing = '0px'; plate.tex.needsUpdate = true;
     };
@@ -579,7 +579,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
       c.save(); c.translate(128, 128); c.rotate((k / 12) * Math.PI * 2);
       c.fillRect(-3, -112, 6, k % 3 ? 14 : 24); c.restore();
     }
-    c.fillStyle = '#009d9a'; c.font = '700 20px Syne, sans-serif'; c.textAlign = 'center'; c.fillText('BONEXIS', 128, 176);
+    c.fillStyle = '#009d9a'; c.font = '700 20px Montserrat, sans-serif'; c.textAlign = 'center'; c.fillText('BONEXIS', 128, 176);
   }
   const clockFace = new THREE.Mesh(G('clockFace', () => new THREE.CircleGeometry(0.42, 40)), basic({ map: clockTex.tex }));
   clockFace.position.z = 0.02; clockG.add(clockFace);
@@ -598,11 +598,11 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
     const c = tv.ctx, W = 512, H = 288;
     c.fillStyle = '#16100d'; c.fillRect(0, 0, W, H);
     c.textBaseline = 'top'; c.textAlign = 'left';
-    c.fillStyle = CU; c.font = '700 24px Syne, sans-serif'; c.fillText('BEN · UŽIVO', 26, 22);
+    c.fillStyle = CU; c.font = '700 24px Montserrat, sans-serif'; c.fillText('BEN · UŽIVO', 26, 22);
     c.fillStyle = Math.sin(t * 4) > 0 ? GREEN : 'rgba(127,199,154,0.3)'; c.beginPath(); c.arc(W - 34, 34, 8, 0, 7); c.fill();
-    c.fillStyle = TXT; c.font = '800 96px Syne, sans-serif'; c.fillText(String(137 + Math.floor(t / 2.5)), 24, 66);
-    c.fillStyle = MUTED; c.font = '500 20px Poppins, sans-serif'; c.fillText('zadataka završeno danas', 26, 176);
-    c.fillStyle = GREEN; c.font = '600 20px Poppins, sans-serif'; c.fillText('▲ 18% u odnosu na juče', 26, 210);
+    c.fillStyle = TXT; c.font = '800 96px Montserrat, sans-serif'; c.fillText(String(137 + Math.floor(t / 2.5)), 24, 66);
+    c.fillStyle = MUTED; c.font = '500 20px Montserrat, sans-serif'; c.fillText('zadataka završeno danas', 26, 176);
+    c.fillStyle = GREEN; c.font = '600 20px Montserrat, sans-serif'; c.fillText('▲ 18% u odnosu na juče', 26, 210);
     for (let k = 0; k < 6; k++) {
       const h = 40 + 70 * (0.5 + 0.5 * Math.sin(t * 0.9 + k * 1.4));
       c.fillStyle = k % 2 ? CU : 'rgba(60,201,197,0.55)'; c.fillRect(318 + k * 28, 250 - h, 18, h);
@@ -615,7 +615,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   const wb = canvasTex(512, 280);
   {
     const c = wb.ctx; c.fillStyle = '#ece6df'; c.fillRect(0, 0, 512, 280);
-    c.fillStyle = '#2b221c'; c.font = '700 28px Syne, sans-serif'; c.textBaseline = 'top'; c.fillText('Q4 · rast klijenata', 24, 18);
+    c.fillStyle = '#2b221c'; c.font = '700 28px Montserrat, sans-serif'; c.textBaseline = 'top'; c.fillText('Q4 · rast klijenata', 24, 18);
     c.strokeStyle = 'rgba(43,34,28,0.35)'; c.lineWidth = 2; c.beginPath(); c.moveTo(30, 240); c.lineTo(330, 240); c.moveTo(30, 240); c.lineTo(30, 70); c.stroke();
     [60, 85, 78, 110, 140, 165].forEach((v, k) => { c.fillStyle = k === 5 ? '#009d9a' : 'rgba(0,157,154,0.45)'; c.fillRect(48 + k * 46, 240 - v, 30, v); });
     c.strokeStyle = '#4f7d4b'; c.lineWidth = 4; c.beginPath();
@@ -828,10 +828,10 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
         ctx.fill();
         ctx.strokeStyle = on ? CU : 'rgba(60,201,197,0.45)'; ctx.lineWidth = on ? 4 : 2; ctx.stroke();
         const persona = opts.personas?.[i];
-        ctx.fillStyle = CU; ctx.font = '700 22px Syne, sans-serif'; ctx.textBaseline = 'top'; ctx.fillText(persona ?? opts.agentNames[i], 18, 14);
+        ctx.fillStyle = CU; ctx.font = '700 22px Montserrat, sans-serif'; ctx.textBaseline = 'top'; ctx.fillText(persona ?? opts.agentNames[i], 18, 14);
         if (persona) {
           const w = ctx.measureText(persona).width;
-          ctx.fillStyle = MUTED; ctx.font = '500 13px Poppins, sans-serif'; ctx.fillText(opts.agentNames[i], 18 + w + 12, 22);
+          ctx.fillStyle = MUTED; ctx.font = '500 13px Montserrat, sans-serif'; ctx.fillText(opts.agentNames[i], 18 + w + 12, 22);
         }
         ctx.fillStyle = GREEN; ctx.beginPath(); ctx.arc(SW - 24, 26, 6, 0, 7); ctx.fill();
         DRAW[i]?.(ctx, t * motion + i * 1.3);
@@ -860,7 +860,7 @@ export function createOffice(canvas: HTMLCanvasElement, container: HTMLElement, 
   let alive = true;
   const redrawLabels = () => { if (alive) { drawSign(); drawBen(); labelDraws.forEach(f => f()); } };
   document.fonts?.ready.then(redrawLabels);
-  document.fonts?.load('700 150px Outfit').then(redrawLabels, () => {});
+  document.fonts?.load('700 150px Montserrat').then(redrawLabels, () => {});
   frame();
 
   return {

@@ -36,11 +36,15 @@ export const GOOGLE_REVIEWS: { rating: number | null; count: number | null; url:
 };
 
 // Glavni meni (BS putanje; EN se dobija preko localize()). Vijesti su u footeru.
-export const NAV = [
+export const NAV_OFFER = [
   { to: '/nase-usluge/', bs: 'Marketing', en: 'Marketing' },
   { to: '/bonexis/', bs: 'Bonexis', en: 'Bonexis' },
-  { to: '/bonevents/', bs: 'BonEvents', en: 'BonEvents' },
+  { to: '/bonevents/', bs: 'Bonevent', en: 'Bonevent' },
+  { to: '/poslovni-oglasi/', bs: 'Poslovni Oglasi', en: 'Poslovni Oglasi' },
+];
+export const NAV = [
   { to: '/portfolio/', bs: 'Radovi', en: 'Work' },
+  { to: '/o-nama/', bs: 'O nama', en: 'About' },
   { to: '/kontakt/', bs: 'Kontakt', en: 'Contact' },
 ];
 
@@ -58,10 +62,9 @@ export const VIDEOS = {
 export const HERO_STYLE: 'dots' | 'sphere' = 'dots';
 
 export const HERO_VIDEO: { desktop: string | null; mobile: string | null; poster: string | null; posterMobile: string | null } = {
-  // TODO(Bonaco): Video 2 – artistički hero, 8–12 s, tiha petlja (MP4/H.264, ~4–5 MB desktop, ~2 MB mobile)
-  desktop: null, // npr. '/video/hero-16x9.mp4'
-  mobile: null, // npr. '/video/hero-9x16.mp4'
-  poster: null, // npr. '/video/hero-poster.webp'
+  desktop: '/video/hero.mp4',
+  mobile: null,
+  poster: null,
   posterMobile: null,
 };
 

@@ -3,9 +3,9 @@
 // 3) Bonexis 4) BonEvents 5) Kontakt i upit.
 import SEO from '../components/SEO';
 import HeroVideo from '../components/HeroVideo';
+import BrandEcosystem from '../components/BrandEcosystem';
 import MarketingTabs from '../components/MarketingTabs';
-import ContactBlock from '../components/ContactBlock';
-import { BonEventsBlock, BonexisCapsules } from '../components/Circles';
+import { BonEventsBlock, BonexisCapsules, PoslovniOglasiBlock } from '../components/Circles';
 import { SITE } from '../data/site';
 import { useLang } from '../lib/i18n';
 
@@ -21,10 +21,11 @@ export default function HomePage() {
         )}
       />
       <HeroVideo />
+      <BrandEcosystem />
       <MarketingTabs />
       <BonexisCapsules />
       <BonEventsBlock />
-      <ContactBlock id="kontakt" />
+      <PoslovniOglasiBlock />
     </>
   );
 }
