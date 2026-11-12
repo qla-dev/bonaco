@@ -135,10 +135,13 @@ $currentPath = (string) (getenv('PATH') ?: '/usr/local/bin:/usr/bin:/bin');
 putenv('PATH='.$nodeBinDir.PATH_SEPARATOR.$currentPath);
 $npmCommand = escapeshellarg($npm);
 
+$requestUri = $_SERVER['REQUEST_URI'] ?? '';
+$buildScript = preg_match('#^/bonaco/#', $requestUri) ? 'build:qla' : 'build';
+
 $commands = [
     ['label' => 'Pulling latest frontend code', 'command' => 'git pull --ff-only'],
     ['label' => 'Installing frontend dependencies', 'command' => $npmCommand.' ci --no-audit --no-fund'],
-    ['label' => 'Building Bonaco Media frontend', 'command' => $npmCommand.' run build'],
+    ['label' => 'Building Bonaco Media frontend', 'command' => $npmCommand.' run '.$buildScript],
 ];
 
 $startedAt = time();
