@@ -7,6 +7,13 @@ import BrandLogo from './BrandLogo';
 
 const BRANCHES = [
   {
+    brand: 'bonaco' as const,
+    to: '/nase-usluge/',
+    color: 'var(--bonaco)',
+    bs: { tag: 'Marketing', desc: 'Full-service marketing: strategija, kampanje, dizajn, produkcija i web.' },
+    en: { tag: 'Marketing', desc: 'Full-service marketing: strategy, campaigns, design, production and web.' },
+  },
+  {
     brand: 'bonexis' as const,
     to: '/bonexis/',
     color: 'var(--bonexis)',
@@ -38,14 +45,14 @@ export default function BrandEcosystem() {
           <img className="eco-logo" src={asset('/img/logo/bonaco-logo-hd.webp')} alt="Bonaco Media" width="639" height="168" />
           <h2 className="eco-title">
             {hl(t(
-              'Jedna agencija, *tri smjera*.',
-              'One agency, *three directions*.',
+              'Jedna agencija, *četiri smjera*.',
+              'One agency, *four directions*.',
             ))}
           </h2>
           <p className="eco-lead">
             {t(
-              'Bonaco Media je krovno za sve: marketing čini jezgro, a uz njega razvijamo specijalizirane brendove koji pokrivaju AI, evente i zapošljavanje.',
-              'Bonaco Media is the parent for everything: marketing is the core, and alongside it we develop specialised brands covering AI, events and employment.',
+              'Bonaco Media je krovno za sve: marketing, AI rješenja, eventi i zapošljavanje — četiri smjera, jedan tim.',
+              'Bonaco Media is the parent for everything: marketing, AI solutions, events and employment — four directions, one team.',
             )}
           </p>
         </div>

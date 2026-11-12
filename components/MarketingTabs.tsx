@@ -48,7 +48,8 @@ export default function MarketingTabs() {
           {SERVICES.map((v, i) => (
             <button key={v.slug} type="button" role="tab" id={`tab-${v.slug}`} aria-selected={i === sel} aria-controls="mkt2-panel"
               className={i === sel ? 'is-on' : ''} onClick={() => setSel(i)}>
-              <ServiceIcon slug={v.slug} size={18} />{tr(v, lang).title}
+              <span className="mkt2-tab-circle"><ServiceIcon slug={v.slug} size={24} /></span>
+              <span className="mkt2-tab-label">{tr(v, lang).title}</span>
             </button>
           ))}
         </div>

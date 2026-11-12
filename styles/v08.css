@@ -48,14 +48,14 @@
 @keyframes hv-scroll { 0% { transform: translateY(-8px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .hv-scroll::after { animation: none; } }
 
-/* 3b. Brand ecosystem: Bonaco = krovno, tri podružnice */
+/* 3b. Brand ecosystem: Bonaco = krovno, četiri smjera */
 .eco { border-top: 1px solid var(--line); background: radial-gradient(ellipse at 50% 20%, color-mix(in srgb, var(--bonaco) 8%, transparent), var(--bg) 60%); text-align: center; }
 .eco-core { max-width: 640px; margin: 0 auto clamp(32px, 5vw, 56px); }
 .eco-logo { height: clamp(32px, 4vw, 48px); width: auto; margin: 0 auto 24px; }
 .eco-title { font-size: clamp(28px, 3.6vw, 52px); margin: 0 0 16px; }
 .eco-lead { color: var(--muted); font-size: 18px; margin: 0 auto; max-width: 50ch; }
-.eco-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.eco-card { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: clamp(24px, 3vw, 36px); border-radius: 32px; border: 1px solid var(--line); background: var(--bg-2); text-decoration: none; transition: border-color 0.2s, transform 0.2s; text-align: center; }
+.eco-branches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.eco-card { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: clamp(18px, 2.5vw, 32px); border-radius: 32px; border: 1px solid var(--line); background: var(--bg-2); text-decoration: none; transition: border-color 0.2s, transform 0.2s; text-align: center; }
 .eco-card:hover { border-color: var(--card-accent); transform: translateY(-2px); }
 .eco-card-brand { min-height: 36px; display: flex; align-items: center; }
 .eco-card-brand .brand-logo-img img { height: 28px; }
@@ -63,18 +63,23 @@
 .eco-card-tag { display: inline-block; padding: 3px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: color-mix(in srgb, var(--card-accent) 15%, transparent); color: var(--card-accent); border: 1px solid color-mix(in srgb, var(--card-accent) 30%, transparent); }
 .eco-card p { color: var(--muted); font-size: 15px; margin: 0; flex: 1; }
 .eco-card-link { font-size: 14px; font-weight: 600; color: var(--card-accent); display: inline-flex; align-items: center; gap: 6px; margin-top: auto; }
-@media (max-width: 800px) { .eco-branches { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+@media (max-width: 960px) { .eco-branches { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .eco-branches { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
 
 /* 4. Marketing: tabovi, tekst lijevo (sticky), primjeri desno */
 .mkt2 { border-top: 1px solid var(--line); }
 .mkt2-top { text-align: center; }
 .mkt2-top h2 { margin: 0 auto 22px; max-width: 22ch; }
-.mkt2-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); justify-content: center; }
-.mkt2-tabs button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px; border-radius: 9999px; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.03); color: var(--text); font: 500 15px var(--font-body); cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s; }
-.mkt2-tabs button svg { color: var(--accent-light); }
-.mkt2-tabs button:hover { border-color: var(--accent); }
-.mkt2-tabs button.is-on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.mkt2-tabs button.is-on svg { color: inherit; }
+.mkt2-tabs { display: flex; flex-wrap: wrap; gap: clamp(12px, 2vw, 24px); margin-bottom: clamp(28px, 4vw, 48px); justify-content: center; }
+.mkt2-tabs button { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px; border-radius: 16px; border: 0; background: none; color: var(--muted); font: 500 13px var(--font-body); cursor: pointer; transition: color 0.2s; width: clamp(80px, 10vw, 110px); }
+.mkt2-tab-circle { width: clamp(56px, 7vw, 72px); height: clamp(56px, 7vw, 72px); border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, 0.04); border: 1.5px solid var(--line); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+.mkt2-tab-circle svg { color: var(--accent-light); transition: color 0.2s; }
+.mkt2-tab-label { line-height: 1.25; text-align: center; }
+.mkt2-tabs button:hover .mkt2-tab-circle { border-color: var(--accent); transform: scale(1.06); }
+.mkt2-tabs button:hover { color: var(--text); }
+.mkt2-tabs button.is-on .mkt2-tab-circle { background: var(--accent); border-color: var(--accent); }
+.mkt2-tabs button.is-on .mkt2-tab-circle svg { color: var(--accent-ink); }
+.mkt2-tabs button.is-on { color: var(--text); }
 .mkt2-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 80px); align-items: start; animation: stage-in 0.4s ease-out; }
 .mkt2-text { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
 .mkt2-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, #161616); color: var(--accent-light); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); }
@@ -102,9 +107,11 @@
 }
 @media (prefers-reduced-motion: reduce) { .mkt2-blob { animation: none; } }
 @media (max-width: 860px) {
-  .mkt2-tabs { flex-wrap: nowrap; overflow-x: auto; margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); padding: 2px var(--gutter) 8px; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
+  .mkt2-tabs { flex-wrap: nowrap; overflow-x: auto; margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); padding: 2px var(--gutter) 8px; scroll-padding-inline: var(--gutter); scrollbar-width: none; gap: 8px; }
   .mkt2-tabs::-webkit-scrollbar { display: none; }
-  .mkt2-tabs button { flex: none; white-space: nowrap; }
+  .mkt2-tabs button { flex: none; width: 86px; }
+  .mkt2-tab-circle { width: 52px; height: 52px; }
+  .mkt2-tab-label { font-size: 11px; }
   .mkt2-body { grid-template-columns: 1fr; }
   .mkt2-examples { flex-direction: row; overflow-x: auto; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 6px; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; }
   .mkt2-examples::-webkit-scrollbar { display: none; }
