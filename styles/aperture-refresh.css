@@ -51,10 +51,27 @@
 }
 @media (prefers-reduced-motion: reduce) { .circle-reveal ellipse { transition: none; } }
 
-/* Preserve the official blue Bosnalijek mark on a light badge. */
-.client-cloud[data-client="bosnalijek"] { background: #f3f0e9; }
+/* A consistent white client wall, retaining the original transparent marks. */
+.client-cloud img, .medallion img { filter: brightness(0) invert(1); }
+.client-cloud[data-client="bosnalijek"] { background: transparent; }
 
 .client-cloud[data-client="skuter"] img { width: 62%; height: 62%; filter: brightness(0) invert(1); }
+.header-current { display: none; }
+.site-header .nav-left > a, .site-header .nav-right > a, .site-header .nav-dd-trigger { position: relative; }
+.site-header .nav-left > a.active, .site-header .nav-right > a.active, .site-header .nav-dd-trigger.active { color: #ffad6b; background: #f5842614; border-radius: 99px; }
+.site-header .nav-left > a.active::after, .site-header .nav-right > a.active::after, .site-header .nav-dd-trigger.active::after { content: ''; position: absolute; bottom: 2px; left: calc(50% - 10px); width: 20px; height: 3px; border-radius: 99px; background: #f58426; }
+.site-header .logo[aria-current="page"]::after { content: ''; position: absolute; bottom: -7px; left: calc(50% - 3px); width: 6px; height: 6px; border-radius: 50%; background: #f58426; }
+.site-header .mobile-menu a.active, .site-header .mobile-dd-trigger.active { color: #ffad6b; text-decoration: underline; text-decoration-color: #f58426; text-decoration-thickness: 2px; text-underline-offset: 7px; }
+.ref-service-list summary .service-chevron { position: absolute; right: 12px; color: #f58426; flex-shrink: 0; transition: transform .2s ease; }
+.ref-service-list details[open] .service-chevron { transform: rotate(180deg); }
+@media (max-width: 860px) {
+ .site-header .logo { top: 11px; }
+ .site-header .logo .brand-logo-img img { width: 104px; }
+ .site-header .logo[aria-current="page"]::after { display: none; }
+ .header-current { display: flex; align-items: center; justify-content: center; gap: 5px; position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); max-width: 190px; color: #e1d8d0; font: 500 8px/1.2 var(--font-body); white-space: nowrap; }
+ .header-current i { display: block; width: 4px; height: 4px; flex: 0 0 4px; border-radius: 50%; background: #f58426; }
+}
+@media (prefers-reduced-motion: reduce) { .ref-service-list summary .service-chevron { transition: none; } }
 .ref-case-copy .ref-case-summary { margin-bottom: 18px; }
 .ref-case-detail { color: #bdb8b2; font-size: 14px; line-height: 1.85; margin: 0 0 25px; }
 .ref-case-copy > .ref-text-link { margin-top: 23px; }

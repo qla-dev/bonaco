@@ -26,6 +26,16 @@ export const CLIENTS: { id: string; name: string; logo: string }[] = [
     "logo": "/media/clients/Omega.png"
   },
   {
+    "id": "zelene-doline",
+    "name": "Zelene Doline",
+    "logo": "/media/clients/zelene-doline-white.svg"
+  },
+  {
+    "id": "bravocrem",
+    "name": "Bravo Crem",
+    "logo": "/media/clients/bravocrem-white.svg"
+  },
+  {
     "id": "orasi",
     "name": "OraSì",
     "logo": "/media/clients/orasi.webp"

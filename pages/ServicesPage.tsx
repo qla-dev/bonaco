@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import SEO from '../components/SEO';
 import BrandLogo from '../components/BrandLogo';
 import BrandServiceLinks from '../components/BrandServiceLinks';
@@ -46,7 +46,7 @@ export default function ServicesPage() {
           const includes = SERVICE_INCLUDES[service.slug];
           return (
             <details id={service.slug} key={service.slug} open={index === 0}>
-              <summary><h2>{translated.title}</h2><span className="service-plus">+</span></summary>
+              <summary><h2>{translated.title}</h2><ChevronDown className="service-chevron" size={22} aria-hidden="true" /></summary>
               <div className="ref-service-content">
                 <div>
                   <p className="service-lead">{translated.short}</p>

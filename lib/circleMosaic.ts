@@ -5,8 +5,8 @@ export function mosaicCircles(key: string, portrait = false): MosaicCircle[] {
   let seed = 2166136261;
   for (const char of key) seed = Math.imul(seed ^ char.charCodeAt(0), 16777619);
   const random = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let n = Math.imul(seed ^ seed >>> 15, 1 | seed); n ^= n + Math.imul(n ^ n >>> 7, 61 | n); return ((n ^ n >>> 14) >>> 0) / 4294967296; };
-  const circles: MosaicCircle[] = [portrait ? { x: 390, y: 150, r: 120 } : { x: 270 + random() * 85, y: 180 + random() * 65, r: 88 + random() * 13 }];
-  for (const target of [84, 78, 72, 68, 62, 58, 53, 48, 43, 38, 34, 30, 26]) {
+  const circles: MosaicCircle[] = [portrait ? { x: 390, y: 150, r: 120 } : { x: 270 + random() * 65, y: 190 + random() * 45, r: 108 + random() * 12 }];
+  for (const target of [95, 86, 78, 70, 62, 54, 47, 40, 33]) {
     let placed = false;
     for (let r = target * (.94 + random() * .12); r >= 22 && !placed; r -= 5) {
       let best: MosaicCircle | undefined;
