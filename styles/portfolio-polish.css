@@ -49,15 +49,19 @@
 .voices-heading h2 { font-size: clamp(30px, 3.4vw, 45px); margin: 0 0 14px; }
 .voices-disclosure { color: #bcaaa0; font-size: 12px; margin: 0 0 27px; }
 .voices-viewport { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
-.voices-track { display: flex; width: max-content; animation: voice-drift 85s linear infinite; }
-.voices-group { display: flex; gap: 20px; padding-right: 20px; }
-.voice-circle { width: 338px; height: 338px; border-radius: 50%; padding: 40px 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid #f5842655; background: radial-gradient(ellipse at 25% 0, #f584261d, #101010 70%); }
-.voice-circle > svg { color: #f58426; flex-shrink: 0; margin-bottom: 7px; }
+.client-voices .voices-track { display: flex; width: max-content; animation: voice-drift 95s linear infinite !important; will-change: transform; }
+.voices-group { display: flex; min-width: 100vw; justify-content: space-around; gap: 18px; padding-right: 18px; }
+.voice-circle { width: 296px; height: 296px; border-radius: 50%; padding: 27px 35px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid #f5842655; background: radial-gradient(ellipse at 25% 0, #f584261d, #101010 70%); }
+.voice-brandmark { width: 126px; height: 54px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; margin-bottom: 9px; }
+.voice-brandmark img { display: block; flex-shrink: 0; width: 96px; height: 96px; max-width: none; object-fit: contain; filter: brightness(0) invert(1); }
+.voice-brandmark-summer img { width: 174px; height: 174px; }
+.voice-brandmark-pivara img, .voice-brandmark-wine img { width: 54px; height: 54px; filter: grayscale(1) contrast(8); mix-blend-mode: screen; }
+.voice-brandmark-wine img { clip-path: circle(48% at 50% 50%); }
 .voice-draft { color: #c6a58b; font-size: 8px; text-transform: uppercase; letter-spacing: .08em; }
-.voice-circle p { font-size: 12px; line-height: 1.65; color: #d6d0c9; margin: 12px 0; }
+.voice-circle p { font-size: 12px; line-height: 1.65; color: #d6d0c9; margin: 10px 0; }
 .voice-circle h3 { margin: 0; color: #fff; font-size: 13px; font-weight: 600; }
 .voices-pause { display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid #f5842660; background: transparent; color: #cfc3b8; min-height: 44px; padding: 8px 16px; margin-top: 20px; border-radius: 99px; cursor: pointer; font-size: 11px; }
-.client-voices.is-paused .voices-track, .voices-viewport:hover .voices-track, .voices-viewport:focus-within .voices-track { animation-play-state: paused; }
+.client-voices.is-paused .voices-track { animation-play-state: paused !important; }
 @keyframes voice-drift { to { transform: translateX(-50%); } }
 @media (max-width: 600px) {
  .ref-case-triptych { padding-top: 28px; }
@@ -76,16 +80,18 @@
  .ref-contact .contact-form .btn { width: 100%; }
  .reference-brand-cover > span { font-size: 9px; margin-top: 15px; }
  .client-voices { padding-top: 44px; }
- .voice-circle { width: min(310px, calc(100vw - 52px)); height: min(310px, calc(100vw - 52px)); padding: 30px 35px; }
+ .voice-circle { width: min(264px, calc(100vw - 44px)); height: min(264px, calc(100vw - 44px)); padding: 25px 30px; }
+ .voice-brandmark { height: 46px; margin-bottom: 7px; }
+ .voice-brandmark-pivara img, .voice-brandmark-wine img { width: 46px; height: 46px; }
  .voice-circle p { font-size: 11px; margin-block: 10px; }
  .voice-circle h3 { font-size: 12px; }
  .voices-group { gap: 14px; padding-right: 14px; }
  .voices-disclosure { font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
- .voices-track { animation: none; }
- .voices-viewport { overflow-x: auto; mask-image: none; }
- .voices-group[aria-hidden="true"] { display: none; }
- .voices-pause { display: none; }
  .project-example img { transition: none; }
 }
+
+/* Match the explicitly requested continuous client ribbon on both screen sizes. */
+.creative-reel.hv { height: 100dvh; }
+.creative-reel .reel-picture { object-fit: cover !important; object-position: center; }
