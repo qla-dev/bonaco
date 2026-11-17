@@ -1,9 +1,10 @@
+import { PORTFOLIO_2026 } from './portfolio2026.ts';
 import type { Project } from '../types';
 
 // Studije slučaja. NACRT: tekstovi su sastavljeni samo iz činjenica s postojećeg sajta
 // (REA export: portfolio, testimonijali). Bonaco dostavlja konačan opis zadatka,
 // angažmana i potvrđenih rezultata – tada zamijeniti tekstove ispod.
-export const PROJECTS: Project[] = [
+const ARCHIVE_PROJECTS: Project[] = [
   {
     slug: 'summer-lounge',
     client: 'Summer Lounge',
@@ -94,8 +95,10 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+export const PROJECTS: Project[] = [...PORTFOLIO_2026, ...ARCHIVE_PROJECTS.filter(p => !PORTFOLIO_2026.some(n => n.slug === p.slug))];
+
 export const CATEGORIES = ['Sve', 'Društvene mreže', 'Web dizajn', 'Grafički dizajn', 'Foto i video', 'Event'];
 
 export const CATEGORY_EN: Record<string, string> = {
-  Sve: 'All', 'Društvene mreže': 'Social media', 'Web dizajn': 'Web design', 'Grafički dizajn': 'Graphic design', 'Foto i video': 'Photo and video', Event: 'Events',
+  Sve: 'All', 'Društvene mreže': 'Social media', 'Web dizajn': 'Web design', 'Grafički dizajn': 'Graphic design', 'Foto i video': 'Photo and video', Event: 'Events', 'OOH / DOOH':'OOH / DOOH', 'Influencer marketing':'Influencer marketing', Kampanje:'Campaigns',
 };

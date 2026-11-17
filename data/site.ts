@@ -37,14 +37,14 @@ export const GOOGLE_REVIEWS: { rating: number | null; count: number | null; url:
 
 // Glavni meni (BS putanje; EN se dobija preko localize()). Vijesti su u footeru.
 export const NAV_OFFER = [
-  { to: '/nase-usluge/', bs: 'Marketing', en: 'Marketing' },
-  { to: '/bonexis/', bs: 'Bonexis', en: 'Bonexis' },
+  { to: '/nase-usluge/', bs: 'Bonaco marketing', en: 'Bonaco marketing' },
+  { to: '/bonexis/', bs: 'Bonexis · Uskoro', en: 'Bonexis · Coming soon' },
   { to: '/bonevents/', bs: 'Bonevent', en: 'Bonevent' },
-  { to: '/poslovni-oglasi/', bs: 'Poslovni Oglasi', en: 'Poslovni Oglasi' },
+  { to: '/poslovni-oglasi/', bs: 'Poslovni oglasi', en: 'Poslovni oglasi' },
 ];
 export const NAV = [
-  { to: '/portfolio/', bs: 'Radovi', en: 'Work' },
   { to: '/o-nama/', bs: 'O nama', en: 'About' },
+  { to: '/portfolio/', bs: 'Radovi', en: 'Work' },
   { to: '/kontakt/', bs: 'Kontakt', en: 'Contact' },
 ];
 
@@ -64,7 +64,7 @@ export const HERO_STYLE: 'dots' | 'sphere' = 'dots';
 export const HERO_VIDEO: { desktop: string | null; mobile: string | null; poster: string | null; posterMobile: string | null } = {
   desktop: '/video/hero.mp4',
   mobile: null,
-  poster: null,
+  poster: '/media/hero-poster.webp',
   posterMobile: null,
 };
 

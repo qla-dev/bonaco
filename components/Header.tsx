@@ -62,12 +62,17 @@ export default function Header() {
   return (
     <header className={`site-header ${pathname === home ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
-        <Link to={brand === 'bonaco' ? home : to(`/${brand}/`)} className="logo" aria-label={t('početna', 'home')}>
+        <Link to={home} className="logo" aria-label={t('početna', 'home')}>
           <BrandLogo brand={brand} />
         </Link>
         <nav className="main-nav" aria-label={t('Glavni meni', 'Main menu')}>
-          <div className="nav-dd" onMouseEnter={() => setDdOpen(true)} onMouseLeave={() => setDdOpen(false)}>
-            <button type="button" className={`nav-dd-trigger${offerActive ? ' active' : ''}`} aria-expanded={ddOpen} onClick={() => setDdOpen(o => !o)}>
+          <div className="nav-left">
+            <NavLink to={to('/portfolio/')}>{t('Radovi', 'Work')}</NavLink>
+            <NavLink to={to('/o-nama/')}>{t('O nama', 'About')}</NavLink>
+          </div>
+          <div className="nav-right">
+          <div className="nav-dd" onMouseEnter={() => setDdOpen(true)} onMouseLeave={() => setDdOpen(false)} onKeyDown={event => { if (event.key === 'Escape') setDdOpen(false); }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDdOpen(false); }}>
+            <button type="button" className={`nav-dd-trigger${offerActive ? ' active' : ''}`} aria-expanded={ddOpen} onClick={event => setDdOpen(current => event.detail === 0 ? !current : true)}>
               {t('Šta nudimo', 'What we offer')} <ChevronDown size={14} />
             </button>
             <div className={`nav-dd-panel${ddOpen ? ' is-open' : ''}`}>
@@ -78,7 +83,9 @@ export default function Header() {
               ))}
             </div>
           </div>
-          {navLinks}
+
+            <NavLink to={to('/kontakt/')}>{t('Kontakt', 'Contact')}</NavLink>
+          </div>
         </nav>
         <LangSwitch />
         <button className="icon-btn menu-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-label={open ? t('Zatvori meni', 'Close menu') : t('Otvori meni', 'Open menu')}>

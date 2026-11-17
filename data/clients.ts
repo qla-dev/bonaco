@@ -1,27 +1,63 @@
-// Logotipi klijenata (REA export -> public/img/clients). Redoslijed = redoslijed prikaza.
-export const CLIENTS: { id: string; name: string }[] = [
-  { id: 'fk-zeljeznicar', name: 'FK Željezničar' },
-  { id: 'medicana', name: 'Medicana' },
-  { id: 'sarajevska-pivara', name: 'Sarajevska pivara' },
-  { id: 'women-in-adria', name: 'Women in Adria' },
-  { id: 'golf-klub-sarajevo', name: 'Golf klub Sarajevo' },
-  { id: 'zmaj', name: 'Zmaj' },
-  { id: 'omega', name: 'Omega' },
-  { id: 'inspect-rgh', name: 'Inspect RGH' },
-  { id: 'rooms', name: 'ROOMS.hr' },
-  { id: 'beautyco', name: 'BeautyCO' },
-  { id: 'bh-travel', name: 'BH Travel' },
-  { id: 'summer-lounge', name: 'Summer Lounge' },
-  { id: 'max-media', name: 'Max Media' },
-  { id: 'pivnica-hs', name: 'Pivnica HS' },
-  { id: 'ecomm', name: 'eComm' },
-  { id: 'edemus', name: 'Edemus' },
-  { id: 'flok', name: 'Flok' },
-  { id: 'km-trade', name: 'KM Trade' },
-  { id: 'm90', name: 'M90' },
-  { id: 'peoples', name: 'Peoples' },
-  { id: 'tehnologic', name: 'Tehnologic' },
-  { id: 'an-carstvo', name: 'AN Carstvo' },
-  { id: 'bb', name: 'BB' },
-  { id: 'btf', name: 'BTF' },
+// Aktuelni izbor klijenata, lokalna testna verzija.
+export const CLIENTS: { id: string; name: string; logo: string }[] = [
+  {
+    "id": "asa",
+    "name": "ASA Banka",
+    "logo": "/media/clients/ASA.png"
+  },
+  {
+    "id": "bh-posta",
+    "name": "BH Pošta",
+    "logo": "/media/clients/BH POŠTA.png"
+  },
+  {
+    "id": "symbol",
+    "name": "Symbol",
+    "logo": "/media/clients/SYMBOL.png"
+  },
+  {
+    "id": "omega",
+    "name": "Omega",
+    "logo": "/media/clients/Omega.png"
+  },
+  {
+    "id": "protech",
+    "name": "Protech",
+    "logo": "/media/clients/Protech.png"
+  },
+  {
+    "id": "jovs",
+    "name": "JOVS",
+    "logo": "/media/clients/JOVS.png"
+  },
+  {
+    "id": "summer-lounge",
+    "name": "Summer Lounge",
+    "logo": "/media/clients/SummerLounge.png"
+  },
+  {
+    "id": "peoples",
+    "name": "Peoples",
+    "logo": "/media/clients/People.png"
+  },
+  {
+    "id": "flok",
+    "name": "Flok",
+    "logo": "/media/clients/Flok.png"
+  },
+  {
+    "id": "zmaj",
+    "name": "Zmaj",
+    "logo": "/media/clients/Zmaj.png"
+  },
+  {
+    "id": "golf-klub-sarajevo",
+    "name": "Golf klub Sarajevo",
+    "logo": "/img/clients/golf-klub-sarajevo.webp"
+  },
+  {
+    "id": "ecomm",
+    "name": "eComm",
+    "logo": "/img/clients/ecomm.webp"
+  }
 ];

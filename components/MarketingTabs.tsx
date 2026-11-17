@@ -1,28 +1,20 @@
-// Marketing na početnoj (dorade v08): jedna sekcija s tabovima usluga.
-// Desktop: tekst LIJEVO (sticky unutar sekcije), primjeri DESNO se smjenjuju pri kratkom skrolu.
-// Tekst se mijenja tek kad se izabere drugi tab. Klijenti kompaktno na dnu iste cjeline.
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import { hl } from '../lib/hl';
 import { SERVICES } from '../data/services';
-import { PROJECTS, CATEGORY_EN } from '../data/projects';
 import { CLIENTS } from '../data/clients';
 import ServiceIcon from './ServiceIcon';
-import { MarketingVideo } from './Circles';
 
-// Postojeći radovi po usluzi (2–3 primjera; "video" = postojeći showreel)
-const EXAMPLES: Record<string, string[]> = {
-  'strategija-kampanje': ['summer-lounge', 'rooms-hr', 'beautyco'],
-  'drustvene-mreze': ['summer-lounge', 'beautyco', 'rooms-hr'],
-  'graficki-dizajn': ['rooms-hr', 'summer-lounge'],
-  'foto-video': ['video', 'bh-travel', 'beautyco'],
-  'web-dizajn': ['bunjo-grupacija', 'max-media', 'beautyco'],
-  seo: ['bunjo-grupacija', 'beautyco'],
-  'ooh-dooh': ['max-media'],
-};
+// Fotografije iz potvrđenog Drive foldera _Klijenti, uvijek u istom redu.
+const WORK = [
+  { src: '/media/asa-poslovnica.webp', name: 'ASA Banka', bs: 'Fotografija iz poslovnice ASA Banke', en: 'ASA Bank branch photography' },
+  { src: '/media/symbol-tas-352.webp', name: 'Symbol', bs: 'Symbol TAS kolekcija', en: 'Symbol TAS collection' },
+  { src: '/media/bh-posta-event.webp', name: 'BH Pošta', bs: 'BH Pošta, fotografija s događaja', en: 'BH Pošta event photography' },
+  { src: '/media/summer-lounge-2026.webp', name: 'Summer Lounge', bs: 'Summer Lounge 2026, atmosfera događaja', en: 'Summer Lounge 2026 event atmosphere' },
+];
 
 export default function MarketingTabs() {
   const { lang, t, to } = useLang();
@@ -31,20 +23,39 @@ export default function MarketingTabs() {
   const [sel, setSel] = useState(initial >= 0 ? initial : 0);
   useEffect(() => { if (initial >= 0) setSel(initial); }, [initial]);
 
+  const tabs = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const row = tabs.current;
+    const active = row?.querySelector<HTMLElement>('[aria-selected="true"]');
+    if (!row || !active || row.scrollWidth <= row.clientWidth) return;
+    const r = row.getBoundingClientRect(), a = active.getBoundingClientRect();
+    if (a.left < r.left || a.right > r.right) row.scrollBy({left: a.left - r.left - (r.width - a.width) / 2, behavior: 'smooth'});
+  }, [sel]);
   const s = SERVICES[sel];
   const x = tr(s, lang);
-  const examples = (EXAMPLES[s.slug] ?? []).slice(0, 3);
-  const cat = (c: string) => (lang === 'en' ? CATEGORY_EN[c] ?? c : c);
 
   return (
     <section className="section mkt2" id="marketing">
       <div className="container">
+        {/* Klijenti: kompaktno, dio marketing cjeline */}
+        <div className="mkt2-clients">
+          <span className="mkt2-clients-label">{t('Klijenti sa kojima smo radili', 'Clients we have worked with')}</span>
+          <div className="mq-row">
+            <ul className="mq-track">
+              {[...CLIENTS, ...CLIENTS].map((c, i) => (
+                <li key={i} aria-hidden={i >= CLIENTS.length || undefined}>
+                  <span className="medallion sm2" title={c.name}><img src={asset(c.logo)} alt={i < CLIENTS.length ? c.name : ''} loading="lazy" width="200" height="200" /></span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
         <div className="mkt2-top">
           <span className="eyebrow">Marketing</span>
           <h2>{hl(t('Full-service marketing, od ideje do *rezultata*', 'Full-service marketing, from idea to *results*'))}</h2>
         </div>
 
-        <div className="mkt2-tabs" role="tablist" aria-label={t('Usluge', 'Services')}>
+        <div ref={tabs} className="mkt2-tabs" role="tablist" aria-label={t('Usluge', 'Services')}>
           {SERVICES.map((v, i) => (
             <button key={v.slug} type="button" role="tab" id={`tab-${v.slug}`} aria-selected={i === sel} aria-controls="mkt2-panel"
               className={i === sel ? 'is-on' : ''} onClick={() => setSel(i)}>
@@ -63,43 +74,20 @@ export default function MarketingTabs() {
             <p className="mkt2-short">{x.short}</p>
             <p>{x.text}</p>
             <div className="btn-row">
-              <Link to={`${to('/kontakt/')}?usluga=${encodeURIComponent(s.title)}`} className="btn btn-primary">{t('Zatražite ponudu', 'Request a quote')}</Link>
-              <Link to={`${to('/nase-usluge/')}#${s.slug}`} className="btn btn-glass">{t('Više o usluzi', 'More')} <ArrowRight size={16} /></Link>
+              <Link to={`${to('/nase-usluge/')}#${s.slug}`} className="btn btn-glass mkt2-more-circle">{t('Više o usluzi', 'More about this service')} <ArrowRight size={16} /></Link>
             </div>
           </div>
-          <ul className="mkt2-examples">
-            {examples.map(id => {
-              if (id === 'video') {
-                return <li key={id} className="mkt2-ex mkt2-ex-video"><MarketingVideo /><span className="mkt2-cap"><strong>Showreel</strong><small>{t('Foto i video produkcija', 'Photo and video production')}</small></span></li>;
-              }
-              const p = PROJECTS.find(q => q.slug === id);
-              if (!p) return null;
-              const px = tr(p, lang);
-              return (
-                <li key={id} className="mkt2-ex">
-                  <Link to={to(`/portfolio/${p.slug}/`)}>
-                    <span className="mkt2-blob"><img src={asset(p.cover)} alt={px.coverAlt} loading="lazy" /></span>
-                    <span className="mkt2-cap"><strong>{p.client}</strong><small>{p.categories.map(cat).join(' · ')}</small></span>
-                  </Link>
-                </li>
-              );
-            })}
+          <ul className="mkt2-examples" aria-label={t('Fotografije naših klijenata', 'Client photography')}>
+            {WORK.map(work => <li key={work.name} className="mkt2-ex">
+              <figure>
+                <span className="mkt2-blob"><img src={asset(work.src)} alt={work[lang]} loading="lazy" width="640" height="640" /></span>
+                <figcaption className="mkt2-cap"><strong>{work.name}</strong></figcaption>
+              </figure>
+            </li>)}
           </ul>
         </div>
 
-        {/* Klijenti: kompaktno, dio marketing cjeline */}
-        <div className="mkt2-clients">
-          <span className="mkt2-clients-label">{t('Brendovi s kojima smo sarađivali', 'Brands we have worked with')}</span>
-          <div className="mq-row">
-            <ul className="mq-track">
-              {[...CLIENTS, ...CLIENTS].map((c, i) => (
-                <li key={i} aria-hidden={i >= CLIENTS.length || undefined}>
-                  <span className="medallion sm2" title={c.name}><img src={asset(`/img/clients/${c.id}.webp`)} alt={i < CLIENTS.length ? c.name : ''} loading="lazy" width="200" height="200" /></span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+
       </div>
     </section>
   );

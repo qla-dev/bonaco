@@ -11,9 +11,15 @@ import './styles/dashboard.css';
 import './styles/brief.css';
 import './styles/bonexis-dark.css';
 import './styles/v08.css';
+import './styles/creative-home.css';
+import './styles/reference-pages.css';
+import './styles/compact-circles.css';
+import './styles/centered-refresh.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
   </StrictMode>,
 );
+
+import './styles/aperture-refresh.css';

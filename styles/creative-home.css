@@ -1,0 +1,139 @@
+/* Bonaco: a short, image-led homepage with a floating glass navigation. */
+.site-header, .site-header.is-overlay, .site-header.is-scrolled {
+  position:fixed; top:24px; left:0; right:0; width:100%; background:transparent;
+  border:0; backdrop-filter:none; -webkit-backdrop-filter:none; box-shadow:none;
+}
+.site-header .header-inner {
+  width:calc(100% - 48px); max-width:940px; height:68px; padding:8px 20px;
+  display:grid; grid-template-columns:1fr 134px 1.15fr 80px; gap:16px;
+  border:1px solid rgba(255,255,255,.25); border-radius:999px;
+  background:rgba(95,95,95,.17); backdrop-filter:blur(20px) saturate(1.45);
+  -webkit-backdrop-filter:blur(20px) saturate(1.45);
+  box-shadow:inset 0 1px 2px rgba(255,255,255,.18),0 6px 30px #0002;
+}
+.site-header.is-scrolled .header-inner { background:rgba(35,35,35,.55); }
+.site-header .logo { grid-column:2; grid-row:1; margin:0; justify-self:center; }
+.site-header .logo .brand-logo-img img { height:auto; width:126px; }
+.site-header .main-nav { display:contents; }
+.nav-left,.nav-right { display:flex; align-items:center; justify-content:center; gap:4px; }
+.nav-left { grid-column:1; grid-row:1; }
+.nav-right { grid-column:3; grid-row:1; }
+.site-header .main-nav a,.site-header .nav-dd-trigger { font-size:12px; font-weight:500; white-space:nowrap; padding:8px; color:#f5f5f4; }
+.site-header .header-inner > .lang-switch { grid-column:4; grid-row:1; margin:0; padding:0; border:0; background:transparent; gap:2px; }
+.site-header .lang-switch a { min-width:32px; min-height:32px; font-size:11px; }
+.site-header .lang-switch a[aria-current] { background:#ffffff20; color:white; }
+.nav-dd-panel { background:rgba(22,22,22,.94); backdrop-filter:blur(20px); }
+.site-header .menu-toggle { display:none; }
+.bonaco-creative { background:#050505; color:#f6f5f0; }
+.creative-reel.hv { position:relative; width:100%; height:100svh; min-height:0; margin:0; padding:0; background:#000; overflow:hidden; }
+.creative-reel::after,.creative-reel::before { display:none; }
+.creative-reel .reel-picture { display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.reel-controls { position:absolute; right:32px; bottom:26px; display:flex; gap:12px; align-items:center; z-index:2; }
+.reel-picker { display:flex; gap:0; }
+.reel-picker button,.reel-pause { display:grid; place-items:center; width:44px; height:44px; padding:0; border-radius:50%; border:0; background:#1114; color:#fff; cursor:pointer; }
+.reel-picker button span { display:block; width:7px; height:7px; border-radius:50%; background:#ffffff70; }
+.reel-picker button[aria-pressed=true] span { background:white; box-shadow:0 0 0 5px #ffffff20; }
+.reel-pause { border:1px solid #ffffff40; backdrop-filter:blur(8px); }
+.creative-home { padding:44px 0 48px; scroll-margin-top:116px; }
+.creative-home .container,.bonaco-creative > .brand-services { max-width:1240px; }
+.creative-label { font:400 11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.05em; text-transform:uppercase; color:#b6b6b6; margin:0; }
+.creative-clients { text-align:center; margin:0 auto 60px; }
+.creative-client-list { display:flex; align-items:center; justify-content:center; gap:clamp(10px,2vw,26px); padding-top:20px; }
+.creative-client-list > span { display:grid; place-items:center; width:clamp(40px,5.5vw,64px); aspect-ratio:1; flex-shrink:0; border-radius:50%; background:#111; border:1px solid #ffffff18; overflow:hidden; }
+.creative-client-list img { width:100%; height:100%; object-fit:contain; padding:5px; }
+.creative-intro { display:grid; grid-template-columns:220px minmax(0,1fr); gap:30px; align-items:start; }
+.creative-intro > p { padding-top:14px; }
+.creative-intro .creative-label i { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; background:#f58426; }
+.creative-intro .creative-label span { color:#777; display:inline-block; margin-top:8px; }
+.creative-home h1 { font:400 clamp(46px,5.8vw,80px)/.98 Georgia,'Times New Roman',serif; letter-spacing:-.055em; margin:0; text-wrap:initial; }
+.creative-home h1 em { font-weight:400; color:#f58426; }
+.creative-services { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:50px; align-items:center; margin:34px 0 20px; }
+.creative-service-menu { display:flex; flex-wrap:wrap; gap:9px 22px; }
+.creative-service-menu button { display:block; position:relative; padding:7px 0; border:0; background:none; color:#858585; font:400 13px/1.3 var(--font-body); cursor:pointer; text-align:left; }
+.creative-service-menu button[aria-selected=true] { color:#f5f5f4; }
+.creative-service-menu button[aria-selected=true]::after { content:''; position:absolute; bottom:0; left:0; width:28px; height:2px; border-radius:4px; background:#f58426; }
+.creative-service-menu button:hover { color:white; }
+.creative-service-panel { display:flex; align-items:center; gap:28px; }
+.creative-service-panel p { font-size:16px; line-height:1.5; color:#aaa; margin:0; flex:1; max-width:36ch; }
+.creative-round-link { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; width:100px; height:100px; border-radius:50%; border:1px solid #ffffff4a; color:#fff; text-align:center; padding:18px; flex:none; text-decoration:none; font-size:11px; line-height:1.3; transition:background .25s,border-color .25s; }
+.creative-round-link:hover { background:#f58426; color:#050505; border-color:#f58426; }
+.circle-wave { position:relative; width:100%; aspect-ratio:3; cursor:crosshair; touch-action:pan-y; isolation:isolate; }
+.circle-wave canvas,.circle-wave svg { display:block; width:100%; height:100%; position:absolute; inset:0; }
+.circle-wave canvas { opacity:0; transition:opacity .3s; }
+.circle-wave canvas.is-ready { opacity:1; }
+.circle-wave:focus-visible { outline:1px solid #f58426; outline-offset:8px; border-radius:80px; }
+.creative-work-bottom { display:flex; justify-content:space-between; align-items:center; gap:24px; margin:14px 0 0; }
+.creative-work-picker { display:flex; flex-wrap:wrap; gap:4px 24px; }
+.creative-work-picker button { background:none; border:0; padding:8px 0; font:400 13px/1.3 var(--font-body); color:#7b7b7b; cursor:pointer; }
+.creative-work-picker button[aria-pressed=true] { color:white; }
+.creative-work-picker button[aria-pressed=true]::before { content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:#f58426; margin-right:7px; vertical-align:middle; }
+.creative-wave-hint { color:#777; font:400 11px/1.5 ui-monospace,Consolas,monospace; }
+.bonaco-creative .brand-services { padding-top:16px; padding-bottom:46px; }
+.bonaco-creative .brand-service-row { grid-template-columns:44px 200px minmax(0,1fr) 24px; min-height:84px; padding:16px 0; gap:24px; border-bottom-color:#ffffff20; }
+.bonaco-creative .brand-service-line { width:44px; height:7px; }
+.brand-service-logo { display:flex; align-items:center; gap:10px; }
+.brand-service-logo .brand-logo-img img { width:138px; height:auto; }
+.brand-service-logo .po-partner-logo { width:44px; height:44px; }
+.brand-service-logo > strong { font-size:13px; max-width:10ch; line-height:1.3; }
+.bonaco-creative .brand-service-description { font-size:13px; }
+.bonaco-creative .brand-service-arrow { width:18px; color:#bbb; }
+html:has(.bonaco-creative) .site-footer { background:#050505; border-top:1px solid #ffffff20; padding-top:30px; padding-bottom:24px; }
+html:has(.bonaco-creative) .footer-grid { gap:30px; }
+html:has(.bonaco-creative) .footer-grid p,html:has(.bonaco-creative) .footer-grid li { font-size:12px; }
+html:has(.bonaco-creative) .footer-title { font-size:11px; color:#aaa; text-transform:uppercase; letter-spacing:.06em; }
+html:has(.bonaco-creative) .footer-bottom { margin-top:26px; padding-top:20px; font-size:10px; }
+html:has(.bonaco-creative) .footer-brands { display:none; }
+html:has(.bonaco-creative) .footer-grid > div:has(.footer-brands) { display:none; }
+html:has(.bonaco-creative) .footer-grid { grid-template-columns:1.2fr .8fr 1fr; }
+@media(max-width:1040px) {
+ .site-header .header-inner { display:flex; max-width:700px; gap:12px; height:60px; }
+ .site-header .main-nav { display:none; }
+ .site-header .header-inner>.lang-switch { margin-left:auto; }
+ .site-header .menu-toggle { display:grid; margin:0; }
+ .site-header .mobile-menu { margin:10px auto 0; width:calc(100% - 32px); max-width:700px; border-radius:30px; background:#111f; padding:26px; height:auto; max-height:calc(100svh - 110px); overflow-y:auto; }
+ .creative-client-list { gap:12px; }
+ .creative-client-list>span { width:48px; }
+ .creative-intro { grid-template-columns:180px minmax(0,1fr); }
+}
+@media(max-width:760px) {
+ .site-header,.site-header.is-overlay,.site-header.is-scrolled { top:12px; }
+ .site-header .header-inner { width:calc(100% - 24px); padding:8px 12px 8px 18px; height:56px; }
+ .site-header .logo .brand-logo-img img { width:112px; }
+ .site-header .menu-toggle { width:34px; height:34px; min-width:34px; min-height:34px; }
+ .creative-reel .reel-picture { object-fit:cover; }
+ .reel-controls { right:18px; bottom:20px; }
+ .creative-home { padding:28px 0; }
+ .creative-clients { margin-bottom:36px; }
+ .creative-client-list { flex-wrap:wrap; gap:10px; max-width:400px; margin:auto; }
+ .creative-client-list>span { width:42px; }
+ .creative-label { font-size:10px; }
+ .creative-intro { grid-template-columns:1fr; gap:18px; }
+ .creative-intro>p { padding:0; }
+ .creative-intro .creative-label span { margin:0 0 0 8px; }
+ .creative-intro .creative-label br { display:none; }
+ .creative-home h1 { font-size:clamp(47px,12vw,70px); }
+ .creative-services { grid-template-columns:1fr; gap:20px; margin:24px 0 20px; }
+ .creative-service-menu { gap:4px 18px; }
+ .creative-service-menu button { font-size:11px; min-height:36px; }
+ .creative-service-panel { gap:18px; }
+ .creative-service-panel p { font-size:14px; }
+ .creative-round-link { width:84px; height:84px; padding:12px; }
+ .creative-work-bottom { flex-direction:column; gap:8px; margin-top:12px; }
+ .creative-work-picker { justify-content:space-between; width:100%; gap:5px; }
+ .creative-work-picker button { font-size:10px; min-height:36px; }
+ .creative-wave-hint { font-size:10px; }
+ .bonaco-creative .brand-services { padding-top:6px; padding-bottom:30px; }
+ .bonaco-creative .brand-service-row { grid-template-columns:26px minmax(0,1fr) 20px; gap:8px 16px; padding:17px 0; }
+ .bonaco-creative .brand-service-line { width:26px; height:6px; }
+ .brand-service-logo .brand-logo-img img { width:112px; }
+ .brand-service-logo .po-partner-logo { width:36px; height:36px; }
+ .brand-service-logo>strong { font-size:12px; max-width:none; }
+ .bonaco-creative .brand-service-description { grid-column:2; grid-row:2; font-size:12px; }
+ .brand-service-arrow { grid-column:3; grid-row:1 / span 2; }
+ html:has(.bonaco-creative) .footer-grid { grid-template-columns:1fr 1fr; gap:24px; }
+ html:has(.bonaco-creative) .footer-brand { grid-column:1 / -1; }
+ html:has(.bonaco-creative) .footer-brand>p { max-width:46ch; }
+}
+@media(prefers-reduced-motion:reduce) { .creative-wave-hint { display:none; } .circle-wave { cursor:default; } }
+
+.creative-work { scroll-margin-top:124px; }

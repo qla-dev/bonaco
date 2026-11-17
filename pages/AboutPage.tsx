@@ -1,93 +1,36 @@
-// O nama: iskustvo, način rada, vrijednosti i veza s Bonexisom i BonEventsom.
-// Bez izmišljenih fotografija tima i prostorija (brief v1.3); brojke tek nakon provjere.
 import SEO from '../components/SEO';
-import BrandTiles from '../components/BrandTiles';
-import { CTASection, TestimonialCarousel, YouTube } from '../components/Blocks';
-import { SITE, VIDEOS } from '../data/site';
+import { BrandOrbit, EditorialIntro, ClientClouds, ContactBand } from '../components/ReferenceSections';
 import { useLang } from '../lib/i18n';
-import { hl } from '../lib/hl';
-
-const PILLARS = [
-  {
-    bs: { title: 'Misija', text: 'Pomažemo kompanijama da se istaknu kroz strategiju, kreativu, produkciju i digital, s jasnim ciljem i mjerljivim rezultatom.' },
-    en: { title: 'Mission', text: 'We help companies stand out through strategy, creative, production and digital, with a clear goal and measurable results.' },
-  },
-  {
-    bs: { title: 'Dugoročna saradnja', text: 'Strategije prilagođavamo ciljevima svakog klijenta i gradimo odnose koji traju godinama, a ne jednu kampanju.' },
-    en: { title: 'Long-term partnership', text: 'We tailor strategies to each client’s goals and build relationships that last for years, not just one campaign.' },
-  },
-  {
-    bs: { title: 'Nove tehnologije', text: 'Pratimo trendove prije nego postanu standard. Zato s partnerom qla.dev razvijamo Bonexis AI rješenja.' },
-    en: { title: 'New technology', text: 'We follow trends before they become the standard. That is why we are building Bonexis AI solutions with our partner qla.dev.' },
-  },
-];
 
 export default function AboutPage() {
-  const { lang, t } = useLang();
+  const { t } = useLang();
+  const approach = [
+    { title: t('Prvo slušamo.', 'First, we listen.'), text: t('Upoznajemo vaš brend, publiku i ono što želite promijeniti. Dobra strategija počinje pravim pitanjima, jasnim ciljem i razumijevanjem ljudi kojima se obraćamo.', 'We get to know your brand, audience and what you want to change. A good strategy starts with the right questions, a clear goal and an understanding of the people we want to reach.') },
+    { title: t('Zatim povezujemo.', 'Then, we connect.'), text: t('Dizajn, tekst, fotografija, video i oglašavanje rade zajedno. Od objave na telefonu do događaja uživo, tražimo isti prepoznatljiv karakter vašeg brenda.', 'Design, copy, photography, video and advertising work together. From a post on a phone to a live event, we bring the same recognisable brand character to every touchpoint.') },
+    { title: t('I ostajemo uključeni.', 'And we stay involved.'), text: t('Razmjenjujemo ideje, pratimo reakcije publike i unapređujemo naredni korak. Saradnju gradimo kroz otvoren razgovor, pažnju prema detaljima i kontinuitet.', 'We exchange ideas, follow audience reactions and improve the next step. We build collaboration through open conversations, attention to detail and consistency.') },
+  ];
   return (
-    <>
-      <SEO
-        title={t('O nama', 'About us')}
-        description={t(
-          `Bonaco Media je full-service marketinška agencija iz Sarajeva, osnovana ${SITE.founded}. Uz marketing razvijamo Bonexis AI rješenja i BonEvents organizaciju događaja.`,
-          `Bonaco Media is a full-service marketing agency from Sarajevo, founded in ${SITE.founded}. Alongside marketing we build Bonexis AI solutions and run BonEvents.`,
-        )}
-      />
-      <section className="page-hero">
-        <div className="container">
-          <span className="eyebrow">{t('O nama', 'About us')}</span>
-          <h1>{hl(t('Spoj *kreativnosti* i strategije', 'Where *creativity* meets strategy'))}</h1>
-          <p className="lead">{hl(t(
-            `Bonaco Media je marketinška agencija sa sjedištem u **Sarajevu**, osnovana **${SITE.founded}. godine**. Za nekoliko godina postali smo **pouzdan partner** domaćim i međunarodnim klijentima.`,
-            `Bonaco Media is a marketing agency based in **Sarajevo**, founded in **${SITE.founded}**. In a few years we have become a **trusted partner** to local and international clients.`,
-          ))}</p>
-        </div>
+    <div className="ref-page ref-about">
+      <SEO title={t('O nama', 'About')} description={t('Bonaco Media, marketing, kreativa i produkcija iz Sarajeva.', 'Bonaco Media: marketing, creative and production from Sarajevo.')} />
+      <BrandOrbit />
+      <EditorialIntro secondary label={t('O nama', 'About us')} title={<>{t('Različite vještine.', 'Different skills.')}<br /><span>{t('Zajednička ideja.', 'One shared idea.')}</span></>}>
+        <p>{t('Bonaco Media je marketinška agencija iz Sarajeva. Za brendove u Bosni i Hercegovini i Evropi povezujemo strategiju, dizajn, sadržaj, produkciju i oglašavanje. Polazimo od onoga što vaš brend čini posebnim i pretvaramo to u komunikaciju koju ljudi mogu prepoznati i razumjeti.', 'Bonaco Media is a marketing agency from Sarajevo. We connect strategy, design, content, production and advertising for brands in Bosnia and Herzegovina and across Europe. We start with what makes your brand distinctive and turn it into communication people can recognise and understand.')}</p>
+        <p>{t('Naš rad obuhvata različite industrije i formate: bankarstvo, modu, turizam, proizvode i događaje. Svakom projektu pristupamo kroz njegovu publiku, kontekst i cilj, uz pažnju prema detaljima od prvog prijedloga do finalne izvedbe.', 'Our work spans banking, fashion, tourism, products and events. We approach each project through its audience, context and goals, paying attention to details from the first proposal to the final execution.')}</p>
+      </EditorialIntro>
+      <section className="ref-wrap about-approach" aria-label={t('Kako radimo', 'How we work')}>
+        {approach.map((item, index) => <article key={item.title}><span className="about-step" aria-hidden="true">0{index + 1}</span><h2>{item.title}</h2><p>{item.text}</p></article>)}
       </section>
-
-      <section className="section">
-        <div className="container about-grid">
-          <div>
-            <h2>{hl(t('Kako *radimo*', 'How we *work*'))}</h2>
-            <p>{hl(t(
-              'Naš tim slaže svaki detalj vašeg marketinga kao **slagalicu**: strategija, sadržaj, dizajn, produkcija i mjerenje rezultata imaju svoje mjesto u **istom planu**.',
-              'Our team fits every detail of your marketing together like a **puzzle**: strategy, content, design, production and measurement all have their place in **one plan**.',
-            ))}</p>
-            <p>{hl(t(
-              'Vizija nam je povezati brendove s **pravom publikom** i stvoriti **trajne digitalne veze** koje povećavaju angažman i povjerenje.',
-              'Our vision is to connect brands with **the right audience** and build **lasting digital relationships** that grow engagement and trust.',
-            ))}</p>
-          </div>
-          <div className="showreel">
-            <YouTube id={VIDEOS.showreel} title={t('Bonaco Media – pogledajte naš rad', 'Bonaco Media – see our work')} />
-          </div>
-        </div>
+      <section className="ref-wrap about-connection">
+        <p>{t('Marketing je naš osnovni krug. Bonevent okuplja događaje i produkciju, Bonexis razvija poslovna AI rješenja, a Poslovni oglasi povezuju poslodavce i kandidate. Svaki smjer ima svoj fokus, uz zajednički pristup kreativnosti i saradnji.', 'Marketing is at our core. Bonevent brings together events and production, Bonexis develops business AI solutions, and Poslovni oglasi connects employers and candidates. Each area has its own focus and a shared approach to creativity and collaboration.')}</p>
       </section>
-
-      <section className="section light">
-        <div className="container">
-          <div className="pillars">
-            {PILLARS.map(p => (
-              <div key={p.bs.title} className="pillar">
-                <h3>{p[lang].title}</h3>
-                <p>{p[lang].text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="ref-wrap about-story">
+        <p className="ref-eyebrow">{t('Od prvog razgovora do izvedbe', 'From the first conversation to delivery')}</p>
+        <h2>{t('Iza svakog kruga', 'Behind every circle')}<br /><span>{t('stoje ljudi i ideje.', 'are people and ideas.')}</span></h2>
+        <p>{t('Najbolje saradnje za nas počinju znatiželjom. Želimo znati kako vaš posao funkcioniše, šta vaši kupci cijene i gdje postoji prostor da komunikacija bude jasnija, hrabrija ili jednostavno bliža ljudima. Iz tih razgovora nastaju ideje koje imaju smisla za vaš brend.', 'For us, the best collaborations begin with curiosity. We want to understand how your business works, what your customers value and where communication could be clearer, bolder or closer to people. Those conversations lead to ideas that make sense for your brand.')}</p>
+        <p>{t('Jedna ideja može živjeti na mnogo mjesta: u vizuelnom identitetu, objavi, filmu, web stranici ili događaju. Naš posao je da ti dijelovi govore istim jezikom. Zato zajedno razmišljamo o sadržaju i izvedbi, o velikoj slici i detalju koji joj daje karakter.', 'One idea can live in many places: a visual identity, a post, a film, a website or an event. Our job is to make those pieces speak the same language. We think about content and execution together, about the bigger picture and the detail that gives it character.')}</p>
       </section>
-
-      <BrandTiles />
-
-      {lang === 'bs' && (
-        <section className="section">
-          <div className="container">
-            <h2 className="center-title">{hl('Šta kažu naši *klijenti*')}</h2>
-            <TestimonialCarousel />
-          </div>
-        </section>
-      )}
-
-      <CTASection />
-    </>
+      <ClientClouds />
+      <ContactBand />
+    </div>
   );
 }

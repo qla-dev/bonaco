@@ -1,38 +1,39 @@
 import { useState } from 'react';
 import SEO from '../components/SEO';
-import { CTASection, ProjectCard, catLabel } from '../components/Blocks';
-import { CATEGORIES, PROJECTS } from '../data/projects';
+import { WorkGrid, ClientClouds, ContactBand } from '../components/ReferenceSections';
+import { PORTFOLIO_2026 } from '../data/portfolio2026';
+import { CATEGORY_EN } from '../data/projects';
 import { useLang } from '../lib/i18n';
-import { hl } from '../lib/hl';
+
+const filters = ['Društvene mreže', 'Foto i video', 'Event', 'Web dizajn', 'Grafički dizajn', 'Kampanje', 'OOH / DOOH'];
+const categoryOrder: Record<string, string[]> = {
+  'Grafički dizajn': ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'bonaco-craft', 'bosnalijek'],
+  Kampanje: ['symbol-tas'],
+  'OOH / DOOH': ['opel-dooh', 'zmaj', 'jovs-bilbordi'],
+};
 
 export default function PortfolioPage() {
-  const { lang, t } = useLang();
-  const [cat, setCat] = useState('Sve');
-  const list = cat === 'Sve' ? PROJECTS : PROJECTS.filter(p => p.categories.includes(cat));
-  const available = CATEGORIES.filter(c => c === 'Sve' || PROJECTS.some(p => p.categories.includes(c)));
+  const { t, lang } = useLang();
+  const [filter, setFilter] = useState(filters[0]);
+  const order = categoryOrder[filter] || [];
+  const rank = (slug: string) => order.includes(slug) ? order.indexOf(slug) : order.length;
+  const projects = PORTFOLIO_2026.filter(project => project.categories.includes(filter)).sort((a, b) => rank(a.slug) - rank(b.slug));
   return (
-    <>
-      <SEO title={t('Radovi', 'Work')} description={t('Odabrani radovi Bonaco Media: društvene mreže, web stranice, grafički dizajn, fotografija, video i eventi.', 'Selected work by Bonaco Media: social media, websites, graphic design, photography, video and events.')} />
-      <section className="page-hero">
-        <div className="container">
-          <span className="eyebrow">{t('Radovi', 'Work')}</span>
-          <h1>{hl(t('Projekti na koje smo *ponosni*', 'Projects we are *proud* of'))}</h1>
-          <p className="lead">{t('Odabrani radovi za brendove iz regije. Kliknite na projekat da vidite zadatak, naš angažman i rezultate.', 'Selected work for brands across the region. Open a project to see the brief, our role and the results.')}</p>
+    <div className="ref-page">
+      <SEO title={t('Radovi', 'Work')} description={t('Odabrani radovi Bonaco Media: društvene mreže, kampanje, produkcija i web dizajn.', 'Selected Bonaco Media work: social media, campaigns, production and web design.')} />
+      <section className="ref-wrap ref-portfolio">
+        <div className="ref-work-heading"><h1>{t('Naši radovi', 'Our work')}</h1><span>Bonaco Media</span></div>
+        <div className="ref-filters" aria-label={t('Filtriraj radove', 'Filter projects')}>
+          {filters.map(category => (
+            <button key={category} type="button" aria-pressed={filter === category} onClick={() => setFilter(category)}>
+              {lang === 'en' ? (CATEGORY_EN[category] || category) : category}
+            </button>
+          ))}
         </div>
+        <WorkGrid projects={projects} />
       </section>
-      <section className="section">
-        <div className="container">
-          <div className="filters" role="group" aria-label={t('Filter projekata', 'Filter projects')}>
-            {available.map(c => (
-              <button key={c} className={`chip ${c === cat ? 'is-on' : ''}`} aria-pressed={c === cat} onClick={() => setCat(c)}>{catLabel(c, lang)}</button>
-            ))}
-          </div>
-          <div className="projects-grid">
-            {list.map(p => <ProjectCard key={p.slug} p={p} />)}
-          </div>
-        </div>
-      </section>
-      <CTASection />
-    </>
+      <ClientClouds />
+      <ContactBand />
+    </div>
   );
 }

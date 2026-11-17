@@ -1,35 +1,7 @@
 import { useState } from 'react';
-import { MapPin } from 'lucide-react';
 import SEO from '../components/SEO';
-import ContactBlock from '../components/ContactBlock';
+import ContactForm from '../components/ContactForm';
+import { BrandOrbit } from '../components/ReferenceSections';
 import { SITE } from '../data/site';
 import { useLang } from '../lib/i18n';
-import { hl } from '../lib/hl';
-
-export default function ContactPage() {
-  const [map, setMap] = useState(false);
-  const { t } = useLang();
-  return (
-    <>
-      <SEO title={t('Kontakt', 'Contact')} description={t('Kontaktirajte Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Upit za marketing, BonEvents ili Bonexis.', 'Contact Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Inquiries for marketing, BonEvents or Bonexis.')} />
-      <section className="page-hero">
-        <div className="container">
-          <h1>{hl(t('Recite nam šta vam *treba*', 'Tell us what you *need*'))}</h1>
-        </div>
-      </section>
-      <ContactBlock heading={false} />
-      <section className="map">
-        {/* Mapa se učitava tek na klik: brža stranica i bez Google kolačića dok posjetilac ne odluči */}
-        {map ? (
-          <iframe src={SITE.mapsEmbed} title={t('Lokacija Bonaco Media na mapi', 'Bonaco Media location on the map')} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-        ) : (
-          <button className="map-placeholder" onClick={() => setMap(true)}>
-            <MapPin size={28} />
-            <span>{SITE.address.street}, {SITE.address.zip} {SITE.address.city}</span>
-            <span className="btn btn-secondary btn-sm">{t('Prikaži mapu', 'Show map')}</span>
-          </button>
-        )}
-      </section>
-    </>
-  );
-}
+export default function ContactPage(){const{t}=useLang();const[map,setMap]=useState(false);return <div className="ref-page ref-contact"><SEO title={t('Kontakt','Contact')} description={t('Javite se Bonaco Media timu u Sarajevu.','Get in touch with the Bonaco Media team in Sarajevo.')}/><section className="ref-wrap ref-contact-layout"><div className="ref-contact-copy"><p className="ref-eyebrow">{t('Kontakt','Contact')}</p><h1>{t('Vaša ideja.','Your idea.')}<br/><span>{t('Naš sljedeći','Our next')}<br/>{t('razgovor.','conversation.')}</span></h1><p>{t('Ispričajte nam šta želite pokrenuti. Marketing, događaj ili nova poslovna prilika — pronaći ćemo pravi krug ljudi za vaš projekat.','Tell us what you want to start. Marketing, an event or a new business opportunity — we’ll bring the right people together for your project.')}</p><a href={'mailto:'+SITE.email}>{SITE.email}</a><a href={SITE.phoneHref}>{SITE.phone}</a><address>{SITE.address.street}<br/>Sarajevo, Bosna i Hercegovina</address><div className="ref-map-circle">{map?<iframe title={t('Bonaco Media lokacija','Bonaco Media location')} src={SITE.mapsEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/>:<button onClick={()=>setMap(true)}>{t('Pronađite nas','Find us')}<span>Hiseta 11 ↗</span></button>}</div></div><div className="ref-form-panel"><ContactForm/></div></section><div className="ref-contact-family"><BrandOrbit compact/></div></div>;}

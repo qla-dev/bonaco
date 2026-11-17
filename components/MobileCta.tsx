@@ -1,8 +1,8 @@
 // Fiksni CTA na dnu ekrana (samo telefon), po uzoru na qla.dev: "Pogledajte radove" + "Zatražite ponudu".
-// Uvijek vidljiv na telefonu (dugmad u heroju se tada ne prikazuju); sakriven na kontaktu i dok je meni otvoren.
+// Na početnoj se pojavljuje tek poslije videa; sakriven na kontaktu i dok je meni otvoren.
 // Boja prati sekciju ispod trake: kad skrolom uđete u Bonexis/BonEvents, dugme postepeno (proporcionalno
 // skrolu) prelazi u tirkiznu/ljubičastu i nazad.
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLang } from '../lib/i18n';
 import { onScroll } from '../lib/scroller';
@@ -14,13 +14,19 @@ export default function MobileCta() {
   const { pathname } = useLocation();
   const { t, to } = useLang();
   const ref = useRef<HTMLElement>(null);
+  const isHome = pathname.replace(/\/$/, '') === to('/').replace(/\/$/, '');
+  const [clearHero, setClearHero] = useState(!isHome);
 
   useEffect(() => {
     let raf = 0;
+    setClearHero(!isHome);
     const update = () => {
       raf = 0;
       const bar = ref.current;
       if (!bar) return;
+      const hero = isHome ? document.querySelector('.hv') : null;
+      const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 0;
+      setClearHero(!hero || hero.getBoundingClientRect().bottom <= headerHeight);
       const line = bar.getBoundingClientRect().top; // gornja ivica trake
       let brand = '', p = 0;
       document.querySelectorAll<HTMLElement>('main section[data-brand]').forEach(sec => {
@@ -46,11 +52,11 @@ export default function MobileCta() {
     const off = onScroll(onS);
     const t0 = setTimeout(update, 300);
     return () => { off(); ro.disconnect(); cancelAnimationFrame(raf); clearTimeout(t0); document.documentElement.style.removeProperty('--cta-h'); };
-  }, [pathname]);
+  }, [pathname, isHome]);
 
-  if (pathname.startsWith(to('/kontakt/'))) return null;
+  if (isHome || pathname.startsWith(to('/kontakt/'))) return null;
   return (
-    <nav ref={ref} className="mobile-cta" aria-label={t('Brze akcije', 'Quick actions')}>
+    <nav ref={ref} className={`mobile-cta ${isHome && !clearHero ? 'is-over-hero' : ''}`} aria-label={t('Brze akcije', 'Quick actions')}>
       <Link to={to('/portfolio/')} className="btn btn-primary">{t('Pogledajte radove', 'See our work')}</Link>
       <Link to={to('/kontakt/')} className="btn btn-glass">{t('Zatražite ponudu', 'Request a quote')}</Link>
     </nav>

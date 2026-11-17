@@ -1,6 +1,6 @@
 // Prvi ekran (brief v1.3, A + Video 2). Bez videa: 3D sfera od tri rotirajuća prstena s projektima
 // (three.js, okreće se prevlačenjem, klik otvara rad), a naslov stoji u sredini sfere.
-// Kad Bonaco preda Video 2 (data/site.ts HERO_VIDEO), prikazuje se tiha video petlja s HTML naslovom.
+// Aktivni video ispunjava prvi ekran bez naslova i marketinških dugmadi.
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Pause, Play } from 'lucide-react';
@@ -14,7 +14,7 @@ import type { OrbitHandle } from './heroOrbitScene';
 import { hl } from '../lib/hl';
 
 // Logotipi na sferi (12 = po 4 na svakom aktivnom prstenu) i klijenti s povezanom studijom slučaja
-const ORBIT_CLIENTS = ['fk-zeljeznicar', 'medicana', 'sarajevska-pivara', 'zmaj', 'golf-klub-sarajevo', 'women-in-adria', 'beautyco', 'rooms', 'summer-lounge', 'bh-travel', 'max-media', 'flok'];
+const ORBIT_CLIENTS = CLIENTS.slice(0, 12).map(c => c.id);
 const CLIENT_PROJECT: Record<string, string> = { beautyco: 'beautyco', rooms: 'rooms-hr', 'bh-travel': 'bh-travel', 'summer-lounge': 'summer-lounge', 'max-media': 'max-media' };
 
 // Tačkice oko B. (HERO_STYLE = 'dots'): bježe od miša, skrol upravlja tokom
@@ -48,7 +48,7 @@ function HeroSphere({ paused }: { paused: boolean }) {
   useEffect(() => {
     let dead = false;
     const items = ORBIT_CLIENTS.map(id => CLIENTS.find(c => c.id === id)!).filter(Boolean).map(c => ({
-      src: asset(`/img/clients/${c.id}.webp`),
+      src: asset(c.logo),
       href: CLIENT_PROJECT[c.id] ? to(`/portfolio/${CLIENT_PROJECT[c.id]}/`) : null,
       label: c.name,
     }));
@@ -137,7 +137,7 @@ export default function HeroVideo() {
   }
 
   return (
-    <section className={`hv ${reduce || paused ? 'is-paused' : ''}`} aria-label="Bonaco Media">
+    <section className={`hv hv-brand-film ${reduce || paused ? 'is-paused' : ''}`} aria-label="Bonaco Media">
       <div className="hv-media" aria-hidden="true">
         {!reduce ? (
           <video ref={video} autoPlay muted loop playsInline preload="metadata" poster={asset(HERO_VIDEO.poster) || undefined}>

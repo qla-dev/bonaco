@@ -1,0 +1,205 @@
+/* Shared alignment for the compact desktop and mobile compositions. */
+.ref-intro { display: block; text-align: center; }
+.ref-intro > .ref-eyebrow { padding: 0; margin-bottom: 16px; }
+.ref-intro h1, .ref-intro h2 { margin-inline: auto; }
+.ref-intro > div > p { margin-inline: auto; max-width: 660px; }
+.ref-intro .ref-text-link { margin-top: 2px; }
+.ref-selected::before { margin-inline: auto; }
+.ref-work-card { text-align: center; }
+.ref-card-title { justify-content: center; }
+.ref-tags { justify-content: center; }
+.ref-work-bottom { flex-direction: column; justify-content: center; gap: 16px; text-align: center; }
+.ref-work-heading { justify-content: center; flex-direction: column; gap: 10px; text-align: center; }
+.ref-work-heading > span { display: none; }
+.ref-filters { justify-content: center; }
+
+/* One uninterrupted horizontal line: no stagger or vertical floating. */
+.client-clouds { position: relative; padding: 28px 0 38px; }
+.cloud-viewport { padding: 12px 0; scrollbar-width: none; }
+.cloud-viewport::-webkit-scrollbar { display: none; }
+.cloud-group { gap: 28px; padding-right: 28px; }
+.client-cloud:nth-child(n) { width: 90px; height: 90px; flex: 0 0 90px; animation: none; transform: none; }
+.cloud-pause { margin: 12px auto 0; width: 36px; height: 36px; color: #aaa; border-color: #ffffff24; }
+.cloud-pause:hover { color: #f58426; border-color: #f58426; }
+
+/* Compact, centred subsidiary rows. */
+.ref-home .brand-service-row, .ref-marketing .brand-service-row {
+  grid-template-columns: 1fr; justify-items: center; gap: 10px;
+  min-height: 0; padding: 21px 36px; position: relative; text-align: center;
+}
+.ref-home .brand-service-line, .ref-marketing .brand-service-line { grid-column: 1; grid-row: auto; width: 34px; height: 5px; }
+.brand-service-logo { justify-content: center; grid-column: 1; grid-row: auto; }
+.ref-home .brand-service-description, .ref-marketing .brand-service-description { grid-column: 1; grid-row: auto; max-width: 480px; font-size: 11px; }
+.ref-home .brand-service-arrow, .ref-marketing .brand-service-arrow { position: absolute; right: 5px; top: 50%; width: 17px; height: 17px; transform: translateY(-50%); }
+.brand-service-logo .brand-logo-img img { width: 132px; }
+.poslovni-wordmark { display: block; object-fit: contain; height: auto; background: transparent; }
+.brand-service-logo .poslovni-wordmark { width: 174px; height: auto; padding: 0; border-radius: 0; }
+
+.ref-contact-band { display: block; text-align: center; padding-block: 60px; }
+.ref-contact-band h2 { margin: 0 auto; max-width: 850px; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.2; }
+.ref-contact-band h2 a { color: inherit; text-decoration: none; }
+.ref-contact-band h2 svg { color: #f58426; width: 32px; height: 32px; vertical-align: middle; margin-left: 12px; transition: transform .2s; }
+.ref-contact-band h2 a:hover { color: #f58426; }
+.ref-contact-band h2 a:hover svg { transform: translate(3px, -3px); }
+
+/* The parent and all three branches use the same circle dimensions. */
+.brand-orbit { --orbit-diameter: 150px; min-height: 0; padding-bottom: 50px; text-align: center; }
+.orbit-core, .orbit-brand, .brand-orbit.is-compact .orbit-core {
+  width: var(--orbit-diameter); height: var(--orbit-diameter); max-width: none;
+  aspect-ratio: 1; flex: none; gap: 13px;
+}
+.orbit-core .brand-logo-img img, .orbit-brand .brand-logo-img img { width: calc(var(--orbit-diameter) * .72); height: auto; }
+.orbit-core > span:last-child, .orbit-brand > span:last-child { font-size: 8px; line-height: 1.4; padding-inline: 7px; }
+.orbit-branches { gap: 45px; }
+.orbit-brand > img.poslovni-wordmark { width: 87%; height: auto; padding: 0; border-radius: 0; }
+.brand-orbit.is-compact { min-height: 0; }
+.ref-contact-family .brand-orbit { min-height: 0; }
+.about-approach { text-align: center; }
+.about-step { display: inline-grid; place-items: center; width: 38px; height: 38px; border: 1px solid #f5842670; border-radius: 50%; color: #f58426; font-size: 10px; }
+.about-approach h2 { margin-top: 18px; }
+.about-connection { border: 1px solid #f5842645; border-radius: 40px; text-align: center; }
+.about-connection p { margin-inline: auto; }
+.about-story { text-align: center; padding-block: 35px 15px; }
+.about-story h2 { font-size: clamp(30px, 3.5vw, 47px); line-height: 1.15; margin: 0 0 28px; }
+.about-story h2 span { color: #f58426; }
+.about-story > p:not(.ref-eyebrow) { max-width: 730px; margin: 0 auto 20px; font-size: 14px; color: #b5b0aa; }
+
+.ref-service-hero { text-align: center; }
+.ref-service-hero > div > p:not(.ref-eyebrow) { margin-inline: auto; }
+.ref-service-hero .brand-logo-img { margin-inline: auto; }
+.ref-service-hero > .circle-mosaic { justify-self: center; }
+.ref-service-hero > .po-orbit-art { align-self: center; justify-self: center; margin-inline: auto; }
+.ref-section-line { justify-content: center; text-align: center; flex-wrap: wrap; }
+.ref-moments, .ref-steps, .ref-job-columns, .ref-case-heading, .ref-case-intro, .ref-gallery-grid figcaption { text-align: center; }
+.ref-service-list summary { position: relative; justify-content: center; text-align: center; padding-inline: 38px; }
+.ref-service-list summary .service-plus { position: absolute; right: 12px; margin-left: 0; }
+.ref-service-content { text-align: center; margin-left: 0; }
+.ref-service-content p { margin-inline: auto; }
+.service-includes { justify-content: center; }
+.ref-service-content > .circle-mosaic { justify-self: center; }
+.ref-case-intro ul { list-style: none; padding: 0; }
+.ref-case-intro li::before { content: '·'; color: #f58426; margin-right: 6px; }
+.ref-next { text-align: center; }
+.ref-next .ref-work-grid { margin-inline: auto; }
+.jobs-finish { justify-content: center; text-align: center; }
+.po-orbit-art > div { background: #f7f7f7; }
+.po-orbit-art img.poslovni-wordmark { width: 88%; height: auto; filter: none; }
+.ref-contact-copy { text-align: center; }
+.ref-contact-copy > p:not(.ref-eyebrow) { margin-inline: auto; }
+.ref-map-circle { margin-inline: auto; }
+.ref-footer { text-align: center; }
+.ref-footer-top { justify-items: center; }
+.ref-footer-top nav { align-items: center; }
+.ref-footer-bottom { justify-content: center; gap: 24px; }
+
+/* Quieter menu typography, retaining generous touch targets. */
+.site-header .main-nav a, .site-header .nav-dd-trigger { font-size: 10.5px; font-weight: 500; }
+.site-header .nav-dd-panel a { justify-content: center; text-align: center; font-size: 11px; }
+.site-header .mobile-menu { text-align: center; bottom: auto; }
+.mobile-menu nav > a, .mobile-menu .mobile-dd-trigger { font: 500 16px/1.4 var(--font-body); min-height: 44px; padding: 11px 0; text-align: center; justify-content: center; }
+.mobile-menu .mobile-dd-panel { padding-left: 0; }
+.mobile-menu .mobile-dd-panel a { font: 400 13px/1.4 var(--font-body); min-height: 44px; text-align: center; }
+.mobile-menu .mobile-social { justify-content: center; }
+.mobile-menu > .btn { display: inline-flex; margin-inline: auto; font-size: 11px; }
+
+@media (max-width: 860px) {
+  .ref-intro { display: block; }
+  .ref-contact-copy { padding-right: 0; }
+  .ref-contact-copy .ref-map-circle { position: static; margin-top: 25px; width: 130px; height: 130px; }
+}
+@media (max-width: 680px) {
+  .ref-intro > .ref-eyebrow { margin-bottom: 13px; font-size: 9px !important; }
+  .ref-intro > div > p { max-width: 36ch; }
+  .ref-card-title { gap: 4px; }
+  .ref-portfolio .ref-work-card:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc((100% - 17px) / 2); justify-self: center; }
+  .ref-card-title h2 { font-size: 16px; }
+  .ref-work-bottom { margin-top: 24px; gap: 13px; }
+  .client-clouds { padding-block: 23px 27px; }
+  .client-cloud:nth-child(n) { width: 72px; height: 72px; flex-basis: 72px; }
+  .cloud-group { gap: 18px; padding-right: 18px; }
+  .cloud-pause { margin-top: 6px; }
+  .ref-home .brand-service-row, .ref-marketing .brand-service-row { min-height: 0; padding: 18px 24px; gap: 9px; }
+  .ref-home .brand-service-description, .ref-marketing .brand-service-description { font-size: 10px; max-width: 30ch; }
+  .brand-service-logo .brand-logo-img img { width: 120px; }
+  .brand-service-logo .poslovni-wordmark { width: 156px; }
+  .ref-contact-band { padding-block: 37px; margin-top: 10px; }
+  .ref-contact-band h2 { font-size: 27px; max-width: 340px; }
+  .ref-contact-band h2 svg { width: 24px; height: 24px; margin-left: 7px; }
+  .brand-orbit { --orbit-diameter: min(112px, calc((100vw - 56px)/3)); min-height: 0; padding-inline: 18px; padding-bottom: 35px; }
+  .brand-orbit h1 { font-size: 35px; margin-block: 24px; }
+  .orbit-branches { gap: 10px; }
+  .orbit-core, .orbit-brand { gap: 10px; }
+  .orbit-core > span:last-child, .orbit-brand > span:last-child { font-size: 6.5px; }
+  .orbit-brand > img.poslovni-wordmark { padding: 0; }
+  .about-approach { gap: 25px; }
+  .about-connection { padding: 24px 20px; border-radius: 30px; }
+  .about-story { padding-top: 22px; }
+  .about-story > p:not(.ref-eyebrow) { font-size: 12px; }
+  .ref-service-hero { align-items: center; }
+  .ref-service-hero > .circle-mosaic { align-self: center; }
+  .ref-service-content > .circle-mosaic { justify-self: center; }
+  .ref-service-list summary h2 { font-size: 19px; }
+  .jobs-finish { align-items: center; }
+  .ref-footer-bottom { flex-wrap: wrap; gap: 12px 24px; }
+}
+
+/* Orange marks the navigation and client badges; photographs stay clear. */
+.client-cloud:nth-child(n) { border: 1px solid #f5842699; box-shadow: inset 0 0 0 4px #f5842608; }
+.ref-text-link { border-bottom-color: #f5842699; }
+.ref-pill { border-color: #f5842699; background: #f584260b; }
+.ref-work-heading h1::after { content: ''; display: block; width: 32px; height: 3px; margin: 13px auto 0; background: #f58426; border-radius: 999px; }
+.ref-footer { border-top-color: #f5842659; }
+.ref-contact-band h2 a { text-decoration: underline; text-decoration-color: #f58426; text-decoration-thickness: 2px; text-underline-offset: 10px; }
+@media (max-width: 680px) { .ref-contact-band h2 a { text-underline-offset: 6px; text-decoration-thickness: 1px; } }
+
+/* A slow, continuous client ribbon with an explicit pause control. */
+.client-clouds { --cloud-duration: 58s; }
+.client-clouds .cloud-track { animation: cloud-drift var(--cloud-duration) linear infinite !important; will-change: transform; }
+.client-clouds.is-paused .cloud-track { animation-play-state: paused !important; }
+.client-clouds .cloud-group[aria-hidden="true"] { display: flex; }
+.client-clouds .cloud-pause { display: grid; }
+.po-hero-wordmark { width: min(235px, 75%); margin: 0 auto 25px; }
+.po-hero-wordmark .poslovni-wordmark { width: 100%; }
+.ref-jobs .ref-service-hero > .circle-mosaic { width: 100%; }
+
+/* A fuller footer with useful links, contact details and social icons. */
+.ref-footer { padding-block: 42px 24px; background: radial-gradient(ellipse at 90% 0, #f5842610, transparent 55%), #0c0b0a; }
+.ref-footer-top { grid-template-columns: 1.25fr .8fr 1fr 1.15fr; gap: 38px; align-items: start; }
+.ref-footer-top > div { width: 100%; min-width: 0; }
+.ref-footer-top .brand-logo-img img { width: 168px; }
+.ref-footer .footer-brand > a { display: inline-block; }
+.ref-footer p { font-size: 12px; line-height: 1.75; margin: 14px auto 0; color: #a6a29d; max-width: 240px; }
+.ref-footer .footer-signature { display: block; font-size: 10px; color: #f58426; margin-top: 13px; }
+.footer-column h2 { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #f58426; font-weight: 500; margin: 0 0 16px; }
+.ref-footer .footer-column nav { margin-top: 0; gap: 9px; }
+.ref-footer .footer-column a { font-size: 12px; line-height: 1.6; }
+.ref-footer .footer-contact > a { display: block; margin-bottom: 8px; overflow-wrap: anywhere; }
+.ref-footer .footer-contact .footer-address { margin-top: 16px; color: #aaa59f; }
+.ref-footer .footer-follow p { margin-top: 0; max-width: 200px; }
+.ref-footer .footer-social-links { display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.ref-footer .footer-social-links a { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #ffffff30; border-radius: 50%; color: #e7e4de; background: #ffffff05; transition: color .2s, border-color .2s; }
+.ref-footer .footer-social-links a:hover { color: #f58426; border-color: #f58426; }
+.ref-footer-bottom { margin-top: 30px; padding-top: 18px; gap: 16px 30px; flex-wrap: wrap; }
+.ref-footer-bottom span, .ref-footer-bottom a { font-size: 9px; }
+@media (max-width: 900px) {
+ .ref-footer-top { grid-template-columns: 1fr 1fr; gap: 30px; }
+}
+@media (max-width: 680px) {
+ .ref-footer { padding-top: 30px; }
+ .ref-footer-top { gap: 26px 18px; }
+ .ref-footer .footer-brand, .ref-footer .footer-follow { grid-column: 1 / -1; }
+ .ref-footer p { font-size: 11px; max-width: 280px; }
+ .ref-footer .footer-column a { font-size: 11px; }
+ .ref-footer .footer-follow p { max-width: none; }
+ .ref-footer .footer-social-links { margin-top: 14px; }
+ .ref-footer .footer-social-links a { width: 42px; height: 42px; }
+ .ref-footer-bottom { margin-top: 24px; }
+ .ref-footer-bottom > span { flex-basis: 100%; }
+ .po-hero-wordmark { width: 200px; }
+ .ref-jobs .ref-service-hero > .circle-mosaic { width: 90%; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .client-clouds { --cloud-duration: 90s; }
+}
+
+.ref-footer .footer-brand .brand-logo-img, .ref-footer .footer-brand .brand-logo-img img { margin-bottom: 0; }

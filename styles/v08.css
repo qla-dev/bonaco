@@ -236,3 +236,164 @@
   -webkit-background-clip: text; background-clip: text;
   animation: hero-hue 10s ease-in-out infinite alternate;
 }
+
+/* Targeted local review: marketing identity and mobile usability. */
+:root { --poslovnioglasi: #007E87; }
+.hv.hv-brand-film { display:block; height:100svh; min-height:0; padding:0; background:#080808; }
+.hv-brand-film::after { display:none; }
+.hv-brand-film .hv-intro { position:absolute; z-index:2; inset:calc(var(--header-h) + 24px) var(--gutter) auto; width:auto; padding:0; pointer-events:none; }
+.hv-brand-film h1 { font-size:clamp(36px, 4.2vw, 68px); max-width:16ch; line-height:1.08; }
+.hv-brand-film .hv-intro > p { max-width:46ch; color:var(--muted); font-size:18px; line-height:1.6; }
+.hv-brand-film .hv-media { position:absolute; inset:0; z-index:0; width:100%; height:100%; aspect-ratio:auto; }
+.hv-brand-film .hv-media video, .hv-brand-film .hv-media img { width:100%; height:100%; object-fit:cover; }
+.hv-brand-film .hv-media picture { display:block; height:100%; }
+.hv-brand-film .hv-pause { bottom:16px; }
+.eco-branches { grid-template-columns:1.35fr 1fr 1fr 1fr; }
+.eco-card:first-child { border-color:var(--bonaco); background:color-mix(in srgb,var(--bonaco) 8%,var(--bg-2)); }
+.eco-card-brand { gap:10px; flex-wrap:wrap; justify-content:center; }
+.eco-card-name { font-size:18px; }
+.po-partner-logo { object-fit:contain; flex:none; }
+.eco .po-partner-logo { width:48px; height:48px; }
+.po-partner .po-grid { grid-template-columns:112px minmax(0,1fr); max-width:960px; align-items:center; gap:32px; }
+.po-partner .po-title { font-size:clamp(28px,4vw,44px); margin:12px 0; }
+.po-partner .po-copy > p { max-width:62ch; color:var(--muted); margin-bottom:24px; }
+.po-partner { padding-block:56px; }
+.mkt2-ex:nth-child(n) .mkt2-blob { width:100%; aspect-ratio:4/3; border-radius:24px; animation:none; }
+.mkt2-examples .mkt2-blob img { object-fit:contain; }
+.mkt2-drive-work > img, .mkt2-drive-work > video { display:block; width:100%; max-height:400px; object-fit:contain; border-radius:24px; background:#080808; }
+.mkt2-drive-work .mkt2-cap { display:block; margin-top:14px; }
+.mkt2-clients .medallion img { filter:none; opacity:1; object-fit:contain; }
+.mkt2-clients .medallion.sm2 { width:120px; height:100px; padding:6px; }
+.nav-dd-panel { visibility:hidden; }
+.nav-dd-panel.is-open { visibility:visible; }
+.mobile-menu nav > a, .mobile-menu .mobile-dd-trigger { font:700 24px/1.25 var(--font-head); padding:12px 0; min-height:48px; }
+.mobile-menu .mobile-dd-panel a { font:500 17px/1.4 var(--font-body); padding:12px 0; min-height:44px; }
+@media(max-width:960px) { .eco-branches { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:860px) {
+  .mkt2-tabs { justify-content:flex-start; scroll-snap-type:x proximity; width:calc(100% + var(--gutter) * 2); max-width:none; }
+  .mkt2-tabs button { scroll-snap-align:center; }
+  .mkt2-text { text-align:left; align-items:stretch; }
+  .mkt2-text p { max-width:60ch; }
+  .mkt2-head { text-align:center; }
+  .mkt2-text .btn-row { justify-content:flex-start; }
+}
+@media(max-width:760px) {
+  .hv.hv-brand-film { display:block; height:100svh; min-height:0; padding:0; background:#080808; }
+  .hv-brand-film h1 { font-size:clamp(32px,9vw,48px); margin-bottom:18px; max-width:16ch; }
+  .hv-brand-film .hv-intro > p { font-size:16px; line-height:1.55; margin:0; }
+  .hv-brand-film .hv-intro .btn-row { display:none; }
+  .hv-brand-film .hv-media { position:absolute; inset:0; z-index:0; width:100%; height:100%; aspect-ratio:auto; }
+  .site-footer { padding-bottom:calc(var(--cta-h,0px) + 32px + env(safe-area-inset-bottom)); }
+  .eco-lead, .eco-card p { text-align:left; }
+  .po-partner .po-grid { grid-template-columns:1fr; gap:20px; }
+  .po-partner .po-partner-logo { width:80px; height:80px; }
+}
+@media(max-width:560px) { .eco-branches { grid-template-columns:1fr; } .eco-card { align-items:flex-start; text-align:left; padding:22px; } .eco-card-brand { justify-content:flex-start; } }
+
+.po-partner { --accent-light:#5ac4c9; --accent-deep:rgba(0,126,135,.12); --accent-hover:#006a73; }
+
+/* Keep contact inputs within their mobile grid cells. */
+.contact-form .field, .contact-form .field-row { min-width:0; }
+.contact-form .field input, .contact-form .field select, .contact-form .field textarea { min-width:0; max-width:100%; box-sizing:border-box; }
+
+.contact-form .chip { position:relative; }
+.contact-form .chip input { width:1px; height:1px; min-height:0; padding:0; inset:0; }
+
+/* Round hierarchy: one core offering, three compact supporting brands. */
+.hv-brand-film .hv-intro h1 { font-size:clamp(24px,3vw,40px); max-width:18ch; text-shadow:0 2px 16px #000; margin:0; }
+.hv-brand-film .hv-intro .btn-row { pointer-events:auto; position:absolute; top:calc(100svh - var(--header-h) - 124px); left:0; margin:0; }
+.hv-brand-film .hv-pause { z-index:3; bottom:24px; }
+.eco-round { padding-block:56px; text-align:center; }
+.eco-round .eco-title { margin-bottom:32px; }
+.eco-round .eco-core { margin:0 auto 28px; max-width:640px; }
+.eco-main-circle { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:18px; width:280px; height:280px; border-radius:50%; margin:0 auto 24px; padding:36px; background:color-mix(in srgb,var(--bonaco) 9%,var(--bg)); border:1px solid var(--bonaco); text-decoration:none; }
+.eco-main-circle .brand-logo-img img { height:auto; width:160px; }
+.eco-main-circle strong { font-size:25px; line-height:1.2; }
+.eco-main-circle > span:last-child { font-size:12px; color:var(--accent-light); }
+.eco-round .eco-lead { text-align:center; font-size:16px; max-width:54ch; }
+.eco-round .eco-branches { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; max-width:700px; margin:0 auto; }
+.eco-round .eco-branch { min-width:0; }
+.eco-round .eco-card { width:156px; height:156px; border-radius:50%; padding:20px; margin:0 auto 12px; align-items:center; justify-content:center; gap:14px; border:1px solid color-mix(in srgb,var(--card-accent) 55%,var(--line)); background:var(--bg-2); }
+.eco-round .eco-card .brand-logo-img img { height:auto; max-width:112px; max-height:42px; }
+.eco-round .eco-card .po-partner-logo { width:56px; height:56px; }
+.eco-round .eco-card-tag { border:0; padding:0; background:none; font-size:10px; }
+.eco-branch h3 { font-size:15px; margin:0 0 6px; }
+.eco-branch > p { font-size:13px; line-height:1.5; color:var(--muted); max-width:25ch; margin:0 auto; }
+.mkt2-clients { margin:0 0 56px; padding:0 0 40px; text-align:center; border-top:0; border-bottom:1px solid var(--line); }
+.mkt2-clients-label { display:block; text-align:center; font-size:clamp(18px,2vw,24px); text-transform:none; letter-spacing:0; margin:0 0 24px; color:var(--text); }
+.mkt2-clients .medallion.sm2 { width:100px; height:100px; aspect-ratio:1; padding:8px; border-radius:50%; }
+.mkt2-body .mkt2-more-circle { display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px; width:126px; height:126px; flex:0 0 126px; border-radius:50%; padding:20px; white-space:normal; text-align:center; font-size:15px; line-height:1.4; border:1px solid var(--bonaco); background:color-mix(in srgb,var(--bonaco) 10%,var(--bg)); }
+.mkt2-text .btn-row { justify-content:center; }
+.mkt2-examples { gap:24px; }
+.mkt2-ex figure { margin:0; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; }
+.mkt2-ex:nth-child(n) .mkt2-blob { width:min(100%,280px); height:auto; aspect-ratio:1; border-radius:50%; animation:none; }
+.mkt2-examples .mkt2-blob img { object-fit:cover; }
+.mkt2-examples .mkt2-blob.is-artwork { padding:24px; background:#111; }
+.mkt2-examples .mkt2-blob.is-artwork img { object-fit:contain; }
+.mkt2-body.is-text-only { grid-template-columns:1fr; max-width:680px; margin-inline:auto; }
+@media(max-width:760px) {
+ .hv.hv-brand-film { height:calc(100svh - var(--cta-h,76px)); }
+ .hv-brand-film .hv-media video, .hv-brand-film .hv-media img { object-fit:contain; }
+ .hv-brand-film .hv-intro { top:calc(var(--header-h) + 24px); }
+ .hv-brand-film .hv-intro h1 { font-size:clamp(24px,7vw,34px); }
+ .hv-brand-film .hv-pause { bottom:18px; }
+ .eco-round { padding-block:40px; }
+ .eco-main-circle { width:240px; height:240px; padding:28px; gap:14px; }
+ .eco-main-circle strong { font-size:22px; }
+ .eco-round .eco-branches { gap:10px; }
+ .eco-round .eco-card { width:min(100%,112px); height:auto; aspect-ratio:1; padding:12px; gap:10px; }
+ .eco-round .eco-card .brand-logo-img img { max-width:100%; width:80px; }
+ .eco-round .eco-card .po-partner-logo { width:36px; height:36px; }
+ .eco-round .eco-card-tag { font-size:8px; letter-spacing:0; }
+ .eco-branch h3 { font-size:12px; }
+ .eco-branch > p { font-size:11px; }
+ .mkt2-clients { margin-bottom:40px; }
+ .mkt2-ex { flex:0 0 78%; }
+ .mkt2-ex:nth-child(n) .mkt2-blob { width:min(100%,260px); }
+}
+
+/* Lock the service link to a true circle, including narrow flex layouts. */
+.mkt2 .mkt2-text .btn-row { flex-direction:row; justify-content:center; align-items:center; }
+.mkt2 .mkt2-text .btn-row .mkt2-more-circle { width:126px; min-width:126px; max-width:126px; height:126px; flex:0 0 126px; padding:20px; white-space:normal; }
+.eco-round, .mkt2 { scroll-margin-top:calc(var(--header-h) + 16px); }
+
+.mkt2-examples .mkt2-blob.is-artwork { padding:0; }
+.mkt2-examples .mkt2-blob.is-artwork img { object-fit:cover; }
+
+/* Clean opening film, four client portraits, compact brand links. */
+.hv.hv-brand-film { height:100svh; }
+.mobile-cta.is-over-hero { visibility:hidden; pointer-events:none; opacity:0; }
+.eco-round .eco-core { margin-bottom:0; }
+.mkt2 .mkt2-body { display:block; }
+.mkt2 .mkt2-text { max-width:720px; margin-inline:auto; position:static; align-items:center; text-align:center; }
+.mkt2 .mkt2-examples { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(10px,3vw,40px); margin:48px 0 0; padding:0; overflow:visible; scroll-snap-type:none; }
+.mkt2 .mkt2-ex { min-width:0; }
+.mkt2 .mkt2-ex:nth-child(n) .mkt2-blob { width:100%; height:auto; aspect-ratio:1; border-radius:50%; }
+.mkt2 .mkt2-cap strong { font-size:clamp(11px,1.8vw,20px); }
+.mkt2 .mkt2-ex:nth-child(3) img { object-position:65% center; }
+.brand-services { display:grid; gap:0; padding-block:0 64px; }
+.brand-service-row { display:grid; grid-template-columns:72px 180px minmax(0,1fr) 24px; align-items:center; gap:24px; min-height:88px; padding-block:20px; border-bottom:1px solid var(--line); color:var(--text); text-decoration:none; }
+.brand-service-line { display:block; width:72px; height:12px; border-radius:9999px; background:var(--brand-color); transition:transform .2s; }
+.brand-service-row strong { font-size:20px; }
+.brand-service-description { color:var(--muted); font-size:15px; line-height:1.55; }
+.brand-service-arrow { color:var(--brand-color); }
+.brand-service-row:hover .brand-service-line { transform:scaleX(.8); }
+.brand-service-row:hover strong { color:var(--brand-color); }
+.brand-service-row:focus-visible { outline:2px solid var(--brand-color); outline-offset:6px; }
+.bonexis-coming { display:grid; place-items:center; min-height:90svh; padding:calc(var(--header-h) + 64px) 0 80px; text-align:center; background:radial-gradient(ellipse at 50% 40%,rgba(0,157,154,.14),var(--bg) 65%); }
+.bonexis-coming-mark { width:240px; height:240px; border-radius:50%; border:1px solid var(--bonexis); display:grid; place-items:center; margin:0 auto 32px; }
+.bonexis-coming-mark .brand-logo-img img { width:165px; height:auto; }
+.bonexis-coming h1 { font-size:clamp(36px,5vw,64px); margin:0 0 20px; }
+.bonexis-coming p { color:var(--muted); max-width:48ch; margin:0 auto; font-size:18px; }
+@media(max-width:760px) {
+ .hv.hv-brand-film { height:100svh; }
+ .mkt2 .mkt2-examples { margin-top:32px; gap:10px; }
+ .mkt2 .mkt2-ex figure { gap:10px; }
+ .brand-services { padding-bottom:40px; }
+ .brand-service-row { grid-template-columns:40px minmax(0,1fr) 22px; gap:8px 16px; padding-block:20px; }
+ .brand-service-line { width:40px; height:10px; }
+ .brand-service-row strong { font-size:18px; }
+ .brand-service-description { grid-column:2; grid-row:2; font-size:14px; }
+ .brand-service-arrow { grid-column:3; grid-row:1 / span 2; }
+ .bonexis-coming { min-height:calc(100svh - var(--cta-h,76px)); }
+}

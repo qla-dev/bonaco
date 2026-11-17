@@ -12,7 +12,6 @@ import { CLIENTS } from '../data/clients';
 import { MARKETING_VIDEO, VIDEOS } from '../data/site';
 import { PUBLIC_CAPSULES } from '../data/capsules';
 import { EVENT_HERO_IMAGE, EVENT_REFERENCES, EVENT_SERVICES } from '../data/bonevents';
-import { PO_SERVICES } from '../data/poslovnioglasi';
 import ServiceIcon from './ServiceIcon';
 import BrandIcon, { type IconName } from './BrandIcon';
 import BrandLogo, { QlaMark } from './BrandLogo';
@@ -83,9 +82,9 @@ const CLIENT_PROJECT: Record<string, string> = {
   beautyco: 'beautyco', rooms: 'rooms-hr', 'bh-travel': 'bh-travel', 'summer-lounge': 'summer-lounge', 'max-media': 'max-media',
 };
 
-function Medallion({ c, hidden, small }: { c: { id: string; name: string }; hidden?: boolean; small?: boolean }) {
+function Medallion({ c, hidden, small }: { c: { id: string; name: string; logo: string }; hidden?: boolean; small?: boolean }) {
   const { to } = useLang();
-  const img = <img src={asset(`/img/clients/${c.id}.webp`)} alt={hidden ? '' : c.name} loading="lazy" width="200" height="200" />;
+  const img = <img src={asset(c.logo)} alt={hidden ? '' : c.name} loading="lazy" width="200" height="200" />;
   const cls = `medallion ${small ? 'sm' : ''}`;
   const slug = CLIENT_PROJECT[c.id];
   return slug ? (
@@ -244,47 +243,19 @@ export function BonexisCapsules({ page = false }: { page?: boolean }) {
 
 /* ---------- Poslovni Oglasi: partnerska sekcija (Bonaco × Poslovni Oglasi) ---------- */
 export function PoslovniOglasiBlock({ page = false }: { page?: boolean }) {
-  const { lang, t, to } = useLang();
+  const { t, to } = useLang();
   const Heading = page ? 'h1' : 'h2';
-  return (
-    <section className={`section po ${page ? 'is-page' : ''}`} data-brand="poslovnioglasi" id="poslovni-oglasi">
-      <div className="container po-grid">
-        <div className="po-visual">
-          <span className="po-hero-ring" aria-hidden="true" />
-          <span className="po-logo-circle">
-            <span className="po-logo-text">PO</span>
-          </span>
-        </div>
-        <div className="po-copy">
-          <div className="bxc-badges">
-            <span className="badge badge-ghost"><img className="badge-bonaco" src={asset('/img/logo/bonaco-word.webp')} alt="Bonaco" width="639" height="99" /> × Poslovni Oglasi</span>
-          </div>
-          <Heading className="po-title">Poslovni Oglasi</Heading>
-          <p className="lead">
-            {hl(t(
-              '**Pronađite posao ili radnike u BiH.** Poslovni Oglasi je platforma koja povezuje **poslodavce i kandidate** — od objave oglasa do pronalaska idealnog tima. Uz partnerstvo s Bonaco Media, vaši oglasi dobijaju **veću vidljivost** i profesionalnu promociju.',
-              '**Find a job or workers in BiH.** Poslovni Oglasi is a platform connecting **employers and candidates** — from posting ads to finding the ideal team. With the Bonaco Media partnership, your listings gain **greater visibility** and professional promotion.',
-            ))}
-          </p>
-          <ul className="po-services">
-            {PO_SERVICES.map(s => (
-              <li key={s.id}>
-                <span className="po-dot" aria-hidden="true"><BrandIcon name={s.icon} size={20} /></span>
-                <div><h3>{s[lang].title}</h3><p>{s[lang].text}</p></div>
-              </li>
-            ))}
-          </ul>
-          <div className="btn-row">
-            {page ? (
-              <a href="https://poslovnioglasi.ba/" target="_blank" rel="noopener" className="btn btn-primary">{t('Posjetite Poslovni Oglasi', 'Visit Poslovni Oglasi')} <ArrowRight size={18} /></a>
-            ) : (
-              <Link to={to('/poslovni-oglasi/')} className="btn btn-primary">{t('Saznajte više', 'Learn more')} <ArrowRight size={18} /></Link>
-            )}
-          </div>
-        </div>
+  return <section className={`section po po-partner ${page ? 'is-page' : ''}`} data-brand="poslovnioglasi" id="poslovni-oglasi">
+    <div className="container po-grid">
+      <img className="po-partner-logo" src={asset('/media/poslovni-oglasi.svg')} alt="Poslovnioglasi.ba" width="112" height="112" loading="lazy" />
+      <div className="po-copy">
+        <span className="eyebrow">{t('Partnerska usluga za zapošljavanje', 'Recruitment partner service')}</span>
+        <Heading className="po-title">Poslovni oglasi</Heading>
+        <p>{t('Kroz partnerstvo s Poslovnioglasi.ba našim klijentima omogućavamo oglašavanje otvorenih radnih mjesta po povoljnijim, partnerskim cijenama.', 'Through our partnership with Poslovnioglasi.ba, our clients can advertise job openings at preferential partner rates.')}</p>
+        <Link to={to('/kontakt/') + '?usluga=Poslovni%20oglasi'} className="btn btn-primary">{t('Zatražite partnersku ponudu', 'Request a partner offer')}</Link>
       </div>
-    </section>
-  );
+    </div>
+  </section>;
 }
 
 /* ---------- BonEvents: veliki krug s event kadrom, usluge i reference ---------- */
@@ -307,7 +278,7 @@ export function BonEventsBlock({ page = false }: { page?: boolean }) {
             ))}
           </p>
           <ul className="bev-services">
-            {EVENT_SERVICES.map(s => (
+            {(page ? EVENT_SERVICES : EVENT_SERVICES.slice(0, 3)).map(s => (
               <li key={s.id}>
                 <span className="bev-dot" aria-hidden="true"><BrandIcon name={s.icon} size={20} /></span>
                 <div><h3>{s[lang].title}</h3><p>{s[lang].text}</p></div>
@@ -330,7 +301,7 @@ export function BonEventsBlock({ page = false }: { page?: boolean }) {
             {page ? (
               <Link to={`${to('/kontakt/')}?usluga=BonEvents`} className="btn btn-primary">{t('Pošaljite upit za event', 'Send an event inquiry')}</Link>
             ) : (
-              <Link to={to('/bonevents/')} className="btn btn-primary">{t('Upoznajte BonEvents', 'Discover BonEvents')} <ArrowRight size={18} /></Link>
+              <Link to={to('/bonevents/')} className="btn btn-primary">{t('Upoznajte Bonevent', 'Discover Bonevent')} <ArrowRight size={18} /></Link>
             )}
           </div>
         </div>

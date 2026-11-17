@@ -1,65 +1,45 @@
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Phone } from 'lucide-react';
 import { SITE, SOCIAL } from '../data/site';
 import { useLang } from '../lib/i18n';
+import BrandLogo from './BrandLogo';
 import SocialIcon from './SocialIcon';
-import BrandLogo, { QlaMark } from './BrandLogo';
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-  const { lang, t, to } = useLang();
-  return (
-    <footer className="site-footer">
-      <div className="container footer-grid">
-        <div className="footer-brand">
-          <BrandLogo brand="bonaco" />
-          <p>{t(
-            'Full-service marketinška agencija iz Sarajeva: strategija, kreativa, produkcija i rezultati.',
-            'A full-service marketing agency from Sarajevo: strategy, creativity, production and results.',
-          )}</p>
-          <div className="footer-social">
-            {SOCIAL.map(s => (
-              <a key={s.id} href={s.href} target="_blank" rel="noopener" aria-label={s.label}><SocialIcon id={s.id} size={20} /></a>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h2 className="footer-title">{t('Brendovi', 'Brands')}</h2>
-          <ul className="footer-brands">
-            <li><Link to={to('/#marketing')}><i className="dot dot-bonaco" aria-hidden="true" />Bonaco Media · Marketing</Link></li>
-            <li><Link to={to('/bonexis/')}><i className="dot dot-bonexis" aria-hidden="true" />Bonexis · AI Solutions</Link></li>
-            <li><Link to={to('/bonevents/')}><i className="dot dot-bonevents" aria-hidden="true" />Bonevent · Events</Link></li>
-            <li><Link to={to('/poslovni-oglasi/')}><i className="dot dot-po" aria-hidden="true" />Poslovni Oglasi · Jobs</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="footer-title">{t('Kompanija', 'Company')}</h2>
-          <ul>
-            <li><Link to={to('/portfolio/')}>{t('Radovi', 'Work')}</Link></li>
-            <li><Link to={to('/o-nama/')}>{t('O nama', 'About')}</Link></li>
-            {lang === 'bs' && <li><Link to="/vijesti/">Vijesti</Link></li>}
-            <li><Link to={to('/kontakt/')}>{t('Kontakt', 'Contact')}</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h2 className="footer-title">{t('Kontakt', 'Contact')}</h2>
-          <ul className="footer-contact">
-            <li><a href={SITE.phoneHref}><Phone size={16} /> {SITE.phone}</a></li>
-            <li><a href={`mailto:${SITE.email}`}><Mail size={16} /> {SITE.email}</a></li>
-            <li><a href={SITE.mapsUrl} target="_blank" rel="noopener"><MapPin size={16} /> {SITE.address.street}, {SITE.address.zip} {SITE.address.city}</a></li>
-          </ul>
-        </div>
+  const { t, to } = useLang();
+  return <footer className="ref-footer">
+    <div className="ref-wrap ref-footer-top">
+      <div className="footer-brand">
+        <Link to={to('/')} aria-label="Bonaco Media"><BrandLogo /></Link>
+        <p>{t('Strategija, kreativa i produkcija. Iz Sarajeva, za ideje koje idu dalje.', 'Strategy, creativity and production. From Sarajevo, for ideas that go further.')}</p>
+        <span className="footer-signature">{t('Povezujemo ideje i ljude.', 'Connecting ideas and people.')}</span>
       </div>
-      <div className="container footer-bottom">
-        <span>© {year} {SITE.legalName}{SITE.companyIds.map(c => ` · ${c.label}: ${c.value}`).join('')}</span>
-        <nav aria-label={t('Pravne informacije', 'Legal')}>
-          <Link to={to('/politika-privatnosti/')}>{t('Politika privatnosti', 'Privacy policy')}</Link>
-          <a href="https://qla.dev" target="_blank" rel="noopener" className="made-by" aria-label="Made by qla.dev">
-            <span>Made by</span>
-            <QlaMark />
-          </a>
+      <div className="footer-column">
+        <h2>{t('Istražite', 'Explore')}</h2>
+        <nav aria-label={t('Linkovi u podnožju', 'Footer navigation')}>
+          <Link to={to('/o-nama/')}>{t('O nama', 'About')}</Link>
+          <Link to={to('/portfolio/')}>{t('Naši radovi', 'Our work')}</Link>
+          <Link to={to('/nase-usluge/')}>Bonaco marketing</Link>
+          <Link to={to('/kontakt/')}>{t('Kontakt', 'Contact')}</Link>
         </nav>
       </div>
-    </footer>
-  );
+      <div className="footer-column footer-contact">
+        <h2>{t('Pronađite nas', 'Find us')}</h2>
+        <a href={'mailto:' + SITE.email}>{SITE.email}</a>
+        <a href={SITE.phoneHref}>{SITE.phone}</a>
+        <a className="footer-address" href={SITE.mapsUrl} target="_blank" rel="noopener noreferrer">{SITE.address.street}<br />{SITE.address.zip} {SITE.address.city}, BiH <span aria-hidden="true">↗</span></a>
+      </div>
+      <div className="footer-column footer-follow">
+        <h2>{t('U našem krugu', 'In our circle')}</h2>
+        <p>{t('Novi radovi, ideje i priče iza kadra.', 'New work, ideas and stories behind the scenes.')}</p>
+        <nav className="footer-social-links" aria-label={t('Društvene mreže', 'Social media')}>
+          {SOCIAL.map(s => <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}><SocialIcon id={s.id} size={18} /></a>)}
+        </nav>
+      </div>
+    </div>
+    <div className="ref-wrap ref-footer-bottom">
+      <span>© {new Date().getFullYear()} {SITE.legalName}</span>
+      <Link to={to('/politika-privatnosti/')}>{t('Politika privatnosti', 'Privacy policy')}</Link>
+      <a href="https://qla.dev" target="_blank" rel="noopener noreferrer">Made by qla.dev ↗</a>
+    </div>
+  </footer>;
 }

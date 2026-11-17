@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+/dist/
 dist-ssr
 *.local
 
@@ -29,3 +30,22 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Local Node.js and launchers
+.tools/
+npm.cmd
+Pokreni Bonaco.cmd
+Build Bonaco.cmd
+
+# Earlier local video exports; the current web film is versioned.
+/public/video/bonaco-*.mp4
+/public/video/bonaco-*.webm
+!/public/video/bonaco-craft-v9-*.mp4
+!/public/video/bonaco-craft-v9-*.webm
+
+# Local source research (Drive metadata and workstation paths).
+/*-sources.json
+/*-sources.txt
+/poslovni-oglasi-logo-source.json
+/video-quality-provenance.json
+/video-quality-report.json

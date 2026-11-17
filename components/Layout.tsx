@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header, { brandOf } from './Header';
 import Footer from './Footer';
-import MobileCta from './MobileCta';
+
 import { langOf } from '../lib/i18n';
 import { useScrollFx } from '../lib/scrollfx';
 import { scrollToY } from '../lib/scroller';
@@ -36,7 +36,7 @@ export default function Layout() {
         <div key={pathname} className="page-enter"><Outlet /></div>
       </main>
       <Footer />
-      <MobileCta />
+
       {/* Safari (iOS) boji donju adresnu traku prema elementu uz dno: tanka tamna traka drži je tamnom */}
       <div className="tint-sentinel" aria-hidden="true" />
     </>

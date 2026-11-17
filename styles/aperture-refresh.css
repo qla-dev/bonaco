@@ -1,0 +1,52 @@
+/* An aperture opens from the brand's circles into the complete photograph. */
+.circle-mosaic.circle-reveal { background: transparent; overflow: visible; isolation: isolate; }
+.mosaic-defs { position: absolute; pointer-events: none; }
+.mosaic-aperture { position: absolute; inset: 0; overflow: hidden; border-radius: 24px; }
+.mosaic-aperture > img { display: block; width: 100%; height: 100%; }
+.circle-reveal ellipse { transition: rx .65s cubic-bezier(.2,.7,.2,1), ry .65s cubic-bezier(.2,.7,.2,1); }
+.circle-reveal.is-revealed ellipse { rx: 1px; ry: 1px; }
+.mosaic-open { display: block; width: 100%; height: 100%; position: absolute; inset: 0; padding: 0; border: 0; background: transparent; color: inherit; cursor: zoom-in; border-radius: 24px; }
+.mosaic-open:focus-visible { outline: 2px solid #f58426; outline-offset: 5px; }
+.mosaic-open .circle-wave { cursor: zoom-in; }
+.mosaic-view { position: absolute; right: 8px; bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 32px; padding: 6px 10px; background: #f58426; color: #16100c; border-radius: 99px; font: 600 10px/1.2 var(--font-body); box-shadow: 0 3px 18px #0003; }
+.mosaic-view > span { display: none; }
+@media (hover: hover) { .is-revealed .mosaic-view > span { display: inline; } }
+.mosaic-lightbox { text-align: center; }
+.mosaic-caption { position: absolute; bottom: 15px; left: 10%; width: 80%; margin: 0; color: #ddd; font-size: 12px; }
+.mosaic-lightbox .ref-lb-close { width: 44px; height: 44px; border-color: #f58426; }
+.ref-story-link { display: inline-block; font-size: 10px; color: #d0b7a3; margin-top: 7px; text-decoration: underline; text-decoration-color: #f5842670; text-underline-offset: 4px; }
+.ref-story-link:hover { color: #f58426; }
+.ref-work-bottom > span { display: block !important; }
+.reel-sound { display: flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 16px; color: #fff; background: #1118; border: 1px solid #ffffff60; border-radius: 99px; backdrop-filter: blur(8px); cursor: pointer; font: 500 11px/1 var(--font-body); }
+.reel-sound[aria-pressed="true"] { border-color: #f58426; color: #ffac68; }
+.reel-controls button:focus-visible { outline: 2px solid #f58426; outline-offset: 4px; }
+.project-story { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; margin-block: 38px 10px; text-align: center; }
+.project-story article { padding: 24px 20px; border-radius: 34px; background: linear-gradient(155deg, #f584261c, #f5842606); border-top: 1px solid #f5842640; }
+.project-story article > span { display: grid; place-items: center; margin: 0 auto 16px; width: 37px; height: 37px; border-radius: 50%; background: #f58426; color: #16100c; font-size: 11px; }
+.project-story h2 { font-size: 22px; font-weight: 500; margin: 0 0 12px; }
+.project-story p, .project-story li { font-size: 13px; line-height: 1.8; color: #c3bdb7; }
+.project-story p { margin: 0; }
+.project-story ul { list-style: none; padding: 0; margin: 0; }
+.project-story li + li { margin-top: 6px; }
+.ref-selected { background: radial-gradient(ellipse at 50% 0, #f5842612, transparent 63%); }
+.about-step { background: #f58426; color: #19120c; border-color: #f58426; }
+.ref-filters button[aria-pressed="true"] { background: #f58426; border-color: #f58426; color: #17100a; }
+.ref-contact-band { border-radius: 48px; background: radial-gradient(ellipse at 50% 100%, #f5842624, transparent 72%); }
+.ref-contact-band h2 svg { background: #f58426; color: #15100a; border-radius: 50%; padding: 6px; width: 43px; height: 43px; }
+.about-story h2 span { color: #f58426; }
+@media (max-width: 680px) {
+ .mosaic-aperture, .mosaic-open { border-radius: 16px; }
+ .mosaic-view { right: 2px; bottom: 2px; min-width: 26px; min-height: 26px; padding: 5px; }
+ .mosaic-view svg { width: 12px; height: 12px; }
+ .ref-story-link { font-size: 9px; }
+ .project-story { grid-template-columns: 1fr; gap: 12px; margin-top: 25px; }
+ .project-story article { padding: 21px 23px; }
+ .project-story article > span { width: 30px; height: 30px; margin-bottom: 10px; }
+ .project-story h2 { font-size: 20px; margin-bottom: 7px; }
+ .project-story p, .project-story li { font-size: 12px; }
+ .reel-sound { font-size: 10px; padding-inline: 13px; }
+ .ref-contact-band { border-radius: 30px; }
+ .ref-contact-band h2 svg { width: 33px; height: 33px; padding: 5px; }
+ .mosaic-caption { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .circle-reveal ellipse { transition: none; } }
