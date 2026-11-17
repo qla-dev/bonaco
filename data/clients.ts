@@ -1,9 +1,14 @@
-// Aktuelni izbor klijenata, lokalna testna verzija.
+// Selected clients and original brand marks.
 export const CLIENTS: { id: string; name: string; logo: string }[] = [
   {
     "id": "asa",
     "name": "ASA Banka",
     "logo": "/media/clients/ASA.png"
+  },
+  {
+    "id": "bosnalijek",
+    "name": "Bosnalijek",
+    "logo": "/media/clients/bosnalijek.webp"
   },
   {
     "id": "bh-posta",
@@ -19,6 +24,11 @@ export const CLIENTS: { id: string; name: string; logo: string }[] = [
     "id": "omega",
     "name": "Omega",
     "logo": "/media/clients/Omega.png"
+  },
+  {
+    "id": "orasi",
+    "name": "OraSì",
+    "logo": "/media/clients/orasi.webp"
   },
   {
     "id": "protech",
@@ -59,5 +69,20 @@ export const CLIENTS: { id: string; name: string; logo: string }[] = [
     "id": "ecomm",
     "name": "eComm",
     "logo": "/img/clients/ecomm.webp"
+  },
+  {
+    "id": "skuter",
+    "name": "Skuter",
+    "logo": "/media/clients/skuter.webp"
+  },
+  {
+    "id": "rooms",
+    "name": "ROOMS.hr",
+    "logo": "/media/clients/rooms.webp"
+  },
+  {
+    "id": "boreas",
+    "name": "Boreas",
+    "logo": "/media/clients/boreas.webp"
   }
 ];

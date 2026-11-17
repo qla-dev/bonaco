@@ -266,34 +266,6 @@ export const PORTFOLIO_2026: Project[] = [
     }
   },
   {
-    "slug": "bosnalijek",
-    "client": "Bosnalijek",
-    "title": "Identitet u pokretu.",
-    "categories": [
-      "Grafički dizajn"
-    ],
-    "cover": "/media/portfolio/cover-bosnalijek.webp",
-    "coverAlt": "Bosnalijek, dizajn brendiranja vozila",
-    "summary": "Grafičko rješenje za brendiranje vozila, prilagođeno prepoznatljivom vizuelnom identitetu Bosnalijeka.",
-    "task": "Grafičko rješenje za brendiranje vozila, prilagođeno prepoznatljivom vizuelnom identitetu Bosnalijeka.",
-    "work": [
-      "Grafički dizajn",
-      "Prilagodba vizuelnog identiteta vozilima"
-    ],
-    "results": [],
-    "en": {
-      "title": "Identity in motion.",
-      "summary": "Vehicle branding adapted to Bosnalijek’s recognisable visual identity.",
-      "task": "Vehicle branding adapted to Bosnalijek’s recognisable visual identity.",
-      "coverAlt": "Bosnalijek — selected project",
-      "work": [
-        "Graphic design",
-        "Adapting the brand identity for vehicles"
-      ],
-      "results": []
-    }
-  },
-  {
     "slug": "omega-zelene-doline",
     "client": "Omega · Zelene Doline",
     "title": "Sadržaj koji se dijeli.",
@@ -563,7 +535,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/cover-summer-lounge-identitet.webp",
+    "cover": "/media/portfolio/summer-lounge-profile.webp",
     "coverAlt": "Summer Lounge · Logo — odabrani rad",
     "summary": "Kružni znak i snažna tipografija grade prepoznatljiv Summer Lounge identitet. Prikaz logotipa u njegovom originalnom vizuelnom okruženju.",
     "task": "Kružni znak i snažna tipografija grade prepoznatljiv Summer Lounge identitet. Prikaz logotipa u njegovom originalnom vizuelnom okruženju.",
@@ -591,7 +563,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/cover-summer-wine-lounge.webp",
+    "cover": "/media/portfolio/wine-fest-poster-2025.webp",
     "coverAlt": "Summer Wine Lounge — odabrani rad",
     "summary": "Plakat za Summer Wine Lounge 2025 na platou Skenderija. Vinski motivi, tople boje i jasna tipografija povezuju atmosferu događaja s informacijama o programu.",
     "task": "Plakat za Summer Wine Lounge 2025 na platou Skenderija. Vinski motivi, tople boje i jasna tipografija povezuju atmosferu događaja s informacijama o programu.",
@@ -847,7 +819,7 @@ export const PROJECT_FOCUS: Record<string,string> = {
   "symbol-dukserice": "50% 50%",
   "symbol-tas": "50% 50%",
   "summer-lounge-identitet": "50% 50%",
-  "summer-wine-lounge": "50% 50%",
+  "summer-wine-lounge": "50% 18%",
   "opel-dooh": "50% 50%",
   "jovs-bilbordi": "50% 50%",
   "bonaco-craft": "50% 50%",
@@ -867,11 +839,11 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
     "label": "Zmaj · DOOH"
   },
   "bonaco-craft": {
-    "src": "/video/bonaco-craft-v9-desktop.mp4",
-    "webm": "/video/bonaco-craft-v9-desktop.webm",
-    "webmMobile": "/video/bonaco-craft-v9-mobile.webm",
-    "mobile": "/video/bonaco-craft-v9-mobile.mp4",
-    "poster": "/media/portfolio/bonaco-craft-v9-desktop.webp",
+    "src": "/video/bonaco-craft-v9-hq-desktop.mp4",
+    "webm": "/video/bonaco-craft-v9-hq-desktop.webm",
+    "webmMobile": "/video/bonaco-craft-v9-hq-mobile.webm",
+    "mobile": "/video/bonaco-craft-v9-hq-mobile.mp4",
+    "poster": "/media/portfolio/bonaco-craft-v9-hq-desktop.webp",
     "label": "Bonaco · Craft"
   }
 };

@@ -50,3 +50,6 @@
  .mosaic-caption { font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) { .circle-reveal ellipse { transition: none; } }
+
+/* Preserve the official blue Bosnalijek mark on a light badge. */
+.client-cloud[data-client="bosnalijek"] { background: #f3f0e9; }

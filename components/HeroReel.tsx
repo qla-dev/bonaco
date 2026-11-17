@@ -32,10 +32,10 @@ export default function HeroReel() {
   }, [mobile, paused, visible]);
   return <section ref={section} className="hv creative-reel" aria-label={t('Bonaco video', 'Bonaco film')}>
     <video key={format} ref={ref} className="reel-picture" muted={muted} autoPlay loop playsInline preload="auto"
-      poster={asset('/media/portfolio/bonaco-craft-v9-' + format + '.webp')}
+      poster={asset('/media/portfolio/bonaco-craft-v9-hq-' + format + '.webp')}
       aria-label="Bonaco · Craft">
-      <source src={asset('/video/bonaco-craft-v9-' + format + '.webm')} type="video/webm" />
-      <source src={asset('/video/bonaco-craft-v9-' + format + '.mp4')} type="video/mp4" />
+      <source src={asset('/video/bonaco-craft-v9-hq-' + format + '.webm')} type="video/webm" />
+      <source src={asset('/video/bonaco-craft-v9-hq-' + format + '.mp4')} type="video/mp4" />
     </video>
     <div className="reel-controls">
       <button className="reel-sound" type="button" aria-pressed={!muted} onClick={() => {

@@ -17,7 +17,7 @@ export default function PoslovniOglasiPage() {
           <p>{t('Mjesto susreta poslodavaca koji grade tim i ljudi koji traže sljedeći korak u karijeri. Pregledna radna mjesta, jasna očekivanja i jednostavan put do informacija o prijavi.', 'A meeting point for employers building a team and people looking for their next career step. Clear vacancies, expectations and application information.')}</p>
           <a className="ref-pill" href="https://poslovnioglasi.ba/" target="_blank" rel="noopener noreferrer">{t('Otvori Poslovne oglase', 'Visit Poslovni oglasi')}<ArrowUpRight size={18} /></a>
         </div>
-        <CircleMosaic src="/media/poslovni-oglasi-stock.webp" alt={t('Žena za laptopom u svijetlom radnom prostoru', 'Woman using a laptop in a bright workspace')} position="70% 45%" portrait />
+        <CircleMosaic src="/media/poslovni-oglasi-real-stock.webp" alt={t('Kolege rade za zajedničkim stolom u kancelariji', 'Colleagues working at a shared table in an office')} position="50% 50%" />
       </section>
       <section className="ref-wrap ref-job-columns">
         <article>

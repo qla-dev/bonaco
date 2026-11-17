@@ -30,7 +30,7 @@ export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
 export function ClientClouds() {
  const {t}=useLang();const [paused,setPaused]=useState(false);
  return <section className={'client-clouds'+(paused?' is-paused':'')} aria-label={t('Klijenti sa kojima smo radili','Clients we have worked with')}>
-  <div className="cloud-viewport"><div className="cloud-track">{[0,1].map(copy=><div className="cloud-group" key={copy} aria-hidden={copy===1?true:undefined}>{CLIENTS.map(c=><div className="client-cloud" key={c.id}><img src={asset(c.logo)} alt={copy===0?c.name:''} loading="lazy" width="110" height="110"/></div>)}</div>)}</div></div>
+  <div className="cloud-viewport"><div className="cloud-track">{[0,1].map(copy=><div className="cloud-group" key={copy} aria-hidden={copy===1?true:undefined}>{CLIENTS.map(c=><div className="client-cloud" data-client={c.id} key={c.id}><img src={asset(c.logo)} alt={copy===0?c.name:''} loading="lazy" width="110" height="110"/></div>)}</div>)}</div></div>
   <button type="button" className="cloud-pause" aria-pressed={paused} onClick={()=>setPaused(!paused)} aria-label={paused?t('Pokreni logotipe','Play logos'):t('Pauziraj logotipe','Pause logos')}>{paused?<Play size={14}/>:<Pause size={14}/>}</button>
  </section>;
 }
