@@ -23,3 +23,4 @@ createRoot(document.getElementById('root')!).render(
 );
 
 import './styles/aperture-refresh.css';
+import './styles/portfolio-polish.css';

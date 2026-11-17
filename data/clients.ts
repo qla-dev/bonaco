@@ -1,5 +1,7 @@
 // Selected clients and original brand marks.
 export const CLIENTS: { id: string; name: string; logo: string }[] = [
+  { id: 'medicana', name: 'Medicana Sarajevo', logo: '/media/clients/medicana-white.webp' },
+  { id: 'women-in-adria', name: 'Women in Adria', logo: '/media/clients/women-in-adria-white.webp' },
   {
     "id": "asa",
     "name": "ASA Banka",

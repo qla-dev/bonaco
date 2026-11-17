@@ -7,6 +7,8 @@ import { useLang } from '../lib/i18n';
 
 const filters = ['Društvene mreže', 'Foto i video', 'Event', 'Web dizajn', 'Grafički dizajn', 'Kampanje', 'OOH / DOOH'];
 const categoryOrder: Record<string, string[]> = {
+  'Foto i video': ['medicana', 'bh-posta', 'golf-klub-sarajevo', 'protech', 'asa-banka', 'symbol', 'summer-lounge', 'bonaco-craft'],
+  Event: ['jovs', 'golf-klub-sarajevo', 'summer-lounge'],
   'Grafički dizajn': ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'bonaco-craft'],
   Kampanje: ['symbol-tas'],
   'OOH / DOOH': ['opel-dooh', 'zmaj', 'jovs-bilbordi'],

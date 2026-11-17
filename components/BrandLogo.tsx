@@ -2,9 +2,9 @@ import { asset } from '../lib/asset';
 export type Brand = 'bonaco' | 'bonexis' | 'bonevents';
 
 export const BRANDS: Record<Brand, { name: string; dark: string; light: string }> = {
-  bonaco: { name: 'Bonaco Media', dark: '/img/logo/bonaco-logo-hd.webp', light: '/img/logo/bonaco-logo-white.webp' },
-  bonexis: { name: 'Bonexis', dark: '/img/logo/bonexis-logo-dark.png', light: '/img/logo/bonexis-logo-white.png' },
-  bonevents: { name: 'Bonevent', dark: '/img/logo/bonevent-logo-dark.png', light: '/img/logo/bonevent-logo-white.png' },
+  bonaco: { name: 'Bonaco Media', dark: '/media/brand/bonaco-v12.svg', light: '/media/brand/bonaco-v12-mono.svg' },
+  bonexis: { name: 'Bonexis', dark: '/media/brand/bonexis-v12.svg', light: '/media/brand/bonexis-v12-mono.svg' },
+  bonevents: { name: 'Bonevent', dark: '/media/brand/bonevent-v12.svg', light: '/media/brand/bonevent-v12-mono.svg' },
 };
 
 export function QlaMark({ className = '' }: { className?: string }) {

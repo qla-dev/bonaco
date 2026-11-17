@@ -10,6 +10,7 @@ import type { Project } from '../types';
 import BrandLogo from './BrandLogo';
 import PoslovniOglasiLogo from './PoslovniOglasiLogo';
 import CircleMosaic from './CircleMosaic';
+import { PRIVATE_PROJECT_MEDIA } from '../data/projectMedia';
 
 export function EditorialIntro({label,title,children,id,secondary=false}:{label:string;title:ReactNode;children?:ReactNode;id?:string;secondary?:boolean}) {
  const Heading=secondary?'h2':'h1'; return <section className="ref-intro ref-wrap" id={id}><p className="ref-eyebrow"><i/>{label}</p><div><Heading>{title}</Heading>{children}</div></section>;
@@ -20,9 +21,9 @@ export function CirclePhoto({src,alt,position='50% 50%',contain=false}:{src:stri
 export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
  const {lang,to,t}=useLang();
  return <div className="ref-work-grid">{projects.map(p=>{const x=tr(p,lang);return <article className="ref-work-card" key={p.slug}>
-   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} interactive />
+   {PRIVATE_PROJECT_MEDIA.has(p.slug) ? <Link to={to('/portfolio/'+p.slug+'/')} className="reference-brand-cover"><img src={asset(p.cover)} alt={p.client}/><span>{t('Videoprodukcija','Video production')}</span></Link> : <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} interactive />}
    <Link className="ref-card-title" to={to('/portfolio/'+p.slug+'/')}><h2>{p.client}</h2><ArrowUpRight aria-hidden="true" size={23}/></Link>
-   <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Priča projekta','Project story')}</Link>
+   <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Vidi projekat','View project')}</Link>
    {PROJECT_FILMS[p.slug] && <span className="ref-film-label">{t('Video projekat','Video project')}</span>}
    <div className="ref-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div>
  </article>})}</div>;

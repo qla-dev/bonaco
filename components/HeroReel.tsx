@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Pause, Play, Volume2, VolumeX } from 'lucide-react';
 import { asset } from '../lib/asset';
 import { useLang } from '../lib/i18n';
+import { HERO_MEDIA } from '../data/heroMedia';
 
 // The latest finished film, with separate desktop and portrait compositions.
 export default function HeroReel() {
@@ -24,6 +25,7 @@ export default function HeroReel() {
     return () => query.removeEventListener('change', update);
   }, []);
   const format = mobile ? 'mobile' : 'desktop';
+  const film = HERO_MEDIA[format];
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
@@ -32,10 +34,10 @@ export default function HeroReel() {
   }, [mobile, paused, visible]);
   return <section ref={section} className="hv creative-reel" aria-label={t('Bonaco video', 'Bonaco film')}>
     <video key={format} ref={ref} className="reel-picture" muted={muted} autoPlay loop playsInline preload="auto"
-      poster={asset('/media/portfolio/bonaco-craft-v9-hq-' + format + '.webp')}
+      poster={asset(film.poster)}
       aria-label="Bonaco · Craft">
-      <source src={asset('/video/bonaco-craft-v9-hq-' + format + '.webm')} type="video/webm" />
-      <source src={asset('/video/bonaco-craft-v9-hq-' + format + '.mp4')} type="video/mp4" />
+      <source src={asset(film.webm)} type="video/webm" />
+      <source src={asset(film.mp4)} type="video/mp4" />
     </video>
     <div className="reel-controls">
       <button className="reel-sound" type="button" aria-pressed={!muted} onClick={() => {

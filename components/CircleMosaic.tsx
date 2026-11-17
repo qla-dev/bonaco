@@ -28,8 +28,8 @@ export default function CircleMosaic({ src, alt, position = '50% 50%', contain =
     else if (dialog.current?.open) { dialog.current.close(); trigger.current?.focus(); }
   }, [opened]);
   const visual = <div className="mosaic-aperture" style={{ clipPath: `url(#${id})` }}>
-    {interactive ? <CircleWave src={src} name={alt} focus={parseFloat(position.split(' ')[1] || '50') / 100} mosaic passive contain={contain || revealed} /> :
-      <img src={asset(src)} alt={alt} width="1200" height="900" loading="lazy" decoding="async" style={{ objectPosition: revealed ? '50% 50%' : position, objectFit: contain || revealed ? 'contain' : 'cover' }} />}
+    {interactive ? <CircleWave src={src} name={alt} focus={parseFloat(position.split(' ')[1] || '50') / 100} mosaic passive /> :
+      <img src={asset(src)} alt={alt} width="1200" height="900" loading="lazy" decoding="async" style={{ objectPosition: position, objectFit: 'cover' }} />}
   </div>;
   return <div className={'circle-mosaic circle-reveal' + (revealed ? ' is-revealed' : '') + (contain ? ' is-contained' : '')}
     onPointerEnter={e => { if (e.pointerType === 'mouse') setRevealed(true); }} onPointerLeave={() => setRevealed(false)}

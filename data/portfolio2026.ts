@@ -1,5 +1,5 @@
 import type { Project } from '../types';
-// Sources: supplied Bonaco 2026 portfolio, selected client Drive files and confirmed public posts.
+// Verified against the supplied portfolio and original client materials.
 export const PORTFOLIO_2026: Project[] = [
   {
     "slug": "summer-lounge",
@@ -126,8 +126,8 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Foto i video"
     ],
-    "cover": "/media/portfolio/cover-bh-posta.webp",
-    "coverAlt": "BH Pošta, publika i program u svečanoj sali",
+    "cover": "/media/portfolio/bh-posta-program-04622.webp",
+    "coverAlt": "BH Pošta — nastup i atmosfera programa na pozornici",
     "summary": "Videoprodukcija za BH Poštu: bilježenje atmosfere, programa i susreta na događaju.",
     "task": "Videoprodukcija za BH Poštu: bilježenje atmosfere, programa i susreta na događaju.",
     "work": [
@@ -218,8 +218,8 @@ export const PORTFOLIO_2026: Project[] = [
     ],
     "cover": "/media/portfolio/cover-omega-orasi.webp",
     "coverAlt": "OraSì napitak od badema i kafa",
-    "summary": "Produktni vizuali i sadržaj za društvene mreže brendova OraSì i Bravo Crem iz Omega portfolija.",
-    "task": "Produktni vizuali i sadržaj za društvene mreže brendova OraSì i Bravo Crem iz Omega portfolija.",
+    "summary": "Produktni vizuali i sadržaj za društvene mreže OraSì brenda iz Omega portfolija.",
+    "task": "Predstaviti OraSì proizvode kroz povezanu produktnu fotografiju i sadržaj za društvene mreže.",
     "work": [
       "Planiranje sadržaja za društvene mreže",
       "Produktni vizuali i komunikacija brendova"
@@ -227,8 +227,8 @@ export const PORTFOLIO_2026: Project[] = [
     "results": [],
     "en": {
       "title": "Product. Story. Everyday life.",
-      "summary": "Product visuals and social content for OraSì and Bravo Crem, part of the Omega portfolio.",
-      "task": "Product visuals and social content for OraSì and Bravo Crem, part of the Omega portfolio.",
+      "summary": "Product visuals and social content for OraSì, part of the Omega portfolio.",
+      "task": "Present OraSì products through connected product photography and social content.",
       "coverAlt": "Omega · OraSì — selected project",
       "work": [
         "Social media planning",
@@ -391,7 +391,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Web dizajn"
     ],
-    "cover": "/media/portfolio/bunjo-live-website.webp",
+    "cover": "/media/portfolio/bunjo-desktop-v5.webp",
     "coverAlt": "Bunjo Grupacija, web stranica",
     "summary": "Web stranica Bunjo Grupacije: pregledna prezentacija kompanije i ponude, prilagođena različitim uređajima.",
     "task": "Web stranica Bunjo Grupacije: pregledna prezentacija kompanije i ponude, prilagođena različitim uređajima.",
@@ -448,8 +448,8 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/cover-symbol-dzeko.webp",
-    "coverAlt": "Symbol · Džeko — odabrani rad",
+    "cover": "/media/portfolio/dzeko-print-portrait-board.svg",
+    "coverAlt": "Originalni Džeko print dizajn: portret, tipografija i potpis",
     "summary": "Ilustracije Edina Džeke za print na majicama. Od portreta do pokreta na terenu, motivi su pripremljeni kao prepoznatljiva kolekcija.",
     "task": "Ilustracije Edina Džeke za print na majicama. Od portreta do pokreta na terenu, motivi su pripremljeni kao prepoznatljiva kolekcija.",
     "work": [
@@ -647,7 +647,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/cover-bonaco-craft.webp",
+    "cover": "/media/portfolio/bonaco-craft-v12-desktop.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
     "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
@@ -699,6 +699,36 @@ export const PORTFOLIO_2026: Project[] = [
       ],
       "results": []
     }
+  },
+  {
+    "slug": "medicana",
+    "client": "Medicana Sarajevo",
+    "title": "Stručnost pred kamerom.",
+    "categories": [
+      "Foto i video"
+    ],
+    "cover": "/media/clients/medicana-white.webp",
+    "coverAlt": "Medicana Sarajevo — referenca za videoprodukciju",
+    "summary": "Videoprodukcija za Medicana Sarajevo: snimanje i montaža sadržaja za digitalnu komunikaciju bolnice.",
+    "task": "Predstaviti stručnost medicinskog tima kroz jasno strukturirane video formate.",
+    "work": [
+      "Snimanje intervjua s medicinskim timom",
+      "Montaža kratkih video formata",
+      "Priprema sadržaja za digitalne kanale"
+    ],
+    "results": [],
+    "en": {
+      "title": "Expertise on camera.",
+      "coverAlt": "Medicana Sarajevo — video production reference",
+      "summary": "Video production for Medicana Sarajevo: filming and editing content for the hospital’s digital communication.",
+      "task": "Introduce the medical team’s expertise through clearly structured video formats.",
+      "work": [
+        "Filming interviews with the medical team",
+        "Editing short video formats",
+        "Preparing content for digital channels"
+      ],
+      "results": []
+    }
   }
 ];
 export const PROJECT_PHOTOS: Record<string,string[]> = {
@@ -708,10 +738,10 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/summer-crowd.webp"
   ],
   "jovs": [
-    "/media/portfolio/jovs-event-room.webp",
-    "/media/portfolio/jovs-event-card.webp",
-    "/media/portfolio/jovs-campaign-mask.webp"
-  ],
+  "/media/portfolio/jovs-event-room.webp",
+  "/media/portfolio/jovs-event-card.webp",
+  "/media/portfolio/jovs-event-entrance.webp"
+],
   "asa-banka": [
     "/media/portfolio/asa-druga-kuca.webp",
     "/media/portfolio/asa-pomozi.webp",
@@ -723,7 +753,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/symbol-hoodies-08393.webp"
   ],
   "bh-posta": [
-    "/media/portfolio/bh-posta-hall-wide.webp",
+    "/media/portfolio/bh-posta-program-04622.webp",
     "/media/portfolio/bh-posta-audience.webp",
     "/media/portfolio/bh-posta-presentation.webp"
   ],
@@ -758,24 +788,24 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/ecomm-trgovac-10-1.webp"
   ],
   "rooms-hr": [
-    "/media/portfolio/rooms-website-p26.webp",
-    "/media/portfolio/rooms-website-detail.webp",
-    "/img/projects/rooms/mockup.webp"
-  ],
+  "/media/portfolio/rooms-screen-v5.webp",
+  "/media/portfolio/rooms-website-detail.webp",
+  "/media/portfolio/rooms-brand-v5.webp"
+],
   "skuter": [
     "/media/portfolio/skuter-live-website.webp",
     "/media/portfolio/skuter-website-p26.webp",
     "/media/portfolio/skuter-website-brands.webp"
   ],
   "bunjo-grupacija": [
-    "/media/portfolio/bunjo-live-website.webp",
-    "/media/portfolio/bunjo-website-p26.webp",
-    "/img/projects/bunjo/mockup.webp"
-  ],
+  "/media/portfolio/bunjo-desktop-v5.webp",
+  "/media/portfolio/bunjo-laptop-v5.webp",
+  "/media/portfolio/bunjo-website-p26.webp"
+],
   "symbol-dzeko": [
-    "/media/portfolio/dzeko-shirt-portfolio.webp",
-    "/media/portfolio/dzeko-design-edz4.webp",
-    "/media/portfolio/dzeko-design-edz2.webp"
+    "/media/portfolio/dzeko-print-portrait-board.svg",
+    "/media/portfolio/dzeko-print-bicycle-board.svg",
+    "/media/portfolio/dzeko-print-signature-board.svg"
   ],
   "symbol-dukserice": [
     "/media/portfolio/symbol-hoodies-08335.webp",
@@ -785,7 +815,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   "symbol-tas": [
     "/media/portfolio/symbol-tas-08139.webp",
     "/media/portfolio/tas-shirt-portfolio.webp",
-    "/media/portfolio/symbol-tas-08403.webp"
+    "/media/portfolio/symbol-tas355.webp"
   ],
   "summer-lounge-identitet": [
     "/media/portfolio/summer-lounge-profile.webp",
@@ -808,10 +838,10 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/jovs-central-building.webp"
   ],
   "bonaco-craft": [
-    "/media/portfolio/bonaco-craft-gallery-01-jovs.webp",
-    "/media/portfolio/bonaco-craft-gallery-02-kreativni-proces.webp",
-    "/media/portfolio/bonaco-craft-gallery-03-event.webp"
-  ],
+  "/media/portfolio/craft-v12-11.webp",
+  "/media/portfolio/craft-v12-20.webp",
+  "/media/portfolio/bonaco-craft-v12-desktop.jpg"
+],
   "zmaj": [
     "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
     "/media/portfolio/zmaj-dooh-pdf-poster.webp",
@@ -821,6 +851,11 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/peoples-november-1.webp",
     "/media/portfolio/peoples-november-2.webp",
     "/media/portfolio/peoples-match-sweden.webp"
+  ],
+  "max-media": [
+    "/media/portfolio/max-media-desktop-detail.webp",
+    "/media/portfolio/max-media-laptop-detail.webp",
+    "/media/portfolio/max-media-mobile-detail.webp"
   ]
 };
 export const PROJECT_FOCUS: Record<string,string> = {
@@ -828,7 +863,7 @@ export const PROJECT_FOCUS: Record<string,string> = {
   "jovs": "50% 50%",
   "asa-banka": "50% 50%",
   "symbol": "50% 50%",
-  "bh-posta": "50% 50%",
+  "bh-posta": "50% 45%",
   "golf-klub-sarajevo": "50% 50%",
   "protech": "50% 50%",
   "omega-orasi": "50% 50%",
@@ -851,7 +886,7 @@ export const PROJECT_FOCUS: Record<string,string> = {
   "peoples": "55% 50%"
 };
 export const PROJECT_CONTAIN: string[] = [];
-export interface ProjectFilm { src?: string; mobile?: string; webm?: string; webmMobile?: string; instagram?: string; poster: string; label: string; }
+export interface ProjectFilm { src?: string; mobile?: string; webm?: string; webmMobile?: string; instagram?: string; youtube?: string; portrait?: boolean; posterPosition?: string; poster: string; label: string; }
 export const PROJECT_FILMS: Record<string,ProjectFilm> = {
   "opel-dooh": {
     "instagram": "https://www.instagram.com/reel/DUYKj9fjOuI/",
@@ -864,11 +899,37 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
     "label": "Zmaj · DOOH"
   },
   "bonaco-craft": {
-    "src": "/video/bonaco-craft-v9-hq-desktop.mp4",
-    "webm": "/video/bonaco-craft-v9-hq-desktop.webm",
-    "webmMobile": "/video/bonaco-craft-v9-hq-mobile.webm",
-    "mobile": "/video/bonaco-craft-v9-hq-mobile.mp4",
-    "poster": "/media/portfolio/bonaco-craft-v9-hq-desktop.webp",
-    "label": "Bonaco · Craft"
+    "src": "/video/bonaco-craft-v12-desktop.mp4",
+    "webm": "/video/bonaco-craft-v12-desktop.webm",
+    "mobile": "/video/bonaco-craft-v12-mobile.mp4",
+    "webmMobile": "/video/bonaco-craft-v12-mobile.webm",
+    "poster": "/media/portfolio/bonaco-craft-v12-desktop.jpg",
+    "label": "Bonaco · Craft v12"
+  },
+  "golf-klub-sarajevo": {
+    "youtube": "KAqJXO1ycBQ",
+    "poster": "/media/portfolio/golf-klub-sarajevo-youtube-poster.webp",
+    "label": "Cedevita Golf Tour · 2024",
+    "portrait": false,
+    "posterPosition": "50% 50%"
+  },
+  "summer-lounge": {
+    "youtube": "2l0hyQN3KQg",
+    "poster": "/media/portfolio/summer-lounge-youtube-poster.webp",
+    "label": "Summer Lounge · 2024",
+    "portrait": true,
+    "posterPosition": "50% 65%"
+  },
+  "bh-travel": {
+    "youtube": "XP9utSxdnKg",
+    "poster": "/media/portfolio/bh-travel-youtube-poster.webp",
+    "label": "BH Travel · 2024",
+    "portrait": false,
+    "posterPosition": "50% 50%"
+  },
+  "bh-posta": {
+    "instagram": "https://www.instagram.com/p/De18GW5s2O0/",
+    "poster": "/media/portfolio/bh-posta-program-04622.webp",
+    "label": "BH Pošta · Video događaja"
   }
 };
