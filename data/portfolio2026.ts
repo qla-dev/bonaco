@@ -710,8 +710,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   "jovs": [
     "/media/portfolio/jovs-event-room.webp",
     "/media/portfolio/jovs-event-card.webp",
-    "/media/portfolio/jovs-campaign-mask.webp",
-    "/media/portfolio/jovs-campaign-portrait.webp"
+    "/media/portfolio/jovs-campaign-mask.webp"
   ],
   "asa-banka": [
     "/media/portfolio/asa-druga-kuca.webp",
@@ -731,33 +730,47 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   "golf-klub-sarajevo": [
     "/media/portfolio/golf-hum-selected.webp",
     "/media/portfolio/golf-sarajevo-sunlight.webp",
-    "/media/portfolio/golf-event-landscape.webp",
-    "/media/portfolio/golf-sarajevo-course-branding.webp"
+    "/media/portfolio/golf-event-landscape.webp"
   ],
   "protech": [
-    "/media/portfolio/protech-brk2958.webp"
+    "/media/portfolio/protech-brk2718.webp",
+    "/media/portfolio/protech-brk2958.webp",
+    "/media/portfolio/protech-brk2899.webp"
   ],
   "omega-orasi": [
-    "/media/portfolio/orasi-12-11.webp"
+    "/media/portfolio/orasi-09-11.webp",
+    "/media/portfolio/orasi-12-11.webp",
+    "/media/portfolio/orasi-02-11.webp"
   ],
   "flok": [
-    "/media/portfolio/flok-sarajevo.webp"
+    "/media/portfolio/flok-post-1.webp",
+    "/media/portfolio/flok-sarajevo.webp",
+    "/media/portfolio/flok-zagreb.webp"
   ],
-  "bosnalijek": [],
-  "omega-zelene-doline": [],
+  "omega-zelene-doline": [
+    "/media/portfolio/omega-zelene-doline-campaign-p24.webp",
+    "/media/portfolio/omega-campaign-cake-bravocrem.webp",
+    "/media/portfolio/omega-zelene-doline-recipe.webp"
+  ],
   "ecomm": [
-    "/media/portfolio/ecomm-kupac-9.webp"
+    "/media/portfolio/ecomm-kupac-9.webp",
+    "/media/portfolio/ecomm-video-frame-p24.webp",
+    "/media/portfolio/ecomm-trgovac-10-1.webp"
   ],
   "rooms-hr": [
     "/media/portfolio/rooms-website-p26.webp",
-    "/media/portfolio/rooms-website-detail.webp"
+    "/media/portfolio/rooms-website-detail.webp",
+    "/img/projects/rooms/mockup.webp"
   ],
   "skuter": [
     "/media/portfolio/skuter-live-website.webp",
-    "/media/portfolio/skuter-website-p26.webp"
+    "/media/portfolio/skuter-website-p26.webp",
+    "/media/portfolio/skuter-website-brands.webp"
   ],
   "bunjo-grupacija": [
-    "/media/portfolio/bunjo-live-website.webp"
+    "/media/portfolio/bunjo-live-website.webp",
+    "/media/portfolio/bunjo-website-p26.webp",
+    "/img/projects/bunjo/mockup.webp"
   ],
   "symbol-dzeko": [
     "/media/portfolio/dzeko-shirt-portfolio.webp",
@@ -766,31 +779,43 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   ],
   "symbol-dukserice": [
     "/media/portfolio/symbol-hoodies-08335.webp",
-    "/media/portfolio/symbol-hoodies-08393.webp"
+    "/media/portfolio/symbol-hoodies-08393.webp",
+    "/media/portfolio/symbol-hoodies-08354.webp"
   ],
   "symbol-tas": [
     "/media/portfolio/symbol-tas-08139.webp",
-    "/media/portfolio/tas-shirt-portfolio.webp"
+    "/media/portfolio/tas-shirt-portfolio.webp",
+    "/media/portfolio/symbol-tas-08403.webp"
   ],
   "summer-lounge-identitet": [
-    "/media/portfolio/summer-lounge-profile.webp"
+    "/media/portfolio/summer-lounge-profile.webp",
+    "/media/portfolio/summer-key-visual-2026.webp",
+    "/media/portfolio/summer-reservations-2026.webp"
   ],
   "summer-wine-lounge": [
-    "/media/portfolio/wine-fest-poster-2025.webp"
+    "/media/portfolio/wine-fest-poster-2025.webp",
+    "/media/portfolio/wine-atmosphere-2026-wide.webp",
+    "/media/portfolio/wine-atmosphere-2026-tasting.webp"
   ],
   "opel-dooh": [
-    "/media/portfolio/opel-dooh-pdf-poster.webp"
+    "/media/portfolio/opel-dooh-pdf-poster.webp",
+    "/media/portfolio/opel-dooh-gallery-01.webp",
+    "/media/portfolio/opel-dooh-gallery-02.webp"
   ],
   "jovs-bilbordi": [
     "/media/portfolio/jovs-building-billboard.webp",
     "/media/portfolio/jovs-city-led.webp",
-    "/media/portfolio/jovs-central-building.webp",
-    "/media/portfolio/jovs-rooftop-billboard.webp"
+    "/media/portfolio/jovs-central-building.webp"
   ],
-  "bonaco-craft": [],
+  "bonaco-craft": [
+    "/media/portfolio/bonaco-craft-gallery-01-jovs.webp",
+    "/media/portfolio/bonaco-craft-gallery-02-kreativni-proces.webp",
+    "/media/portfolio/bonaco-craft-gallery-03-event.webp"
+  ],
   "zmaj": [
     "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
-    "/media/portfolio/zmaj-dooh-pdf-poster.webp"
+    "/media/portfolio/zmaj-dooh-pdf-poster.webp",
+    "/media/portfolio/zmaj-dsc06424.webp"
   ],
   "peoples": [
     "/media/portfolio/peoples-november-1.webp",

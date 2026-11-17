@@ -53,3 +53,17 @@
 
 /* Preserve the official blue Bosnalijek mark on a light badge. */
 .client-cloud[data-client="bosnalijek"] { background: #f3f0e9; }
+
+.client-cloud[data-client="skuter"] img { width: 62%; height: 62%; filter: brightness(0) invert(1); }
+.ref-case-copy .ref-case-summary { margin-bottom: 18px; }
+.ref-case-detail { color: #bdb8b2; font-size: 14px; line-height: 1.85; margin: 0 0 25px; }
+.ref-case-copy > .ref-text-link { margin-top: 23px; }
+.ref-case-triptych { padding-top: 48px; }
+.ref-case-triptych .ref-gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 2.4vw, 32px); }
+.ref-case-triptych .ref-gallery-grid figure:nth-child(n) { width: 100%; min-width: 0; }
+.ref-case-triptych button:focus-visible { outline: 2px solid #f58426; outline-offset: 5px; }
+@media (max-width: 600px) {
+ .ref-case-detail { font-size: 12px; line-height: 1.8; margin-bottom: 20px; }
+ .ref-case-triptych { padding-top: 30px; }
+ .ref-case-triptych .ref-gallery-grid { gap: 10px; }
+}
