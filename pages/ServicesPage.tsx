@@ -4,7 +4,8 @@ import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import SEO from '../components/SEO';
 import BrandLogo from '../components/BrandLogo';
 import BrandServiceLinks from '../components/BrandServiceLinks';
-import { CirclePhoto, ClientClouds, ContactBand } from '../components/ReferenceSections';
+import { ClientClouds, ContactBand } from '../components/ReferenceSections';
+import ServicePhoto from '../components/ServicePhoto';
 import { SERVICES, SERVICE_INCLUDES } from '../data/services';
 import { tr, useLang } from '../lib/i18n';
 
@@ -16,10 +17,10 @@ const photos: Record<string, {src:string; position:string; bs:string; en:string}
     "en": "Symbol TAS campaign: fashion photography"
   },
   "drustvene-mreze": {
-    "src": "/media/portfolio/social-zmaj-food-photo-v8.webp",
+    "src": "/media/portfolio/orasi-social-creative-v8.webp",
     "position": "50% 50%",
-    "bs": "Produktna fotografija hrane, sadržaj iz Bonaco produkcije",
-    "en": "Food photography from a Bonaco product shoot"
+    "bs": "Omega / OraSì, dizajn objave za društvene mreže",
+    "en": "Omega / OraSì: social media creative"
   },
   "graficki-dizajn": {
     "src": "/media/portfolio/symbol-tas-shirt-design-v8.webp",
@@ -71,7 +72,7 @@ export default function ServicesPage() {
           <h1>{t('Sve počinje', 'It all starts')}<br /><span>{t('dobrom idejom.', 'with a good idea.')}</span></h1>
           <p>{t('Dajemo joj strategiju, oblik, glas i publiku. Povezujemo usluge prema onome što vašem brendu treba, od prve kampanje do kontinuirane komunikacije na više kanala.', 'We turn ideas into a clear strategy, distinctive design and content that reaches the right people. From your first campaign to your everyday brand presence, we bring the right skills together.')}</p>
         </div>
-        <CirclePhoto src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" />
+        <ServicePhoto src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" />
       </section>
       <section className="ref-wrap ref-service-list">
         {SERVICES.map((service, index) => {
@@ -88,7 +89,7 @@ export default function ServicesPage() {
                   <ul className="service-includes">{(lang === 'en' ? includes.en : includes.includes).map(item => <li key={item}>{item}</li>)}</ul>
                   <Link className="ref-text-link" to={to('/kontakt/?usluga=' + encodeURIComponent(service.title))}>{t('Razgovarajmo o projektu', 'Let’s discuss your project')}<ArrowUpRight size={18} /></Link>
                 </div>
-                <CirclePhoto src={photo.src} alt={photo[lang]} position={photo.position} />
+                <ServicePhoto src={photo.src} alt={photo[lang]} position={photo.position} artwork={service.slug === 'drustvene-mreze'} />
               </div>
             </details>
           );

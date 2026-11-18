@@ -4,7 +4,8 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { NAV, NAV_OFFER, SOCIAL } from '../data/site';
 import { counterpart, useLang } from '../lib/i18n';
 import SocialIcon from './SocialIcon';
-import BrandLogo, { type Brand } from './BrandLogo';
+import { type Brand } from './BrandLogo';
+import HeaderBrandCarousel from './HeaderBrandCarousel';
 import { getScrollY, onScroll, scrollToY } from '../lib/scroller';
 
 export const brandOf = (pathname: string): Brand =>
@@ -76,9 +77,7 @@ export default function Header() {
     <header className={`site-header ${pathname === home ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
         <div className="header-brand">
-          <Link to={home} className="logo" aria-label={t('početna', 'home')} aria-current={pathname === home ? 'page' : undefined}>
-            <BrandLogo brand={brand} />
-          </Link>
+          <HeaderBrandCarousel selected={brand} />
           <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}>{currentLabel}</span>
         </div>
         <nav className="main-nav" aria-label={t('Glavni meni', 'Main menu')}>

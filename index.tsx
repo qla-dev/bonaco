@@ -25,3 +25,4 @@ createRoot(document.getElementById('root')!).render(
 import './styles/aperture-refresh.css';
 import './styles/portfolio-polish.css';
 import './styles/mobile-editorial.css';
+import './styles/brand-carousel.css';

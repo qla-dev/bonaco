@@ -17,6 +17,22 @@ export default function AboutPage() {
         <p>{t('Bonaco Media je marketinška agencija iz Sarajeva. Za brendove u Bosni i Hercegovini i Evropi povezujemo strategiju, dizajn, sadržaj, produkciju i oglašavanje. Polazimo od onoga što vaš brend čini posebnim i pretvaramo to u komunikaciju koju ljudi mogu prepoznati i razumjeti.', 'Bonaco Media is a Sarajevo-based marketing agency working with brands across Bosnia and Herzegovina and Europe. We bring strategy, design, content, production and advertising together. Our starting point is what makes your brand distinctive; our job is to make that matter to the people you want to reach.')}</p>
         <p>{t('Naš rad obuhvata različite industrije i formate: bankarstvo, modu, turizam, proizvode i događaje. Svakom projektu pristupamo kroz njegovu publiku, kontekst i cilj, uz pažnju prema detaljima od prvog prijedloga do finalne izvedbe.', 'From banking and fashion to hospitality, consumer brands and events, our work takes many forms. Every project starts with its audience and purpose, with the same care carried through from the first idea to the finished work.')}</p>
       </EditorialIntro>
+      <section className="ref-wrap about-history" aria-labelledby="our-story-title">
+        <div className="about-history-origin">
+          <p className="ref-eyebrow">{t('Naša priča', 'Our story')}</p>
+          <span className="history-year" aria-hidden="true">2021<span>→</span></span>
+          <h2 id="our-story-title">{t('Iz Sarajeva.', 'From Sarajevo.')}<br /><span>{t('Korak po korak.', 'Step by step.')}</span></h2>
+          <p>{t('Naša agencijska priča počinje u Sarajevu 2021. godine. Grafički dizajn, brending, web-stranice i web-shopovi bili su polazište iz kojeg smo širili ono što možemo ponuditi klijentima.', 'Our agency story began in Sarajevo in 2021. Graphic design, branding, websites and online stores gave us the foundation to expand what we could offer our clients.')}</p>
+          <p>{t('Slijedile su fotografija i videoprodukcija, zatim organizacija događaja i vanjsko oglašavanje. Svaka nova disciplina povezivala se s prethodnom: da jedna ideja dobije svoj oblik, sadržaj, prostor i publiku.', 'Photography and video production came next, followed by event management and outdoor advertising. Each new discipline built on the last, giving an idea its identity, content, setting and audience.')}</p>
+        </div>
+        <div className="about-name-story">
+          <p className="ref-eyebrow">{t('Kako je nastalo ime', 'The story behind our name')}</p>
+          <div className="name-equation" aria-label="Bona + Co"><span>Bona</span><i aria-hidden="true">+</i><span>Co</span></div>
+          <h2>{t('Kvalitet u radu.', 'Care in our work.')}<br /><span>{t('Snaga u zajedništvu.', 'Strength in collaboration.')}</span></h2>
+          <p>{t('Bonaco spaja dvije ideje. „Bona“ govori o dobrom, kvalitetnom i radu u dobroj vjeri. „Co“, od riječi company, predstavlja zajedništvo i ljude koji zajedno stvaraju.', 'Bonaco brings two ideas together. “Bona” stands for goodness, quality and working in good faith. “Co”, from company, represents togetherness and the people who create together.')}</p>
+          <p>{t('To ime nosi i naš pristup: pažnju prema projektu, otvorenu saradnju i odgovornost prema onome što zajedno gradimo. Od prvog razgovora do završnog detalja.', 'Our name reflects our approach: care for every project, open collaboration and responsibility for what we build together. From the first conversation to the final detail.')}</p>
+        </div>
+      </section>
       <section className="ref-wrap about-approach" aria-label={t('Kako radimo', 'How we work')}>
         {approach.map((item, index) => <article key={item.title}><span className="about-step" aria-hidden="true">0{index + 1}</span><h2>{item.title}</h2><p>{item.text}</p></article>)}
       </section>
