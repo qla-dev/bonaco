@@ -23,8 +23,10 @@ export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
  return <div className="ref-work-grid">{projects.map(p=>{const x=tr(p,lang);return <article className="ref-work-card" key={p.slug}>
    {PRIVATE_PROJECT_MEDIA.has(p.slug) ? <Link to={to('/portfolio/'+p.slug+'/')} className="reference-brand-cover"><img src={asset(p.cover)} alt={p.client}/><span>{t('Videoprodukcija','Video production')}</span></Link> : <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} interactive />}
    <Link className="ref-card-title" to={to('/portfolio/'+p.slug+'/')}><h2>{p.client}</h2><ArrowUpRight aria-hidden="true" size={23}/></Link>
-   <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Vidi projekat','View project')}</Link>
-   {PROJECT_FILMS[p.slug] && <span className="ref-film-label">{t('Video projekat','Video project')}</span>}
+   <div className="ref-card-meta">
+     <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Vidi projekat','View project')}<ArrowUpRight size={13} aria-hidden="true" /></Link>
+     {PROJECT_FILMS[p.slug] && <span className="ref-film-label"><Play size={10} fill="currentColor" aria-hidden="true" />{t('Video projekat','Video project')}</span>}
+   </div>
    <div className="ref-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div>
  </article>})}</div>;
 }

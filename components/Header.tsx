@@ -65,10 +65,12 @@ export default function Header() {
   return (
     <header className={`site-header ${pathname === home ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
       <div className="container header-inner">
-        <Link to={home} className="logo" aria-label={t('početna', 'home')} aria-current={pathname === home ? 'page' : undefined}>
-          <BrandLogo brand={brand} />
-        </Link>
-        <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}><i aria-hidden="true" />{currentLabel}</span>
+        <div className="header-brand">
+          <Link to={home} className="logo" aria-label={t('početna', 'home')} aria-current={pathname === home ? 'page' : undefined}>
+            <BrandLogo brand={brand} />
+          </Link>
+          <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}><i aria-hidden="true" />{currentLabel}</span>
+        </div>
         <nav className="main-nav" aria-label={t('Glavni meni', 'Main menu')}>
           <div className="nav-left">
             <NavLink to={to('/portfolio/')}>{t('Radovi', 'Work')}</NavLink>
