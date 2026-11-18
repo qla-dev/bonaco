@@ -6,6 +6,7 @@ export type Lang = 'bs' | 'en';
 
 /** Parovi putanja [bs, en]. Duži prefiksi prvo (portfolio/slug prije portfolio). */
 export const PATHS: [string, string][] = [
+  ['/sta-nudimo/', '/en/services/'],
   ['/nase-usluge/', '/en/marketing/'],
   ['/bonexis/', '/en/bonexis/'],
   ['/bonevents/', '/en/bonevents/'],

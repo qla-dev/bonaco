@@ -18,6 +18,7 @@ export default function Footer() {
         <nav aria-label={t('Linkovi u podnožju', 'Footer navigation')}>
           <Link to={to('/o-nama/')}>{t('O nama', 'About')}</Link>
           <Link to={to('/portfolio/')}>{t('Naši radovi', 'Our work')}</Link>
+          <Link to={to('/sta-nudimo/')}>{t('Šta nudimo', 'Services')}</Link>
           <Link to={to('/nase-usluge/')}>Bonaco marketing</Link>
           <Link to={to('/kontakt/')}>{t('Kontakt', 'Contact')}</Link>
         </nav>

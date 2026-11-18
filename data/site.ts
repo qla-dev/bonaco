@@ -37,10 +37,10 @@ export const GOOGLE_REVIEWS: { rating: number | null; count: number | null; url:
 
 // Glavni meni (BS putanje; EN se dobija preko localize()). Vijesti su u footeru.
 export const NAV_OFFER = [
-  { to: '/nase-usluge/', bs: 'Bonaco marketing', en: 'Bonaco marketing' },
-  { to: '/bonexis/', bs: 'Bonexis · Uskoro', en: 'Bonexis · Coming soon' },
-  { to: '/bonevents/', bs: 'Bonevent', en: 'Bonevent' },
-  { to: '/poslovni-oglasi/', bs: 'Poslovni oglasi', en: 'Poslovni oglasi' },
+  { to: '/nase-usluge/', bs: 'Bonaco marketing', en: 'Bonaco marketing', color: '#f58426' },
+  { to: '/bonexis/', bs: 'Bonexis · Uskoro', en: 'Bonexis · Coming soon', color: 'var(--bonexis)' },
+  { to: '/bonevents/', bs: 'Bonevent', en: 'Bonevent', color: 'var(--bonevents)' },
+  { to: '/poslovni-oglasi/', bs: 'Poslovni oglasi', en: 'Poslovni oglasi', color: '#f5f5f4' },
 ];
 export const NAV = [
   { to: '/o-nama/', bs: 'O nama', en: 'About' },

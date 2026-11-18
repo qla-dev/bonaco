@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import MarketingRedirect from './components/MarketingRedirect';
 import ServicesPage from './pages/ServicesPage';
+import OffersPage from './pages/OffersPage';
 import BonexisPage from './pages/BonexisPage';
 import BonEventsPage from './pages/BonEventsPage';
 import PoslovniOglasiPage from './pages/PoslovniOglasiPage';
@@ -25,6 +26,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="nase-usluge" element={<ServicesPage />} />
+          <Route path="sta-nudimo" element={<OffersPage />} />
           <Route path="nase-suluge" element={<MarketingRedirect />} />
           <Route path="marketing" element={<MarketingRedirect />} />
           <Route path="bonexis" element={<BonexisPage />} />
@@ -40,6 +42,7 @@ export default function App() {
           <Route path="en">
             <Route index element={<HomePage />} />
             <Route path="marketing" element={<ServicesPage />} />
+            <Route path="services" element={<OffersPage />} />
             <Route path="bonexis" element={<BonexisPage />} />
             <Route path="bonevents" element={<BonEventsPage />} />
             <Route path="poslovni-oglasi" element={<PoslovniOglasiPage />} />

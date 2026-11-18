@@ -28,6 +28,9 @@ const EN_DESC = 'Bonaco Media is a full-service marketing agency from Sarajevo: 
 const pair = (bs, en) => [{ ...bs, lang: 'bs', alt: en.path }, { ...en, lang: 'en', alt: bs.path }];
 const routes = [
   ...pair(
+    { path: '/sta-nudimo/', title: `Šta nudimo | ${NAME}`, description: 'Četiri smjera u Bonaco krugu: Bonaco marketing, Bonexis AI, Bonevent i Poslovni oglasi.' },
+    { path: '/en/services/', title: `Services | ${NAME}`, description: 'Four directions in the Bonaco family: Bonaco marketing, Bonexis AI, Bonevent and Poslovni oglasi.' }),
+  ...pair(
     { path: '/', title: `${NAME} – full-service marketinška agencija, Sarajevo`, description: BS_DESC },
     { path: '/en/', title: `${NAME} – full-service marketing agency, Sarajevo`, description: EN_DESC }),
   ...pair(

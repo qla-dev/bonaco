@@ -1,9 +1,8 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Expand, X } from 'lucide-react';
 import { asset } from '../lib/asset';
 import { useLang } from '../lib/i18n';
 import CircleWave from './CircleWave';
-import { mosaicCircles } from '../lib/circleMosaic';
 
 interface CircleMosaicProps {
   src: string;
@@ -14,10 +13,8 @@ interface CircleMosaicProps {
   portrait?: boolean;
 }
 
-export default function CircleMosaic({ src, alt, position = '50% 50%', contain = false, interactive = false, portrait = false }: CircleMosaicProps) {
+export default function CircleMosaic({ src, alt, position = '50% 50%', contain = false, interactive = false }: CircleMosaicProps) {
   const { t } = useLang();
-  const id = 'aperture-' + useId().replace(/:/g, '');
-  const circles = useMemo(() => mosaicCircles(src + (portrait ? '#portrait' : ''), portrait), [src, portrait]);
   const [revealed, setRevealed] = useState(false);
   const [opened, setOpened] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -27,16 +24,13 @@ export default function CircleMosaic({ src, alt, position = '50% 50%', contain =
     if (opened) { dialog.current?.showModal(); close.current?.focus(); }
     else if (dialog.current?.open) { dialog.current.close(); trigger.current?.focus(); }
   }, [opened]);
-  const visual = <div className="mosaic-aperture" style={{ clipPath: `url(#${id})` }}>
+  const visual = <div className="mosaic-aperture">
     {interactive ? <CircleWave src={src} name={alt} focus={parseFloat(position.split(' ')[1] || '50') / 100} focusX={parseFloat(position.split(' ')[0] || '50') / 100} mosaic passive /> :
       <img src={asset(src)} alt={alt} width="1200" height="900" loading="lazy" decoding="async" style={{ objectPosition: position, objectFit: 'cover' }} />}
   </div>;
   return <div className={'circle-mosaic circle-reveal' + (revealed ? ' is-revealed' : '') + (contain ? ' is-contained' : '')}
     onPointerEnter={e => { if (e.pointerType === 'mouse') setRevealed(true); }} onPointerLeave={() => setRevealed(false)}
     onFocus={() => setRevealed(true)} onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget)) setRevealed(false); }}>
-    <svg width="0" height="0" className="mosaic-defs" aria-hidden="true"><defs><clipPath id={id} clipPathUnits="objectBoundingBox">
-      {circles.map(({ x, y, r }, i) => <ellipse key={i} cx={x / 600} cy={y / 450} rx={r / 600} ry={r / 450} />)}
-    </clipPath></defs></svg>
     {interactive ? <button ref={trigger} type="button" className="mosaic-open" onClick={() => setOpened(true)} aria-label={t('Otvori cijelu fotografiju: ', 'Open full photo: ') + alt}>
       {visual}<span className="mosaic-view"><Expand size={14} /><span>{t('Pogledaj', 'View')}</span></span>
     </button> : visual}
