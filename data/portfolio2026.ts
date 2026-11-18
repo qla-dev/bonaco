@@ -10,8 +10,8 @@ export const PORTFOLIO_2026: Project[] = [
       "Društvene mreže",
       "Foto i video"
     ],
-    "cover": "/media/portfolio/cover-summer-lounge.webp",
-    "coverAlt": "Summer Lounge, široki pogled na večernju atmosferu događaja",
+    "cover": "/media/portfolio/summer-dancing-crowd-v8.webp",
+    "coverAlt": "Summer Lounge, pogled na publiku koja pleše ispred pozornice",
     "summary": "Od najave programa do atmosfere na događaju: društvene mreže, fotografija i video povezuju cijelu Summer Lounge sezonu.",
     "task": "Od najave programa do atmosfere na događaju: društvene mreže, fotografija i video povezuju cijelu Summer Lounge sezonu.",
     "work": [
@@ -24,7 +24,7 @@ export const PORTFOLIO_2026: Project[] = [
       "title": "A summer that brings the city together.",
       "summary": "Social content, photography and video connect the programme and atmosphere of the Summer Lounge season.",
       "task": "Social content, photography and video connect the programme and atmosphere of the Summer Lounge season.",
-      "coverAlt": "Summer Lounge — selected project",
+      "coverAlt": "Summer Lounge: an elevated view of the dancing crowd in front of the stage",
       "work": [
         "Social media and programme announcements",
         "Event photography and video",
@@ -647,7 +647,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/bonaco-craft-v12-desktop.jpg",
+    "cover": "/media/portfolio/bonaco-craft-v13-desktop.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
     "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
@@ -707,8 +707,8 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Foto i video"
     ],
-    "cover": "/media/clients/medicana-white.webp",
-    "coverAlt": "Medicana Sarajevo — referenca za videoprodukciju",
+    "cover": "/media/portfolio/medicana-video-frame-v8.webp",
+    "coverAlt": "Medicana Sarajevo, kadar iz videa s doktorom Antom Anićem",
     "summary": "Videoprodukcija za Medicana Sarajevo: snimanje i montaža sadržaja za digitalnu komunikaciju bolnice.",
     "task": "Predstaviti stručnost medicinskog tima kroz jasno strukturirane video formate.",
     "work": [
@@ -719,7 +719,7 @@ export const PORTFOLIO_2026: Project[] = [
     "results": [],
     "en": {
       "title": "Expertise on camera.",
-      "coverAlt": "Medicana Sarajevo — video production reference",
+      "coverAlt": "Medicana Sarajevo: a still from our video featuring Dr Ante Anić",
       "summary": "Video production for Medicana Sarajevo: filming and editing content for the hospital’s digital communication.",
       "task": "Introduce the medical team’s expertise through clearly structured video formats.",
       "work": [
@@ -840,7 +840,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   "bonaco-craft": [
   "/media/portfolio/craft-v12-11.webp",
   "/media/portfolio/craft-v12-20.webp",
-  "/media/portfolio/bonaco-craft-v12-desktop.jpg"
+  "/media/portfolio/bonaco-craft-v13-desktop.jpg"
 ],
   "zmaj": [
     "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
@@ -859,6 +859,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   ]
 };
 export const PROJECT_FOCUS: Record<string,string> = {
+  "medicana": "50% 5%",
   "summer-lounge": "50% 50%",
   "jovs": "50% 50%",
   "asa-banka": "50% 50%",
@@ -870,7 +871,7 @@ export const PROJECT_FOCUS: Record<string,string> = {
   "flok": "50% 50%",
   "bosnalijek": "50% 50%",
   "omega-zelene-doline": "50% 50%",
-  "ecomm": "50% 50%",
+  "ecomm": "50% 12%",
   "rooms-hr": "50% 50%",
   "skuter": "50% 50%",
   "bunjo-grupacija": "50% 50%",
@@ -883,7 +884,7 @@ export const PROJECT_FOCUS: Record<string,string> = {
   "opel-dooh": "50% 50%",
   "jovs-bilbordi": "50% 50%",
   "bonaco-craft": "50% 50%",
-  "peoples": "55% 50%"
+  "peoples": "75% 50%"
 };
 export const PROJECT_CONTAIN: string[] = [];
 export interface ProjectFilm { src?: string; mobile?: string; webm?: string; webmMobile?: string; instagram?: string; youtube?: string; portrait?: boolean; posterPosition?: string; poster: string; label: string; }
@@ -899,11 +900,11 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
     "label": "Zmaj · DOOH"
   },
   "bonaco-craft": {
-    "src": "/video/bonaco-craft-v12-desktop.mp4",
-    "webm": "/video/bonaco-craft-v12-desktop.webm",
-    "mobile": "/video/bonaco-craft-v12-mobile.mp4",
-    "webmMobile": "/video/bonaco-craft-v12-mobile.webm",
-    "poster": "/media/portfolio/bonaco-craft-v12-desktop.jpg",
+    "src": "/video/bonaco-craft-v13-desktop.mp4",
+    "webm": "/video/bonaco-craft-v13-desktop.webm",
+    "mobile": "/video/bonaco-craft-v13-centered-mobile.mp4",
+    "webmMobile": "/video/bonaco-craft-v13-centered-mobile.webm",
+    "poster": "/media/portfolio/bonaco-craft-v13-desktop.jpg",
     "label": "Bonaco · Craft v12"
   },
   "golf-klub-sarajevo": {

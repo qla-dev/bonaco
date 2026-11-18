@@ -28,7 +28,7 @@ export default function CircleMosaic({ src, alt, position = '50% 50%', contain =
     else if (dialog.current?.open) { dialog.current.close(); trigger.current?.focus(); }
   }, [opened]);
   const visual = <div className="mosaic-aperture" style={{ clipPath: `url(#${id})` }}>
-    {interactive ? <CircleWave src={src} name={alt} focus={parseFloat(position.split(' ')[1] || '50') / 100} mosaic passive /> :
+    {interactive ? <CircleWave src={src} name={alt} focus={parseFloat(position.split(' ')[1] || '50') / 100} focusX={parseFloat(position.split(' ')[0] || '50') / 100} mosaic passive /> :
       <img src={asset(src)} alt={alt} width="1200" height="900" loading="lazy" decoding="async" style={{ objectPosition: position, objectFit: 'cover' }} />}
   </div>;
   return <div className={'circle-mosaic circle-reveal' + (revealed ? ' is-revealed' : '') + (contain ? ' is-contained' : '')}

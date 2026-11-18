@@ -9,7 +9,7 @@ export default function HeroReel() {
   const { t } = useLang();
   const [paused, setPaused] = useState(false);
   const [muted, setMuted] = useState(true);
-  const [mobile, setMobile] = useState(() => matchMedia('(max-width: 760px)').matches);
+  const [mobile, setMobile] = useState(() => matchMedia('(max-width: 960px) and (orientation: portrait)').matches);
   const ref = useRef<HTMLVideoElement>(null);
   const section = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(true);
@@ -19,7 +19,7 @@ export default function HeroReel() {
     return () => observer.disconnect();
   }, []);
   useEffect(() => {
-    const query = matchMedia('(max-width: 760px)');
+    const query = matchMedia('(max-width: 960px) and (orientation: portrait)');
     const update = () => setMobile(query.matches);
     query.addEventListener('change', update);
     return () => query.removeEventListener('change', update);

@@ -10,7 +10,7 @@ export default function Footer() {
     <div className="ref-wrap ref-footer-top">
       <div className="footer-brand">
         <Link to={to('/')} aria-label="Bonaco Media"><BrandLogo /></Link>
-        <p>{t('Strategija, kreativa i produkcija. Iz Sarajeva, za ideje koje idu dalje.', 'Strategy, creativity and production. From Sarajevo, for ideas that go further.')}</p>
+        <p>{t('Strategija, kreativa i produkcija. Iz Sarajeva, za ideje koje idu dalje.', 'Strategy, design and production. Based in Sarajevo. Creating work that reaches further.')}</p>
         <span className="footer-signature">{t('Povezujemo ideje i ljude.', 'Connecting ideas and people.')}</span>
       </div>
       <div className="footer-column">
@@ -29,8 +29,8 @@ export default function Footer() {
         <a className="footer-address" href={SITE.mapsUrl} target="_blank" rel="noopener noreferrer">{SITE.address.street}<br />{SITE.address.zip} {SITE.address.city}, BiH <span aria-hidden="true">↗</span></a>
       </div>
       <div className="footer-column footer-follow">
-        <h2>{t('U našem krugu', 'In our circle')}</h2>
-        <p>{t('Novi radovi, ideje i priče iza kadra.', 'New work, ideas and stories behind the scenes.')}</p>
+        <h2>{t('U našem krugu', 'Stay in the loop')}</h2>
+        <p>{t('Novi radovi, ideje i priče iza kadra.', 'Our latest work, fresh ideas and a look behind the scenes.')}</p>
         <nav className="footer-social-links" aria-label={t('Društvene mreže', 'Social media')}>
           {SOCIAL.map(s => <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}><SocialIcon id={s.id} size={18} /></a>)}
         </nav>

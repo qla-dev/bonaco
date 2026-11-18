@@ -12,10 +12,6 @@ const AREAS = [
   { id: 'Bonevent', bs: 'Bonevent (događaji)', en: 'Bonevent (events)' },
   { id: 'Bonexis', bs: 'Bonexis (AI rješenja)', en: 'Bonexis (AI solutions)' },
 ] as const;
-const BUDGETS = [
-  ['Do 500 KM', 'Up to 500 KM'], ['500 – 1.500 KM', '500 – 1,500 KM'], ['1.500 – 5.000 KM', '1,500 – 5,000 KM'],
-  ['Više od 5.000 KM', 'Over 5,000 KM'], ['Nisam siguran', 'Not sure'],
-];
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -113,13 +109,6 @@ export default function ContactForm() {
           <input name="phone" type="tel" autoComplete="tel" maxLength={40} />
         </label>
       </div>
-      <label className="field">
-        <span>{t('Okvirni budžet', 'Approximate budget')} <small>{t('(opcionalno)', '(optional)')}</small></span>
-        <select name="budget" defaultValue="">
-          <option value="">{t('Odaberite…', 'Choose…')}</option>
-          {BUDGETS.map(b => <option key={b[0]} value={b[0]}>{lang === 'en' ? b[1] : b[0]}</option>)}
-        </select>
-      </label>
       <label className="field">
         <span>{t('Poruka', 'Message')} <span aria-hidden="true">*</span></span>
         <textarea name="message" required rows={5} maxLength={5000} placeholder={t('Ukratko opišite projekat, rok i ciljeve.', 'Briefly describe the project, timeline and goals.')} />

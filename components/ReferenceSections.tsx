@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import { CLIENTS } from '../data/clients';
 import { CATEGORY_EN } from '../data/projects';
-import { PROJECT_FOCUS, PROJECT_CONTAIN, PROJECT_FILMS } from '../data/portfolio2026';
+import { PROJECT_FOCUS, PROJECT_CONTAIN } from '../data/portfolio2026';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import type { Project } from '../types';
 import BrandLogo from './BrandLogo';
 import PoslovniOglasiLogo from './PoslovniOglasiLogo';
 import CircleMosaic from './CircleMosaic';
-import { PRIVATE_PROJECT_MEDIA } from '../data/projectMedia';
 
 export function EditorialIntro({label,title,children,id,secondary=false}:{label:string;title:ReactNode;children?:ReactNode;id?:string;secondary?:boolean}) {
  const Heading=secondary?'h2':'h1'; return <section className="ref-intro ref-wrap" id={id}><p className="ref-eyebrow"><i/>{label}</p><div><Heading>{title}</Heading>{children}</div></section>;
@@ -21,11 +20,10 @@ export function CirclePhoto({src,alt,position='50% 50%',contain=false}:{src:stri
 export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
  const {lang,to,t}=useLang();
  return <div className="ref-work-grid">{projects.map(p=>{const x=tr(p,lang);return <article className="ref-work-card" key={p.slug}>
-   {PRIVATE_PROJECT_MEDIA.has(p.slug) ? <Link to={to('/portfolio/'+p.slug+'/')} className="reference-brand-cover"><img src={asset(p.cover)} alt={p.client}/><span>{t('Videoprodukcija','Video production')}</span></Link> : <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} interactive />}
+   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} interactive />
    <Link className="ref-card-title" to={to('/portfolio/'+p.slug+'/')}><h2>{p.client}</h2><ArrowUpRight aria-hidden="true" size={23}/></Link>
    <div className="ref-card-meta">
      <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Vidi projekat','View project')}<ArrowUpRight size={13} aria-hidden="true" /></Link>
-     {PROJECT_FILMS[p.slug] && <span className="ref-film-label"><Play size={10} fill="currentColor" aria-hidden="true" />{t('Video projekat','Video project')}</span>}
    </div>
    <div className="ref-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div>
  </article>})}</div>;
@@ -43,14 +41,14 @@ export function ContactBand() {
 }
 export function BrandOrbit({compact=false}:{compact?:boolean}) {
  const {t,to}=useLang();
- return <section className={'brand-orbit'+(compact?' is-compact':'')} aria-label={t('Bonaco i povezani brendovi','Bonaco and connected brands')}>
+ return <section className={'brand-orbit'+(compact?' is-compact':'')} aria-label={t('Bonaco i povezani brendovi','The Bonaco brand family')}>
   <div className="orbit-rings" aria-hidden="true"><i/><i/><i/></div>
   <Link to={to('/nase-usluge/')} className="orbit-core"><BrandLogo/><span>Marketing</span></Link>
-  {!compact&&<h1>{t('Jedan krug.','One circle.')}<br/><span>{t('Više mogućnosti.','More possibilities.')}</span></h1>}
+  {!compact&&<h1>{t('Jedan krug.','One circle.')}<br/><span>{t('Više mogućnosti.','Many possibilities.')}</span></h1>}
   <div className="orbit-branches">
     <Link to={to('/bonexis/')} className="orbit-brand orbit-ai"><BrandLogo brand="bonexis"/><span>{t('AI rješenja · Uskoro','AI solutions · Coming soon')}</span></Link>
     <Link to={to('/bonevents/')} className="orbit-brand orbit-events"><BrandLogo brand="bonevents"/><span>{t('Događaji i produkcija','Events and production')}</span></Link>
-    <Link to={to('/poslovni-oglasi/')} className="orbit-brand orbit-po"><PoslovniOglasiLogo/><span>{t('Poslovni oglasi','Job opportunities')}</span></Link>
+    <Link to={to('/poslovni-oglasi/')} className="orbit-brand orbit-po"><PoslovniOglasiLogo/><span>{t('Poslovni oglasi','Careers and recruitment')}</span></Link>
   </div>
  </section>;
 }

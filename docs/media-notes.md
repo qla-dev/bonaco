@@ -31,3 +31,15 @@ Novi kružni tekstovi za Summer Lounge, Sarajevsku pivaru, Wine Shop i Omegu su 
 - The four testimonial proposals retain their visible draft labels. Existing original Summer Lounge, Omega, Sarajevska pivara and Wine Shop Sarajevo marks are shown in white through CSS; generated archive assets are unchanged.
 - Circles measure 296px on desktop and up to 264px on mobile. Two matching groups repeat seamlessly towards the left over 95 seconds, with an explicit pause/resume button, matching the client's requested always-moving logo ribbon.
 - The client's newest request supersedes the earlier full-frame-with-black-background preference: the hero uses centered cover cropping and 100dvh on both screen sizes, retaining the supplied landscape/portrait V12 files without re-encoding.
+
+
+## November 18 mobile/editorial refresh
+- Summer Lounge: original _MG_2922.jpg, approved client Drive; distant dancing crowd.
+- Services: authentic Symbol TAS shirt design, ROOMS.hr screenshot and Zmaj LED from supplied portfolio. Real stock Meta illustration: Mikael Blomkvist, Pexels photo 6483627, https://www.pexels.com/photo/laptop-on-desk-6483627/ (Pexels commercial-use license).
+- Social service image: original Zmaj food product photograph DSC06436.jpg; used to illustrate content production, without claiming social account management.
+- Bonevent: Golf klub guests, original _O5A7609.jpg.
+- Medicana: user explicitly approved one screenshot in current request; show Dr Ante Anic portfolio frame only. Full medical video files remain unpublished.
+
+- Mobile hero uses V13-derived centered portrait composition. Original 26.25-second footage, timing and soundtrack retained; four brands checked at 320x780 and 390x844. Desktop uses finished V13 landscape. Originals retained in ins/outputs; derivative source/provenance in workspace work/hero-v8.
+- People's: no better confirmed high-resolution original found; original Drive terrace image retained with corrected focal point 75% 50%. External thumbnails rejected.
+- Testimonial marks: exact original alpha trim for Summer/Omega/Pivara. Wine Shop uses complete original white OnlyVIP mark extracted at 5 seconds from supplied OnlyVIP.mp4 LED material. Editorial draft labels retained.

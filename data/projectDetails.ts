@@ -109,7 +109,7 @@ export const PROJECT_DETAILS: Record<string,{bs:string;en:string}> = {
     "en": "For Max Media, we designed and developed a web presentation of its billboards and advertising spaces. A light background, green colour and large headings establish a recognisable visual direction. The project presentation connects the same homepage on a desktop, laptop and phone, showing how layout and content hierarchy adapt to different screens. The three examples show desktop, laptop and mobile details from the same archived website presentation."
   },
   "medicana": {
-    "bs": "Za Medicana Sarajevo radili smo na video sadržaju koji stručno znanje približava publici kroz razgovor pred kamerom. Angažman obuhvata snimanje medicinskog tima, montažu i pripremu kratkih formata za digitalne kanale. Projekat predstavljamo kao referencu za videoprodukciju, bez javnog prikazivanja snimaka ili izdvojenih kadrova.",
-    "en": "For Medicana Sarajevo, we produced video content that brings professional knowledge closer to audiences through on-camera conversations. The scope includes filming the medical team, editing and preparing short formats for digital channels. This project is presented as a video production reference without publicly showing the recordings or extracted frames."
+    "bs": "Za Medicana Sarajevo radili smo na video sadržaju koji stručno znanje približava publici kroz razgovor pred kamerom. Angažman obuhvata snimanje medicinskog tima, montažu i pripremu kratkih formata za digitalne kanale. Naglasak je na jasnoj prezentaciji stručnosti i prirodnom nastupu pred kamerom.",
+    "en": "For Medicana Sarajevo, we produced video content that brings professional knowledge closer to audiences through on-camera conversations. The scope includes filming the medical team, editing and preparing short formats for digital channels. The focus is on clear explanations and a natural, confident presence on camera."
   }
 };

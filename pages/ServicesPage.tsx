@@ -8,16 +8,49 @@ import { CirclePhoto, ClientClouds, ContactBand } from '../components/ReferenceS
 import { SERVICES, SERVICE_INCLUDES } from '../data/services';
 import { tr, useLang } from '../lib/i18n';
 
-const photos: Record<string,string> = {
-  "strategija-kampanje": "symbol-tas-08139.webp",
-  "drustvene-mreze": "symbol-hoodies-08393.webp",
-  "graficki-dizajn": "symbol-hoodies-08335.webp",
-  "foto-video": "golf-sarajevo-sunlight.webp",
-  "foto-videoprodukcija": "golf-sarajevo-sunlight.webp",
-  "web-dizajn": "skuter-live-website.webp",
-  "ooh-dooh": "jovs-central-building.webp",
-  "digitalno-oglasavanje": "ecomm-kupac-9.webp",
-  "meta-google": "ecomm-kupac-9.webp"
+const photos: Record<string, {src:string; position:string; bs:string; en:string}> = {
+  "strategija-kampanje": {
+    "src": "/media/portfolio/symbol-tas-08139.webp",
+    "position": "50% 38%",
+    "bs": "Symbol TAS kampanja, odjeća i fotografija",
+    "en": "Symbol TAS campaign: fashion photography"
+  },
+  "drustvene-mreze": {
+    "src": "/media/portfolio/social-zmaj-food-photo-v8.webp",
+    "position": "50% 50%",
+    "bs": "Produktna fotografija hrane, sadržaj iz Bonaco produkcije",
+    "en": "Food photography from a Bonaco product shoot"
+  },
+  "graficki-dizajn": {
+    "src": "/media/portfolio/symbol-tas-shirt-design-v8.webp",
+    "position": "50% 52%",
+    "bs": "Symbol, grafički dizajn TAS majice",
+    "en": "Symbol: TAS T-shirt graphic design"
+  },
+  "foto-video": {
+    "src": "/media/portfolio/golf-sarajevo-sunlight.webp",
+    "position": "50% 40%",
+    "bs": "Golf klub Sarajevo, fotografija golferke",
+    "en": "Golf Club Sarajevo: a golfer on the course"
+  },
+  "web-dizajn": {
+    "src": "/media/portfolio/rooms-website-service-v8.webp",
+    "position": "50% 35%",
+    "bs": "ROOMS.hr, dizajn početne stranice",
+    "en": "ROOMS.hr homepage design"
+  },
+  "ooh-dooh": {
+    "src": "/media/portfolio/zmaj-led-service-v8.webp",
+    "position": "50% 44%",
+    "bs": "Zmaj, animacija prikazana na LED ekranu",
+    "en": "Zmaj animation on a digital outdoor screen"
+  },
+  "digitalno-oglasavanje": {
+    "src": "/media/portfolio/meta-marketing-stock-v8.webp",
+    "position": "50% 50%",
+    "bs": "Laptop na radnom stolu, stock fotografija Mikaela Blomkvista",
+    "en": "Laptop on a desk, stock photograph by Mikael Blomkvist"
+  }
 };
 
 export default function ServicesPage() {
@@ -36,7 +69,7 @@ export default function ServicesPage() {
           <BrandLogo />
           <p className="ref-eyebrow">Bonaco marketing</p>
           <h1>{t('Sve počinje', 'It all starts')}<br /><span>{t('dobrom idejom.', 'with a good idea.')}</span></h1>
-          <p>{t('Dajemo joj strategiju, oblik, glas i publiku. Povezujemo usluge prema onome što vašem brendu treba, od prve kampanje do kontinuirane komunikacije na više kanala.', 'We give it a strategy, a shape, a voice and an audience. We connect services around what your brand needs, from a first campaign to ongoing communication across multiple channels.')}</p>
+          <p>{t('Dajemo joj strategiju, oblik, glas i publiku. Povezujemo usluge prema onome što vašem brendu treba, od prve kampanje do kontinuirane komunikacije na više kanala.', 'We turn ideas into a clear strategy, distinctive design and content that reaches the right people. From your first campaign to your everyday brand presence, we bring the right skills together.')}</p>
         </div>
         <CirclePhoto src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" />
       </section>
@@ -44,6 +77,7 @@ export default function ServicesPage() {
         {SERVICES.map((service, index) => {
           const translated = tr(service, lang);
           const includes = SERVICE_INCLUDES[service.slug];
+          const photo = photos[service.slug];
           return (
             <details id={service.slug} key={service.slug} open={index === 0}>
               <summary><h2>{translated.title}</h2><ChevronDown className="service-chevron" size={22} aria-hidden="true" /></summary>
@@ -54,7 +88,7 @@ export default function ServicesPage() {
                   <ul className="service-includes">{(lang === 'en' ? includes.en : includes.includes).map(item => <li key={item}>{item}</li>)}</ul>
                   <Link className="ref-text-link" to={to('/kontakt/?usluga=' + encodeURIComponent(service.title))}>{t('Razgovarajmo o projektu', 'Let’s discuss your project')}<ArrowUpRight size={18} /></Link>
                 </div>
-                <CirclePhoto src={'/media/portfolio/' + (photos[service.slug] || 'ecomm-kupac-9.webp')} alt={translated.title} contain={service.slug === 'web-dizajn'} />
+                <CirclePhoto src={photo.src} alt={photo[lang]} position={photo.position} />
               </div>
             </details>
           );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { NAV, NAV_OFFER, SOCIAL } from '../data/site';
@@ -27,12 +27,22 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [ddOpen, setDdOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const keepDropdownOpen = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setDdOpen(true);
+  };
+  const closeDropdownSoon = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setDdOpen(false), 260);
+  };
   const { pathname } = useLocation();
   const { t, to } = useLang();
   const brand = brandOf(pathname);
   const home = to('/');
 
   useEffect(() => { setOpen(false); setDdOpen(false); }, [pathname]);
+  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
   useEffect(() => {
     const check = () => setScrolled(getScrollY() > 24);
     check();
@@ -69,7 +79,7 @@ export default function Header() {
           <Link to={home} className="logo" aria-label={t('početna', 'home')} aria-current={pathname === home ? 'page' : undefined}>
             <BrandLogo brand={brand} />
           </Link>
-          <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}><i aria-hidden="true" />{currentLabel}</span>
+          <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}>{currentLabel}</span>
         </div>
         <nav className="main-nav" aria-label={t('Glavni meni', 'Main menu')}>
           <div className="nav-left">
@@ -77,9 +87,9 @@ export default function Header() {
             <NavLink to={to('/o-nama/')}>{t('O nama', 'About')}</NavLink>
           </div>
           <div className="nav-right">
-          <div className="nav-dd" onMouseEnter={() => setDdOpen(true)} onMouseLeave={() => setDdOpen(false)} onKeyDown={event => { if (event.key === 'Escape') setDdOpen(false); }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDdOpen(false); }}>
+          <div className="nav-dd" onMouseEnter={keepDropdownOpen} onMouseLeave={closeDropdownSoon} onKeyDown={event => { if (event.key === 'Escape') setDdOpen(false); }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null) && !event.currentTarget.matches(':hover')) setDdOpen(false); }}>
             <button type="button" className={`nav-dd-trigger${offerActive ? ' active' : ''}`} aria-current={offerActive ? 'true' : undefined} aria-expanded={ddOpen} onClick={event => setDdOpen(current => event.detail === 0 ? !current : true)}>
-              {t('Šta nudimo', 'What we offer')} <ChevronDown size={14} />
+              {t('Šta nudimo', 'Services')} <ChevronDown size={14} />
             </button>
             <div className={`nav-dd-panel${ddOpen ? ' is-open' : ''}`}>
               {NAV_OFFER.map(n => (
@@ -103,7 +113,7 @@ export default function Header() {
           <NavLink to={home} end>{t('Početna', 'Home')}</NavLink>
           <div className="mobile-dd">
             <button type="button" className={`mobile-dd-trigger${offerActive ? ' active' : ''}`} aria-current={offerActive ? 'true' : undefined} onClick={() => setDdOpen(o => !o)} aria-expanded={ddOpen}>
-              {t('Šta nudimo', 'What we offer')} <ChevronDown size={16} className={ddOpen ? 'rot180' : ''} />
+              {t('Šta nudimo', 'Services')} <ChevronDown size={16} className={ddOpen ? 'rot180' : ''} />
             </button>
             {ddOpen && (
               <div className="mobile-dd-panel">

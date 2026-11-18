@@ -12,6 +12,8 @@ varying vec2 uv;
 uniform sampler2D photo;
 uniform vec2 crop;
 uniform float focus;
+uniform float focusX;
+uniform float frameRatio;
 uniform float single;
 uniform float mosaic;
 uniform float contain;
@@ -24,7 +26,7 @@ void main(){
  float mask=max(max(circle(px,vec2(126.,220.),116.),circle(px,vec2(402.,176.),148.)),max(circle(px,vec2(744.,208.),180.),circle(px,vec2(1062.,228.),120.)));
  if(single>.5) mask=1.-smoothstep(.497,.5,length(p-vec2(.5)));
  if(mosaic>.5) mask=1.;
- vec2 aspect=vec2(mix(mix(3.,1.,single),4./3.,mosaic),1.);
+ vec2 aspect=vec2(frameRatio,1.);
  vec2 offset=vec2(0.);float light=0.;
  for(int i=0;i<4;i++){
    float age=time-waves[i].z;
@@ -35,13 +37,13 @@ void main(){
    offset+=normalize(delta+vec2(.0001))*wave*.018/aspect;
    light+=wave*.055;
  }
- vec2 sampleUv=(p+offset)*crop+vec2((1.-crop.x)*.5,(1.-crop.y)*mix(focus,.5,contain));
+ vec2 sampleUv=(p+offset)*crop+vec2((1.-crop.x)*mix(focusX,.5,contain),(1.-crop.y)*mix(focus,.5,contain));
  if(contain>.5 && (sampleUv.x<0. || sampleUv.x>1. || sampleUv.y<0. || sampleUv.y>1.)) mask=0.;
  vec3 color=texture2D(photo,clamp(sampleUv,0.,1.)).rgb+light;
  gl_FragColor=vec4(color,mask);
 }`;
 
-export default function CircleWave({ src, name, focus = .5, single = false, mosaic = false, passive = false, contain = false }: { src: string; name: string; focus?: number; single?: boolean; mosaic?: boolean; passive?: boolean; contain?: boolean }) {
+export default function CircleWave({ src, name, focus = .5, focusX = .5, single = false, mosaic = false, passive = false, contain = false }: { src: string; name: string; focus?: number; focusX?: number; single?: boolean; mosaic?: boolean; passive?: boolean; contain?: boolean }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const host = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -107,17 +109,23 @@ export default function CircleWave({ src, name, focus = .5, single = false, mosa
     const size = () => {
       const dpr = Math.min(devicePixelRatio,2);
       el.width=Math.round(el.clientWidth*dpr); el.height=Math.round(el.clientHeight*dpr);
-      gl.viewport(0,0,el.width,el.height); schedule();
+      gl.viewport(0,0,el.width,el.height);
+      const frameRatio = el.clientWidth / Math.max(el.clientHeight, 1);
+      gl.uniform1f(gl.getUniformLocation(program, 'frameRatio'), frameRatio);
+      if (imageReady) {
+        const ratio = image.naturalWidth / image.naturalHeight;
+        const fit = contain ? Math.max : Math.min;
+        gl.uniform2f(gl.getUniformLocation(program, 'crop'), fit(1, frameRatio / ratio), fit(1, ratio / frameRatio));
+      }
+      schedule();
     };
     const image = new Image();
     image.onload = () => {
       if (dead) return;
       gl.bindTexture(gl.TEXTURE_2D,texture);
       gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
-      const ratio=image.naturalWidth/image.naturalHeight;
-      const fit = contain ? Math.max : Math.min;
-      gl.uniform2f(gl.getUniformLocation(program,'crop'),fit(1,(mosaic?4/3:single?1:3)/ratio),fit(1,ratio/(mosaic?4/3:single?1:3)));
       gl.uniform1f(gl.getUniformLocation(program,'focus'),focus);
+      gl.uniform1f(gl.getUniformLocation(program,'focusX'),focusX);
       imageReady=true; setReady(true); size();
     };
     image.src=asset(src);
@@ -141,13 +149,13 @@ export default function CircleWave({ src, name, focus = .5, single = false, mosa
       gl.deleteTexture(texture);gl.deleteBuffer(buffer);gl.deleteProgram(program);shaders.forEach(s=>gl.deleteShader(s));
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  },[src,focus,reduce,single,mosaic,contain,inView]);
+  },[src,focus,focusX,reduce,single,mosaic,contain,inView]);
   return <div ref={host} className={`circle-wave${single?' circle-wave-single':''}${mosaic?' circle-wave-mosaic':''}`} role={passive ? undefined : 'button'} tabIndex={passive ? undefined : 0}
     aria-hidden={passive || undefined} aria-label={passive ? undefined : t(`${name}. Klikni ili dodirni za valove.`, `${name}. Click or touch to make waves.`)}
     onPointerDown={e=>{const r=e.currentTarget.getBoundingClientRect();activate.current((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height,1.5);}}
     onPointerMove={e=>{if(e.pointerType!=='mouse')return;const r=e.currentTarget.getBoundingClientRect();activate.current((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height,e.buttons?1.2:.35);}}
     onKeyDown={e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate.current(.5,.5,1.5);}}}>
-    {single || mosaic ? <img src={asset(src)} alt="" className="circle-wave-photo" style={{objectFit:contain?'contain':'cover',objectPosition:contain?'50% 50%':`50% ${focus*100}%`}} loading="lazy"/> : <svg viewBox="0 0 1200 400" aria-hidden="true" className="circle-wave-fallback">
+    {single || mosaic ? <img src={asset(src)} alt="" className="circle-wave-photo" style={{objectFit:contain?'contain':'cover',objectPosition:contain?'50% 50%':`${focusX*100}% ${focus*100}%`}} loading="lazy"/> : <svg viewBox="0 0 1200 400" aria-hidden="true" className="circle-wave-fallback">
       <defs><clipPath id={maskId}>{CIRCLES.map(([cx,cy,r])=><circle key={cx} cx={cx} cy={cy} r={r}/>)}</clipPath></defs>
       <image href={asset(src)} width="1200" height="400" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${maskId})`} />
     </svg>}

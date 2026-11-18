@@ -40,8 +40,8 @@ Build Bonaco.cmd
 # Earlier local video exports; the current web film is versioned.
 /public/video/bonaco-*.mp4
 /public/video/bonaco-*.webm
-!/public/video/bonaco-craft-v12-*.mp4
-!/public/video/bonaco-craft-v12-*.webm
+!/public/video/bonaco-craft-v13-*.mp4
+!/public/video/bonaco-craft-v13-*.webm
 
 # Local source research (Drive metadata and workstation paths).
 /*-sources.json

@@ -6,7 +6,7 @@ import { CirclePhoto, WorkGrid, ClientClouds, ContactBand } from '../components/
 import { PROJECTS, CATEGORY_EN } from '../data/projects';
 import { PORTFOLIO_2026, PROJECT_FOCUS } from '../data/portfolio2026';
 import { PROJECT_DETAILS } from '../data/projectDetails';
-import { projectExamples, PRIVATE_PROJECT_MEDIA } from '../data/projectMedia';
+import { projectExamples } from '../data/projectMedia';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import ProjectFilmPlayer from '../components/ProjectFilmPlayer';
@@ -39,7 +39,6 @@ export default function ProjectPage() {
   if (!project) return <NotFoundPage />;
   const copy = tr(project, lang);
   const detail = PROJECT_DETAILS[project.slug];
-  const privateMedia = PRIVATE_PROJECT_MEDIA.has(project.slug);
   const index = PORTFOLIO_2026.findIndex(item => item.slug === project.slug);
   const next = PORTFOLIO_2026[(index + 1) % PORTFOLIO_2026.length];
   const current = examples[selected];
@@ -51,7 +50,7 @@ export default function ProjectPage() {
         <h1>{project.client}</h1><p>{copy.title}</p>
       </header>
       <div className="ref-wrap ref-case-intro">
-        {privateMedia ? <div className="reference-brand-cover"><img src={asset(project.cover)} alt={project.client} /><span>{t('Videoprodukcija', 'Video production')}</span></div> : <CirclePhoto src={project.cover} alt={copy.coverAlt} position={PROJECT_FOCUS[project.slug]} />}
+        <CirclePhoto src={project.cover} alt={copy.coverAlt} position={PROJECT_FOCUS[project.slug]} />
         <div className="ref-case-copy">
           <div className="ref-tags">{project.categories.map(category => <span key={category}>{lang === 'en' ? (CATEGORY_EN[category] || category) : category}</span>)}</div>
           <p className="ref-case-summary">{copy.summary}</p>

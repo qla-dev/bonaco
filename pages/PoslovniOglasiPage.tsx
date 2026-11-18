@@ -14,7 +14,7 @@ export default function PoslovniOglasiPage() {
         <div>
           <div className="po-hero-wordmark"><PoslovniOglasiLogo /></div>
           <h1>{t('Pravi ljudi.', 'The right people.')}<br /><span>{t('Nove prilike.', 'New opportunities.')}</span></h1>
-          <p>{t('Mjesto susreta poslodavaca koji grade tim i ljudi koji traže sljedeći korak u karijeri. Pregledna radna mjesta, jasna očekivanja i jednostavan put do informacija o prijavi.', 'A meeting point for employers building a team and people looking for their next career step. Clear vacancies, expectations and application information.')}</p>
+          <p>{t('Mjesto susreta poslodavaca koji grade tim i ljudi koji traže sljedeći korak u karijeri. Pregledna radna mjesta, jasna očekivanja i jednostavan put do informacija o prijavi.', 'Connecting employers with their next team member and people with their next career move. Explore clear job listings, understand what is expected and find out how to apply.')}</p>
           <a className="ref-pill" href="https://poslovnioglasi.ba/" target="_blank" rel="noopener noreferrer">{t('Otvori Poslovne oglase', 'Visit Poslovni oglasi')}<ArrowUpRight size={18} /></a>
         </div>
         <CircleMosaic src="/media/poslovni-oglasi-real-stock.webp" alt={t('Kolege rade za zajedničkim stolom u kancelariji', 'Colleagues working at a shared table in an office')} position="50% 50%" />
@@ -22,7 +22,7 @@ export default function PoslovniOglasiPage() {
       <section className="ref-wrap ref-job-columns">
         <article>
           <h2>{t('Za poslodavce', 'For employers')}</h2>
-          <p>{t('Predstavite poziciju tako da pravi kandidat može prepoznati svoju priliku. Jasno opišite odgovornosti, potrebne vještine, mjesto rada i ono što vaš tim nudi.', 'Present the role so the right candidate can recognise their opportunity. Describe responsibilities, required skills, location and what your team offers.')}</p>
+          <p>{t('Predstavite poziciju tako da pravi kandidat može prepoznati svoju priliku. Jasno opišite odgovornosti, potrebne vještine, mjesto rada i ono što vaš tim nudi.', 'Help the right candidates see themselves in your team. Describe the role, key responsibilities, required skills, location and what you offer.')}</p>
           <p>{t('Dobar oglas daje kandidatima dovoljno informacija za odluku. Uz opis kompanije, navedite rok i način prijave te kontakt za dodatna pitanja.', 'A good listing gives candidates enough information to make a decision. Alongside the company description, include the deadline, application method and a contact for questions.')}</p>
           <Link className="ref-text-link" to={to('/kontakt/?usluga=Poslovni%20oglasi')}>{t('Upit za oglašavanje posla', 'Job advertising inquiry')}<ArrowUpRight size={18} /></Link>
         </article>
@@ -33,7 +33,7 @@ export default function PoslovniOglasiPage() {
           <a className="ref-text-link" href="https://poslovnioglasi.ba/" target="_blank" rel="noopener noreferrer">{t('Pogledaj prilike', 'Explore opportunities')}<ArrowUpRight size={18} /></a>
         </article>
       </section>
-      <section className="ref-wrap jobs-finish"><h2>{t('Sljedeća prilika je bliže.', 'Your next opportunity is closer.')}</h2><a className="ref-pill" href="https://poslovnioglasi.ba/" target="_blank" rel="noopener noreferrer">poslovnioglasi.ba<ArrowUpRight size={18} /></a></section>
+      <section className="ref-wrap jobs-finish"><h2>{t('Sljedeća prilika je bliže.', 'Your next opportunity starts here.')}</h2><a className="ref-pill" href="https://poslovnioglasi.ba/" target="_blank" rel="noopener noreferrer">poslovnioglasi.ba<ArrowUpRight size={18} /></a></section>
     </div>
   );
 }
