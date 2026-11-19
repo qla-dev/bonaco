@@ -11,6 +11,7 @@
 .voice-circle { width: 232px; height: 232px; padding: 25px 31px; }
 .voice-brandmark { width: 94px; height: 32px; margin-bottom: 6px; }
 .voice-brandmark img { width: 100%; height: 100%; object-fit: contain; clip-path: none; }
+.voice-brandmark-pivnica img { width: 94px; height: 94px; max-width: none; filter: grayscale(1); }
 .voice-circle p { font-size: .875rem; line-height: 1.4; margin: 6px 0 9px; }
 .voice-circle h3 { font-size: .8125rem; line-height: 1.25; }
 .voice-draft { font-size: .75rem; line-height: 1.2; letter-spacing: 0; text-transform: none; margin-top: 5px; }
