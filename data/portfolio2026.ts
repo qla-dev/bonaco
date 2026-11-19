@@ -648,7 +648,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/bonaco-craft-no-bonevent-desktop-poster.jpg",
+    "cover": "/media/portfolio/bonaco-craft-v20-desktop-poster.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
     "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
@@ -839,9 +839,9 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/jovs-central-building.webp"
   ],
   "bonaco-craft": [
-  "/media/portfolio/bonaco-craft-no-bonevent-desktop-event.jpg",
-  "/media/portfolio/bonaco-craft-no-bonevent-desktop-outro.jpg",
-  "/media/portfolio/bonaco-craft-no-bonevent-desktop-poster.jpg"
+  "/media/portfolio/bonaco-craft-v20-desktop-dance.jpg",
+  "/media/portfolio/bonaco-craft-v20-desktop-outro.jpg",
+  "/media/portfolio/bonaco-craft-v20-desktop-poster.jpg"
 ],
   "zmaj": [
     "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
