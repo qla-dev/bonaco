@@ -1,5 +1,14 @@
 # Bonaco media — November 2026
 
+## Current delivery — 19 November 2026
+
+The homepage and Craft project now use the final **Bonaco Craft v15** export: 26.25 seconds at 24 fps, landscape 1920×1080 and portrait 1080×1920, with the supplied soundtrack. The preferred WebM files are copied unchanged from `ins/outputs/Bonaco-Craft-v15`. To meet the hosting limit of 25 MiB per file, the desktop MP4 fallback is encoded with x264 slow, two-pass 7.2 Mb/s video and unchanged AAC audio. The portrait MP4 retains its original H.264 video stream and uses 112 kb/s AAC audio. Both MP4 files use faststart. Source exports remain untouched. Autoplay is muted, with a visible sound control.
+
+The notes below describe earlier deliveries and are retained for provenance; their video and music descriptions are superseded by the current delivery above.
+
+## Earlier media notes
+
+
 The portfolio uses the supplied Bonaco Media 2026 portfolio, selected materials from the client's `_Klijenti` Drive folder, and confirmed Bonaco public posts. Project stories summarise the approved project scope. Performance figures are shown only where the portfolio supplies them.
 
 The homepage and Craft project use **Bonaco Craft v9**, the final edit dated 16 November 2026. Separate 1920×1080 and 1080×1920 compositions run for 23.5 seconds at 24 fps. The HQ H.264 and VP9 streams were encoded directly from the original ProRes 422 HQ masters, preserving the approved montage. Both preferred WebM streams score above 98.6 VMAF against those masters (desktop 19.4 MB; mobile 18.4 MB); MP4 fallbacks score above 98.7 (about 23.2 MB each). Some original JOVS and eComm clips have lower resolution, so their source detail remains limited. MP4 files use faststart and AAC audio; WebM uses Opus. Both variants include the same original instrumental.
