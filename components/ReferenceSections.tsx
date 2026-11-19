@@ -20,10 +20,10 @@ export function CirclePhoto({src,alt,position='50% 50%',contain=false,scale=1}:{
 export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
  const {lang,to,t}=useLang();
  return <div className="ref-work-grid">{projects.map(p=>{const x=tr(p,lang);return <article className="ref-work-card" key={p.slug}>
-   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} scale={PROJECT_SCALE[p.slug]} projectTo={to('/portfolio/'+p.slug+'/')} />
-   <Link className="ref-card-title" to={to('/portfolio/'+p.slug+'/')}><h2>{p.client}</h2><ArrowUpRight aria-hidden="true" size={23}/></Link>
+   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} scale={PROJECT_SCALE[p.slug]} wave />
+   <div className="ref-card-title"><h2>{p.client}</h2></div>
    <div className="ref-card-meta">
-     <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Vidi projekat','View project')}<ArrowUpRight size={13} aria-hidden="true" /></Link>
+     <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')} aria-label={t('Vidi projekat: ', 'View project: ') + p.client}>{t('Vidi projekat','View project')}</Link>
    </div>
    <div className="ref-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div>
  </article>})}</div>;

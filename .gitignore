@@ -49,3 +49,8 @@ Build Bonaco.cmd
 /poslovni-oglasi-logo-source.json
 /video-quality-provenance.json
 /video-quality-report.json
+
+!public/video/bonaco-craft-v15-desktop.mp4
+!public/video/bonaco-craft-v15-desktop.webm
+!public/video/bonaco-craft-v15-mobile.mp4
+!public/video/bonaco-craft-v15-mobile.webm

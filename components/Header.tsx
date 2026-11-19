@@ -77,7 +77,7 @@ export default function Header() {
       <div className="container header-inner">
         <div className="header-brand">
           <Link to={home} className="logo" aria-label={t('Bonaco — početna', 'Bonaco — home')} aria-current={pathname === home ? 'page' : undefined}><BrandLogo /></Link>
-          <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}>{currentLabel}</span>
+          {pathname !== home && <span className="header-current" aria-label={t('Trenutna stranica: ', 'Current page: ') + currentLabel}>{currentLabel}</span>}
         </div>
         <nav className="main-nav" aria-label={t('Glavni meni', 'Main menu')}>
           <div className="nav-left">
