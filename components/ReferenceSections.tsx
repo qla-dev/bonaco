@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import { CLIENTS } from '../data/clients';
 import { CATEGORY_EN } from '../data/projects';
-import { PROJECT_FOCUS, PROJECT_CONTAIN } from '../data/portfolio2026';
+import { PROJECT_FOCUS, PROJECT_CONTAIN, PROJECT_SCALE } from '../data/portfolio2026';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import type { Project } from '../types';
@@ -14,13 +14,13 @@ import CircleMosaic from './CircleMosaic';
 export function EditorialIntro({label,title,children,id,secondary=false}:{label:string;title:ReactNode;children?:ReactNode;id?:string;secondary?:boolean}) {
  const Heading=secondary?'h2':'h1'; return <section className="ref-intro ref-wrap" id={id}><p className="ref-eyebrow"><i/>{label}</p><div><Heading>{title}</Heading>{children}</div></section>;
 }
-export function CirclePhoto({src,alt,position='50% 50%',contain=false}:{src:string;alt:string;position?:string;contain?:boolean}) {
- return <CircleMosaic src={src} alt={alt} position={position} contain={contain} />;
+export function CirclePhoto({src,alt,position='50% 50%',contain=false,scale=1}:{src:string;alt:string;position?:string;contain?:boolean;scale?:number}) {
+ return <CircleMosaic src={src} alt={alt} position={position} contain={contain} scale={scale} />;
 }
 export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
  const {lang,to,t}=useLang();
  return <div className="ref-work-grid">{projects.map(p=>{const x=tr(p,lang);return <article className="ref-work-card" key={p.slug}>
-   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} interactive />
+   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} scale={PROJECT_SCALE[p.slug]} projectTo={to('/portfolio/'+p.slug+'/')} />
    <Link className="ref-card-title" to={to('/portfolio/'+p.slug+'/')}><h2>{p.client}</h2><ArrowUpRight aria-hidden="true" size={23}/></Link>
    <div className="ref-card-meta">
      <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')}>{t('Vidi projekat','View project')}<ArrowUpRight size={13} aria-hidden="true" /></Link>

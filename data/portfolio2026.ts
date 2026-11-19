@@ -862,7 +862,7 @@ export const PROJECT_FOCUS: Record<string,string> = {
   "medicana": "50% 5%",
   "summer-lounge": "50% 50%",
   "jovs": "50% 50%",
-  "asa-banka": "50% 50%",
+  "asa-banka": "50% 78%",
   "symbol": "50% 50%",
   "bh-posta": "50% 45%",
   "golf-klub-sarajevo": "50% 50%",
@@ -934,3 +934,6 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
     "label": "BH Pošta · Video događaja"
   }
 };
+
+// Frame out the campaign masthead while keeping the card and food in view.
+export const PROJECT_SCALE: Record<string, number> = { "asa-banka": 1.18 };

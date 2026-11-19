@@ -73,6 +73,7 @@ export default function Header() {
 
   return (
     <header className={`site-header ${pathname === home ? 'is-overlay' : ''} ${scrolled ? 'is-scrolled' : ''} ${open ? 'is-open' : ''}`}>
+      <div className="header-shell">
       <div className="container header-inner">
         <div className="header-brand">
           <Link to={home} className="logo" aria-label={t('Bonaco — početna', 'Bonaco — home')} aria-current={pathname === home ? 'page' : undefined}><BrandLogo /></Link>
@@ -101,10 +102,11 @@ export default function Header() {
             <NavLink to={to('/kontakt/')}>{t('Kontakt', 'Contact')}</NavLink>
           </div>
         </nav>
-        <LangSwitch />
         <button className="icon-btn menu-toggle" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-label={open ? t('Zatvori meni', 'Close menu') : t('Otvori meni', 'Open menu')}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
+      </div>
+      <LangSwitch />
       </div>
       <div className="mobile-menu" hidden={!open}>
         <nav aria-label={t('Mobilni meni', 'Mobile menu')} onClick={event => { if ((event.target as Element).closest('a')) { setOpen(false); setDdOpen(false); } }}>

@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowUpRight, ChevronLeft, ChevronRight, Play, X } from 'luc
 import SEO from '../components/SEO';
 import { CirclePhoto, WorkGrid, ClientClouds, ContactBand } from '../components/ReferenceSections';
 import { PROJECTS, CATEGORY_EN } from '../data/projects';
-import { PORTFOLIO_2026, PROJECT_FOCUS } from '../data/portfolio2026';
+import { PORTFOLIO_2026, PROJECT_FOCUS, PROJECT_SCALE } from '../data/portfolio2026';
 import { PROJECT_DETAILS } from '../data/projectDetails';
 import { projectExamples } from '../data/projectMedia';
 import { asset } from '../lib/asset';
@@ -50,7 +50,7 @@ export default function ProjectPage() {
         <h1>{project.client}</h1><p>{copy.title}</p>
       </header>
       <div className="ref-wrap ref-case-intro">
-        <CirclePhoto src={project.cover} alt={copy.coverAlt} position={PROJECT_FOCUS[project.slug]} />
+        <CirclePhoto src={project.cover} alt={copy.coverAlt} position={PROJECT_FOCUS[project.slug]} scale={PROJECT_SCALE[project.slug]} />
         <div className="ref-case-copy">
           <div className="ref-tags">{project.categories.map(category => <span key={category}>{lang === 'en' ? (CATEGORY_EN[category] || category) : category}</span>)}</div>
           <p className="ref-case-summary">{copy.summary}</p>
