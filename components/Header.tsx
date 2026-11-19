@@ -8,7 +8,7 @@ import BrandLogo, { type Brand } from './BrandLogo';
 import { getScrollY, onScroll, scrollToY } from '../lib/scroller';
 
 export const brandOf = (pathname: string): Brand =>
-  /^\/(en\/)?bonexis/.test(pathname) ? 'bonexis' : /^\/(en\/)?bonevents/.test(pathname) ? 'bonevents' : 'bonaco';
+  /^\/(en\/)?bonexis/.test(pathname) ? 'bonexis' : 'bonaco';
 
 export function LangSwitch() {
   const { pathname, hash } = useLocation();

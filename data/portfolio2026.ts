@@ -648,10 +648,10 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/bonaco-craft-v17-desktop.jpg",
+    "cover": "/media/portfolio/bonaco-craft-no-bonevent-desktop-poster.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
-    "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
-    "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
+    "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
+    "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "work": [
       "Motion dizajn i vizuelni identitet",
       "Montaža i animacija",
@@ -661,8 +661,8 @@ export const PORTFOLIO_2026: Project[] = [
     "en": {
       "title": "Identity in motion.",
       "coverAlt": "Bonaco · Craft — selected work",
-      "summary": "The Bonaco brand film brings together typography, colour, footage and the identities of Bonaco, Bonexis, Bonevent and Poslovni oglasi. Prepared in landscape and portrait formats.",
-      "task": "The Bonaco brand film brings together typography, colour, footage and the identities of Bonaco, Bonexis, Bonevent and Poslovni oglasi. Prepared in landscape and portrait formats.",
+      "summary": "The Bonaco brand film brings together typography, colour, footage and the identities of Bonaco, Bonexis and Poslovni oglasi. Prepared in landscape and portrait formats.",
+      "task": "The Bonaco brand film brings together typography, colour, footage and the identities of Bonaco, Bonexis and Poslovni oglasi. Prepared in landscape and portrait formats.",
       "work": [
         "Motion design and visual identity",
         "Editing and animation",
@@ -839,9 +839,9 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/jovs-central-building.webp"
   ],
   "bonaco-craft": [
-  "/media/portfolio/craft-v12-11.webp",
-  "/media/portfolio/craft-v12-20.webp",
-  "/media/portfolio/bonaco-craft-v17-desktop.jpg"
+  "/media/portfolio/bonaco-craft-no-bonevent-desktop-event.jpg",
+  "/media/portfolio/bonaco-craft-no-bonevent-desktop-outro.jpg",
+  "/media/portfolio/bonaco-craft-no-bonevent-desktop-poster.jpg"
 ],
   "zmaj": [
     "/media/portfolio/zmaj-ooh-artwork-pdf.webp",

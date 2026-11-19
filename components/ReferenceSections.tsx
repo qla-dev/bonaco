@@ -46,7 +46,6 @@ export function BrandOrbit({compact=false}:{compact?:boolean}) {
   {!compact&&<h1>{t('Jedan krug.','One circle.')}<br/><span>{t('Više mogućnosti.','Many possibilities.')}</span></h1>}
   <div className="orbit-branches">
     <Link to={to('/bonexis/')} className="orbit-brand orbit-ai"><BrandLogo brand="bonexis"/><span>{t('AI rješenja · Uskoro','AI solutions · Coming soon')}</span></Link>
-    <Link to={to('/bonevents/')} className="orbit-brand orbit-events"><BrandLogo brand="bonevents"/><span>{t('Događaji i produkcija','Events and production')}</span></Link>
   </div>
  </section>;
 }

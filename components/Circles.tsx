@@ -1,5 +1,5 @@
 // Kružni sistem iz briefa v1.3: krug iz znaka "B." nosi marketing radove, logotipe klijenata,
-// pet Bonexis kapsula i BonEvents. Tekst je uvijek uz krug (ne zaključan u malom krugu),
+// pet Bonexis kapsula. Tekst je uvijek uz krug (ne zaključan u malom krugu),
 // sve radi na dodir i tastaturu, a kontinuirane animacije se mogu zaustaviti.
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,6 @@ import { SERVICES } from '../data/services';
 import { CLIENTS } from '../data/clients';
 import { MARKETING_VIDEO, VIDEOS } from '../data/site';
 import { PUBLIC_CAPSULES } from '../data/capsules';
-import { EVENT_HERO_IMAGE, EVENT_REFERENCES, EVENT_SERVICES } from '../data/bonevents';
 import ServiceIcon from './ServiceIcon';
 import BrandIcon, { type IconName } from './BrandIcon';
 import BrandLogo, { QlaMark } from './BrandLogo';
@@ -256,56 +255,4 @@ export function PoslovniOglasiBlock({ page = false }: { page?: boolean }) {
       </div>
     </div>
   </section>;
-}
-
-/* ---------- BonEvents: veliki krug s event kadrom, usluge i reference ---------- */
-export function BonEventsBlock({ page = false }: { page?: boolean }) {
-  const { lang, t, to } = useLang();
-  const Heading = page ? 'h1' : 'h2';
-  return (
-    <section className={`section bev ${page ? 'is-page' : ''}`} data-brand="bonevents" id="bonevents">
-      <div className="container bev-grid">
-        <div className="bev-visual">
-          <span className="bev-hero"><img src={asset(EVENT_HERO_IMAGE)} alt={t('Publika i DJ nastup na Summer Lounge eventu', 'Crowd and DJ set at a Summer Lounge event')} loading={page ? 'eager' : 'lazy'} /></span>
-          <span className="bev-ring" aria-hidden="true" />
-        </div>
-        <div className="bev-copy">
-          <Heading className="bev-title"><BrandLogo brand="bonevents" /></Heading>
-          <p className="lead">
-            {hl(t(
-              'Događaji koje ljudi **pamte**: **planiramo, produciramo i promovišemo** evente za brendove, od **poslovnih okupljanja** do **ljetnih sezona**.',
-              'Events people **remember**: we **plan, produce and promote** events for brands, from **business gatherings** to **summer seasons**.',
-            ))}
-          </p>
-          <ul className="bev-services">
-            {(page ? EVENT_SERVICES : EVENT_SERVICES.slice(0, 3)).map(s => (
-              <li key={s.id}>
-                <span className="bev-dot" aria-hidden="true"><BrandIcon name={s.icon} size={20} /></span>
-                <div><h3>{s[lang].title}</h3><p>{s[lang].text}</p></div>
-              </li>
-            ))}
-          </ul>
-          <h3 className="bev-refs-title">{t('Reference', 'References')}</h3>
-          <ul className="bev-refs">
-            {EVENT_REFERENCES.map(r => {
-              const inner = (
-                <>
-                  <span className="bev-ref-circle">{r.image ? <img src={asset(r.image)} alt="" loading="lazy" /> : <b>{r.name}</b>}</span>
-                  <span><strong>{r.name}</strong><small>{r[lang].scope}</small><span>{r[lang].text}</span></span>
-                </>
-              );
-              return <li key={r.id}>{r.project ? <Link to={to(`/portfolio/${r.project}/`)} className="bev-ref">{inner}</Link> : <div className="bev-ref">{inner}</div>}</li>;
-            })}
-          </ul>
-          <div className="btn-row">
-            {page ? (
-              <Link to={`${to('/kontakt/')}?usluga=BonEvents`} className="btn btn-primary">{t('Pošaljite upit za event', 'Send an event inquiry')}</Link>
-            ) : (
-              <Link to={to('/bonevents/')} className="btn btn-primary">{t('Upoznajte Bonevent', 'Discover Bonevent')} <ArrowRight size={18} /></Link>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
 }

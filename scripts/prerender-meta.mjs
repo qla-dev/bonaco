@@ -21,15 +21,15 @@ await build({ entryPoints: [entry], bundle: true, format: 'esm', platform: 'node
 const { PROJECTS, POSTS } = await import(pathToFileURL(out).href + `?t=${Date.now()}`);
 fs.rmSync(entry); fs.rmSync(out);
 
-const BS_DESC = 'Bonaco Media je full-service marketinška agencija iz Sarajeva: strategija i kampanje, društvene mreže, dizajn i branding, foto i video, web dizajn, OOH. Uz Bonexis AI rješenja i Bonevent.';
-const EN_DESC = 'Bonaco Media is a full-service marketing agency from Sarajevo: strategy and campaigns, social media, design and branding, photo and video, web design, OOH. Plus Bonexis AI solutions and Bonevent.';
+const BS_DESC = 'Bonaco Media je full-service marketinška agencija iz Sarajeva: strategija i kampanje, društvene mreže, dizajn i branding, foto i video, web dizajn, OOH. Uz Bonexis AI rješenja.';
+const EN_DESC = 'Bonaco Media is a full-service marketing agency from Sarajevo: strategy and campaigns, social media, design and branding, photo and video, web design, OOH. Plus Bonexis AI solutions.';
 
 // Parovi stranica: [bs, en] (isto kao lib/i18n.ts). alt = putanja na drugom jeziku za hreflang.
 const pair = (bs, en) => [{ ...bs, lang: 'bs', alt: en.path }, { ...en, lang: 'en', alt: bs.path }];
 const routes = [
   ...pair(
-    { path: '/sta-nudimo/', title: `Šta nudimo | ${NAME}`, description: 'Bonaco marketing, Bonexis AI, Bonevent i partnerska platforma Poslovni oglasi.' },
-    { path: '/en/services/', title: `Services | ${NAME}`, description: 'Bonaco marketing, Bonexis AI, Bonevent and our partner platform Poslovni oglasi.' }),
+    { path: '/sta-nudimo/', title: `Šta nudimo | ${NAME}`, description: 'Bonaco marketing, Bonexis AI i partnerska platforma Poslovni oglasi.' },
+    { path: '/en/services/', title: `Services | ${NAME}`, description: 'Bonaco marketing, Bonexis AI and our partner platform Poslovni oglasi.' }),
   ...pair(
     { path: '/', title: `${NAME} – full-service marketinška agencija, Sarajevo`, description: BS_DESC },
     { path: '/en/', title: `${NAME} – full-service marketing agency, Sarajevo`, description: EN_DESC }),
@@ -40,20 +40,17 @@ const routes = [
     { path: '/bonexis/', title: `Bonexis – Uskoro sa vama | ${NAME}`, description: 'Poslovna AI rješenja u saradnji s qla.dev. Bonexis — uskoro sa vama.' },
     { path: '/en/bonexis/', title: `Bonexis – Coming soon | ${NAME}`, description: 'Business AI solutions with qla.dev. Bonexis — coming soon.' }),
   ...pair(
-    { path: '/bonevents/', title: `Bonevent – organizacija i produkcija događaja | ${NAME}`, description: 'Bonevent planira, producira i promoviše događaje za brendove: organizacija, produkcija, hostese, foto i video. Reference: JOVS i Summer Lounge.' },
-    { path: '/en/bonevents/', title: `Bonevent – event planning and production | ${NAME}`, description: 'Bonevent plans, produces and promotes events for brands: organisation, production, hosts, photo and video. References: JOVS and Summer Lounge.' }),
-  ...pair(
     { path: '/poslovni-oglasi/', title: `Poslovni Oglasi – pronađite posao ili radnike u BiH | ${NAME}`, description: 'Poslovni Oglasi je platforma za oglašavanje poslova u Bosni i Hercegovini. Povežite se s pravim kandidatima brže i efikasnije.' },
     { path: '/en/poslovni-oglasi/', title: `Poslovni Oglasi – find a job or workers in BiH | ${NAME}`, description: 'Poslovni Oglasi is a job advertising platform in Bosnia and Herzegovina. Connect with the right candidates faster and more efficiently.' }),
   ...pair(
     { path: '/portfolio/', title: `Radovi | ${NAME}`, description: 'Odabrani radovi Bonaco Media: društvene mreže, web stranice, grafički dizajn, fotografija, video i eventi.' },
     { path: '/en/work/', title: `Work | ${NAME}`, description: 'Selected work by Bonaco Media: social media, websites, graphic design, photography, video and events.' }),
   ...pair(
-    { path: '/o-nama/', title: `O nama | ${NAME}`, description: 'Bonaco Media je full-service marketinška agencija iz Sarajeva, osnovana 2021. Uz marketing razvijamo Bonexis AI rješenja i Bonevent organizaciju događaja.' },
-    { path: '/en/about/', title: `About us | ${NAME}`, description: 'Bonaco Media is a full-service marketing agency from Sarajevo, founded in 2021. Alongside marketing we build Bonexis AI solutions and run Bonevent.' }),
+    { path: '/o-nama/', title: `O nama | ${NAME}`, description: 'Bonaco Media je full-service marketinška agencija iz Sarajeva, osnovana 2021. Uz marketing razvijamo Bonexis AI rješenja.' },
+    { path: '/en/about/', title: `About us | ${NAME}`, description: 'Bonaco Media is a full-service marketing agency from Sarajevo, founded in 2021. Alongside marketing we build Bonexis AI solutions.' }),
   ...pair(
-    { path: '/kontakt/', title: `Kontakt | ${NAME}`, description: 'Kontaktirajte Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Upit za marketing, Bonevent ili Bonexis.' },
-    { path: '/en/contact/', title: `Contact | ${NAME}`, description: 'Contact Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Inquiries for marketing, Bonevent or Bonexis.' }),
+    { path: '/kontakt/', title: `Kontakt | ${NAME}`, description: 'Kontaktirajte Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Upit za marketing ili Bonexis.' },
+    { path: '/en/contact/', title: `Contact | ${NAME}`, description: 'Contact Bonaco Media: Hiseta br. 11, Sarajevo, +387 33 258 900, bonacomedia@gmail.com. Inquiries for marketing or Bonexis.' }),
   ...pair(
     { path: '/politika-privatnosti/', title: `Politika privatnosti | ${NAME}`, description: 'Kako Bonaco Media prikuplja i koristi lične podatke posjetilaca web stranice.' },
     { path: '/en/privacy-policy/', title: `Privacy policy | ${NAME}`, description: 'How Bonaco Media collects and uses the personal data of website visitors.' }),

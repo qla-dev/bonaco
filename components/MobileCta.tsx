@@ -1,13 +1,13 @@
 // Fiksni CTA na dnu ekrana (samo telefon), po uzoru na qla.dev: "Pogledajte radove" + "Zatražite ponudu".
 // Na početnoj se pojavljuje tek poslije videa; sakriven na kontaktu i dok je meni otvoren.
-// Boja prati sekciju ispod trake: kad skrolom uđete u Bonexis/BonEvents, dugme postepeno (proporcionalno
+// Boja prati sekciju ispod trake: kad skrolom uđete u Bonexis, dugme postepeno (proporcionalno
 // skrolu) prelazi u tirkiznu/ljubičastu i nazad.
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLang } from '../lib/i18n';
 import { onScroll } from '../lib/scroller';
 
-const INK: Record<string, string> = { bonaco: '#141414', bonexis: '#0c0c0c', bonevents: '#ffffff' };
+const INK: Record<string, string> = { bonaco: '#141414', bonexis: '#0c0c0c' };
 const FADE = 160; // px skrola za puni prelaz boje
 
 export default function MobileCta() {

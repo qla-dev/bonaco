@@ -1,17 +1,15 @@
 import { asset } from '../lib/asset';
-export type Brand = 'bonaco' | 'bonexis' | 'bonevents';
+export type Brand = 'bonaco' | 'bonexis';
 
 export const BRANDS: Record<Brand, { name: string; dark: string; light: string }> = {
   bonaco: { name: 'Bonaco Media', dark: '/media/brand/bonaco-official-on-dark.svg', light: '/media/brand/bonaco-official.png' },
   bonexis: { name: 'Bonexis', dark: '/media/brand/bonexis-official-on-dark.svg', light: '/media/brand/bonexis-official.png' },
-  bonevents: { name: 'Bonevent', dark: '/media/brand/bonevent-official-on-dark.svg', light: '/media/brand/bonevent-official.png' },
 };
 
 // Official compact marks supplied with the final wordmarks.
 export const BRAND_MARKS: Record<Brand, string> = {
   bonaco: '/media/brand/bonaco-mark-official-on-dark.svg',
   bonexis: '/media/brand/bonexis-mark-official-on-dark.svg',
-  bonevents: '/media/brand/bonevent-mark-official-on-dark.svg',
 };
 
 export function QlaMark({ className = '' }: { className?: string }) {

@@ -1,11 +1,10 @@
-/* Bonaco Media – paleta brendova (Opcija 2): BONACO narandžasta, BONEXIS tirkizna, BONEVENTS ljubičasta.
+/* Bonaco Media – paleta brendova (Opcija 2): BONACO narandžasta, BONEXIS tirkizna.
    Web je većinski crn/neutralan; boja brenda je samo akcent. Svaki brend ima iste uloge:
    --accent (ispuna), --accent-ink (tekst na ispuni), --accent-light (tekst/linije na tamnom),
    --accent-dark (tekst na svijetlom), --accent-hover, --accent-deep (tamna podloga s tonom brenda). */
 :root {
   --bonaco: #F58426;
   --bonexis: #009D9A;
-  --bonevents: #592ADA;
   --poslovnioglasi: #2563EB;
   --bg: #121212;
   --bg-2: #1c1c1c;
@@ -32,10 +31,6 @@
 [data-brand='bonexis'] {
   --accent: var(--bonexis); --accent-hover: #00b8b4; --accent-ink: #0c0c0c;
   --accent-light: #3cc9c5; --accent-dark: #00706e; --accent-deep: #08302f;
-}
-[data-brand='bonevents'] {
-  --accent: var(--bonevents); --accent-hover: #6a3df0; --accent-ink: #fff;
-  --accent-light: #a88bff; --accent-dark: #592ada; --accent-deep: #22124f;
 }
 [data-brand='poslovnioglasi'] {
   --accent: var(--poslovnioglasi); --accent-hover: #3b82f6; --accent-ink: #fff;

@@ -1,4 +1,4 @@
-/* Web brief v1.3: logotipi tri brenda, video hero, kružni sistem (radovi, klijenti, Bonexis, BonEvents), BS/EN.
+/* Web brief v1.3: logotipi tri brenda, video hero, kružni sistem (radovi, klijenti, Bonexis), BS/EN.
    Crna/tamna baza dominira; boja brenda (--accent) samo za detalje, aktivna stanja, CTA i kružne akcente. */
 
 /* ---------- Logotipi (slike, originalni dizajn) ---------- */
@@ -160,7 +160,7 @@ button.text-link { background: none; border: 0; padding: 0; font: inherit; font-
   .bxc-cap.is-on .bxc-cap-circle { transform: none; }
 }
 
-/* ---------- BonEvents ---------- */
+/* ---------- događaja ---------- */
 .bev { background: radial-gradient(ellipse at 80% 40%, var(--accent-deep), var(--bg) 60%); border-top: 1px solid var(--line); }
 .bev.is-page { padding-top: clamp(40px, 6vw, 80px); }
 .bev-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
@@ -233,7 +233,6 @@ figure.gallery-item { cursor: default; }
 .footer-brands .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; }
 .dot-bonaco { background: var(--bonaco); }
 .dot-bonexis { background: var(--bonexis); }
-.dot-bonevents { background: var(--bonevents); }
 .dot-po { background: var(--poslovnioglasi); }
 
 /* qla.dev znak: malim slovima, Facebookov UI sans (Segoe UI na Windowsu, Helvetica na Apple uređajima) */
@@ -441,14 +440,13 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
 /* Solid brand colors remain visible while the HD backgrounds load. */
 .brand-tile-bonaco .bt-art { background: #f58426; }
 .brand-tile-bonexis .bt-art { background: #009d9a; }
-.brand-tile-bonevents .bt-art { background: #592ada; }
 @media (prefers-reduced-motion: reduce) {
   .brand-tile, .bt-art { transition: none; }
   .brand-tile:hover, .brand-tile:hover .bt-art { transform: none; }
 }
 @media (max-width: 860px) { .brand-tiles { grid-template-columns: 1fr; } .brand-tile { min-height: 260px; } }
 
-/* ---------- Ikone i proširen BonEvents ---------- */
+/* ---------- Ikone i proširen događaja ---------- */
 .badge svg { margin-right: 6px; }
 .bxc-cap-circle svg { color: var(--accent-light); margin-bottom: 2px; }
 .bxc-cap.is-on .bxc-cap-circle svg { color: var(--accent-ink); }
@@ -495,7 +493,7 @@ html.menu-open body { position: fixed; inset: 0; width: 100%; }
   animation: shimmer 4.5s ease-in-out infinite;
 }
 /* na tamnim podlogama tekstualna nijansa (ljubičasta je pretamna za tekst na crnom) */
-[data-brand='bonevents'] .shimmer.hl, [data-brand='bonexis'] .shimmer.hl { --accent: var(--accent-light); }
+[data-brand='bonexis'] .shimmer.hl { --accent: var(--accent-light); }
 .light .shimmer.hl { --accent: var(--accent-dark); }
 @media (prefers-reduced-motion: reduce) { .shimmer.hl { animation: none; background-position: 100% 0; } }
 

@@ -3,10 +3,12 @@ import { SITE, SOCIAL } from '../data/site';
 import { useLang } from '../lib/i18n';
 import BrandLogo from './BrandLogo';
 import SocialIcon from './SocialIcon';
+import BrandServiceLinks from './BrandServiceLinks';
 
 export default function Footer() {
   const { t, to } = useLang();
   return <footer className="ref-footer">
+    <BrandServiceLinks />
     <div className="ref-wrap ref-footer-top">
       <div className="footer-brand">
         <Link to={to('/')} aria-label="Bonaco Media"><BrandLogo /></Link>

@@ -21,7 +21,7 @@ export default function Layout() {
     scrollToY(0);
   }, [pathname, hash]);
 
-  // Jezik dokumenta i boja brenda (Bonexis/BonEvents stranice dobijaju svoj akcent)
+  // Jezik dokumenta i boja brenda (Bonexis stranice dobijaju svoj akcent)
   useEffect(() => {
     document.documentElement.lang = lang;
     document.documentElement.dataset.brand = brandOf(pathname);

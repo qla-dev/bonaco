@@ -1,4 +1,4 @@
-// "Tri brenda, jedna ekipa": tri kartice u bojama brendova (po uzoru na brend paletu, Opcija 2),
+// "Dva brenda, jedna ekipa": dvije kartice u bojama brendova (po uzoru na brend paletu, Opcija 2),
 // bijeli logo na teksturisanoj podlozi. Koristi se na početnoj (ispod heroja) i na O nama.
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -10,7 +10,6 @@ import { hl } from '../lib/hl';
 const TILES: { brand: Brand; to: string; label: string; bs: string; en: string }[] = [
   { brand: 'bonaco', to: '/#marketing', label: 'Marketing', bs: '**Full-service marketing**: strategija, kampanje, dizajn, produkcija i web.', en: '**Full-service marketing**: strategy, campaigns, design, production and web.' },
   { brand: 'bonexis', to: '/bonexis/', label: 'Bonexis', bs: 'Marketing CRM sa **pet AI kapsula**, razvijen s partnerom **qla.dev**.', en: 'A marketing CRM with **five AI capsules**, built with **qla.dev**.' },
-  { brand: 'bonevents', to: '/bonevents/', label: 'Bonevent', bs: '**Planiranje, produkcija i promocija** događaja koje ljudi pamte.', en: '**Planning, production and promotion** of events people remember.' },
 ];
 
 export default function BrandTiles({ heading = true }: { heading?: boolean }) {
@@ -18,7 +17,7 @@ export default function BrandTiles({ heading = true }: { heading?: boolean }) {
   return (
     <section className="section brand-tiles-section">
       <div className="container">
-        {heading && <h2 className="center-title">{hl(t('Tri *brenda*, jedna ekipa', 'Three *brands*, one team'))}</h2>}
+        {heading && <h2 className="center-title">{hl(t('Dva *brenda*, jedna ekipa', 'Two *brands*, one team'))}</h2>}
         <div className="brand-tiles">
           {TILES.map(x => (
             <Link key={x.brand} to={to(x.to)} className={`brand-tile brand-tile-${x.brand}`}>

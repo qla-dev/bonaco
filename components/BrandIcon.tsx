@@ -1,4 +1,4 @@
-// Ikone za BonEvents i Bonexis kapsule (lucide).
+// Ikone za usluge i Bonexis kapsule (lucide).
 import {
   BarChart3, Briefcase, CalendarDays, Camera, Clapperboard, ClipboardCheck, ClipboardList, Gauge, Lightbulb, Megaphone,
   Mic, PackageCheck, Palette, PartyPopper, PhoneCall, Rocket, Search, Store, Sun, Users, Wrench,

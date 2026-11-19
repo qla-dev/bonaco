@@ -130,7 +130,6 @@
 /* 6. Bez bijelih sekcija: zajednička tamna osnova */
 .light { --light: #121212; --light-2: rgba(255, 255, 255, 0.1); --ink: #f5f5f4; --ink-muted: #b4b4b0; --accent: var(--bonaco); --accent-ink: #141414; background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
 [data-brand='bonexis'] .light, .light[data-brand='bonexis'] { --accent: var(--bonexis); --accent-ink: #0c0c0c; }
-[data-brand='bonevents'] .light, .light[data-brand='bonevents'] { --accent: var(--bonevents); --accent-ink: #fff; }
 [data-brand='poslovnioglasi'] .light, .light[data-brand='poslovnioglasi'] { --accent: var(--poslovnioglasi); --accent-ink: #fff; }
 .light .steps li, .light .pillar, .light .project-card, .light .post-card, .light .service-card, .light .agent-card, .light .capsule-card { background: var(--bg-2); border-color: var(--line); }
 .light .gallery-item { background: var(--bg-2); }
@@ -156,7 +155,7 @@
 .site-footer { padding-top: 48px; }
 .footer-bottom { margin-top: 32px; }
 
-/* Logotipi u sekcijskim naslovima (Bonexis, Bonevent): ne uvećavati preko izvorne veličine */
+/* Logotipi u sekcijskim naslovima (Bonexis): ne uvećavati preko izvorne veličine */
 .bxc-title .brand-logo-img img, .bev-title .brand-logo-img img { height: auto; max-height: 74px; width: min(100%, 370px); }
 
 /* Dugmad u marketing tabu uvijek u jednom redu (i na telefonu) */
@@ -217,7 +216,7 @@
 }
 @media (prefers-reduced-motion: reduce) { .bxc-core { animation: none; } }
 
-/* Marketing: isti meki blur boje u pozadini kao Bonexis/BonEvents, u narandžastoj */
+/* Marketing: isti meki blur boje u pozadini kao Bonexis, u narandžastoj */
 .mkt2 { background: radial-gradient(ellipse at 22% 55%, var(--accent-deep), var(--bg) 62%); }
 
 /* Marketing tab: naslov usluge pored ikone */

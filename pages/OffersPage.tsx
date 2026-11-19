@@ -25,15 +25,7 @@ export default function OffersPage() {
       tags: t('Poslovni AI · Uskoro', 'Business AI · Coming soon'), image: '', alt: '', position: '',
     },
     {
-      ...NAV_OFFER[2], brand: 'bonevents' as const, name: 'Bonevent',
-      title: t('Od ideje do aplauza.', 'From the first idea to the final applause.'),
-      text: t('Koncept, organizacija i produkcija događaja. Stvaramo prostor za susrete, doživljaje i priče koje se pamte.', 'Event concepts, planning and production. Creating space for people to meet and moments worth remembering.'),
-      tags: t('Događaji · Produkcija · Promocija', 'Events · Production · Promotion'),
-      image: '/media/portfolio/summer-dancing-crowd-v8.webp',
-      alt: t('Publika na Summer Lounge događaju', 'The crowd at Summer Lounge'), position: '50% 50%',
-    },
-    {
-      ...NAV_OFFER[3], brand: null, name: 'Poslovni oglasi',
+      ...NAV_OFFER[2], brand: null, name: 'Poslovni oglasi',
       title: t('Pravi ljudi. Nova prilika.', 'The right people. A new opportunity.'),
       text: t('Naš partner za povezivanje poslodavaca i kandidata. Predstavite otvorene pozicije i pronađite ljude za svoj tim.', 'Our partner for connecting employers and candidates. Share your open roles and find people for your team.'),
       tags: t('Partnerska platforma · Zapošljavanje', 'Partner platform · Recruitment'),
@@ -42,14 +34,14 @@ export default function OffersPage() {
     },
   ];
   return <div className="ref-page ref-offers">
-    <SEO title={t('Šta nudimo', 'Services')} description={t('Bonaco marketing, Bonexis AI, Bonevent i partnerska platforma Poslovni oglasi.', 'Bonaco marketing, Bonexis AI, Bonevent and our partner platform Poslovni oglasi.')} />
+    <SEO title={t('Šta nudimo', 'Services')} description={t('Bonaco marketing, Bonexis AI i partnerska platforma Poslovni oglasi.', 'Bonaco marketing, Bonexis AI and our partner platform Poslovni oglasi.')} />
     <header className="ref-wrap offers-intro">
       <p className="ref-eyebrow">{t('Šta nudimo', 'What we offer')}</p>
-      <h1>{t('Četiri smjera.', 'Four directions.')}<br /><span>{t('Vaš sljedeći korak.', 'Your next move.')}</span></h1>
-      <p>{t('Izgraditi brend. Unaprijediti posao. Okupiti ljude. Pronaći pravi tim. Odaberite odakle počinje vaša priča.', 'Build a brand. Rethink how you work. Bring people together. Find the right team. Choose where your story begins.')}</p>
+      <h1>{t('Tri smjera.', 'Three directions.')}<br /><span>{t('Vaš sljedeći korak.', 'Your next move.')}</span></h1>
+      <p>{t('Izgraditi brend. Unaprijediti posao. Pronaći pravi tim. Odaberite odakle počinje vaša priča.', 'Build a brand. Rethink how you work. Find the right team. Choose where your story begins.')}</p>
       <div className="offers-colour-key" aria-hidden="true">{offers.map(offer => <i key={offer.to} style={{background: offer.color}} />)}</div>
     </header>
-    <section className="ref-wrap offers-grid" aria-label={t('Naša četiri smjera', 'Our four areas')}>
+    <section className="ref-wrap offers-grid" aria-label={t('Naša tri smjera', 'Our three areas')}>
       {offers.map(offer => <Link key={offer.to} to={to(offer.to)} className="offer-card" style={{['--offer-color' as string]: offer.color}} aria-label={offer.name + ' — ' + t('Saznaj više', 'Learn more')}>
         <div className="offer-card-top"><span className="offer-wordmark">{offer.brand ? <BrandLogo brand={offer.brand} /> : <PoslovniOglasiLogo />}</span></div>
         <div className="offer-card-main">

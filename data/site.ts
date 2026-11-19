@@ -39,7 +39,6 @@ export const GOOGLE_REVIEWS: { rating: number | null; count: number | null; url:
 export const NAV_OFFER = [
   { to: '/nase-usluge/', bs: 'Bonaco marketing', en: 'Bonaco marketing', color: '#f5862a' },
   { to: '/bonexis/', bs: 'Bonexis · Uskoro', en: 'Bonexis · Coming soon', color: 'var(--bonexis)' },
-  { to: '/bonevents/', bs: 'Bonevent', en: 'Bonevent', color: 'var(--bonevents)' },
   { to: '/poslovni-oglasi/', bs: 'Poslovni oglasi', en: 'Poslovni oglasi', color: '#f5f5f4' },
 ];
 export const NAV = [

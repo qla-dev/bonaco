@@ -5,7 +5,6 @@ import BrandLogo, { BRANDS, type Brand } from './BrandLogo';
 const brands: { id: Brand; path: string }[] = [
   { id: 'bonaco', path: '/' },
   { id: 'bonexis', path: '/bonexis/' },
-  { id: 'bonevents', path: '/bonevents/' },
 ];
 
 export default function HeaderBrandCarousel({ selected }: { selected: Brand }) {

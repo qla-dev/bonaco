@@ -9,7 +9,6 @@ import { tr, useLang } from '../lib/i18n';
 const AREAS = [
   { id: 'Marketing', bs: 'Marketing', en: 'Marketing' },
   { id: 'Poslovni oglasi', bs: 'Poslovni oglasi', en: 'Poslovni oglasi' },
-  { id: 'Bonevent', bs: 'Bonevent (događaji)', en: 'Bonevent (events)' },
   { id: 'Bonexis', bs: 'Bonexis (AI rješenja)', en: 'Bonexis (AI solutions)' },
 ] as const;
 
@@ -18,8 +17,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error';
 export default function ContactForm() {
   const [params] = useSearchParams();
   const { lang, t, to } = useLang();
-  const rawPre = params.get('usluga') ?? '';
-  const pre = rawPre === 'BonEvents' ? 'Bonevent' : rawPre;
+  const pre = params.get('usluga') ?? '';
   const preService = SERVICES.find(s => s.title === pre);
   const [area, setArea] = useState<string>(AREAS.some(a => a.id === pre) ? pre : preService ? 'Marketing' : '');
   const [services, setServices] = useState<string[]>(preService ? [preService.title] : []);

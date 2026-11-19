@@ -30,7 +30,7 @@
 .site-header .mobile-offer-heading .offer-menu-toggle { flex: 0 0 44px; width: 44px; height: 46px; }
 .site-header .mobile-dd-panel a { display: flex; gap: 12px; align-items: center; min-height: 44px; }
 
-/* Four distinct branches, with real work and concise routes into each one. */
+/* Three distinct branches, with real work and concise routes into each one. */
 .ref-offers { background: #090908; }
 .offers-intro { text-align: center; padding-top: 166px; padding-bottom: 42px; }
 .offers-intro .ref-eyebrow { color: #d4c3b3; }

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import SEO from '../components/SEO';
 import BrandLogo from '../components/BrandLogo';
-import BrandServiceLinks from '../components/BrandServiceLinks';
 import { ClientClouds, ContactBand } from '../components/ReferenceSections';
 import ServicePhoto from '../components/ServicePhoto';
 import { SERVICES, SERVICE_INCLUDES } from '../data/services';
@@ -95,7 +94,7 @@ export default function ServicesPage() {
           );
         })}
       </section>
-      <ClientClouds /><BrandServiceLinks includePartner={false} /><ContactBand />
+      <ClientClouds /><ContactBand />
     </div>
   );
 }

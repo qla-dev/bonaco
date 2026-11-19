@@ -52,7 +52,6 @@ Novi kružni tekstovi za Summer Lounge, Sarajevsku pivaru, Wine Shop i Omegu su 
 - Summer Lounge: original _MG_2922.jpg, approved client Drive; distant dancing crowd.
 - Services: authentic Symbol TAS shirt design, ROOMS.hr screenshot and Zmaj LED from supplied portfolio. Real stock Meta illustration: Mikael Blomkvist, Pexels photo 6483627, https://www.pexels.com/photo/laptop-on-desk-6483627/ (Pexels commercial-use license).
 - Social service image: original Zmaj food product photograph DSC06436.jpg; used to illustrate content production, without claiming social account management.
-- Bonevent: Golf klub guests, original _O5A7609.jpg.
 - Medicana: user explicitly approved one screenshot in current request; show Dr Ante Anic portfolio frame only. Full medical video files remain unpublished.
 
 - Mobile hero uses V13-derived centered portrait composition. Original 26.25-second footage, timing and soundtrack retained; four brands checked at 320x780 and 390x844. Desktop uses finished V13 landscape. Originals retained in ins/outputs; derivative source/provenance in workspace work/hero-v8.

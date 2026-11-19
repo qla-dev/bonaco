@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTER_BASENAME } from './lib/asset';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
@@ -6,7 +6,6 @@ import MarketingRedirect from './components/MarketingRedirect';
 import ServicesPage from './pages/ServicesPage';
 import OffersPage from './pages/OffersPage';
 import BonexisPage from './pages/BonexisPage';
-import BonEventsPage from './pages/BonEventsPage';
 import PoslovniOglasiPage from './pages/PoslovniOglasiPage';
 import AboutPage from './pages/AboutPage';
 import PortfolioPage from './pages/PortfolioPage';
@@ -30,7 +29,7 @@ export default function App() {
           <Route path="nase-suluge" element={<MarketingRedirect />} />
           <Route path="marketing" element={<MarketingRedirect />} />
           <Route path="bonexis" element={<BonexisPage />} />
-          <Route path="bonevents" element={<BonEventsPage />} />
+          <Route path="bonevents" element={<Navigate to="/sta-nudimo/" replace />} />
           <Route path="poslovni-oglasi" element={<PoslovniOglasiPage />} />
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="portfolio/:slug" element={<ProjectPage />} />
@@ -44,7 +43,7 @@ export default function App() {
             <Route path="marketing" element={<ServicesPage />} />
             <Route path="services" element={<OffersPage />} />
             <Route path="bonexis" element={<BonexisPage />} />
-            <Route path="bonevents" element={<BonEventsPage />} />
+            <Route path="bonevents" element={<Navigate to="/en/services/" replace />} />
             <Route path="poslovni-oglasi" element={<PoslovniOglasiPage />} />
             <Route path="work" element={<PortfolioPage />} />
             <Route path="work/:slug" element={<ProjectPage />} />
