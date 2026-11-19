@@ -37,7 +37,7 @@ export default function AboutPage() {
         {approach.map((item, index) => <article key={item.title}><span className="about-step" aria-hidden="true">0{index + 1}</span><h2>{item.title}</h2><p>{item.text}</p></article>)}
       </section>
       <section className="ref-wrap about-connection">
-        <p>{t('Marketing je naš osnovni krug. Bonevent okuplja događaje i produkciju, Bonexis razvija poslovna AI rješenja, a Poslovni oglasi povezuju poslodavce i kandidate. Svaki smjer ima svoj fokus, uz zajednički pristup kreativnosti i saradnji.', 'Marketing is at the heart of Bonaco. Bonevent creates and produces events, Bonexis is developing AI solutions for business, and Poslovni oglasi connects employers with candidates. Each has a distinct focus, united by a collaborative, creative approach.')}</p>
+        <p>{t('Marketing je naš osnovni krug. Bonevent okuplja događaje i produkciju, a Bonexis razvija poslovna AI rješenja. Svaki smjer ima svoj fokus, uz zajednički pristup kreativnosti i saradnji.', 'Marketing is at the heart of Bonaco. Bonevent creates and produces events, while Bonexis develops AI solutions for business. Each has a distinct focus, united by a collaborative, creative approach.')}</p>
       </section>
       <section className="ref-wrap about-story">
         <p className="ref-eyebrow">{t('Od prvog razgovora do izvedbe', 'From the first conversation to delivery')}</p>

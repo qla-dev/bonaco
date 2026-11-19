@@ -1,6 +1,12 @@
 # Bonaco media — November 2026
 
-## Current delivery — 19 November 2026
+## Current website delivery — V17 and project strips
+
+Bonaco Craft V17 replaces the previous homepage and Craft-project films. Both 1920×1080 and 1080×1920 compositions use the supplied final logos, 26.25 seconds at 24 fps and the approved music. The source WebM exports are copied without changes and verified against their delivery SHA-256 records. H.264 fallbacks are encoded directly from the corresponding original V17 ProRes masters using x264 slow two-pass 7.2 Mb/s, with the original AAC audio copied from the supplied MP4. All delivered files stay below the hosting limit of 25 MiB. Full source exports and editable video projects remain in the original delivery directory.
+
+Project previews are now full-width photographic rows in groups of three, rotating every nine seconds while visible. Rotation pauses for pointer hover, keyboard focus, hidden tabs and reduced-motion preferences; manual controls are provided. Rows open project stories, not image dialogs. ASA card and BH Pošta face positions have independent desktop/mobile crops. Poslovni oglasi remains a partner on the homepage, in Services navigation and the four-offer page; duplicate About/Contact brand orbits and the marketing-page cross-link omit the partner.
+
+## Previous delivery — 19 November 2026
 
 The homepage and Craft project now use the final **Bonaco Craft v15** export: 26.25 seconds at 24 fps, landscape 1920×1080 and portrait 1080×1920, with the supplied soundtrack. The preferred WebM files are copied unchanged from `ins/outputs/Bonaco-Craft-v15`. To meet the hosting limit of 25 MiB per file, the desktop MP4 fallback is encoded with x264 slow, two-pass 7.2 Mb/s video and unchanged AAC audio. The portrait MP4 retains its original H.264 video stream and uses 112 kb/s AAC audio. Both MP4 files use faststart. Source exports remain untouched. Autoplay is muted, with a visible sound control.
 

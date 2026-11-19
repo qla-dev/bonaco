@@ -1,14 +1,14 @@
-import { useState, type ReactNode } from 'react';
+import { useState, type ReactNode, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Pause, Play } from 'lucide-react';
 import { CLIENTS } from '../data/clients';
 import { CATEGORY_EN } from '../data/projects';
-import { PROJECT_FOCUS, PROJECT_CONTAIN, PROJECT_SCALE } from '../data/portfolio2026';
+import { PROJECT_FOCUS } from '../data/portfolio2026';
+import { STRIP_FOCUS, STRIP_FULL_ARTWORK } from '../data/projectPresentation';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import type { Project } from '../types';
 import BrandLogo from './BrandLogo';
-import PoslovniOglasiLogo from './PoslovniOglasiLogo';
 import CircleMosaic from './CircleMosaic';
 
 export function EditorialIntro({label,title,children,id,secondary=false}:{label:string;title:ReactNode;children?:ReactNode;id?:string;secondary?:boolean}) {
@@ -17,15 +17,14 @@ export function EditorialIntro({label,title,children,id,secondary=false}:{label:
 export function CirclePhoto({src,alt,position='50% 50%',contain=false,scale=1}:{src:string;alt:string;position?:string;contain?:boolean;scale?:number}) {
  return <CircleMosaic src={src} alt={alt} position={position} contain={contain} scale={scale} />;
 }
-export function WorkGrid({projects}:{projects:Project[];wave?:boolean}) {
+export function WorkGrid({projects}:{projects:Project[]}) {
  const {lang,to,t}=useLang();
- return <div className="ref-work-grid">{projects.map(p=>{const x=tr(p,lang);return <article className="ref-work-card" key={p.slug}>
-   <CircleMosaic src={p.cover} alt={x.coverAlt} position={PROJECT_FOCUS[p.slug]} contain={PROJECT_CONTAIN.includes(p.slug)} scale={PROJECT_SCALE[p.slug]} wave />
-   <div className="ref-card-title"><h2>{p.client}</h2></div>
-   <div className="ref-card-meta">
-     <Link className="ref-story-link" to={to('/portfolio/'+p.slug+'/')} aria-label={t('Vidi projekat: ', 'View project: ') + p.client}>{t('Vidi projekat','View project')}</Link>
-   </div>
-   <div className="ref-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div>
+ return <div className="project-strips">{projects.map(p=>{const x=tr(p,lang);const focus=STRIP_FOCUS[p.slug];const artwork=STRIP_FULL_ARTWORK.includes(p.slug);return <article key={p.slug}>
+   <Link className={'project-strip'+(artwork?' project-strip-artwork':'')} data-project={p.slug} to={to('/portfolio/'+p.slug+'/')} aria-label={t('Vidi projekat: ', 'View project: ')+p.client} style={{'--strip-focus':focus?.desktop||PROJECT_FOCUS[p.slug]||'50% 50%','--strip-focus-mobile':focus?.mobile||PROJECT_FOCUS[p.slug]||'50% 50%'} as CSSProperties}>
+     {artwork&&<img className="project-strip-backdrop" src={asset(p.cover)} alt="" aria-hidden="true" loading="lazy"/>}
+     <img className="project-strip-photo" src={asset(p.cover)} alt={x.coverAlt} loading="lazy" decoding="async"/>
+     <div className="project-strip-content"><h3>{p.client}<span className="project-strip-open">{t('Vidi projekat','View project')}</span></h3><div className="project-strip-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div></div>
+   </Link>
  </article>})}</div>;
 }
 export function ClientClouds() {
@@ -48,7 +47,6 @@ export function BrandOrbit({compact=false}:{compact?:boolean}) {
   <div className="orbit-branches">
     <Link to={to('/bonexis/')} className="orbit-brand orbit-ai"><BrandLogo brand="bonexis"/><span>{t('AI rješenja · Uskoro','AI solutions · Coming soon')}</span></Link>
     <Link to={to('/bonevents/')} className="orbit-brand orbit-events"><BrandLogo brand="bonevents"/><span>{t('Događaji i produkcija','Events and production')}</span></Link>
-    <Link to={to('/poslovni-oglasi/')} className="orbit-brand orbit-po"><PoslovniOglasiLogo/><span>{t('Poslovni oglasi','Careers and recruitment')}</span></Link>
   </div>
  </section>;
 }

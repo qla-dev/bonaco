@@ -95,7 +95,7 @@ export default function ServicesPage() {
           );
         })}
       </section>
-      <ClientClouds /><BrandServiceLinks /><ContactBand />
+      <ClientClouds /><BrandServiceLinks includePartner={false} /><ContactBand />
     </div>
   );
 }

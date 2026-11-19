@@ -1,4 +1,5 @@
 import type { Project } from '../types';
+import { HERO_MEDIA } from './heroMedia';
 // Verified against the supplied portfolio and original client materials.
 export const PORTFOLIO_2026: Project[] = [
   {
@@ -647,7 +648,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/bonaco-craft-v13-desktop.jpg",
+    "cover": "/media/portfolio/bonaco-craft-v17-desktop.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
     "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis, Bonevent i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
@@ -840,7 +841,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   "bonaco-craft": [
   "/media/portfolio/craft-v12-11.webp",
   "/media/portfolio/craft-v12-20.webp",
-  "/media/portfolio/bonaco-craft-v13-desktop.jpg"
+  "/media/portfolio/bonaco-craft-v17-desktop.jpg"
 ],
   "zmaj": [
     "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
@@ -900,11 +901,11 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
     "label": "Zmaj · DOOH"
   },
   "bonaco-craft": {
-    "src": "/video/bonaco-craft-v13-desktop.mp4",
-    "webm": "/video/bonaco-craft-v13-desktop.webm",
-    "mobile": "/video/bonaco-craft-v13-centered-mobile.mp4",
-    "webmMobile": "/video/bonaco-craft-v13-centered-mobile.webm",
-    "poster": "/media/portfolio/bonaco-craft-v13-desktop.jpg",
+    "src": HERO_MEDIA.desktop.mp4,
+    "webm": HERO_MEDIA.desktop.webm,
+    "mobile": HERO_MEDIA.mobile.mp4,
+    "webmMobile": HERO_MEDIA.mobile.webm,
+    "poster": HERO_MEDIA.desktop.poster,
     "label": "Bonaco · Craft v12"
   },
   "golf-klub-sarajevo": {

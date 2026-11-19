@@ -35,14 +35,14 @@ export default function OffersPage() {
     {
       ...NAV_OFFER[3], brand: null, name: 'Poslovni oglasi',
       title: t('Pravi ljudi. Nova prilika.', 'The right people. A new opportunity.'),
-      text: t('Mjesto susreta poslodavaca i kandidata. Predstavite otvorene pozicije ili pronađite sljedeći korak u karijeri.', 'Connecting employers and candidates. Share an open role or discover your next career move.'),
-      tags: t('Poslodavci · Kandidati · Prilike', 'Employers · Candidates · Opportunities'),
+      text: t('Naš partner za povezivanje poslodavaca i kandidata. Predstavite otvorene pozicije i pronađite ljude za svoj tim.', 'Our partner for connecting employers and candidates. Share your open roles and find people for your team.'),
+      tags: t('Partnerska platforma · Zapošljavanje', 'Partner platform · Recruitment'),
       image: '/media/poslovni-oglasi-real-stock.webp',
       alt: t('Kolege za zajedničkim stolom', 'Colleagues working together'), position: '50% 50%',
     },
   ];
   return <div className="ref-page ref-offers">
-    <SEO title={t('Šta nudimo', 'Services')} description={t('Četiri smjera u Bonaco krugu: Bonaco marketing, Bonexis AI, Bonevent i Poslovni oglasi.', 'Four directions in the Bonaco family: Bonaco marketing, Bonexis AI, Bonevent and Poslovni oglasi.')} />
+    <SEO title={t('Šta nudimo', 'Services')} description={t('Bonaco marketing, Bonexis AI, Bonevent i partnerska platforma Poslovni oglasi.', 'Bonaco marketing, Bonexis AI, Bonevent and our partner platform Poslovni oglasi.')} />
     <header className="ref-wrap offers-intro">
       <p className="ref-eyebrow">{t('Šta nudimo', 'What we offer')}</p>
       <h1>{t('Četiri smjera.', 'Four directions.')}<br /><span>{t('Vaš sljedeći korak.', 'Your next move.')}</span></h1>

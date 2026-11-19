@@ -29,3 +29,4 @@ import './styles/brand-carousel.css';
 import './styles/offers-refresh.css';
 import './styles/official-refresh.css';
 import './styles/mobile-finish.css';
+import './styles/project-strips.css';
