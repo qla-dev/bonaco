@@ -1,0 +1,104 @@
+{
+  "services": [
+    {
+      "service": "ooh-dooh",
+      "sourceUrl": "https://www.pexels.com/photo/advertising-on-skyscrapers-at-time-square-at-night-17096028/",
+      "photographer": "Mateusz Walendzik",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "dimensions": {
+        "width": 2400,
+        "height": 1600
+      },
+      "src": "/media/portfolio/service-outdoor-city-v24.webp",
+      "focus": "50% 50%",
+      "mobileFocus": "50% 50%"
+    },
+    {
+      "service": "drustvene-mreze",
+      "sourceUrl": "https://www.pexels.com/photo/fashion-person-woman-camera-12432702/",
+      "photographer": "Hanna Pad",
+      "license": "Pexels License",
+      "licenseUrl": "https://www.pexels.com/license/",
+      "dimensions": {
+        "width": 2400,
+        "height": 1600
+      },
+      "src": "/media/portfolio/service-social-content-v24.webp",
+      "focus": "50% 0%",
+      "mobileFocus": "50% 50%"
+    }
+  ],
+  "video": {
+    "version": 23,
+    "notes": [
+      "Original exports verified against final authoring SHA256 values before and after encoding.",
+      "WebM and posters are byte-identical copies. MP4 optimized for25MiB hosting limit with original AAC audio copied.",
+      "V23 outro uses one centered Bonaco Media logo. All earlier film scenes unchanged from V22."
+    ],
+    "files": [
+      {
+        "file": "bonaco-craft-v23-desktop.webm",
+        "bytes": 20196133,
+        "resolution": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "file": "bonaco-craft-v23-desktop-poster.jpg",
+        "bytes": 321062
+      },
+      {
+        "file": "bonaco-craft-v23-mobile.webm",
+        "bytes": 18891633,
+        "resolution": [
+          1080,
+          1920
+        ]
+      },
+      {
+        "file": "bonaco-craft-v23-mobile-poster.jpg",
+        "bytes": 290438
+      },
+      {
+        "file": "bonaco-craft-v23-desktop.mp4",
+        "bytes": 21395013,
+        "resolution": [
+          1920,
+          1080
+        ],
+        "validation": {
+          "decodedWithoutErrors": true,
+          "audioPacketsIdentical": true,
+          "audioHash": "SHA256=969803f6ed0cad32534a9fddc009437774a43aca0003d48433384578b693b3e6",
+          "sampledVmafVsOriginal": {
+            "min": 95.205796,
+            "max": 100,
+            "mean": 98.823813,
+            "harmonic_mean": 98.799374
+          }
+        }
+      },
+      {
+        "file": "bonaco-craft-v23-mobile.mp4",
+        "bytes": 21381313,
+        "resolution": [
+          1080,
+          1920
+        ],
+        "validation": {
+          "decodedWithoutErrors": true,
+          "audioPacketsIdentical": true,
+          "audioHash": "SHA256=969803f6ed0cad32534a9fddc009437774a43aca0003d48433384578b693b3e6",
+          "sampledVmafVsOriginal": {
+            "min": 94.878824,
+            "max": 100,
+            "mean": 99.209662,
+            "harmonic_mean": 99.191382
+          }
+        }
+      }
+    ]
+  }
+}

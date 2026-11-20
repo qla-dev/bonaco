@@ -18,12 +18,12 @@ const photos: Record<string, {src:string; position:string; mobilePosition:string
     "en": "Team collaborating on project planning; illustrative photograph"
   },
   "drustvene-mreze": {
-    "src": "/media/portfolio/service-social-food-v23.webp",
-    "position": "50% 55%",
+    "src": "/media/portfolio/service-social-content-v24.webp",
+    "position": "50% 0%",
     "mobilePosition": "50% 50%",
     "artwork": false,
-    "bs": "Produktna fotografija pripremljena za komunikaciju brenda Zmaj",
-    "en": "Zmaj product photograph prepared for brand communication"
+    "bs": "Kreiranje sadržaja uz mobilni telefon i studijsku rasvjetu; ilustrativna fotografija",
+    "en": "Creating content with a smartphone and studio lighting; illustrative photograph"
   },
   "graficki-dizajn": {
     "src": "/media/portfolio/service-design-symbol-v23.webp",
@@ -50,12 +50,12 @@ const photos: Record<string, {src:string; position:string; mobilePosition:string
     "en": "Laptop on a desk; illustrative photograph of a web workspace"
   },
   "ooh-dooh": {
-    "src": "/media/portfolio/service-outdoor-city-v23.webp",
-    "position": "50% 48%",
-    "mobilePosition": "55% 50%",
+    "src": "/media/portfolio/service-outdoor-city-v24.webp",
+    "position": "50% 50%",
+    "mobilePosition": "50% 50%",
     "artwork": false,
-    "bs": "Digitalni oglas JOVS na gradskom LED ekranu",
-    "en": "JOVS digital advertisement on an urban LED screen"
+    "bs": "Digitalni reklamni ekrani na Times Squareu; ilustrativna fotografija",
+    "en": "Digital advertising screens in Times Square; illustrative photograph"
   },
   "digitalno-oglasavanje": {
     "src": "/media/portfolio/service-digital-workspace-v23.webp",

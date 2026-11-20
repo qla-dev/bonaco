@@ -684,7 +684,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/bonaco-craft-v22-desktop-poster.jpg",
+    "cover": "/media/portfolio/bonaco-craft-v23-desktop-poster.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
     "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
@@ -878,9 +878,9 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/jovs-city-led.webp"
   ],
   "bonaco-craft": [
-    "/media/portfolio/bonaco-craft-v22-desktop-dance.jpg",
-    "/media/portfolio/bonaco-craft-v22-desktop-outro.jpg",
-    "/media/portfolio/bonaco-craft-v22-desktop-poster.jpg"
+    "/media/portfolio/bonaco-craft-v23-desktop-dance.jpg",
+    "/media/portfolio/bonaco-craft-v23-desktop-outro.jpg",
+    "/media/portfolio/bonaco-craft-v23-desktop-poster.jpg"
   ],
   "zmaj": [],
   "peoples": [

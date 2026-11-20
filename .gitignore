@@ -68,3 +68,7 @@ Build Bonaco.cmd
 # Latest completed desktop/mobile brand film
 !public/video/bonaco-craft-v22-*.mp4
 !public/video/bonaco-craft-v22-*.webm
+
+# Latest final V23 brand film
+!public/video/bonaco-craft-v23-*.mp4
+!public/video/bonaco-craft-v23-*.webm
