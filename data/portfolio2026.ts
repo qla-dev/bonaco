@@ -302,27 +302,33 @@ export const PORTFOLIO_2026: Project[] = [
   {
     "slug": "ecomm",
     "client": "eComm",
-    "title": "Ideje za digitalnu trgovinu.",
+    "title": "Kampanja koja povezuje sve kanale.",
     "categories": [
-      "Kampanje"
+      "Kampanje",
+      "Društvene mreže",
+      "Foto i video"
     ],
     "cover": "/media/portfolio/ecomm-kupac-9.webp",
     "coverAlt": "eComm, vizual kampanje za kupce",
-    "summary": "Meta Ads kampanja usmjerena na promociju e-commerce sadržaja i programa, uz praćenje dosega, angažmana i registracija.",
-    "task": "Meta Ads kampanja usmjerena na promociju e-commerce sadržaja i programa, uz praćenje dosega, angažmana i registracija.",
+    "summary": "Cjelovita marketinška kampanja za eComm na društvenim mrežama, radiju i televiziji, uz naš scenario i kompletnu produkciju spota.",
+    "task": "Povezati društvene mreže, radio i televiziju kroz zajednički koncept i prepoznatljiv kampanjski sadržaj.",
     "work": [
-      "Planiranje i realizacija Meta Ads kampanje",
-      "Praćenje dosega i angažmana"
+      "Razvoj koncepta i scenarija spota",
+      "Kompletno snimanje i produkcija spota",
+      "Realizacija kampanje na društvenim mrežama",
+      "Priprema i realizacija kampanje za radio i televiziju"
     ],
     "results": [],
     "en": {
-      "title": "Ideas for digital commerce.",
-      "summary": "A Meta Ads campaign promoting e-commerce content and programmes, with reach, engagement and registrations tracked.",
-      "task": "A Meta Ads campaign promoting e-commerce content and programmes, with reach, engagement and registrations tracked.",
+      "title": "One campaign. Every channel.",
+      "summary": "A full marketing campaign for eComm across social media, radio and television, including our script and complete commercial production.",
+      "task": "Connect social media, radio and television through one concept and recognisable campaign content.",
       "coverAlt": "eComm: campaign artwork for shoppers",
       "work": [
-        "Meta Ads campaign planning and execution",
-        "Reach and engagement tracking"
+        "Campaign concept and commercial script",
+        "Complete filming and commercial production",
+        "Social media campaign execution",
+        "Campaign preparation and execution for radio and television"
       ],
       "results": []
     }
@@ -708,8 +714,8 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Foto i video"
     ],
-    "cover": "/media/portfolio/medicana-video-frame-v8.webp",
-    "coverAlt": "Medicana Sarajevo, kadar iz videa s doktorom Antom Anićem",
+    "cover": "/media/portfolio/medicana-building-v22.webp",
+    "coverAlt": "Zgrada bolnice Medicana Sarajevo",
     "summary": "Videoprodukcija za Medicana Sarajevo: snimanje i montaža sadržaja za digitalnu komunikaciju bolnice.",
     "task": "Predstaviti stručnost medicinskog tima kroz jasno strukturirane video formate.",
     "work": [
@@ -720,7 +726,7 @@ export const PORTFOLIO_2026: Project[] = [
     "results": [],
     "en": {
       "title": "Expertise on camera.",
-      "coverAlt": "Medicana Sarajevo: a still from our video featuring Dr Ante Anić",
+      "coverAlt": "Medicana Sarajevo hospital building",
       "summary": "Video production for Medicana Sarajevo: filming and editing content for the hospital’s digital communication.",
       "task": "Introduce the medical team’s expertise through clearly structured video formats.",
       "work": [
@@ -827,7 +833,7 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
   "max-media": []
 };
 export const PROJECT_FOCUS: Record<string,string> = {
-  "medicana": "50% 5%",
+  "medicana": "50% 45%",
   "summer-lounge": "50% 50%",
   "jovs": "50% 50%",
   "asa-banka": "50% 78%",

@@ -33,3 +33,5 @@ import './styles/project-strips.css';
 import './styles/brand-footer.css';
 import './styles/project-quality.css';
 import './styles/service-strips.css';
+
+import './styles/visual-consistency.css';

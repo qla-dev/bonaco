@@ -10,6 +10,8 @@ import { projectExamples } from '../data/projectMedia';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import ProjectFilmPlayer from '../components/ProjectFilmPlayer';
+import FramedImage from '../components/FramedImage';
+import { projectNeedsFrame } from '../data/projectPresentation';
 import NotFoundPage from './NotFoundPage';
 
 export default function ProjectPage() {
@@ -38,6 +40,8 @@ export default function ProjectPage() {
   }, [selected, examples.length]);
   if (!project) return <NotFoundPage />;
   const copy = tr(project, lang);
+  const framed = projectNeedsFrame(project);
+  const coverImage = framed ? <FramedImage src={project.cover} alt={copy.coverAlt} loading="eager" /> : <img src={asset(project.cover)} alt={copy.coverAlt} decoding="async" />;
   const detail = PROJECT_DETAILS[project.slug];
   const index = PORTFOLIO_2026.findIndex(item => item.slug === project.slug);
   const next = PORTFOLIO_2026[(index + 1) % PORTFOLIO_2026.length];
@@ -53,8 +57,8 @@ export default function ProjectPage() {
       </header>
       <div className="ref-wrap ref-case-intro">
         <figure className="project-cover">{coverFilmIndex >= 0 ? <button type="button" className="project-cover-play" onClick={() => setSelected(coverFilmIndex)} aria-label={t('Pokreni video: ', 'Play video: ') + project.client}>
-          <img src={asset(project.cover)} alt={copy.coverAlt} decoding="async" /><span className="example-play" aria-hidden="true"><Play fill="currentColor" size={23} /><span>Video</span></span>
-        </button> : <img src={asset(project.cover)} alt={copy.coverAlt} decoding="async" />}</figure>
+          {coverImage}<span className="example-play" aria-hidden="true"><Play fill="currentColor" size={23} /><span>Video</span></span>
+        </button> : coverImage}</figure>
         <div className="ref-case-copy">
           <div className="ref-tags">{project.categories.map(category => <span key={category}>{lang === 'en' ? (CATEGORY_EN[category] || category) : category}</span>)}</div>
           <p className="ref-case-summary">{copy.summary}</p>
@@ -68,7 +72,7 @@ export default function ProjectPage() {
       {gallery.length > 0 && <section className="ref-wrap ref-case-gallery ref-case-triptych" aria-label={t('Odabrani primjeri projekta', 'Selected project examples')}>
         <div className="ref-gallery-grid" data-count={gallery.length}>{gallery.map(({example, index: position}) => <figure key={example.src + example.kind}>
           <button className={'project-example' + (example.kind === 'video' ? ' is-video' : '')} type="button" onClick={() => setSelected(position)} aria-label={example.kind === 'video' ? t('Pokreni video: ', 'Play video: ') + example.film.label : t('Otvori fotografiju ', 'Open photo ') + (position + 1)}>
-            <img src={asset(example.src)} alt={example.kind === 'video' ? example.film.label : project.client + ' — ' + (position + 1)} loading="lazy" decoding="async" />
+            {framed ? <FramedImage src={example.src} alt={example.kind === 'video' ? example.film.label : project.client + ' — ' + (position + 1)} /> : <img src={asset(example.src)} alt={example.kind === 'video' ? example.film.label : project.client + ' — ' + (position + 1)} loading="lazy" decoding="async" />}
             {example.kind === 'video' && <span className="example-play" aria-hidden="true"><Play fill="currentColor" size={23} /><span>Video</span></span>}
           </button>
         </figure>)}</div>

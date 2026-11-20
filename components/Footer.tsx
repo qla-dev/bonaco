@@ -9,10 +9,6 @@ export default function Footer() {
   return <footer className="ref-footer">
     <BrandServiceLinks />
     <div className="ref-wrap ref-footer-top">
-      <div className="footer-brand">
-        <p>{t('Strategija, kreativa i produkcija. Iz Sarajeva, za ideje koje idu dalje.', 'Strategy, design and production. Based in Sarajevo. Creating work that reaches further.')}</p>
-        <span className="footer-signature">{t('Povezujemo ideje i ljude.', 'Connecting ideas and people.')}</span>
-      </div>
       <div className="footer-column">
         <h2>{t('Istražite', 'Explore')}</h2>
         <nav aria-label={t('Linkovi u podnožju', 'Footer navigation')}>

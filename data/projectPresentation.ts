@@ -1,3 +1,4 @@
+import type { Project } from '../types';
 export const WORK_FILTERS = ['Sve', 'Društvene mreže', 'Event', 'Grafički dizajn', 'Web dizajn', 'Foto i video', 'OOH / DOOH', 'Kampanje'];
 export const WORK_ORDER: Record<string, string[]> = {
   Sve: ['summer-lounge', 'bh-posta', 'asa-banka', 'jovs', 'symbol', 'omega-orasi'],
@@ -5,7 +6,7 @@ export const WORK_ORDER: Record<string, string[]> = {
   'Foto i video': ['medicana', 'bh-posta', 'golf-klub-sarajevo', 'protech', 'asa-banka', 'symbol', 'summer-lounge', 'bonaco-craft'],
   Event: ['jovs', 'golf-klub-sarajevo', 'summer-lounge'],
   'Grafički dizajn': ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'bonaco-craft'],
-  Kampanje: ['symbol-tas'],
+  Kampanje: ['ecomm', 'symbol-tas', 'omega-zelene-doline'],
   'OOH / DOOH': ['opel-dooh', 'zmaj', 'jovs-bilbordi'],
 };
 // Independent crops for wide rows and phone compositions.
@@ -16,8 +17,12 @@ export const STRIP_FOCUS: Record<string, { desktop: string; mobile: string }> = 
   'jovs': { desktop: '50% 42%', mobile: '50% 42%' },
   'symbol': { desktop: '50% 38%', mobile: '50% 38%' },
   'ecomm': { desktop: '50% 25%', mobile: '50% 25%' },
-  'medicana': { desktop: '50% 20%', mobile: '50% 12%' },
+  'medicana': { desktop: '50% 42%', mobile: '52% 38%' },
   'peoples': { desktop: '70% 44%', mobile: '75% 45%' },
   'omega-orasi': { desktop: '50% 52%', mobile: '50% 50%' },
 };
-export const STRIP_FULL_ARTWORK = ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'rooms-hr', 'skuter', 'bunjo-grupacija', 'max-media', 'opel-dooh', 'zmaj', 'jovs-bilbordi', 'ecomm', 'medicana', 'omega-orasi', 'omega-zelene-doline', 'flok', 'peoples'];
+export const STRIP_FULL_ARTWORK = ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'rooms-hr', 'skuter', 'bunjo-grupacija', 'max-media', 'opel-dooh', 'zmaj', 'jovs-bilbordi', 'ecomm', 'omega-orasi', 'omega-zelene-doline', 'flok', 'peoples'];
+
+export function projectNeedsFrame(project: Pick<Project, 'slug' | 'categories'>) {
+  return STRIP_FULL_ARTWORK.includes(project.slug) || project.categories.some(category => ['Grafički dizajn', 'Web dizajn', 'OOH / DOOH', 'Kampanje'].includes(category));
+}

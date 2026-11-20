@@ -8,48 +8,62 @@ import ServicePhoto from '../components/ServicePhoto';
 import { SERVICES, SERVICE_INCLUDES } from '../data/services';
 import { tr, useLang } from '../lib/i18n';
 
-const photos: Record<string, {src:string; position:string; bs:string; en:string}> = {
+const photos: Record<string, {src:string; position:string; mobilePosition:string; artwork:boolean; bs:string; en:string}> = {
   "strategija-kampanje": {
-    "src": "/media/portfolio/symbol-tas-08139.webp",
-    "position": "50% 38%",
-    "bs": "Symbol TAS kampanja, odjeća i fotografija",
-    "en": "Symbol TAS campaign: fashion photography"
+    "src": "/media/portfolio/service-strategy-tas-v22.webp",
+    "position": "50% 43%",
+    "mobilePosition": "50% 43%",
+    "artwork": true,
+    "bs": "Symbol TAS, fotografija iz kampanje s modelom u crvenom automobilu",
+    "en": "Symbol TAS campaign photograph with a model in a red car"
   },
   "drustvene-mreze": {
-    "src": "/media/portfolio/orasi-social-creative-v8.webp",
+    "src": "/media/portfolio/service-social-orasi-v22.webp",
     "position": "50% 50%",
-    "bs": "Omega / OraSì, dizajn objave za društvene mreže",
-    "en": "Omega / OraSì: social media creative"
+    "mobilePosition": "50% 50%",
+    "artwork": true,
+    "bs": "Omega / OraSì, objava s napitkom od badema i kafom",
+    "en": "Omega / OraSì social creative featuring almond drink and coffee"
   },
   "graficki-dizajn": {
-    "src": "/media/portfolio/symbol-tas-shirt-design-v8.webp",
+    "src": "/media/portfolio/service-design-symbol-v22.webp",
     "position": "50% 52%",
-    "bs": "Symbol, grafički dizajn TAS majice",
-    "en": "Symbol: TAS T-shirt graphic design"
+    "mobilePosition": "50% 52%",
+    "artwork": true,
+    "bs": "Symbol, grafički dizajn printa na duksericama",
+    "en": "Symbol graphic print designs on hoodies"
   },
   "foto-video": {
-    "src": "/media/portfolio/golf-sarajevo-sunlight.webp",
-    "position": "50% 40%",
-    "bs": "Golf klub Sarajevo, fotografija golferke",
-    "en": "Golf Club Sarajevo: a golfer on the course"
+    "src": "/media/portfolio/service-production-golf-v22.webp",
+    "position": "50% 60%",
+    "mobilePosition": "50% 55%",
+    "artwork": false,
+    "bs": "Golf klub Sarajevo, fotografija Cedevita Sarajevo Open događaja",
+    "en": "Golf Club Sarajevo: Cedevita Sarajevo Open event photography"
   },
   "web-dizajn": {
-    "src": "/media/portfolio/rooms-website-service-v8.webp",
-    "position": "50% 35%",
-    "bs": "ROOMS.hr, dizajn početne stranice",
-    "en": "ROOMS.hr homepage design"
+    "src": "/media/portfolio/service-web-rooms-v22.webp",
+    "position": "50% 50%",
+    "mobilePosition": "50% 50%",
+    "artwork": true,
+    "bs": "ROOMS.hr, prikaz dizajna web stranice na laptopu",
+    "en": "ROOMS.hr website design presented on a laptop"
   },
   "ooh-dooh": {
-    "src": "/media/portfolio/zmaj-led-service-v8.webp",
-    "position": "50% 44%",
-    "bs": "Zmaj, animacija prikazana na LED ekranu",
-    "en": "Zmaj animation on a digital outdoor screen"
+    "src": "/media/portfolio/service-outdoor-jovs-v22.webp",
+    "position": "50% 48%",
+    "mobilePosition": "50% 48%",
+    "artwork": true,
+    "bs": "JOVS kampanja na gradskom LED ekranu",
+    "en": "JOVS campaign on a city LED screen"
   },
   "digitalno-oglasavanje": {
-    "src": "/media/portfolio/meta-marketing-stock-v8.webp",
-    "position": "50% 50%",
-    "bs": "Laptop na radnom stolu, stock fotografija Mikaela Blomkvista",
-    "en": "Laptop on a desk, stock photograph by Mikael Blomkvist"
+    "src": "/media/portfolio/service-digital-workspace-v22.webp",
+    "position": "35% 75%",
+    "mobilePosition": "32% 70%",
+    "artwork": false,
+    "bs": "Laptop s prikazom digitalnog marketinga na radnom stolu; ilustrativna stock fotografija",
+    "en": "Laptop displaying digital marketing on a desk; illustrative stock photograph"
   }
 };
 
@@ -73,7 +87,8 @@ export default function ServicesPage() {
         </div>
         <ServicePhoto strip src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" position="50% 85%" />
       </section>
-      <section className="ref-wrap ref-service-list">
+      <section className="ref-wrap ref-service-list" aria-labelledby="marketing-services-heading">
+        <header className="service-list-heading"><p className="ref-eyebrow">{t('Bonaco marketing', 'Bonaco marketing')}</p><h2 id="marketing-services-heading">{t('Usluge za vašu ideju.', 'Services for your idea.')}</h2></header>
         {SERVICES.map((service, index) => {
           const translated = tr(service, lang);
           const includes = SERVICE_INCLUDES[service.slug];
@@ -88,7 +103,7 @@ export default function ServicesPage() {
                   <ul className="service-includes">{(lang === 'en' ? includes.en : includes.includes).map(item => <li key={item}>{item}</li>)}</ul>
                   <Link className="ref-text-link" to={to('/kontakt/?usluga=' + encodeURIComponent(service.title))}>{t('Razgovarajmo o projektu', 'Let’s discuss your project')}<ArrowUpRight size={18} /></Link>
                 </div>
-                <ServicePhoto strip src={photo.src} alt={photo[lang]} position={photo.position} artwork={['drustvene-mreze', 'graficki-dizajn', 'web-dizajn', 'ooh-dooh'].includes(service.slug)} />
+                <ServicePhoto strip src={photo.src} alt={photo[lang]} position={photo.position} mobilePosition={photo.mobilePosition} artwork={photo.artwork} />
               </div>
             </details>
           );
