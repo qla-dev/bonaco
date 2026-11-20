@@ -1,0 +1,53 @@
+/* Compact balanced header and outlined active destinations. */
+.site-header .header-inner, .site-header.is-scrolled .header-inner { height: auto; min-height: 72px; padding: 16px 24px; }
+.site-header .header-brand .logo .brand-logo-img img { width: 116px; }
+.site-header .main-nav .nav-left > a, .site-header .main-nav .nav-right > a, .site-header .nav-offer-link { border: 1px solid transparent; border-radius: 999px; padding: 9px 12px; color: #fff; text-decoration: none; white-space: nowrap; }
+.site-header .main-nav a.active, .site-header .main-nav a[aria-current="page"], .site-header .nav-offer-link.active { color: #fff; border-color: #f5862a; }
+.site-header .main-nav a::after, .site-header .main-nav a::before, .site-header .mobile-menu nav a::after { display: none; }
+.site-header .mobile-menu nav a { border: 1px solid transparent; border-radius: 999px; padding: 9px 14px; color: #fff; text-decoration: none; }
+.site-header .mobile-menu nav a.active, .site-header .mobile-menu nav a[aria-current="page"] { border-color: #f5862a; color: #fff; }
+.site-header .nav-offer-heading .nav-offer-link { padding-right: 12px; }
+.project-pagination button { width: 44px; height: 44px; padding: 0; }
+.ref-home .ref-intro .ref-text-link, .mkt2-more-circle { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 10px 20px; border: 1px solid #f5862a; border-radius: 999px; color: #ffae6e; text-decoration: none; }
+.ref-home .ref-intro .ref-text-link svg, .mkt2-more-circle svg { color: #f5862a; }
+.ref-home .ref-intro .ref-text-link:hover { background: #f5862a18; }
+.offer-card { cursor: default; }
+.offer-card-bottom .offer-card-action { display: inline-flex; align-items: center; flex: 0 0 auto; gap: 10px; margin: 12px auto 0; padding: 11px 24px; min-height: 44px; border-radius: 999px; border: 1px solid var(--offer-color); background: var(--offer-color); color: #090909; text-decoration: none; font-weight: 600; }
+.offer-card-action::after { display: none; }
+.offer-card-action:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.offer-card-bottom { column-gap: 7px; }
+.offer-card-bottom > span:nth-child(2) { flex-basis: calc(100% - 24px); }
+.orbit-branches { grid-template-columns: repeat(2, minmax(0,1fr)); max-width: 460px; gap: 28px; }
+.orbit-branches .orbit-brand { width: 180px; height: 180px; padding: 20px; }
+.orbit-partner .poslovni-wordmark { width: 100%; max-width: 150px; height: auto; }
+/* A landscape image follows the introduction and each service description. */
+.ref-marketing .ref-service-hero, .ref-jobs .ref-service-hero { display: flex; flex-direction: column; align-items: center; gap: 32px; text-align: center; }
+.ref-service-hero > div:first-child { width: 100%; }
+.ref-service-hero > div:first-child > p:not(.ref-eyebrow) { max-width: 750px; margin-inline: auto; }
+.ref-marketing .ref-service-content { display: flex; flex-direction: column; align-items: stretch; margin-left: 0; gap: 25px; }
+.ref-service-content > div:first-child { max-width: 850px; margin-inline: auto; }
+.ref-service-hero > .service-strip, .ref-service-content > .service-strip { width: 100%; max-width: none; margin: 0; align-self: stretch; border-radius: 16px; aspect-ratio: auto; height: clamp(220px, 25vw, 330px); background: #111; }
+.ref-service-content > .service-strip { height: clamp(190px, 22vw, 280px); }
+.service-strip.is-artwork img { object-fit: scale-down; padding: 12px; }
+.contact-location { padding-bottom: 45px; }
+.contact-location-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; }
+.contact-location h2 { font-size: clamp(30px,4vw,46px); margin: 0 0 8px; }
+.contact-location p { margin: 0; color: #bdb7b1; }
+.contact-location iframe { display: block; width: 100%; height: clamp(280px,30vw,420px); border: 0; border-radius: 16px; }
+@media (max-width: 1100px) and (min-width: 861px) {
+ .site-header .header-shell { width: calc(100% - 200px); }
+ .site-header .header-inner { grid-template-columns: minmax(0,1fr) 116px minmax(0,1fr); padding-inline: 16px; }
+ .site-header .main-nav .nav-left > a, .site-header .main-nav .nav-right > a, .site-header .nav-offer-heading .nav-offer-link { padding-inline: 8px; font-size: .8125rem; }
+}
+@media (max-width: 860px) {
+ .site-header .header-inner, .site-header.is-scrolled .header-inner { min-height: 0; height: 72px; padding: 0; }
+ .site-header .header-brand { height: 72px; padding: 16px 24px; }
+ .site-header .header-brand .logo .brand-logo-img img { width: min(116px, calc(100vw - 220px)); }
+ .site-header .header-current { margin-top: 2px; font-size: .6875rem; }
+}
+@media (max-width:680px) {
+ .orbit-branches { max-width: 380px; gap: 16px; }
+ .orbit-branches .orbit-brand { width: 100%; height: auto; aspect-ratio: 1; padding: 16px; }
+ .ref-service-hero > .service-strip, .ref-service-content > .service-strip { width: 100%; height: 220px; }
+ .contact-location-heading { align-items: flex-start; }
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Pause, Play } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Pause, Play } from 'lucide-react';
 import { PORTFOLIO_2026 } from '../data/portfolio2026';
 import { CATEGORY_EN } from '../data/projects';
 import { WORK_FILTERS, WORK_ORDER } from '../data/projectPresentation';
@@ -44,9 +44,9 @@ function ProjectPages({ projects, showAllLink }: { projects: Project[]; showAllL
     <div className="project-page" key={active} aria-live="off"><WorkGrid projects={visibleProjects} /></div>
     <div className="project-controls">
       {count > 1 && <div className="project-pagination">
-        <button type="button" onClick={() => move(-1)} aria-label={t('Prethodna tri projekta', 'Previous three projects')}>{t('Prethodni', 'Previous')}</button>
+        <button type="button" onClick={() => move(-1)} aria-label={t('Prethodna tri projekta', 'Previous three projects')}><ArrowLeft size={20} aria-hidden="true" /></button>
         <span className="project-page-count" aria-live={rotating ? 'off' : 'polite'} aria-atomic="true">{active + 1} / {count}</span>
-        <button type="button" onClick={() => move(1)} aria-label={t('Sljedeća tri projekta', 'Next three projects')}>{t('Sljedeći', 'Next')}</button>
+        <button type="button" onClick={() => move(1)} aria-label={t('Sljedeća tri projekta', 'Next three projects')}><ArrowRight size={20} aria-hidden="true" /></button>
         {!reduceMotion && <button className="project-autoplay" type="button" aria-pressed={!paused} onClick={() => { setPaused(value => !value); if (paused) { setFocused(false); setHovered(false); } }} aria-label={paused ? t('Pokreni automatsku izmjenu', 'Start automatic rotation') : t('Pauziraj automatsku izmjenu', 'Pause automatic rotation')}>{paused ? <Play size={16} /> : <Pause size={16} />}</button>}
       </div>}
       {showAllLink && <Link className="ref-pill project-all-link" to={to('/portfolio/')}>{t('Vidi sve projekte', 'View all projects')}</Link>}

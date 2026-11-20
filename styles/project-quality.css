@@ -1,0 +1,27 @@
+/* Artwork keeps its complete composition and never grows past native resolution. */
+.project-strip-artwork { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: clamp(340px, 36vw, 440px); background: #121212; border: 1px solid #ffffff12; }
+.project-strip-artwork .project-strip-photo { position: static; inset: auto; width: 100%; height: 100%; min-height: 0; padding: 20px 24px 8px; object-fit: scale-down; object-position: center; transform: none; }
+.project-strip-artwork .project-strip-content { position: static; inset: auto; padding: 16px 24px 20px; }
+.project-strip-artwork::after { display: none; }
+.project-strip-artwork:hover .project-strip-photo { transform: none; }
+.ref-case-intro .project-cover { margin: 0; width: 100%; max-width: 560px; height: clamp(280px, 34vw, 440px); justify-self: center; align-self: center; display: grid; place-items: center; background: #111; border: 1px solid #ffffff12; border-radius: 22px; overflow: hidden; }
+.project-cover img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: scale-down; }
+.project-cover-play { display: block; position: relative; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: pointer; }
+.project-cover-play:focus-visible { outline: 3px solid #f58426; outline-offset: -4px; }
+.ref-case-triptych .ref-gallery-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(18px, 3vw, 36px); }
+.ref-case-triptych .ref-gallery-grid figure:nth-child(n) { flex: 0 1 calc((100% - 72px) / 3); width: auto; max-width: 380px; margin: 0; }
+.ref-case-triptych .ref-gallery-grid[data-count="1"] figure { flex-basis: 580px; max-width: 580px; }
+.ref-case-triptych .ref-gallery-grid[data-count="2"] figure { flex-basis: 460px; max-width: 460px; }
+.ref-case-triptych .project-example { aspect-ratio: 4 / 3; border-radius: 18px; background: #111; border: 1px solid #ffffff12; }
+.ref-case-triptych .project-example img { object-fit: scale-down; object-position: center; transform: none; }
+.ref-case-triptych .project-example:hover { border-color: #f5842660; }
+.ref-case-triptych .project-example:hover img { transform: none; }
+.ref-footer .footer-brand p { margin-top: 0; }
+@media (max-width: 680px) {
+  .project-strip-artwork { height: 350px; }
+  .project-strip-artwork .project-strip-photo { padding: 14px 14px 0; }
+  .project-strip-artwork .project-strip-content { padding: 15px; }
+  .ref-case-intro .project-cover { height: auto; aspect-ratio: 4 / 3; max-width: 520px; border-radius: 18px; }
+  .ref-case-triptych .ref-gallery-grid figure:nth-child(n) { flex-basis: 100%; width: 100%; max-width: 460px; }
+  .ref-case-triptych .ref-gallery-grid { gap: 18px; }
+}

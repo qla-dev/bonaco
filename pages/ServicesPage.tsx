@@ -71,7 +71,7 @@ export default function ServicesPage() {
           <h1>{t('Sve počinje', 'It all starts')}<br /><span>{t('dobrom idejom.', 'with a good idea.')}</span></h1>
           <p>{t('Dajemo joj strategiju, oblik, glas i publiku. Povezujemo usluge prema onome što vašem brendu treba, od prve kampanje do kontinuirane komunikacije na više kanala.', 'We turn ideas into a clear strategy, distinctive design and content that reaches the right people. From your first campaign to your everyday brand presence, we bring the right skills together.')}</p>
         </div>
-        <ServicePhoto src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" />
+        <ServicePhoto strip src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" position="50% 85%" />
       </section>
       <section className="ref-wrap ref-service-list">
         {SERVICES.map((service, index) => {
@@ -88,7 +88,7 @@ export default function ServicesPage() {
                   <ul className="service-includes">{(lang === 'en' ? includes.en : includes.includes).map(item => <li key={item}>{item}</li>)}</ul>
                   <Link className="ref-text-link" to={to('/kontakt/?usluga=' + encodeURIComponent(service.title))}>{t('Razgovarajmo o projektu', 'Let’s discuss your project')}<ArrowUpRight size={18} /></Link>
                 </div>
-                <ServicePhoto src={photo.src} alt={photo[lang]} position={photo.position} artwork={service.slug === 'drustvene-mreze'} />
+                <ServicePhoto strip src={photo.src} alt={photo[lang]} position={photo.position} artwork={['drustvene-mreze', 'graficki-dizajn', 'web-dizajn', 'ooh-dooh'].includes(service.slug)} />
               </div>
             </details>
           );

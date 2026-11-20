@@ -20,4 +20,4 @@ export const STRIP_FOCUS: Record<string, { desktop: string; mobile: string }> = 
   'peoples': { desktop: '70% 44%', mobile: '75% 45%' },
   'omega-orasi': { desktop: '50% 52%', mobile: '50% 50%' },
 };
-export const STRIP_FULL_ARTWORK = ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'rooms-hr', 'skuter', 'bunjo-grupacija'];
+export const STRIP_FULL_ARTWORK = ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'rooms-hr', 'skuter', 'bunjo-grupacija', 'max-media', 'opel-dooh', 'zmaj', 'jovs-bilbordi', 'ecomm', 'medicana', 'omega-orasi', 'omega-zelene-doline', 'flok', 'peoples'];

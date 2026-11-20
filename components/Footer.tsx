@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { SITE, SOCIAL } from '../data/site';
 import { useLang } from '../lib/i18n';
-import BrandLogo from './BrandLogo';
 import SocialIcon from './SocialIcon';
 import BrandServiceLinks from './BrandServiceLinks';
 
@@ -11,7 +10,6 @@ export default function Footer() {
     <BrandServiceLinks />
     <div className="ref-wrap ref-footer-top">
       <div className="footer-brand">
-        <Link to={to('/')} aria-label="Bonaco Media"><BrandLogo /></Link>
         <p>{t('Strategija, kreativa i produkcija. Iz Sarajeva, za ideje koje idu dalje.', 'Strategy, design and production. Based in Sarajevo. Creating work that reaches further.')}</p>
         <span className="footer-signature">{t('Povezujemo ideje i ljude.', 'Connecting ideas and people.')}</span>
       </div>

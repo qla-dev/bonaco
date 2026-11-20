@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import BrandLogo from '../components/BrandLogo';
 import PoslovniOglasiLogo from '../components/PoslovniOglasiLogo';
@@ -42,15 +43,15 @@ export default function OffersPage() {
       <div className="offers-colour-key" aria-hidden="true">{offers.map(offer => <i key={offer.to} style={{background: offer.color}} />)}</div>
     </header>
     <section className="ref-wrap offers-grid" aria-label={t('Naša tri smjera', 'Our three areas')}>
-      {offers.map(offer => <Link key={offer.to} to={to(offer.to)} className="offer-card" style={{['--offer-color' as string]: offer.color}} aria-label={offer.name + ' — ' + t('Saznaj više', 'Learn more')}>
+      {offers.map(offer => <article key={offer.to} className="offer-card" style={{['--offer-color' as string]: offer.color}}>
         <div className="offer-card-top"><span className="offer-wordmark">{offer.brand ? <BrandLogo brand={offer.brand} /> : <PoslovniOglasiLogo />}</span></div>
         <div className="offer-card-main">
           <div className="offer-card-copy"><h2>{offer.title}</h2><p>{offer.text}</p></div>
           {offer.image ? <div className="offer-visual"><img src={asset(offer.image)} alt={offer.alt} loading="lazy" width="600" height="600" style={{objectPosition: offer.position}} /></div> :
             <div className="offer-visual offer-ai-art" aria-hidden="true"><i /><i /><i /><span>AI<span>bonexis</span></span></div>}
         </div>
-        <div className="offer-card-bottom"><span className="offer-dot" style={{background: offer.color}} aria-hidden="true" /><span>{offer.tags}</span><span className="offer-card-action">{t('Istraži', 'Explore')}</span></div>
-      </Link>)}
+        <div className="offer-card-bottom"><span className="offer-dot" style={{background: offer.color}} aria-hidden="true" /><span>{offer.tags}</span><Link className="offer-card-action" to={to(offer.to)} aria-label={t('Istraži: ', 'Explore: ') + offer.name}>{t('Istraži', 'Explore')}<ArrowUpRight size={18} aria-hidden="true" /></Link></div>
+      </article>)}
     </section>
     <ContactBand />
   </div>;

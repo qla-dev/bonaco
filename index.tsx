@@ -31,3 +31,5 @@ import './styles/official-refresh.css';
 import './styles/mobile-finish.css';
 import './styles/project-strips.css';
 import './styles/brand-footer.css';
+import './styles/project-quality.css';
+import './styles/service-strips.css';

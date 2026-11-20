@@ -9,6 +9,7 @@ import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import type { Project } from '../types';
 import BrandLogo from './BrandLogo';
+import PoslovniOglasiLogo from './PoslovniOglasiLogo';
 import CircleMosaic from './CircleMosaic';
 
 export function EditorialIntro({label,title,children,id,secondary=false}:{label:string;title:ReactNode;children?:ReactNode;id?:string;secondary?:boolean}) {
@@ -21,7 +22,6 @@ export function WorkGrid({projects}:{projects:Project[]}) {
  const {lang,to,t}=useLang();
  return <div className="project-strips">{projects.map(p=>{const x=tr(p,lang);const focus=STRIP_FOCUS[p.slug];const artwork=STRIP_FULL_ARTWORK.includes(p.slug);return <article key={p.slug}>
    <Link className={'project-strip'+(artwork?' project-strip-artwork':'')} data-project={p.slug} to={to('/portfolio/'+p.slug+'/')} aria-label={t('Vidi projekat: ', 'View project: ')+p.client} style={{'--strip-focus':focus?.desktop||PROJECT_FOCUS[p.slug]||'50% 50%','--strip-focus-mobile':focus?.mobile||PROJECT_FOCUS[p.slug]||'50% 50%'} as CSSProperties}>
-     {artwork&&<img className="project-strip-backdrop" src={asset(p.cover)} alt="" aria-hidden="true" loading="lazy"/>}
      <img className="project-strip-photo" src={asset(p.cover)} alt={x.coverAlt} loading="lazy" decoding="async"/>
      <div className="project-strip-content"><h3>{p.client}<span className="project-strip-open">{t('Vidi projekat','View project')}</span></h3><div className="project-strip-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div></div>
    </Link>
@@ -46,6 +46,7 @@ export function BrandOrbit({compact=false}:{compact?:boolean}) {
   {!compact&&<h1>{t('Jedan krug.','One circle.')}<br/><span>{t('Više mogućnosti.','Many possibilities.')}</span></h1>}
   <div className="orbit-branches">
     <Link to={to('/bonexis/')} className="orbit-brand orbit-ai"><BrandLogo brand="bonexis"/><span>{t('AI rješenja · Uskoro','AI solutions · Coming soon')}</span></Link>
+    <Link to={to('/poslovni-oglasi/')} className="orbit-brand orbit-partner"><PoslovniOglasiLogo/><span>{t('Partnerska platforma','Partner platform')}</span></Link>
   </div>
  </section>;
 }

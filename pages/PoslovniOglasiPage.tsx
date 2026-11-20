@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import CircleMosaic from '../components/CircleMosaic';
+import ServicePhoto from '../components/ServicePhoto';
 import PoslovniOglasiLogo from '../components/PoslovniOglasiLogo';
 import { useLang } from '../lib/i18n';
 
@@ -17,7 +17,7 @@ export default function PoslovniOglasiPage() {
           <p>{t('Mjesto susreta poslodavaca koji grade tim i ljudi koji traže sljedeći korak u karijeri. Pregledna radna mjesta, jasna očekivanja i jednostavan put do informacija o prijavi.', 'Connecting employers with their next team member and people with their next career move. Explore clear job listings, understand what is expected and find out how to apply.')}</p>
           <a className="ref-pill" href="https://poslovnioglasi.ba/" target="_blank" rel="noopener noreferrer">{t('Otvori Poslovne oglase', 'Visit Poslovni oglasi')}<ArrowUpRight size={18} /></a>
         </div>
-        <CircleMosaic src="/media/poslovni-oglasi-real-stock.webp" alt={t('Kolege rade za zajedničkim stolom u kancelariji', 'Colleagues working at a shared table in an office')} position="50% 50%" />
+        <ServicePhoto strip src="/media/poslovni-oglasi-real-stock.webp" alt={t('Kolege rade za zajedničkim stolom u kancelariji', 'Colleagues working at a shared table in an office')} position="50% 50%" />
       </section>
       <section className="ref-wrap ref-job-columns">
         <article>

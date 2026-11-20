@@ -11,7 +11,7 @@ export const PORTFOLIO_2026: Project[] = [
       "Društvene mreže",
       "Foto i video"
     ],
-    "cover": "/media/portfolio/summer-dancing-crowd-v8.webp",
+    "cover": "/media/portfolio/summer-dancing-crowd-quality-v21.webp",
     "coverAlt": "Summer Lounge, pogled na publiku koja pleše ispred pozornice",
     "summary": "Od najave programa do atmosfere na događaju: društvene mreže, fotografija i video povezuju cijelu Summer Lounge sezonu.",
     "task": "Od najave programa do atmosfere na događaju: društvene mreže, fotografija i video povezuju cijelu Summer Lounge sezonu.",
@@ -99,8 +99,8 @@ export const PORTFOLIO_2026: Project[] = [
       "Društvene mreže",
       "Foto i video"
     ],
-    "cover": "/media/portfolio/cover-symbol-warm.webp",
-    "coverAlt": "Symbol, narandžasti Sarajevo print na bijeloj majici",
+    "cover": "/media/portfolio/symbol-shop-shirts-quality-v21.webp",
+    "coverAlt": "Symbol, fotografija kolekcije u prodavnici",
     "summary": "Fotografija odjeće, sadržaj za društvene mreže i grafički dizajn povezuju Symbol kolekcije s njihovom publikom.",
     "task": "Fotografija odjeće, sadržaj za društvene mreže i grafički dizajn povezuju Symbol kolekcije s njihovom publikom.",
     "work": [
@@ -112,7 +112,7 @@ export const PORTFOLIO_2026: Project[] = [
       "title": "Identity you can wear.",
       "summary": "Clothing photography, social content and graphic design connect Symbol collections with their audience.",
       "task": "Clothing photography, social content and graphic design connect Symbol collections with their audience.",
-      "coverAlt": "Symbol — selected project",
+      "coverAlt": "Symbol: collection photography in the shop",
       "work": [
         "Product and lifestyle photography",
         "Social media and collection design"
@@ -127,7 +127,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Foto i video"
     ],
-    "cover": "/media/portfolio/bh-posta-program-04622.webp",
+    "cover": "/media/portfolio/bh-posta-program-quality-v21.webp",
     "coverAlt": "BH Pošta — nastup i atmosfera programa na pozornici",
     "summary": "Videoprodukcija za BH Poštu: bilježenje atmosfere, programa i susreta na događaju.",
     "task": "Videoprodukcija za BH Poštu: bilježenje atmosfere, programa i susreta na događaju.",
@@ -157,8 +157,8 @@ export const PORTFOLIO_2026: Project[] = [
       "Društvene mreže",
       "Foto i video"
     ],
-    "cover": "/media/portfolio/cover-golf-hum.webp",
-    "coverAlt": "Golf klub Sarajevo, golferka i Hum u pozadini",
+    "cover": "/media/portfolio/golf-players-quality-v21.webp",
+    "coverAlt": "Golf klub Sarajevo, igrači na Cedevita golf događaju",
     "summary": "Društvene mreže, fotografija i događaji za Golf klub Sarajevo. Portfolio obuhvata i Cedevita Junior Golf Tour te Women’s Golf Day.",
     "task": "Društvene mreže, fotografija i događaji za Golf klub Sarajevo. Portfolio obuhvata i Cedevita Junior Golf Tour te Women’s Golf Day.",
     "work": [
@@ -171,7 +171,7 @@ export const PORTFOLIO_2026: Project[] = [
       "title": "Encounters beyond the everyday.",
       "summary": "Social media, photography and events for Golf Club Sarajevo. The portfolio also includes Cedevita Junior Golf Tour and Women’s Golf Day.",
       "task": "Social media, photography and events for Golf Club Sarajevo. The portfolio also includes Cedevita Junior Golf Tour and Women’s Golf Day.",
-      "coverAlt": "Golf klub Sarajevo — selected project",
+      "coverAlt": "Golf Club Sarajevo: players at a Cedevita golf event",
       "work": [
         "Social media content",
         "Event photography",
@@ -188,7 +188,7 @@ export const PORTFOLIO_2026: Project[] = [
       "Društvene mreže",
       "Foto i video"
     ],
-    "cover": "/media/portfolio/cover-protech.webp",
+    "cover": "/media/portfolio/protech-products-quality-v21.webp",
     "coverAlt": "Protech, produktna fotografija radne opreme",
     "summary": "Kreativni sadržaj za društvene mreže koji proizvode predstavlja kroz stvarnu primjenu, detalje i boje.",
     "task": "Kreativni sadržaj za društvene mreže koji proizvode predstavlja kroz stvarnu primjenu, detalje i boje.",
@@ -306,8 +306,8 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Kampanje"
     ],
-    "cover": "/media/portfolio/cover-ecomm.webp",
-    "coverAlt": "Trust eComm, kadar iz video kampanje",
+    "cover": "/media/portfolio/ecomm-kupac-9.webp",
+    "coverAlt": "eComm, vizual kampanje za kupce",
     "summary": "Meta Ads kampanja usmjerena na promociju e-commerce sadržaja i programa, uz praćenje dosega, angažmana i registracija.",
     "task": "Meta Ads kampanja usmjerena na promociju e-commerce sadržaja i programa, uz praćenje dosega, angažmana i registracija.",
     "work": [
@@ -319,7 +319,7 @@ export const PORTFOLIO_2026: Project[] = [
       "title": "Ideas for digital commerce.",
       "summary": "A Meta Ads campaign promoting e-commerce content and programmes, with reach, engagement and registrations tracked.",
       "task": "A Meta Ads campaign promoting e-commerce content and programmes, with reach, engagement and registrations tracked.",
-      "coverAlt": "eComm — selected project",
+      "coverAlt": "eComm: campaign artwork for shoppers",
       "work": [
         "Meta Ads campaign planning and execution",
         "Reach and engagement tracking"
@@ -334,7 +334,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Web dizajn"
     ],
-    "cover": "/media/portfolio/rooms-website-detail.webp",
+    "cover": "/media/portfolio/rooms-website-p26.webp",
     "coverAlt": "ROOMS.hr, prikaz web stranice",
     "summary": "Web dizajn za ROOMS.hr, s preglednom prezentacijom sadržaja i prilagodbom različitim uređajima.",
     "task": "Web dizajn za ROOMS.hr, s preglednom prezentacijom sadržaja i prilagodbom različitim uređajima.",
@@ -392,7 +392,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Web dizajn"
     ],
-    "cover": "/media/portfolio/bunjo-desktop-v5.webp",
+    "cover": "/img/projects/bunjo/mockup.webp",
     "coverAlt": "Bunjo Grupacija, web stranica",
     "summary": "Web stranica Bunjo Grupacije: pregledna prezentacija kompanije i ponude, prilagođena različitim uređajima.",
     "task": "Web stranica Bunjo Grupacije: pregledna prezentacija kompanije i ponude, prilagođena različitim uređajima.",
@@ -421,8 +421,8 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "OOH / DOOH"
     ],
-    "cover": "/media/portfolio/cover-zmaj-dooh.webp",
-    "coverAlt": "Zmaj, kadar digitalnog outdoor oglasa",
+    "cover": "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
+    "coverAlt": "Zmaj, originalni vizual OOH kampanje Moć ukusa",
     "summary": "OOH kampanja „Moć ukusa“ i 3D DOOH sadržaj za Zmaj. Kreativno rješenje prilagođeno vanjskim i digitalnim oglasnim površinama.",
     "task": "Predstaviti brend kroz OOH i digitalne vanjske formate.",
     "work": [
@@ -432,7 +432,7 @@ export const PORTFOLIO_2026: Project[] = [
     "results": [],
     "en": {
       "title": "Flavour, beyond the screen.",
-      "coverAlt": "Zmaj, sandwich product photograph",
+      "coverAlt": "Zmaj: original Power of Taste outdoor campaign artwork",
       "summary": "The “Moć ukusa” outdoor campaign and 3D DOOH content for Zmaj, adapted to outdoor and digital advertising formats.",
       "task": "Present the brand through outdoor and digital outdoor formats.",
       "work": [
@@ -592,7 +592,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "OOH / DOOH"
     ],
-    "cover": "/media/portfolio/cover-opel-dooh.webp",
+    "cover": "/media/portfolio/opel-dooh-pdf-poster.webp",
     "coverAlt": "Opel · 3D DOOH — odabrani rad",
     "summary": "3D DOOH animacija Opel Frontere za Autocentar Nešković. Bonaco Media potpisuje animaciju i realizaciju, uz Tapgest 3D tehnologiju.",
     "task": "3D DOOH animacija Opel Frontere za Autocentar Nešković. Bonaco Media potpisuje animaciju i realizaciju, uz Tapgest 3D tehnologiju.",
@@ -620,7 +620,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "OOH / DOOH"
     ],
-    "cover": "/media/portfolio/cover-jovs-bilbordi.webp",
+    "cover": "/media/portfolio/jovs-central-building.webp",
     "coverAlt": "JOVS · Bilbordi — odabrani rad",
     "summary": "JOVS kampanja u gradskom prostoru: fasadni oglasi, bilbordi i LED ekrani. Različiti formati povezuju isti proizvod i vizuelni identitet.",
     "task": "JOVS kampanja u gradskom prostoru: fasadni oglasi, bilbordi i LED ekrani. Različiti formati povezuju isti proizvod i vizuelni identitet.",
@@ -734,42 +734,34 @@ export const PORTFOLIO_2026: Project[] = [
 ];
 export const PROJECT_PHOTOS: Record<string,string[]> = {
   "summer-lounge": [
-    "/media/portfolio/summer-aerial.webp",
-    "/media/portfolio/summer-dj.webp",
-    "/media/portfolio/summer-crowd.webp"
+    "/media/portfolio/summer-dj-quality-v21.webp",
+    "/media/portfolio/summer-stage-crowd-quality-v21.webp"
   ],
   "jovs": [
-  "/media/portfolio/jovs-event-room.webp",
-  "/media/portfolio/jovs-event-card.webp",
-  "/media/portfolio/jovs-event-entrance.webp"
-],
+    "/media/portfolio/jovs-event-room.webp",
+    "/media/portfolio/jovs-event-card.webp"
+  ],
   "asa-banka": [
-    "/media/portfolio/asa-druga-kuca.webp",
     "/media/portfolio/asa-pomozi.webp",
     "/media/portfolio/asa-cam14038.webp"
   ],
   "symbol": [
     "/media/portfolio/symbol-tas-08388.webp",
-    "/media/portfolio/symbol-hoodies-08335.webp",
-    "/media/portfolio/symbol-hoodies-08393.webp"
+    "/media/portfolio/symbol-shop-interior-quality-v21.webp"
   ],
   "bh-posta": [
-    "/media/portfolio/bh-posta-program-04622.webp",
-    "/media/portfolio/bh-posta-audience.webp",
-    "/media/portfolio/bh-posta-presentation.webp"
+    "/media/portfolio/bh-posta-audience-quality-v21.webp",
+    "/media/portfolio/bh-posta-hall-quality-v21.webp"
   ],
   "golf-klub-sarajevo": [
-    "/media/portfolio/golf-hum-selected.webp",
-    "/media/portfolio/golf-sarajevo-sunlight.webp",
-    "/media/portfolio/golf-event-landscape.webp"
+    "/media/portfolio/golf-course-flags-quality-v21.webp",
+    "/media/portfolio/golf-swing-quality-v21.webp"
   ],
   "protech": [
-    "/media/portfolio/protech-brk2718.webp",
-    "/media/portfolio/protech-brk2958.webp",
-    "/media/portfolio/protech-brk2899.webp"
+    "/media/portfolio/protech-painting-quality-v21.webp",
+    "/media/portfolio/protech-gloves-quality-v21.webp"
   ],
   "omega-orasi": [
-    "/media/portfolio/orasi-09-11.webp",
     "/media/portfolio/orasi-12-11.webp",
     "/media/portfolio/orasi-02-11.webp"
   ],
@@ -784,25 +776,13 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/omega-zelene-doline-recipe.webp"
   ],
   "ecomm": [
-    "/media/portfolio/ecomm-kupac-9.webp",
-    "/media/portfolio/ecomm-video-frame-p24.webp",
     "/media/portfolio/ecomm-trgovac-10-1.webp"
   ],
-  "rooms-hr": [
-  "/media/portfolio/rooms-screen-v5.webp",
-  "/media/portfolio/rooms-website-detail.webp",
-  "/media/portfolio/rooms-brand-v5.webp"
-],
+  "rooms-hr": [],
   "skuter": [
-    "/media/portfolio/skuter-live-website.webp",
-    "/media/portfolio/skuter-website-p26.webp",
     "/media/portfolio/skuter-website-brands.webp"
   ],
-  "bunjo-grupacija": [
-  "/media/portfolio/bunjo-desktop-v5.webp",
-  "/media/portfolio/bunjo-laptop-v5.webp",
-  "/media/portfolio/bunjo-website-p26.webp"
-],
+  "bunjo-grupacija": [],
   "symbol-dzeko": [
     "/media/portfolio/dzeko-print-portrait-board.svg",
     "/media/portfolio/dzeko-print-bicycle-board.svg",
@@ -828,36 +808,23 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/wine-atmosphere-2026-wide.webp",
     "/media/portfolio/wine-atmosphere-2026-tasting.webp"
   ],
-  "opel-dooh": [
-    "/media/portfolio/opel-dooh-pdf-poster.webp",
-    "/media/portfolio/opel-dooh-gallery-01.webp",
-    "/media/portfolio/opel-dooh-gallery-02.webp"
-  ],
+  "opel-dooh": [],
   "jovs-bilbordi": [
     "/media/portfolio/jovs-building-billboard.webp",
-    "/media/portfolio/jovs-city-led.webp",
-    "/media/portfolio/jovs-central-building.webp"
+    "/media/portfolio/jovs-city-led.webp"
   ],
   "bonaco-craft": [
-  "/media/portfolio/bonaco-craft-v20-desktop-dance.jpg",
-  "/media/portfolio/bonaco-craft-v20-desktop-outro.jpg",
-  "/media/portfolio/bonaco-craft-v20-desktop-poster.jpg"
-],
-  "zmaj": [
-    "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
-    "/media/portfolio/zmaj-dooh-pdf-poster.webp",
-    "/media/portfolio/zmaj-dsc06424.webp"
+    "/media/portfolio/bonaco-craft-v20-desktop-dance.jpg",
+    "/media/portfolio/bonaco-craft-v20-desktop-outro.jpg",
+    "/media/portfolio/bonaco-craft-v20-desktop-poster.jpg"
   ],
+  "zmaj": [],
   "peoples": [
     "/media/portfolio/peoples-november-1.webp",
     "/media/portfolio/peoples-november-2.webp",
     "/media/portfolio/peoples-match-sweden.webp"
   ],
-  "max-media": [
-    "/media/portfolio/max-media-desktop-detail.webp",
-    "/media/portfolio/max-media-laptop-detail.webp",
-    "/media/portfolio/max-media-mobile-detail.webp"
-  ]
+  "max-media": []
 };
 export const PROJECT_FOCUS: Record<string,string> = {
   "medicana": "50% 5%",
@@ -931,7 +898,7 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
   },
   "bh-posta": {
     "instagram": "https://www.instagram.com/p/De18GW5s2O0/",
-    "poster": "/media/portfolio/bh-posta-program-04622.webp",
+    "poster": "/media/portfolio/bh-posta-program-quality-v21.webp",
     "label": "BH Pošta · Video događaja"
   }
 };

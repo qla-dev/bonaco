@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 import SEO from '../components/SEO';
-import { CirclePhoto, WorkGrid, ClientClouds, ContactBand } from '../components/ReferenceSections';
+import { WorkGrid, ClientClouds, ContactBand } from '../components/ReferenceSections';
 import { PROJECTS, CATEGORY_EN } from '../data/projects';
-import { PORTFOLIO_2026, PROJECT_FOCUS, PROJECT_SCALE } from '../data/portfolio2026';
+import { PORTFOLIO_2026 } from '../data/portfolio2026';
 import { PROJECT_DETAILS } from '../data/projectDetails';
 import { projectExamples } from '../data/projectMedia';
 import { asset } from '../lib/asset';
@@ -42,6 +42,8 @@ export default function ProjectPage() {
   const index = PORTFOLIO_2026.findIndex(item => item.slug === project.slug);
   const next = PORTFOLIO_2026[(index + 1) % PORTFOLIO_2026.length];
   const current = examples[selected];
+  const coverFilmIndex = examples.findIndex(example => example.kind === 'video' && example.src === project.cover);
+  const gallery = examples.map((example, index) => ({ example, index })).filter(item => item.index !== coverFilmIndex);
   return <div className="ref-page ref-case">
     <SEO title={project.client + ' — ' + copy.title} description={copy.summary} image={project.cover} />
     <article>
@@ -50,7 +52,9 @@ export default function ProjectPage() {
         <h1>{project.client}</h1><p>{copy.title}</p>
       </header>
       <div className="ref-wrap ref-case-intro">
-        <CirclePhoto src={project.cover} alt={copy.coverAlt} position={PROJECT_FOCUS[project.slug]} scale={PROJECT_SCALE[project.slug]} />
+        <figure className="project-cover">{coverFilmIndex >= 0 ? <button type="button" className="project-cover-play" onClick={() => setSelected(coverFilmIndex)} aria-label={t('Pokreni video: ', 'Play video: ') + project.client}>
+          <img src={asset(project.cover)} alt={copy.coverAlt} decoding="async" /><span className="example-play" aria-hidden="true"><Play fill="currentColor" size={23} /><span>Video</span></span>
+        </button> : <img src={asset(project.cover)} alt={copy.coverAlt} decoding="async" />}</figure>
         <div className="ref-case-copy">
           <div className="ref-tags">{project.categories.map(category => <span key={category}>{lang === 'en' ? (CATEGORY_EN[category] || category) : category}</span>)}</div>
           <p className="ref-case-summary">{copy.summary}</p>
@@ -61,10 +65,10 @@ export default function ProjectPage() {
           {project.url && <a className="ref-text-link" href={project.url} target="_blank" rel="noopener noreferrer">{t('Pogledaj web', 'View website')}<ArrowUpRight size={18} /></a>}
         </div>
       </div>
-      {examples.length > 0 && <section className="ref-wrap ref-case-gallery ref-case-triptych" aria-label={t('Tri odabrana primjera projekta', 'Three selected project examples')}>
-        <div className="ref-gallery-grid">{examples.map((example, position) => <figure key={example.src + example.kind}>
+      {gallery.length > 0 && <section className="ref-wrap ref-case-gallery ref-case-triptych" aria-label={t('Odabrani primjeri projekta', 'Selected project examples')}>
+        <div className="ref-gallery-grid" data-count={gallery.length}>{gallery.map(({example, index: position}) => <figure key={example.src + example.kind}>
           <button className={'project-example' + (example.kind === 'video' ? ' is-video' : '')} type="button" onClick={() => setSelected(position)} aria-label={example.kind === 'video' ? t('Pokreni video: ', 'Play video: ') + example.film.label : t('Otvori fotografiju ', 'Open photo ') + (position + 1)}>
-            <img src={asset(example.src)} alt={example.kind === 'video' ? example.film.label : project.client + ' — ' + (position + 1)} loading="lazy" decoding="async" width="600" height="600" style={{ objectPosition: example.position || '50% 50%' }} />
+            <img src={asset(example.src)} alt={example.kind === 'video' ? example.film.label : project.client + ' — ' + (position + 1)} loading="lazy" decoding="async" />
             {example.kind === 'video' && <span className="example-play" aria-hidden="true"><Play fill="currentColor" size={23} /><span>Video</span></span>}
           </button>
         </figure>)}</div>
@@ -76,8 +80,8 @@ export default function ProjectPage() {
       {current && <>
         {current.kind === 'video' ? <ProjectFilmPlayer key={current.src} film={current.film} autoOpen /> : <img src={asset(current.src)} alt={project.client + ' — ' + (selected + 1)} />}
         <button ref={close} className="ref-lb-close" type="button" onClick={() => setSelected(-1)} aria-label={t('Zatvori', 'Close')}><X /></button>
-        <button className="ref-lb-prev" type="button" onClick={() => setSelected((selected + examples.length - 1) % examples.length)} aria-label={t('Prethodna', 'Previous')}><ChevronLeft /></button>
-        <button className="ref-lb-next" type="button" onClick={() => setSelected((selected + 1) % examples.length)} aria-label={t('Sljedeća', 'Next')}><ChevronRight /></button>
+        {examples.length > 1 && <><button className="ref-lb-prev" type="button" onClick={() => setSelected((selected + examples.length - 1) % examples.length)} aria-label={t('Prethodna', 'Previous')}><ChevronLeft /></button>
+        <button className="ref-lb-next" type="button" onClick={() => setSelected((selected + 1) % examples.length)} aria-label={t('Sljedeća', 'Next')}><ChevronRight /></button></>}
         <span>{selected + 1} / {examples.length}</span>
       </>}
     </dialog>
