@@ -5,7 +5,7 @@ export const WORK_ORDER: Record<string, string[]> = {
   'Društvene mreže': ['summer-lounge', 'bh-posta', 'asa-banka', 'jovs', 'symbol', 'omega-orasi'],
   'Foto i video': ['medicana', 'bh-posta', 'golf-klub-sarajevo', 'protech', 'asa-banka', 'symbol', 'summer-lounge', 'bonaco-craft'],
   Event: ['jovs', 'golf-klub-sarajevo', 'summer-lounge'],
-  'Grafički dizajn': ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'bonaco-craft'],
+  'Grafički dizajn': ['symbol-dzeko', 'summer-wine-lounge', 'symbol-tas', 'summer-lounge-identitet', 'symbol-dukserice', 'bonaco-craft'],
   Kampanje: ['ecomm', 'symbol-zmajici', 'omega-zelene-doline'],
   'OOH / DOOH': ['opel-dooh', 'zmaj', 'zmaj-dooh'],
 };
