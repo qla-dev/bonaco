@@ -10,60 +10,60 @@ import { tr, useLang } from '../lib/i18n';
 
 const photos: Record<string, {src:string; position:string; mobilePosition:string; artwork:boolean; bs:string; en:string}> = {
   "strategija-kampanje": {
-    "src": "/media/portfolio/service-strategy-tas-v22.webp",
-    "position": "50% 43%",
-    "mobilePosition": "50% 43%",
-    "artwork": true,
-    "bs": "Symbol TAS, fotografija iz kampanje s modelom u crvenom automobilu",
-    "en": "Symbol TAS campaign photograph with a model in a red car"
+    "src": "/media/portfolio/service-strategy-team-v23.webp",
+    "position": "50% 65%",
+    "mobilePosition": "50% 62%",
+    "artwork": false,
+    "bs": "Tim sarađuje na planiranju projekta; ilustrativna fotografija",
+    "en": "Team collaborating on project planning; illustrative photograph"
   },
   "drustvene-mreze": {
-    "src": "/media/portfolio/service-social-orasi-v22.webp",
-    "position": "50% 50%",
+    "src": "/media/portfolio/service-social-food-v23.webp",
+    "position": "50% 55%",
     "mobilePosition": "50% 50%",
-    "artwork": true,
-    "bs": "Omega / OraSì, objava s napitkom od badema i kafom",
-    "en": "Omega / OraSì social creative featuring almond drink and coffee"
+    "artwork": false,
+    "bs": "Produktna fotografija pripremljena za komunikaciju brenda Zmaj",
+    "en": "Zmaj product photograph prepared for brand communication"
   },
   "graficki-dizajn": {
-    "src": "/media/portfolio/service-design-symbol-v22.webp",
-    "position": "50% 52%",
-    "mobilePosition": "50% 52%",
-    "artwork": true,
-    "bs": "Symbol, grafički dizajn printa na duksericama",
-    "en": "Symbol graphic print designs on hoodies"
+    "src": "/media/portfolio/service-design-symbol-v23.webp",
+    "position": "50% 49%",
+    "mobilePosition": "50% 50%",
+    "artwork": false,
+    "bs": "Grafički printovi na Symbol duksericama",
+    "en": "Graphic prints on Symbol hoodies"
   },
   "foto-video": {
-    "src": "/media/portfolio/service-production-golf-v22.webp",
+    "src": "/media/portfolio/service-production-event-v23.webp",
     "position": "50% 60%",
     "mobilePosition": "50% 55%",
     "artwork": false,
-    "bs": "Golf klub Sarajevo, fotografija Cedevita Sarajevo Open događaja",
-    "en": "Golf Club Sarajevo: Cedevita Sarajevo Open event photography"
+    "bs": "Fotografija događaja Sarajevo Open u Golf klubu Sarajevo",
+    "en": "Sarajevo Open event photography at Golf Club Sarajevo"
   },
   "web-dizajn": {
-    "src": "/media/portfolio/service-web-rooms-v22.webp",
-    "position": "50% 50%",
-    "mobilePosition": "50% 50%",
-    "artwork": true,
-    "bs": "ROOMS.hr, prikaz dizajna web stranice na laptopu",
-    "en": "ROOMS.hr website design presented on a laptop"
+    "src": "/media/portfolio/service-web-collaboration-v23.webp",
+    "position": "35% 80%",
+    "mobilePosition": "30% 70%",
+    "artwork": false,
+    "bs": "Laptop na radnom stolu; ilustrativna fotografija web okruženja",
+    "en": "Laptop on a desk; illustrative photograph of a web workspace"
   },
   "ooh-dooh": {
-    "src": "/media/portfolio/service-outdoor-jovs-v22.webp",
+    "src": "/media/portfolio/service-outdoor-city-v23.webp",
     "position": "50% 48%",
-    "mobilePosition": "50% 48%",
-    "artwork": true,
-    "bs": "JOVS kampanja na gradskom LED ekranu",
-    "en": "JOVS campaign on a city LED screen"
+    "mobilePosition": "55% 50%",
+    "artwork": false,
+    "bs": "Digitalni oglas JOVS na gradskom LED ekranu",
+    "en": "JOVS digital advertisement on an urban LED screen"
   },
   "digitalno-oglasavanje": {
-    "src": "/media/portfolio/service-digital-workspace-v22.webp",
-    "position": "35% 75%",
-    "mobilePosition": "32% 70%",
+    "src": "/media/portfolio/service-digital-workspace-v23.webp",
+    "position": "50% 60%",
+    "mobilePosition": "50% 50%",
     "artwork": false,
-    "bs": "Laptop s prikazom digitalnog marketinga na radnom stolu; ilustrativna stock fotografija",
-    "en": "Laptop displaying digital marketing on a desk; illustrative stock photograph"
+    "bs": "Tim razmatra plan i rezultate kampanje; ilustrativna fotografija",
+    "en": "Team discussing a campaign plan and results; illustrative photograph"
   }
 };
 
@@ -85,7 +85,6 @@ export default function ServicesPage() {
           <h1>{t('Sve počinje', 'It all starts')}<br /><span>{t('dobrom idejom.', 'with a good idea.')}</span></h1>
           <p>{t('Dajemo joj strategiju, oblik, glas i publiku. Povezujemo usluge prema onome što vašem brendu treba, od prve kampanje do kontinuirane komunikacije na više kanala.', 'We turn ideas into a clear strategy, distinctive design and content that reaches the right people. From your first campaign to your everyday brand presence, we bring the right skills together.')}</p>
         </div>
-        <ServicePhoto strip src="/media/portfolio/bonaco-sarajevo-pinned.webp" alt="Sarajevo, Bonaco Media" position="50% 85%" />
       </section>
       <section className="ref-wrap ref-service-list" aria-labelledby="marketing-services-heading">
         <header className="service-list-heading"><p className="ref-eyebrow">{t('Bonaco marketing', 'Bonaco marketing')}</p><h2 id="marketing-services-heading">{t('Usluge za vašu ideju.', 'Services for your idea.')}</h2></header>

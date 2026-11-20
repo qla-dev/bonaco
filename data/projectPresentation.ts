@@ -6,8 +6,8 @@ export const WORK_ORDER: Record<string, string[]> = {
   'Foto i video': ['medicana', 'bh-posta', 'golf-klub-sarajevo', 'protech', 'asa-banka', 'symbol', 'summer-lounge', 'bonaco-craft'],
   Event: ['jovs', 'golf-klub-sarajevo', 'summer-lounge'],
   'Grafički dizajn': ['symbol-dzeko', 'symbol-dukserice', 'symbol-tas', 'summer-lounge-identitet', 'summer-wine-lounge', 'bonaco-craft'],
-  Kampanje: ['ecomm', 'symbol-tas', 'omega-zelene-doline'],
-  'OOH / DOOH': ['opel-dooh', 'zmaj', 'jovs-bilbordi'],
+  Kampanje: ['ecomm', 'symbol-zmajici', 'omega-zelene-doline'],
+  'OOH / DOOH': ['opel-dooh', 'zmaj', 'zmaj-dooh'],
 };
 // Independent crops for wide rows and phone compositions.
 export const STRIP_FOCUS: Record<string, { desktop: string; mobile: string }> = {
@@ -26,3 +26,18 @@ export const STRIP_FULL_ARTWORK = ['symbol-dzeko', 'symbol-dukserice', 'symbol-t
 export function projectNeedsFrame(project: Pick<Project, 'slug' | 'categories'>) {
   return STRIP_FULL_ARTWORK.includes(project.slug) || project.categories.some(category => ['Grafički dizajn', 'Web dizajn', 'OOH / DOOH', 'Kampanje'].includes(category));
 }
+
+// Actual project screens, presented inside a shared CSS laptop.
+export const WEB_PREVIEWS: Record<string, string> = {
+  'rooms-hr': '/media/portfolio/rooms-screen-v5.webp',
+  'skuter': '/media/portfolio/skuter-live-website.webp',
+  'bunjo-grupacija': '/media/portfolio/bunjo-laptop-v5.webp',
+};
+export const PANEL_PREVIEWS: Record<string, {src: string; fit: 'cover' | 'contain'; position: string}> = {
+  'opel-dooh': {src: '/media/portfolio/cover-opel-dooh.webp', fit: 'cover', position: '50% 50%'},
+  'zmaj': {src: '/media/portfolio/zmaj-ooh-artwork-pdf.webp', fit: 'contain', position: 'center'},
+  'zmaj-dooh': {src: '/media/portfolio/cover-zmaj-dooh.webp', fit: 'cover', position: '50% 50%'},
+  'symbol-zmajici': {src: '/media/portfolio/symbol-zmajici-campaign-v23.webp', fit: 'contain', position: 'center'},
+  'ecomm': {src: '/media/portfolio/ecomm-kupac-9.webp', fit: 'contain', position: 'center'},
+  'omega-zelene-doline': {src: '/media/portfolio/cover-omega-zelene-doline.webp', fit: 'contain', position: 'center'},
+};

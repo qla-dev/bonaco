@@ -1,0 +1,107 @@
+{
+  "services": [
+    {
+      "service": "strategija-kampanje",
+      "name": "service-strategy-team-v23.webp",
+      "dimensions": {
+        "width": 2400,
+        "height": 1575
+      },
+      "sourceDimensions": {
+        "width": 7678,
+        "height": 5038
+      },
+      "sourceUrl": "https://unsplash.com/photos/sittin-people-beside-table-inside-room-hCb3lIB8L8E",
+      "license": "Unsplash License",
+      "photographer": "Annie Spratt"
+    },
+    {
+      "service": "drustvene-mreze",
+      "name": "service-social-food-v23.webp",
+      "dimensions": {
+        "width": 2400,
+        "height": 1603
+      },
+      "sourceDimensions": {
+        "width": 3901,
+        "height": 2606
+      }
+    },
+    {
+      "service": "graficki-dizajn",
+      "name": "service-design-symbol-v23.webp",
+      "dimensions": {
+        "width": 2400,
+        "height": 1600
+      },
+      "sourceDimensions": {
+        "width": 7008,
+        "height": 4672
+      },
+      "sourceUrl": "https://drive.google.com/file/d/14Og5yl1ex61Tjlevjz0AjL7ZnEcmH5SY/view"
+    },
+    {
+      "service": "foto-video",
+      "name": "service-production-event-v23.webp",
+      "dimensions": {
+        "width": 2400,
+        "height": 1600
+      },
+      "sourceDimensions": {
+        "width": 6000,
+        "height": 4000
+      }
+    },
+    {
+      "service": "web-dizajn",
+      "name": "service-web-collaboration-v23.webp",
+      "dimensions": {
+        "width": 1800,
+        "height": 1200
+      },
+      "sourceDimensions": {
+        "width": 1800,
+        "height": 1200
+      },
+      "sourceUrl": "https://www.pexels.com/photo/laptop-on-desk-6483627/",
+      "license": "Pexels License",
+      "photographer": "Mikael Blomkvist"
+    },
+    {
+      "service": "ooh-dooh",
+      "name": "service-outdoor-city-v23.webp",
+      "dimensions": {
+        "width": 1200,
+        "height": 675
+      },
+      "sourceDimensions": {
+        "width": 1200,
+        "height": 675
+      }
+    },
+    {
+      "service": "digitalno-oglasavanje",
+      "name": "service-digital-workspace-v23.webp",
+      "dimensions": {
+        "width": 2400,
+        "height": 1600
+      },
+      "sourceDimensions": {
+        "width": 3000,
+        "height": 2000
+      },
+      "sourceUrl": "https://unsplash.com/photos/man-standing-in-front-of-people-sitting-beside-table-with-laptop-computers-gMsnXqILjp4",
+      "license": "Unsplash License",
+      "photographer": "Campaign Creators"
+    }
+  ],
+  "campaign": {
+    "file": "symbol-zmajici-campaign-v23.webp",
+    "originalName": "ZMAJEVI KIDS vector.ai",
+    "dimensions": {
+      "width": 2117,
+      "height": 2400
+    },
+    "processing": "Rendered original vector artwork with Poppler, longestedge2400px, losslessWebP. Full original composition unaltered, no AI."
+  }
+}

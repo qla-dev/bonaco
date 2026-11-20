@@ -59,7 +59,7 @@ export default function ProjectShowcase({ home = false }: { home?: boolean }) {
   const [filter, setFilter] = useState(WORK_FILTERS[0]);
   const order = WORK_ORDER[filter] || [];
   const rank = (slug: string) => order.includes(slug) ? order.indexOf(slug) : order.length;
-  const projects = PORTFOLIO_2026.filter(project => filter === 'Sve' || project.categories.includes(filter)).sort((a, b) => rank(a.slug) - rank(b.slug));
+  const projects = PORTFOLIO_2026.filter(project => filter === 'Sve' || (project.categories.includes(filter) && !(filter === 'OOH / DOOH' && project.slug === 'jovs-bilbordi'))).sort((a, b) => rank(a.slug) - rank(b.slug));
   const Heading = home ? 'h2' : 'h1';
   return <section className="ref-wrap project-showcase" id={home ? 'odabrani-radovi' : undefined}>
     <Heading className="project-showcase-title">{t('Naši radovi', 'Our work')}</Heading>

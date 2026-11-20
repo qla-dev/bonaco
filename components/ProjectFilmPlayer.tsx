@@ -12,8 +12,8 @@ export default function ProjectFilmPlayer({ film, autoOpen = false }: { film: Pr
     <div className="project-film-heading"><h2>{film.label}</h2><span className="ref-eyebrow">{t('Pogledaj u pokretu', 'See it in motion')}</span></div>
     {film.src ? <video key={film.src} controls playsInline autoPlay={autoOpen} preload="none" poster={asset(film.poster)} aria-label={film.label}>
       {film.webmMobile && <source src={asset(film.webmMobile)} type="video/webm" media="(max-width: 680px)" />}
-      {film.webm && <source src={asset(film.webm)} type="video/webm" />}
       {film.mobile && <source src={asset(film.mobile)} type="video/mp4" media="(max-width: 680px)" />}
+      {film.webm && <source src={asset(film.webm)} type="video/webm" />}
       <source src={asset(film.src)} type="video/mp4" />
     </video> : film.youtube ? <>
       {opened ? <iframe className={'project-youtube' + (film.portrait ? ' is-portrait' : '')} src={'https://www.youtube-nocookie.com/embed/' + film.youtube + '?autoplay=1&rel=0'} title={film.label} allow="autoplay; encrypted-media; fullscreen; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /> : <button className="project-film-launch" onClick={() => setOpened(true)} aria-label={t('Pokreni video: ', 'Play video: ') + film.label}><CircleMosaic src={film.poster} alt={film.label} /><span><Play size={36} />{t('Pokreni video', 'Play video')}</span></button>}

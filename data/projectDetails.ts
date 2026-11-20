@@ -56,6 +56,10 @@ export const PROJECT_DETAILS: Record<string,{bs:string;en:string}> = {
     "bs": "Za Bunjo Grupaciju radili smo dizajn i izradu web prezentacije kompanije i njene ponude. Projektni ekrani i mockup uređaja prikazuju raspored sadržaja, navigaciju i prilagodbu manjim ekranima. Struktura povezuje predstavljanje grupacije s informacijama o njenim uslugama, uz dosljedan vizuelni smjer i preglednu hijerarhiju sadržaja kroz različite uređaje.",
     "en": "For Bunjo Group, we designed and built a web presentation of the company and its offering. Project screens and device mockups show content layout, navigation and adaptation to smaller screens. The structure connects the group’s introduction with service information, maintaining a consistent visual direction and clear content hierarchy across devices."
   },
+  "zmaj-dooh": {
+    "bs": "Zmaj je predstavljen kroz 3D sadržaj prilagođen digitalnom oglasnom ekranu. Animacija povezuje lik brenda s perspektivom ekrana i prostorom u kojem se oglas prikazuje. Prikaz izvedbe nalazi se uz projekat.",
+    "en": "Zmaj is presented through 3D content adapted to a digital advertising display. The animation connects the brand character with the screen perspective and the space where the ad appears. The execution is shown alongside the project."
+  },
   "zmaj": {
     "bs": "Zmaj kampanju „Moć ukusa“ razvili smo za vanjske oglasne površine, a brend je predstavljen i kroz 3D DOOH sadržaj. Statični vizual prenosi kratku, čitljivu poruku u gradu, dok digitalni format koristi pokret i perspektivu ekrana. Oba pristupa povezuju identitet brenda s načinom na koji publika doživljava oglas u prostoru.",
     "en": "We developed Zmaj’s “Power of Taste” campaign for outdoor advertising, and the brand was also presented through 3D DOOH content. The static visual carries a short, readable message in the city, while the digital format uses motion and screen perspective. Both approaches connect the brand identity with how audiences experience advertising in a physical space."
@@ -68,6 +72,10 @@ export const PROJECT_DETAILS: Record<string,{bs:string;en:string}> = {
     "bs": "Za Symbol dukserice razvijeni su grafički motivi i vizuelna prezentacija kolekcije. Originalne fotografije prikazuju ilustrirani print na leđima, odnos dizajna i boje tkanine te odjeću u gradskom okruženju. Krupni kadar dizajna i lifestyle fotografije zajedno pokazuju kako se motiv prenosi s grafičkog rješenja na komad koji se nosi.",
     "en": "Graphic motifs and the visual presentation of the collection were developed for Symbol hoodies. Original photographs show the illustrated back print, the relationship between the design and fabric colour, and the clothing in an urban setting. A close view of the design and lifestyle photography together show how a motif moves from graphic artwork to a piece of clothing."
   },
+  "symbol-zmajici": {
+  "bs": "Kolekcija Zmajići povezuje dječiji navijački motiv, boje Bosne i Hercegovine i sadržaj za društvene mreže. Originalni ilustrirani zmaj daje kolekciji prepoznatljiv vizuelni karakter, dok kampanjski plan obuhvata Reel i carousel formate.",
+  "en": "The Zmajići collection connects a junior fan motif, Bosnia and Herzegovina colours and social media content. The original illustrated dragon gives the collection its visual character, while the campaign plan includes Reel and carousel formats."
+},
   "symbol-tas": {
     "bs": "TAS kolekcija spaja grafički motiv Golfa, natpis „Built in Sarajevo“ i fotografije kampanje s crvenim automobilom. Rad povezuje dizajn printa za majicu s njegovom primjenom na odjeći i u kampanjskom kadru. Crveni, crni i bijeli detalji stvaraju vezu između automobila, odjevnih komada i lokalnog identiteta koji kolekcija predstavlja.",
     "en": "The TAS collection combines the Golf graphic, “Built in Sarajevo” wording and campaign photography featuring a red car. The work connects the T-shirt print design with its application on clothing and in campaign imagery. Red, black and white details connect the car, garments and the local identity represented by the collection."

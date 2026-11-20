@@ -11,6 +11,7 @@ import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import ProjectFilmPlayer from '../components/ProjectFilmPlayer';
 import FramedImage from '../components/FramedImage';
+import ProjectVisual from '../components/ProjectVisual';
 import { projectNeedsFrame } from '../data/projectPresentation';
 import NotFoundPage from './NotFoundPage';
 
@@ -41,7 +42,7 @@ export default function ProjectPage() {
   if (!project) return <NotFoundPage />;
   const copy = tr(project, lang);
   const framed = projectNeedsFrame(project);
-  const coverImage = framed ? <FramedImage src={project.cover} alt={copy.coverAlt} loading="eager" /> : <img src={asset(project.cover)} alt={copy.coverAlt} decoding="async" />;
+  const coverImage = <ProjectVisual project={project} alt={copy.coverAlt} loading="eager" />;
   const detail = PROJECT_DETAILS[project.slug];
   const index = PORTFOLIO_2026.findIndex(item => item.slug === project.slug);
   const next = PORTFOLIO_2026[(index + 1) % PORTFOLIO_2026.length];

@@ -422,28 +422,28 @@ export const PORTFOLIO_2026: Project[] = [
   },
   {
     "slug": "zmaj",
-    "client": "Zmaj · OOH / DOOH",
+    "client": "Zmaj · OOH",
     "title": "Moć ukusa, izvan ekrana.",
     "categories": [
       "OOH / DOOH"
     ],
     "cover": "/media/portfolio/zmaj-ooh-artwork-pdf.webp",
     "coverAlt": "Zmaj, originalni vizual OOH kampanje Moć ukusa",
-    "summary": "OOH kampanja „Moć ukusa“ i 3D DOOH sadržaj za Zmaj. Kreativno rješenje prilagođeno vanjskim i digitalnim oglasnim površinama.",
-    "task": "Predstaviti brend kroz OOH i digitalne vanjske formate.",
+    "summary": "OOH kampanja „Moć ukusa“ za Zmaj, s prepoznatljivim likom brenda i porukom prilagođenom vanjskim oglasnim površinama.",
+    "task": "Predstaviti brend kroz jasnu poruku za vanjske oglasne površine.",
     "work": [
       "Kreativa za OOH kampanju „Moć ukusa“",
-      "3D DOOH sadržaj"
+      "Prilagodba vanjskim oglasnim površinama"
     ],
     "results": [],
     "en": {
       "title": "Flavour, beyond the screen.",
       "coverAlt": "Zmaj: original Power of Taste outdoor campaign artwork",
-      "summary": "The “Moć ukusa” outdoor campaign and 3D DOOH content for Zmaj, adapted to outdoor and digital advertising formats.",
-      "task": "Present the brand through outdoor and digital outdoor formats.",
+      "summary": "The “Moć ukusa” outdoor campaign for Zmaj, with the distinctive brand character and a message adapted to outdoor advertising.",
+      "task": "Present the brand through a clear outdoor advertising message.",
       "work": [
         "Creative for the “Moć ukusa” outdoor campaign",
-        "3D DOOH content"
+        "Outdoor advertising adaptations"
       ],
       "results": []
     }
@@ -505,11 +505,41 @@ export const PORTFOLIO_2026: Project[] = [
     }
   },
   {
+    "slug": "symbol-zmajici",
+    "client": "Symbol · Zmajići",
+    "title": "Za male navijače, velike emocije.",
+    "categories": [
+      "Kampanje",
+      "Društvene mreže"
+    ],
+    "cover": "/media/portfolio/symbol-zmajici-campaign-v23.webp",
+    "coverAlt": "Originalni Symbol Zmajići dizajn: plavi i žuti zmaj s fudbalskom loptom",
+    "summary": "Kolekcija Zmajići: prepoznatljiv navijački motiv i kampanjski sadržaj za društvene mreže.",
+    "task": "Predstaviti dječiju navijačku kolekciju kroz njen vizuelni identitet i sadržaj za društvene mreže.",
+    "work": [
+      "Vizuelna komunikacija kolekcije",
+      "Planiranje sadržaja za društvene mreže",
+      "Reel i carousel formati"
+    ],
+    "results": [],
+    "en": {
+      "title": "Little fans. Big emotions.",
+      "coverAlt": "Original Symbol Zmajići artwork: a blue and yellow dragon with a football",
+      "summary": "The Zmajići collection: a distinctive fan motif and campaign content for social media.",
+      "task": "Present the junior fan collection through its visual identity and social media content.",
+      "work": [
+        "Visual communication for the collection",
+        "Social media content planning",
+        "Reel and carousel formats"
+      ],
+      "results": []
+    }
+  },
+  {
     "slug": "symbol-tas",
     "client": "Symbol · TAS",
     "title": "Built in Sarajevo.",
     "categories": [
-      "Kampanje",
       "Grafički dizajn"
     ],
     "cover": "/media/portfolio/cover-symbol-tas.webp",
@@ -620,29 +650,29 @@ export const PORTFOLIO_2026: Project[] = [
     }
   },
   {
-    "slug": "jovs-bilbordi",
-    "client": "JOVS · Bilbordi",
-    "title": "Brend u ritmu grada.",
+    "slug": "zmaj-dooh",
+    "client": "Zmaj · 3D DOOH",
+    "title": "Zmaj u tri dimenzije.",
     "categories": [
       "OOH / DOOH"
     ],
-    "cover": "/media/portfolio/jovs-central-building.webp",
-    "coverAlt": "JOVS · Bilbordi — odabrani rad",
-    "summary": "JOVS kampanja u gradskom prostoru: fasadni oglasi, bilbordi i LED ekrani. Različiti formati povezuju isti proizvod i vizuelni identitet.",
-    "task": "JOVS kampanja u gradskom prostoru: fasadni oglasi, bilbordi i LED ekrani. Različiti formati povezuju isti proizvod i vizuelni identitet.",
+    "cover": "/media/portfolio/cover-zmaj-dooh.webp",
+    "coverAlt": "Zmaj, 3D animacija na digitalnom oglasnom ekranu",
+    "summary": "3D DOOH sadržaj za Zmaj, prilagođen perspektivi i proporcijama digitalnog oglasnog ekrana.",
+    "task": "Prenijeti lik Zmaja u animaciju koja koristi prostor digitalnog ekrana.",
     "work": [
-      "Prilagodba kampanjskih vizuala",
-      "OOH i DOOH formati"
+      "3D DOOH sadržaj",
+      "Prilagodba digitalnom oglasnom ekranu"
     ],
     "results": [],
     "en": {
-      "title": "A brand in the rhythm of the city.",
-      "coverAlt": "JOVS · Bilbordi — selected work",
-      "summary": "JOVS in public space: building displays, billboards and LED screens. Different formats connect the same product and visual identity.",
-      "task": "JOVS in public space: building displays, billboards and LED screens. Different formats connect the same product and visual identity.",
+      "title": "Zmaj in three dimensions.",
+      "coverAlt": "Zmaj 3D animation on a digital advertising display",
+      "summary": "3D DOOH content for Zmaj, adapted to the perspective and proportions of a digital advertising display.",
+      "task": "Bring the Zmaj character into an animation designed for a digital display.",
       "work": [
-        "Campaign visual adaptations",
-        "OOH and DOOH formats"
+        "3D DOOH content",
+        "Digital display adaptation"
       ],
       "results": []
     }
@@ -654,7 +684,7 @@ export const PORTFOLIO_2026: Project[] = [
     "categories": [
       "Grafički dizajn"
     ],
-    "cover": "/media/portfolio/bonaco-craft-v20-desktop-poster.jpg",
+    "cover": "/media/portfolio/bonaco-craft-v22-desktop-poster.jpg",
     "coverAlt": "Bonaco · Craft — odabrani rad",
     "summary": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
     "task": "Bonaco brend-film povezuje tipografiju, boje, video i identitete Bonaco, Bonexis i Poslovni oglasi. Pripremljen je u horizontalnom i vertikalnom formatu.",
@@ -733,6 +763,34 @@ export const PORTFOLIO_2026: Project[] = [
         "Filming interviews with the medical team",
         "Editing short video formats",
         "Preparing content for digital channels"
+      ],
+      "results": []
+    }
+  },
+  {
+    "slug": "jovs-bilbordi",
+    "client": "JOVS · Bilbordi",
+    "title": "Brend u ritmu grada.",
+    "categories": [
+      "OOH / DOOH"
+    ],
+    "cover": "/media/portfolio/jovs-central-building.webp",
+    "coverAlt": "JOVS · Bilbordi — odabrani rad",
+    "summary": "JOVS kampanja u gradskom prostoru: fasadni oglasi, bilbordi i LED ekrani. Različiti formati povezuju isti proizvod i vizuelni identitet.",
+    "task": "JOVS kampanja u gradskom prostoru: fasadni oglasi, bilbordi i LED ekrani. Različiti formati povezuju isti proizvod i vizuelni identitet.",
+    "work": [
+      "Prilagodba kampanjskih vizuala",
+      "OOH i DOOH formati"
+    ],
+    "results": [],
+    "en": {
+      "title": "A brand in the rhythm of the city.",
+      "coverAlt": "JOVS · Bilbordi — selected work",
+      "summary": "JOVS in public space: building displays, billboards and LED screens. Different formats connect the same product and visual identity.",
+      "task": "JOVS in public space: building displays, billboards and LED screens. Different formats connect the same product and visual identity.",
+      "work": [
+        "Campaign visual adaptations",
+        "OOH and DOOH formats"
       ],
       "results": []
     }
@@ -820,9 +878,9 @@ export const PROJECT_PHOTOS: Record<string,string[]> = {
     "/media/portfolio/jovs-city-led.webp"
   ],
   "bonaco-craft": [
-    "/media/portfolio/bonaco-craft-v20-desktop-dance.jpg",
-    "/media/portfolio/bonaco-craft-v20-desktop-outro.jpg",
-    "/media/portfolio/bonaco-craft-v20-desktop-poster.jpg"
+    "/media/portfolio/bonaco-craft-v22-desktop-dance.jpg",
+    "/media/portfolio/bonaco-craft-v22-desktop-outro.jpg",
+    "/media/portfolio/bonaco-craft-v22-desktop-poster.jpg"
   ],
   "zmaj": [],
   "peoples": [
@@ -868,7 +926,7 @@ export const PROJECT_FILMS: Record<string,ProjectFilm> = {
     "poster": "/media/portfolio/opel-dooh-pdf-poster.webp",
     "label": "Opel Frontera · 3D DOOH"
   },
-  "zmaj": {
+  "zmaj-dooh": {
     "instagram": "https://www.instagram.com/p/DNliRhYMCrw/",
     "poster": "/media/portfolio/zmaj-dooh-pdf-poster.webp",
     "label": "Zmaj · DOOH"

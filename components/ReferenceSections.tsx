@@ -5,7 +5,7 @@ import { CLIENTS } from '../data/clients';
 import { CATEGORY_EN } from '../data/projects';
 import { PROJECT_FOCUS } from '../data/portfolio2026';
 import { STRIP_FOCUS, projectNeedsFrame } from '../data/projectPresentation';
-import FramedImage from './FramedImage';
+import ProjectVisual from './ProjectVisual';
 import { asset } from '../lib/asset';
 import { tr, useLang } from '../lib/i18n';
 import type { Project } from '../types';
@@ -23,7 +23,7 @@ export function WorkGrid({projects}:{projects:Project[]}) {
  const {lang,to,t}=useLang();
  return <div className="project-strips">{projects.map(p=>{const x=tr(p,lang);const focus=STRIP_FOCUS[p.slug];const artwork=projectNeedsFrame(p);return <article key={p.slug}>
    <Link className={'project-strip'+(artwork?' project-strip-artwork':'')} data-project={p.slug} to={to('/portfolio/'+p.slug+'/')} aria-label={t('Vidi projekat: ', 'View project: ')+p.client} style={{'--strip-focus':focus?.desktop||PROJECT_FOCUS[p.slug]||'50% 50%','--strip-focus-mobile':focus?.mobile||PROJECT_FOCUS[p.slug]||'50% 50%'} as CSSProperties}>
-     {artwork ? <FramedImage className="project-strip-frame" src={p.cover} alt={x.coverAlt} /> : <img className="project-strip-photo" src={asset(p.cover)} alt={x.coverAlt} loading="lazy" decoding="async"/>}
+     <ProjectVisual project={p} alt={x.coverAlt} />
      <div className="project-strip-content"><h3>{p.client}<span className="project-strip-open">{t('Vidi projekat','View project')}</span></h3><div className="project-strip-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div></div>
    </Link>
  </article>})}</div>;
