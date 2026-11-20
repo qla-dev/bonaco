@@ -27,21 +27,21 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [ddOpen, setDdOpen] = useState(false);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const keepDropdownOpen = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setDdOpen(true);
-  };
-  const closeDropdownSoon = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setDdOpen(false), 260);
-  };
+  const desktopDropdown = useRef<HTMLDivElement>(null);
+  const mobileDropdown = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
   const { t, to } = useLang();
   const home = to('/');
 
   useEffect(() => { setOpen(false); setDdOpen(false); }, [pathname]);
-  useEffect(() => () => { if (closeTimer.current) clearTimeout(closeTimer.current); }, []);
+  useEffect(() => {
+    if (!ddOpen) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!desktopDropdown.current?.contains(event.target as Node) && !mobileDropdown.current?.contains(event.target as Node)) setDdOpen(false);
+    };
+    document.addEventListener('pointerdown', closeOutside);
+    return () => document.removeEventListener('pointerdown', closeOutside);
+  }, [ddOpen]);
   useEffect(() => {
     const check = () => setScrolled(getScrollY() > 24);
     check();
@@ -61,8 +61,13 @@ export default function Header() {
   }, [open]);
 
   const routePath = pathname.replace(/\/?$/, '/');
-  const offerActive = routePath === to('/sta-nudimo/') || NAV_OFFER.some(n => routePath.startsWith(to(n.to)));
-  const currentSection = [...NAV, { to: '/sta-nudimo/', bs: 'Šta nudimo', en: 'Services' }, ...NAV_OFFER].find(n => routePath.startsWith(to(n.to)));
+  const overview = { to: '/sta-nudimo/', bs: 'Šta nudimo', en: 'Services', color: '#f5862a' };
+  const offerLinks = NAV_OFFER.map(n => n.to === '/bonexis/' ? { ...n, bs: 'Bonexis', en: 'Bonexis' } : n);
+  const activeOffer = offerLinks.find(n => routePath.startsWith(to(n.to)));
+  const offerActive = routePath === to(overview.to) || !!activeOffer;
+  const offerLabel = activeOffer ? t(activeOffer.bs, activeOffer.en) : t(overview.bs, overview.en);
+  const dropdownLinks = [overview, ...offerLinks.filter(n => n.to !== activeOffer?.to)];
+  const currentSection = [...NAV, overview, ...offerLinks].find(n => routePath.startsWith(to(n.to)));
   const currentLabel = currentSection ? t(currentSection.bs, currentSection.en) : pathname === home ? t('Početna', 'Home') : t('Bonaco', 'Bonaco');
 
   const navLinks = NAV.map(n => (
@@ -85,14 +90,13 @@ export default function Header() {
             <NavLink to={to('/o-nama/')}>{t('O nama', 'About')}</NavLink>
           </div>
           <div className="nav-right">
-          <div className="nav-dd" onMouseEnter={keepDropdownOpen} onMouseLeave={closeDropdownSoon} onKeyDown={event => { if (event.key === 'Escape') setDdOpen(false); }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null) && !event.currentTarget.matches(':hover')) setDdOpen(false); }}>
+          <div ref={desktopDropdown} className="nav-dd" onKeyDown={event => { if (event.key === 'Escape') { setDdOpen(false); event.currentTarget.querySelector('button')?.focus(); } }} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDdOpen(false); }}>
             <div className="nav-offer-heading">
-              <Link to={to('/sta-nudimo/')} className={`nav-offer-link${offerActive ? ' active' : ''}`} aria-current={routePath === to('/sta-nudimo/') ? 'page' : undefined}>{t('Šta nudimo', 'Services')}</Link>
-              <button type="button" className="offer-menu-toggle" aria-label={t('Prikaži usluge', 'Show services')} aria-expanded={ddOpen} aria-controls="desktop-offer-menu" onClick={event => setDdOpen(current => event.detail === 0 ? !current : true)}><ChevronDown size={15} className={ddOpen ? 'rot180' : ''} /></button>
+              <button type="button" className={`nav-offer-link offer-navigation-trigger${offerActive ? ' active' : ''}`} aria-expanded={ddOpen} aria-controls="desktop-offer-menu" onClick={() => setDdOpen(current => !current)}>{offerLabel}<ChevronDown size={15} className={ddOpen ? 'rot180' : ''} aria-hidden="true" /></button>
             </div>
-            <div id="desktop-offer-menu" className={`nav-dd-panel${ddOpen ? ' is-open' : ''}`}>
-              {NAV_OFFER.map(n => (
-                <NavLink key={n.to} to={to(n.to)} className={({ isActive }) => (isActive ? 'active' : undefined)}>
+            <div id="desktop-offer-menu" hidden={!ddOpen} className={`nav-dd-panel${ddOpen ? ' is-open' : ''}`}>
+              {dropdownLinks.map(n => (
+                <NavLink key={n.to} to={to(n.to)} onClick={() => setDdOpen(false)} className={({ isActive }) => (isActive ? 'active' : undefined)}>
                   <span className="offer-dot" style={{background: n.color}} aria-hidden="true" />{t(n.bs, n.en)}
                 </NavLink>
               ))}
@@ -111,14 +115,13 @@ export default function Header() {
       <div className="mobile-menu" hidden={!open}>
         <nav aria-label={t('Mobilni meni', 'Mobile menu')} onClick={event => { if ((event.target as Element).closest('a')) { setOpen(false); setDdOpen(false); } }}>
           <NavLink to={home} end>{t('Početna', 'Home')}</NavLink>
-          <div className="mobile-dd">
+          <div ref={mobileDropdown} className="mobile-dd" onKeyDown={event => { if (event.key === 'Escape') { setDdOpen(false); event.currentTarget.querySelector('button')?.focus(); } }}>
             <div className="mobile-offer-heading">
-              <Link to={to('/sta-nudimo/')} className={offerActive ? 'active' : undefined} aria-current={routePath === to('/sta-nudimo/') ? 'page' : undefined}>{t('Šta nudimo', 'Services')}</Link>
-              <button type="button" className="offer-menu-toggle" onClick={() => setDdOpen(o => !o)} aria-expanded={ddOpen} aria-controls="mobile-offer-menu" aria-label={t('Prikaži usluge', 'Show services')}><ChevronDown size={18} className={ddOpen ? 'rot180' : ''} /></button>
+              <button type="button" className={`offer-navigation-trigger${offerActive ? ' active' : ''}`} onClick={() => setDdOpen(o => !o)} aria-expanded={ddOpen} aria-controls="mobile-offer-menu">{offerLabel}<ChevronDown size={18} className={ddOpen ? 'rot180' : ''} aria-hidden="true" /></button>
             </div>
             {ddOpen && (
               <div id="mobile-offer-menu" className="mobile-dd-panel">
-                {NAV_OFFER.map(n => (
+                {dropdownLinks.map(n => (
                   <NavLink key={n.to} to={to(n.to)} className={({ isActive }) => (isActive ? 'active' : undefined)}>
                     <span className="offer-dot" style={{background: n.color}} aria-hidden="true" />{t(n.bs, n.en)}
                   </NavLink>
