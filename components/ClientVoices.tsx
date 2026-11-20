@@ -20,6 +20,6 @@ export default function ClientVoices() {
     <div className="voices-viewport"><div className="voices-track">{[0, 1].map(copy => <div className="voices-group" key={copy} aria-hidden={copy === 1 || undefined}>{proposals.map(item => <article className="voice-circle" key={item.name}>
       <div className={'voice-brandmark voice-brandmark-' + item.mark}><img src={asset(item.logo)} alt="" loading="lazy" decoding="async" width="200" height="200" /></div><p>{item[lang]}</p><h3>{item.name}</h3><span className="voice-draft">{item.draft ? t('Nacrt za potvrdu', 'Draft for approval') : t('Sažetak izjave', 'Testimonial summary')}</span>
     </article>)}</div>)}</div></div>
-    <button className="voices-pause" type="button" aria-pressed={paused} aria-label={paused ? t('Pokreni izjave', 'Play testimonials') : t('Pauziraj izjave', 'Pause testimonials')} onClick={() => setPaused(value => !value)}>{paused ? <Play size={15} /> : <Pause size={15} />}{paused ? t('Pokreni', 'Play') : t('Pauziraj', 'Pause')}</button>
+    <button className="voices-pause" type="button" aria-pressed={paused} aria-label={paused ? t('Pokreni izjave', 'Play testimonials') : t('Pauziraj izjave', 'Pause testimonials')} onClick={() => setPaused(value => !value)}>{paused ? <Play size={15} aria-hidden="true" /> : <Pause size={15} aria-hidden="true" />}<span className="voices-pause-label">{paused ? t('Pokreni', 'Play') : t('Pauziraj', 'Pause')}</span></button>
   </section>;
 }

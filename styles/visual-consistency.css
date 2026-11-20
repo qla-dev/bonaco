@@ -34,8 +34,14 @@ a.offer-card { cursor: pointer; }
   .ref-marketing .ref-service-content > .service-strip { height: 250px; }
   .ref-marketing .ref-service-hero { padding-bottom: 76px; }
   .service-list-heading { padding-bottom: 28px; }
-  .ref-footer .ref-footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
-  .ref-footer .footer-follow { grid-column: 1 / -1; }
+  .ref-footer .ref-footer-top { grid-template-columns: minmax(0, 1fr); gap: 0; justify-items: center; text-align: center; }
+  .ref-footer .ref-footer-top > .footer-column { grid-column: 1; width: 100%; align-items: center; padding: 26px 0; }
+  .ref-footer .footer-column > nav:not(.footer-social-links) { justify-content: center; align-items: center; }
+  .ref-footer .footer-follow > .footer-social-links { justify-content: center; }
+  .ref-footer .ref-footer-bottom { align-items: center; text-align: center; }
+  .ref-footer .ref-footer-bottom > * { align-self: center; }
+  .client-voices .voices-pause { width: 44px; height: 44px; padding: 0; gap: 0; }
+  .voices-pause-label { display: none; }
 }
 
 /* Centered V23 compositions: device, outdoor and campaign windows share a stage. */
@@ -77,3 +83,25 @@ a.offer-card { cursor: pointer; }
 .project-visual > img.project-visual-photo { position: absolute; inset: 0; display: block; width: 100%; height: 100%; min-height: 0; padding: 0; object-fit: cover; object-position: var(--strip-focus, 50% 50%); }
 .project-cover .project-visual > img.project-visual-photo { object-fit: contain; }
 @media (max-width:680px) { .project-visual > img.project-visual-photo { object-position: var(--strip-focus-mobile, 50% 50%); } }
+
+/* A concise preview of the AI offer, with availability after the introduction. */
+.bonexis-coming { min-height: 88svh; padding: 140px 0 90px; }
+.bonexis-coming > .container { max-width: 880px; }
+.bonexis-coming .bonexis-coming-mark { width: 180px; height: 180px; margin-bottom: 32px; }
+.bonexis-coming .bonexis-coming-mark .brand-logo-img img { width: 145px; }
+.bonexis-coming h1 { font-size: clamp(32px, 4.5vw, 56px); margin-bottom: 24px; }
+.bonexis-coming h1 span { color: #3cc9c5; }
+.bonexis-coming .bonexis-coming-intro { max-width: 650px; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.8; }
+.bonexis-coming-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; list-style: none; padding: 0; margin: 28px 0 22px; }
+.bonexis-coming-features li { padding: 8px 15px; border: 1px solid #3cc9c540; border-radius: 999px; color: #d5efed; font-size: .875rem; }
+.bonexis-coming .bonexis-coming-credit { font-size: .8125rem; color: #a4adac; }
+.bonexis-coming .bonexis-coming-status { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 32px; color: #3cc9c5; font-size: clamp(19px, 2.2vw, 26px); font-weight: 600; }
+.bonexis-coming-status > span { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 18px #3cc9c530; }
+@media (max-width: 680px) {
+  .bonexis-coming { padding: 114px 0 66px; }
+  .bonexis-coming .bonexis-coming-mark { width: 150px; height: 150px; margin-bottom: 28px; }
+  .bonexis-coming .bonexis-coming-mark .brand-logo-img img { width: 122px; }
+  .bonexis-coming h1 { font-size: clamp(28px, 7.8vw, 38px); }
+  .bonexis-coming-features { gap: 8px; margin-block: 24px 20px; }
+  .bonexis-coming-features li { padding: 7px 12px; font-size: .875rem; }
+}

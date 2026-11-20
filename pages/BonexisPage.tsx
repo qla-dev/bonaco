@@ -10,8 +10,15 @@ export default function BonexisPage() {
     <section className="bonexis-coming" data-brand="bonexis">
       <div className="container">
         <div className="bonexis-coming-mark"><BrandLogo brand="bonexis" /></div>
-        <h1>{t('Uskoro sa vama', 'Coming soon')}</h1>
-        <p>{t('Bonexis razvija poslovna AI rješenja u saradnji s qla.dev.', 'Bonexis is developing business AI solutions with qla.dev.')}</p>
+        <h1>{t('AI podrška za', 'AI support for')}<br /><span>{t('svakodnevni posao.', 'your everyday work.')}</span></h1>
+        <p className="bonexis-coming-intro">{t('Pripremamo AI asistente za sadržaj i SEO, pronalazak novih klijenata te organizaciju i pregled rada tima. Sve na jednom mjestu, uz vašu kontrolu i odobrenje.', 'We’re preparing AI assistants for content and SEO, finding new clients, and organising and reviewing your team’s work. All in one place, with you in control and every step subject to your approval.')}</p>
+        <ul className="bonexis-coming-features" aria-label={t('Šta možete očekivati', 'What to expect')}>
+          <li>{t('Sadržaj i SEO', 'Content & SEO')}</li>
+          <li>{t('Klijenti i prodaja', 'Clients & sales')}</li>
+          <li>{t('Tim i zadaci', 'Team & tasks')}</li>
+        </ul>
+        <p className="bonexis-coming-credit">{t('Razvijamo u saradnji s qla.dev.', 'In development with qla.dev.')}</p>
+        <p className="bonexis-coming-status"><span aria-hidden="true" />Coming soon</p>
       </div>
     </section>
   </>;
