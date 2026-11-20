@@ -23,7 +23,7 @@ export function WorkGrid({projects}:{projects:Project[]}) {
  const {lang,to,t}=useLang();
  return <div className="project-strips">{projects.map(p=>{const x=tr(p,lang);const focus=STRIP_FOCUS[p.slug];const artwork=projectNeedsFrame(p);return <article key={p.slug}>
    <Link className={'project-strip'+(artwork?' project-strip-artwork':'')} data-project={p.slug} to={to('/portfolio/'+p.slug+'/')} aria-label={t('Projekat: ', 'Project: ')+p.client} style={{'--strip-focus':focus?.desktop||PROJECT_FOCUS[p.slug]||'50% 50%','--strip-focus-mobile':focus?.mobile||PROJECT_FOCUS[p.slug]||'50% 50%'} as CSSProperties}>
-     <ProjectVisual project={p} alt={x.coverAlt} />
+     <ProjectVisual project={p} alt={x.coverAlt} ripple />
      <div className="project-strip-content"><h3>{p.client}</h3><div className="project-strip-tags">{p.categories.map(c=><span key={c}>{lang==='en'?(CATEGORY_EN[c]||c):c}</span>)}</div></div>
    </Link>
  </article>})}</div>;

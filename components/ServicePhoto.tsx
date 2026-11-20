@@ -1,5 +1,6 @@
 import { asset } from '../lib/asset';
 import FramedImage from './FramedImage';
+import ImageRipple from './ImageRipple';
 import type { CSSProperties } from 'react';
 
 export default function ServicePhoto({ src, alt, position = '50% 50%', mobilePosition = position, artwork = false, strip = false }: {
@@ -8,5 +9,6 @@ export default function ServicePhoto({ src, alt, position = '50% 50%', mobilePos
   return <div className={'service-photo' + (artwork ? ' is-artwork' : '') + (strip ? ' service-strip' : '')} style={{'--service-focus': position, '--service-focus-mobile': mobilePosition} as CSSProperties}>
     {artwork ? <FramedImage src={src} alt={alt} /> : <img src={asset(src)} alt={alt} loading="lazy" decoding="async"
       />}
+    {strip && <ImageRipple target={artwork ? '.framed-image-foreground' : 'img'} />}
   </div>;
 }

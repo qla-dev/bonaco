@@ -26,7 +26,7 @@ a.offer-card { cursor: pointer; }
 .ref-footer .ref-footer-top { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px; }
 @media (max-width: 680px) {
   .project-strip-artwork { height: 370px; grid-template-rows: minmax(0, 1fr) 122px; }
-  .project-strip-artwork .project-strip-content { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 10px; padding: 14px 15px; }
+  .project-strip-artwork .project-strip-content { padding: 14px 15px; }
   .project-strip-artwork .project-strip-tags { max-width: 100%; margin: 0; }
   .framed-image > img.framed-image-foreground { padding: 12px; }
   .framed-image > img.framed-image-backdrop { filter: blur(18px) brightness(.48) saturate(.85); }
@@ -51,10 +51,12 @@ a.offer-card { cursor: pointer; }
 .project-visual-window > img { display: block; width: 100%; height: 100%; padding: 0; object-position: center; }
 .project-strips { justify-items: center; }
 .project-strips > article { width: 100%; }
-.project-strip .project-strip-content { justify-content: center; align-items: center; text-align: center; flex-direction: column; gap: 9px; }
-.project-strip h3 { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 7px 14px; text-align: center; }
+.ref-page > .project-showcase { padding-top: 128px; }
+.project-strip .project-strip-content { display: flex; justify-content: space-between; align-items: center; flex-direction: row; gap: 24px; text-align: left; }
+.project-strip h3 { flex: 1 1 40%; min-width: 0; text-align: left; overflow-wrap: anywhere; }
 .project-strip-open { margin: 0; }
-.project-strip .project-strip-tags { justify-content: center; max-width: 100%; margin: 0; }
+.project-strip .project-strip-tags { flex: 0 1 60%; min-width: 0; justify-content: flex-end; max-width: 60%; margin: 0; text-align: right; }
+.image-ripple { position: absolute; z-index: 2; display: block; max-width: none; opacity: 0; pointer-events: none; }
 .ref-marketing .ref-service-hero { padding-bottom: clamp(40px,5vw,68px); }
 .ref-marketing .ref-service-content > .service-strip { height: clamp(260px,30vw,380px); }
 .service-strip > img { width: 100%; height: 100%; object-fit: cover; padding: 0; }
@@ -63,7 +65,9 @@ a.offer-card { cursor: pointer; }
   .project-laptop-display { border-width: 1px; border-radius: 9px 9px 2px 2px; }
   .project-visual-window { width: 90%; }
   .project-strip-artwork .project-strip-content { align-items: center; }
-  .project-strip h3 { font-size: 1.25rem; }
+  .project-strip .project-strip-content { gap: 12px; }
+  .project-strip h3 { font-size: clamp(1rem, 4.5vw, 1.25rem); }
+  .project-strip .project-strip-tags { gap: 5px; }
   .project-strip .project-strip-tags > span { white-space: normal; }
   .ref-marketing .ref-service-hero { padding-bottom: 40px; }
   .ref-marketing .ref-service-content > .service-strip { height: 240px; }

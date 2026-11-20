@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import SEO from '../components/SEO';
-import BrandLogo from '../components/BrandLogo';
 import { ClientClouds, ContactBand } from '../components/ReferenceSections';
 import ServicePhoto from '../components/ServicePhoto';
 import { SERVICES, SERVICE_INCLUDES } from '../data/services';
@@ -80,7 +79,6 @@ export default function ServicesPage() {
       <SEO title="Bonaco marketing" description={t('Strategija, društvene mreže, dizajn, produkcija, web i oglašavanje.', 'Strategy, social media, design, production, web and advertising.')} />
       <section className="ref-wrap ref-service-hero">
         <div>
-          <BrandLogo />
           <p className="ref-eyebrow">Bonaco marketing</p>
           <h1>{t('Sve počinje', 'It all starts')}<br /><span>{t('dobrom idejom.', 'with a good idea.')}</span></h1>
           <p>{t('Dajemo joj strategiju, oblik, glas i publiku. Povezujemo usluge prema onome što vašem brendu treba, od prve kampanje do kontinuirane komunikacije na više kanala.', 'We turn ideas into a clear strategy, distinctive design and content that reaches the right people. From your first campaign to your everyday brand presence, we bring the right skills together.')}</p>
